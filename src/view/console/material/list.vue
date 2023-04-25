@@ -1,48 +1,55 @@
 <template>
-  <APanel>
-    <AToolBar
-      :loading="isLoading"
-      :entity="MaterialEntity"
-      :service="MaterialService"
-      show-import
-      @on-add="onAdd()"
-      @on-search="request = $event; getList()"
-    />
-    <ATable
-      v-loading="isLoading"
-      :data-list=" response.list "
-      hide-select
-      show-detail
-      show-add
-      :entity=" MaterialEntity "
-      :ctrl-width=" 130 "
-      :disable-delete="
-        (row: MaterialEntity) => {
-          return row.id / 3 === 0
-        }
-      "
-      @on-detail=" onDetail "
-      @on-edit=" onEdit "
-      @on-delete=" onDelete "
-      @on-add=" onRowAdd "
-      @on-sort-change=" request.sort = $event; getList() "
-    />
-    <template #footerLeft>
-      <APage
-        :response=" response "
-        @on-change="
-          request.page = $event;
-          getList()
-        "
+  <ATreeBox
+    :tree-data="treeData"
+    searchable
+    default-expand-all
+    @on-change="treeDataChanged"
+  >
+    <APanel>
+      <AToolBar
+        :loading="isLoading"
+        :entity="MaterialEntity"
+        :service="MaterialService"
+        show-import
+        @on-add="onAdd()"
+        @on-search="request = $event; getList()"
       />
-    </template>
-  </APanel>
+      <ATable
+        v-loading="isLoading"
+        :data-list=" response.list "
+        hide-select
+        show-detail
+        show-add
+        :entity=" MaterialEntity "
+        :ctrl-width=" 130 "
+        :disable-delete="
+          (row: MaterialEntity) => {
+            return row.id / 3 === 0
+          }
+        "
+        @on-detail=" onDetail "
+        @on-edit=" onEdit "
+        @on-delete=" onDelete "
+        @on-add=" onRowAdd "
+        @on-sort-change=" request.sort = $event; getList() "
+      />
+      <template #footerLeft>
+        <APage
+          :response=" response "
+          @on-change="
+            request.page = $event;
+            getList()
+          "
+        />
+      </template>
+    </APanel>
+  </ATreeBox>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import {
-  APanel, APage, ATable, AToolBar,
+  ATreeBox, APanel, APage, ATable, AToolBar,
 } from '@/airpower/component'
 import { MaterialEntity } from '@/entity/MaterialEntity'
 import EditView from './edit.vue'
@@ -51,6 +58,8 @@ import { AirDialogHelper } from '@/airpower/helper/AirDialogHelper'
 import { MaterialDetail } from '@/component/detail'
 import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
+import { AirRandHelper } from '@/airpower/helper/AirRandHelper'
+import { ITree } from '@/airpower/interface/ITree'
 
 const response = ref(new AirResponsePage<MaterialEntity>())
 const request = ref(new AirRequestPage<MaterialEntity>())
@@ -86,5 +95,44 @@ async function onDetail(data: MaterialEntity) {
 }
 
 getList()
+
+const treeData = ref([] as ITree[])
+function getTreeData() {
+  for (let i = 1; i <= 10; i += 1) {
+    const children = [] as ITree[]
+    if (i % 3 === 0) {
+      for (let j = 1; j <= 10; j += 1) {
+        const children1 = [] as ITree[]
+        if (j % 3 === 0) {
+          const children2 = [] as ITree[]
+          for (let k = 1; k <= 10; k += 1) {
+            children1.push({
+              id: parseInt(AirRandHelper.getRandNumberString(6)),
+              name: `我是孙子节点${k}`,
+              children: children2,
+            } as ITree)
+          }
+        }
+        children.push({
+          id: parseInt(AirRandHelper.getRandNumberString(6)),
+          name: `我是子节点${j}`,
+          children: children1,
+        } as ITree)
+      }
+    }
+    treeData.value.push({
+      id: parseInt(AirRandHelper.getRandNumberString(6)),
+      name: `我是根节点${i}`,
+      children,
+    } as ITree)
+  }
+}
+
+const currentTreeData: Ref<ITree | undefined> = ref()
+function treeDataChanged(tree: ITree | undefined) {
+  currentTreeData.value = tree
+  console.log('currentTreeData', currentTreeData.value)
+}
+getTreeData()
 </script>
 <style scoped lang="scss"></style>
