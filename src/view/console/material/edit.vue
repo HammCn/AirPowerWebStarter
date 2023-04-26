@@ -109,16 +109,18 @@ getDetail()
 
 const rules = AirValidatorHelper.create({
   spc: [
-    new AirValidator().ifEmpty(),
+    AirValidator.show('规格型号必须填写').ifEmpty(),
   ],
   name: [
-    new AirValidator().ifEmpty(),
-    new AirValidator().ifNot(AirInputType.NUMBER, AirInputType.LETTER, '.'),
+    AirValidator.show('物料名称必须填写').ifEmpty(),
+    AirValidator.show('只允许输入字母和数字和.').ifNot(
+      AirInputType.NUMBER,
+      AirInputType.LETTER,
+      '.',
+    ),
   ],
   materialType: [
-    new AirValidator().show('请选择物料类型')
-      .toNumber()
-      .ifEmpty(),
+    AirValidator.show('请选择物料类型').toNumber().ifEmpty(),
   ],
 })
 
