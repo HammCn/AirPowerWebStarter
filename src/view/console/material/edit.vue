@@ -123,7 +123,7 @@ const rules = AirValidatorHelper.create({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  service.save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await service.save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>
