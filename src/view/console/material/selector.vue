@@ -5,6 +5,7 @@
     :hide-footer="!mult"
     title="请选择用户"
     is-selector
+    :loading="isLoading"
     @on-confirm="onConfirm(selected)"
     @on-cancel="onCancel()"
   >
@@ -69,12 +70,14 @@ import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 
 defineProps(airPropsSelector<MaterialEntity>())
 
+const isLoading = ref(false)
+const service = new MaterialService(isLoading)
+
 const request = ref(new AirRequestPage<MaterialEntity>())
 const response = ref(new AirResponsePage<MaterialEntity>())
-const isLoading = ref(false)
 
 async function getList() {
-  response.value = await new MaterialService(isLoading).getPage(request.value)
+  response.value = await service.getPage(request.value)
 }
 getList()
 

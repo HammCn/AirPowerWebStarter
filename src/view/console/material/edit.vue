@@ -5,6 +5,7 @@
     width="1000px"
     height="600px"
     :form-ref="form"
+    :loading="isLoading"
     @on-confirm="submit()"
     @on-cancel="onCancel()"
   >
@@ -94,11 +95,13 @@ import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
+const isLoading = ref(false)
+const service = new MaterialService(isLoading)
 
 const data = ref(new MaterialEntity())
 async function getDetail() {
   if (props.param) {
-    data.value = await new MaterialService().getDetail(props.param.id)
+    data.value = await service.getDetail(props.param.id)
   }
 }
 getDetail()
@@ -120,11 +123,7 @@ const rules = AirValidatorHelper.create({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  if (props.param) {
-    await new MaterialService().update(data.value, '修改物料成功')
-  } else {
-    await new MaterialService().add(data.value, '新增物料成功')
-  }
+  service.save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>
