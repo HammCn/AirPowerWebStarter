@@ -4,23 +4,21 @@
     hide-ctrl
     width="500"
     height="300"
+    :loading="isLoading"
     @on-confirm="onConfirm()"
     @on-cancel="onCancel()"
   >
     <div>
       标准对象数据：<br>
 
-      {{ param }}
+      {{ detail }}
     </div>
     <hr>
     <div>
       原始接口数据:<br>
 
-      {{ param.toSourceString() }}
+      {{ detail.toSourceString() }}
     </div>
-    <el-button @click="newDialog">
-      new dialog
-    </el-button>
   </ADialog>
 </template>
 
@@ -29,23 +27,18 @@ import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialEntity } from '@/entity/MaterialEntity'
-import { MaterialDetail } from '@/component/detail'
 import { MaterialService } from '@/service/MaterialService'
-import { AirDialogHelper } from '@/airpower/helper/AirDialogHelper'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
-
+const isLoading = ref(false)
+const service = new MaterialService(isLoading)
 const detail = ref(new MaterialEntity())
 
 async function getDetail() {
-  detail.value = await new MaterialService().getDetail(props.param.id)
+  detail.value = await service.getDetail(props.param.id)
 }
 
 getDetail()
-
-function newDialog() {
-  AirDialogHelper.show(MaterialDetail, new MaterialEntity().setId(123))
-}
 </script>
 
 <style scoped lang="scss"></style>
