@@ -1,10 +1,10 @@
 <template>
   <APanel>
     <div>
-      {{ world }}
+      {{ hello }}
       <el-button
         type="primary"
-        @click="doNewWorld()"
+        @click="newHello()"
       >
         newWorld
       </el-button>
@@ -83,10 +83,10 @@ import { AirDialogHelper } from '@/airpower/helper/AirDialogHelper'
 import { MaterialService } from '@/service/MaterialService'
 import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
 
-const world = computed(() => appStore().$state.hello)
+const hello = computed(() => appStore().$state.hello)
 
-const doNewWorld = () => {
-  appStore().newWorld()
+const newHello = () => {
+  appStore().newHello()
 }
 
 function uploadSuccess(data: AirFileEntity) {

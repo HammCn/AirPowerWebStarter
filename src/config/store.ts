@@ -5,7 +5,7 @@ export const appStore = defineStore('app', {
     hello: 'World',
   }),
   actions: {
-    newWorld() {
+    newHello() {
       this.hello = 'new world'
     },
   },
