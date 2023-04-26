@@ -93,6 +93,7 @@ import { AirValidatorHelper } from '@/airpower/helper/AirValidatorHelper'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
+import { AirInputType } from '@/airpower/enum/AirInputType'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
 const isLoading = ref(false)
@@ -112,6 +113,7 @@ const rules = AirValidatorHelper.create({
   ],
   name: [
     new AirValidator().ifEmpty(),
+    new AirValidator().ifNot(AirInputType.NUMBER, AirInputType.LETTER, '.'),
   ],
   materialType: [
     new AirValidator().show('请选择物料类型')
