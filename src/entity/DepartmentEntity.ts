@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer'
+import { Expose, Type } from 'class-transformer'
 import { BaseAbstractTreeEntity } from '@/base/BaseTreeEntity'
 
 /**
@@ -6,12 +6,8 @@ import { BaseAbstractTreeEntity } from '@/base/BaseTreeEntity'
  */
 export class DepartmentEntity extends BaseAbstractTreeEntity<DepartmentEntity> {
   /**
-   * # 部门名称
-   */
-  @Expose() name!: string
-
-  /**
    * # 下级部门
    */
+  @Type(() => DepartmentEntity)
   @Expose() children: DepartmentEntity[] = []
 }

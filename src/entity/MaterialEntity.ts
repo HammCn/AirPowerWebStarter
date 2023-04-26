@@ -27,7 +27,7 @@ export const MaterialTypeRecord: IRecord[] = [
 ]
 
 /**
- * 用户实体类
+ * # 物料
  */
 @ClassName('物料')
 @EntityConfig({
