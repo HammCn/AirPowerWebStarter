@@ -12,22 +12,22 @@ interface ImportMetaEnv extends Readonly<Record<string, string | boolean>> {
   /**
    * 环境名称
    */
-  readonly VITE_APP_NAME: string
+  VITE_APP_NAME: string
 
   /**
    * API根路径
    */
-  readonly VITE_APP_API: string
+  VITE_APP_API: string
 
   /**
    * 基础服务首页地址
    */
-  readonly VITE_APP_HOME_URL: string
+  VITE_APP_HOME_URL: string
 
   /**
    * 单点登录SSO地址
    */
-  readonly VITE_APP_SSO_URL: string
+  VITE_APP_SSO_URL: string
 
   /**
    * 静态资源根路径
@@ -37,17 +37,17 @@ interface ImportMetaEnv extends Readonly<Record<string, string | boolean>> {
   /**
    * 是否开发模式
    */
-  readonly DEV: boolean
+  DEV: boolean
 
   /**
    * 是否生产模式
    */
-  readonly PROD: boolean
+  PROD: boolean
 
   /**
    * 当前环境模式
    */
-  readonly MODE: string
+  MODE: string
 }
 
 interface ImportMeta {
