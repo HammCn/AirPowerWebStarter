@@ -16,26 +16,25 @@
       />
       <ATable
         v-loading="isLoading"
-        :data-list=" response.list "
+        :data-list="response.list"
         hide-select
         show-detail
         show-add
-        :entity=" MaterialEntity "
-        :ctrl-width=" 130 "
-        :disable-delete="
-          (row: MaterialEntity) => {
-            return row.id / 3 === 0
-          }
+        :entity="MaterialEntity"
+        :ctrl-width="130"
+        :disable-delete="(row: MaterialEntity) => {
+          return row.id / 3 === 0
+        }
         "
-        @on-detail=" onDetail "
-        @on-edit=" onEdit "
-        @on-delete=" onDelete "
-        @on-add=" onRowAdd "
-        @on-sort-change=" request.sort = $event; getList() "
+        @on-detail="onDetail"
+        @on-edit="onEdit"
+        @on-delete="onDelete"
+        @on-add="onRowAdd"
+        @on-sort-change=" request.sort = $event; getList()"
       />
       <template #footerLeft>
         <APage
-          :response=" response "
+          :response="response"
           @on-change="
             request.page = $event;
             getList()
