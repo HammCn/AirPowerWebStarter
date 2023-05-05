@@ -12,31 +12,31 @@
     <AToolBar
       hide-add
       :loading="isLoading"
-      :search-entity="MaterialEntity"
+      :entity="MaterialEntity"
       @on-search="
         request = $event;
         getList()"
     />
     <ATable
-      :data-list=" response.list "
-      :hide-select=" !mult "
+      :data-list="response.list"
+      :hide-select="!mult"
       hide-delete
       hide-edit
-      :select-list=" selectList "
-      :table-entity=" MaterialEntity "
-      :ctrl-width=" 80 "
+      :select-list="selectList"
+      :entity="MaterialEntity"
+      :ctrl-width="80"
       hide-field-selector
-      :hide-ctrl=" mult "
-      @select=" selected = $event "
+      :hide-ctrl="mult"
+      @select=" selected = $event"
     >
       <template
-        v-if=" !mult "
-        #customRow=" { data } "
+        v-if="!mult"
+        #customRow="{ data }"
       >
         <el-button
           size="small"
           type="primary"
-          :disabled=" data.isDisabled "
+          :disabled="data.isDisabled"
           @click="
             onConfirm(data)
           "
@@ -47,7 +47,7 @@
     </ATable>
     <template #footerRight>
       <APage
-        :response=" response "
+        :response="response"
         @changed="
           request.page = $event;
           getList()
