@@ -41,7 +41,7 @@ export class MaterialEntity extends BaseEntity {
   })
   @SearchField()
   @FormField()
-  @Expose({ name: 'materialName' }) name!: string
+  @Expose() name!: string
 
   @FieldName('规格型号')
   @TableField({
