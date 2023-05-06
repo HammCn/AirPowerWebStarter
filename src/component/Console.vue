@@ -18,18 +18,18 @@
 import { Ref, ref } from 'vue'
 import { AFrame, AUser, AImage } from '@/airpower/component'
 import { AirConfig } from '@/airpower/AirConfig'
-import { AirRouterHelper } from '@/airpower/helper/AirRouterHelper'
+import { AirRouter } from '@/airpower/helper/AirRouter'
 import { AirUserEntity } from '@/airpower/dto/AirUserEntity'
 import { AirMenuEntity } from '@/airpower/dto/AirMenuEntity'
-import { AirClassTransformerHelper } from '@/airpower/helper/AirClassTransformerHelper'
+import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
 
 const currentUserInfo: Ref<AirUserEntity> = ref(new AirUserEntity())
 const menuList: Ref<AirMenuEntity[]> = ref([])
 
 async function getMenuList() {
   const data = '[{"id":1,"children":[],"name":"首页","path":"/console","icon":"icon-commonicon_shanchu airpower","component":"/console/index/index","isHide":false},{"id":2,"children":[],"name":"物料列表","path":"/console/material","icon":"icon-commonicon_shanchu airpower","component":"/console/material/list","isHide":false},{"id":31,"children":[{"id":331,"children":[],"name":"子菜单1","path":"/console/user/tree","component":"/console/user/tree","isHide":false}],"name":"子菜单列表","icon":"icon-commonicon_shanchu airpower","isHide":false},{"id":4,"children":[],"name":"AirHttp","path":"/console/demo/http","icon":"icon-commonicon_shanchu airpower","component":"/console/demo/http","isHide":false}]'
-  menuList.value = AirClassTransformerHelper.parseArray(JSON.parse(data), AirMenuEntity)
-  AirRouterHelper.initVueRouter(menuList.value, 'console')
+  menuList.value = AirClassTransformer.parseArray(JSON.parse(data), AirMenuEntity)
+  AirRouter.initVueRouter(menuList.value, 'console')
 }
 
 async function init() {

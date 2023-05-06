@@ -79,7 +79,7 @@ import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirRecord } from '@/airpower/model/AirRecord'
 import { MaterialEntity } from '@/entity/MaterialEntity'
 import { appStore } from '@/config/store'
-import { AirDialogHelper } from '@/airpower/helper/AirDialogHelper'
+import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'
 import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
 
@@ -149,7 +149,7 @@ function change(data: MaterialEntity) {
   console.log(data)
 }
 function upload() {
-  AirDialogHelper.showUpload()
+  AirDialog.showUpload()
 }
 
 function test() {
@@ -162,7 +162,10 @@ async function getById() {
 }
 
 async function customAlert() {
-  await new AirAlert(`
+  await AirAlert.create()
+    .enableHtml()
+    .setWidth(800)
+    .show(`
   <div style="height:500px;overflow:hidden;overflow-y:auto;">
   <h1>Hello</h1><br>
   <div>带我<br/>去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的</div>
@@ -188,12 +191,8 @@ async function customAlert() {
   <div>带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的</div>
   <div>带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的带我去的</div>
   </div>
-  `).setTitle('哈哈哈')
-    .enableHtml()
-    .setWidth(800)
-    .show()
-  await new AirAlert('带我去好滴哦我去红歌会i哦亲无花果i哦还欠我i哦活该i哦清河湾').setTitle('哈哈哈')
-    .success()
+  `, '自定义的HTML')
+  await AirAlert.success('自定义的内容', '自定义的标题')
 }
 </script>
 <style scoped lang="scss"></style>

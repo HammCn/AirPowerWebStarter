@@ -87,9 +87,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ADialog, AGroup, AInput } from '@/airpower/component'
-import { AirValidator } from '@/airpower/model/AirValidator'
+import { AirValidator } from '@/airpower/helper/AirValidator'
 import { MaterialEntity } from '@/entity/MaterialEntity'
-import { AirValidatorHelper } from '@/airpower/helper/AirValidatorHelper'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
@@ -100,6 +99,7 @@ const isLoading = ref(false)
 const service = new MaterialService(isLoading)
 
 const data = ref(new MaterialEntity())
+
 async function getDetail() {
   if (props.param) {
     data.value = await service.getDetail(props.param.id)
@@ -107,7 +107,7 @@ async function getDetail() {
 }
 getDetail()
 
-const rules = AirValidatorHelper.create({
+const rules = AirValidator.createRules({
   spc: [
     AirValidator.show('规格型号必须填写').ifEmpty(),
   ],
