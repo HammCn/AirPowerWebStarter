@@ -61,12 +61,11 @@ import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
 
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 const response = ref(new AirResponsePage<MaterialEntity>())
 const request = ref(new AirRequestPage<MaterialEntity>())
 
 async function getList() {
-  response.value = await service.getPage(request.value)
+  response.value = await MaterialService.loading(isLoading).getPage(request.value)
 }
 
 function onRowAdd(row: MaterialEntity) {
@@ -80,7 +79,7 @@ async function onEdit(row: MaterialEntity) {
 }
 
 async function onDelete(data: MaterialEntity) {
-  await service.delete(data.id, '删除物料成功')
+  await MaterialService.loading(isLoading).delete(data.id, '删除物料成功')
   getList()
 }
 

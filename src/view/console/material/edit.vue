@@ -96,13 +96,12 @@ import { AirInputType } from '@/airpower/enum/AirInputType'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 
 const data = ref(new MaterialEntity())
 
 async function getDetail() {
   if (props.param) {
-    data.value = await service.getDetail(props.param.id)
+    data.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
@@ -127,7 +126,7 @@ const rules = AirValidator.createRules({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await service.save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await MaterialService.loading(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>
