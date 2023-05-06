@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param ? '修改' : '新增') + MaterialEntity.prototype.getCustomClassName()"
+    :title="(param ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
     confirm-text="保存"
     width="1000px"
     height="600px"
@@ -22,7 +22,7 @@
         :column="1"
       >
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('name')"
+          :label="MaterialEntity.getFormFieldLabel('name')"
           prop="name"
         >
           <AInput
@@ -31,7 +31,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('spc')"
+          :label="MaterialEntity.getFormFieldLabel('spc')"
           prop="spc"
         >
           <AInput
@@ -40,7 +40,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('materialType')"
+          :label="MaterialEntity.getFormFieldLabel('materialType')"
           prop="materialType"
         >
           <AInput
@@ -49,7 +49,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('remark')"
+          :label="MaterialEntity.getFormFieldLabel('remark')"
           prop="remark"
         >
           <AInput
@@ -65,11 +65,11 @@
         :column="2"
       >
         <template
-          v-for="item in MaterialEntity.prototype.getFormFieldConfigList()"
+          v-for="item in MaterialEntity.getFormFieldConfigList()"
           :key="item.id"
         >
           <el-form-item
-            :label="MaterialEntity.prototype.getFormFieldLabel(item.key)"
+            :label="MaterialEntity.getFormFieldLabel(item.key)"
             :prop="item.key"
           >
             <AInput
