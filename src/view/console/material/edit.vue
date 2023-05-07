@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param ? '修改' : '新增') + MaterialEntity.prototype.getCustomClassName()"
+    :title="(param ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
     confirm-text="保存"
     width="1000px"
     height="600px"
@@ -22,7 +22,7 @@
         :column="1"
       >
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('name')"
+          :label="MaterialEntity.getFormFieldLabel('name')"
           prop="name"
         >
           <AInput
@@ -31,7 +31,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('spc')"
+          :label="MaterialEntity.getFormFieldLabel('spc')"
           prop="spc"
         >
           <AInput
@@ -40,7 +40,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('materialType')"
+          :label="MaterialEntity.getFormFieldLabel('materialType')"
           prop="materialType"
         >
           <AInput
@@ -49,7 +49,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.prototype.getFormFieldLabel('remark')"
+          :label="MaterialEntity.getFormFieldLabel('remark')"
           prop="remark"
         >
           <AInput
@@ -65,11 +65,11 @@
         :column="2"
       >
         <template
-          v-for="item in MaterialEntity.prototype.getFormFieldConfigList()"
+          v-for="item in MaterialEntity.getFormFieldConfigList()"
           :key="item.id"
         >
           <el-form-item
-            :label="MaterialEntity.prototype.getFormFieldLabel(item.key)"
+            :label="MaterialEntity.getFormFieldLabel(item.key)"
             :prop="item.key"
           >
             <AInput
@@ -87,9 +87,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ADialog, AGroup, AInput } from '@/airpower/component'
-import { AirValidator } from '@/airpower/model/AirValidator'
+import { AirValidator } from '@/airpower/helper/AirValidator'
 import { MaterialEntity } from '@/entity/MaterialEntity'
-import { AirValidatorHelper } from '@/airpower/helper/AirValidatorHelper'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
@@ -97,17 +96,17 @@ import { AirInputType } from '@/airpower/enum/AirInputType'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 
 const data = ref(new MaterialEntity())
+
 async function getDetail() {
   if (props.param) {
-    data.value = await service.getDetail(props.param.id)
+    data.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
 
-const rules = AirValidatorHelper.create({
+const rules = AirValidator.createRules({
   spc: [
     AirValidator.show('规格型号必须填写').ifEmpty(),
   ],
@@ -127,7 +126,7 @@ const rules = AirValidatorHelper.create({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await service.save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await MaterialService.loading(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>

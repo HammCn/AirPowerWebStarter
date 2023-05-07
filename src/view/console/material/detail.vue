@@ -31,11 +31,10 @@ import { MaterialService } from '@/service/MaterialService'
 
 const props = defineProps(airPropsParam<MaterialEntity>())
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 const detail = ref(new MaterialEntity())
 
 async function getDetail() {
-  detail.value = await service.getDetail(props.param.id)
+  detail.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
 }
 
 getDetail()

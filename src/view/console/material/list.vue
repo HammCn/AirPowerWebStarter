@@ -53,20 +53,19 @@ import {
 import { MaterialEntity } from '@/entity/MaterialEntity'
 import EditView from './edit.vue'
 import { MaterialService } from '@/service/MaterialService'
-import { AirDialogHelper } from '@/airpower/helper/AirDialogHelper'
+import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialDetail } from '@/component/detail'
 import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
-import { AirRandHelper } from '@/airpower/helper/AirRandHelper'
+import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
 
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 const response = ref(new AirResponsePage<MaterialEntity>())
 const request = ref(new AirRequestPage<MaterialEntity>())
 
 async function getList() {
-  response.value = await service.getPage(request.value)
+  response.value = await MaterialService.loading(isLoading).getPage(request.value)
 }
 
 function onRowAdd(row: MaterialEntity) {
@@ -75,22 +74,22 @@ function onRowAdd(row: MaterialEntity) {
 }
 
 async function onEdit(row: MaterialEntity) {
-  await AirDialogHelper.show(EditView, row)
+  await AirDialog.show(EditView, row)
   getList()
 }
 
 async function onDelete(data: MaterialEntity) {
-  await service.delete(data.id, '删除物料成功')
+  await MaterialService.loading(isLoading).delete(data.id, '删除物料成功')
   getList()
 }
 
 async function onAdd() {
-  await AirDialogHelper.show(EditView)
+  await AirDialog.show(EditView)
   getList()
 }
 
 async function onDetail(data: MaterialEntity) {
-  await AirDialogHelper.show(MaterialDetail, data)
+  await AirDialog.show(MaterialDetail, data)
   getList()
 }
 
@@ -107,21 +106,21 @@ function getTreeData() {
           const children2 = [] as ITree[]
           for (let k = 1; k <= 10; k += 1) {
             children1.push({
-              id: parseInt(AirRandHelper.getRandNumberString(6)),
+              id: parseInt(AirRand.getRandNumberString(6)),
               name: `我是孙子节点${k}`,
               children: children2,
             } as ITree)
           }
         }
         children.push({
-          id: parseInt(AirRandHelper.getRandNumberString(6)),
+          id: parseInt(AirRand.getRandNumberString(6)),
           name: `我是子节点${j}`,
           children: children1,
         } as ITree)
       }
     }
     treeData.value.push({
-      id: parseInt(AirRandHelper.getRandNumberString(6)),
+      id: parseInt(AirRand.getRandNumberString(6)),
       name: `我是根节点${i}`,
       children,
     } as ITree)
