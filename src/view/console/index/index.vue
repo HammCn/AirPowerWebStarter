@@ -154,11 +154,11 @@ function upload() {
 
 function test() {
   // eslint-disable-next-line no-console
-  console.log(materialInfo.value.toSourceString())
+  console.log(materialInfo.value.toJsonString())
 }
 const loading = ref(false)
 async function getById() {
-  await new MaterialService(loading).getDetail(1)
+  await MaterialService.loading(loading).getDetail(1)
 }
 
 async function customAlert() {
