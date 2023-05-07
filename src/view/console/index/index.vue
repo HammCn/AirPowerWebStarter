@@ -99,48 +99,32 @@ const departmentTreeData = ref([] as AirRecord[])
 
 function initTree(): AirRecord[] {
   const list: AirRecord[] = []
-  list.push(new AirRecord().setKey(1)
-    .setLabel('测试1'))
-  list.push(new AirRecord().setKey(2)
-    .setLabel('测试2')
+  list.push(new AirRecord(1, '测试1'))
+  list.push(new AirRecord(2, '测试2')
     .setChildren([
-      new AirRecord().setKey(21)
-        .setLabel('测试21'),
-      new AirRecord().setKey(22)
-        .setLabel('测试22'),
-      new AirRecord().setKey(23)
-        .setLabel('测试23')
+      new AirRecord(21, '测试21'),
+      new AirRecord(22, '测试22'),
+      new AirRecord(23, '测试23')
         .setChildren([
-          new AirRecord().setKey(231)
-            .setLabel('测试231'),
-          new AirRecord().setKey(232)
-            .setLabel('测试232'),
+          new AirRecord(231, '测试231'),
+          new AirRecord(232, '测试232'),
         ]),
     ]))
-  list.push(new AirRecord().setKey(3)
-    .setLabel('测试3')
+  list.push(new AirRecord(3, '测试3')
     .setChildren([
-      new AirRecord().setKey(31)
-        .setLabel('测试31'),
-      new AirRecord().setKey(32)
-        .setLabel('测试32')
+      new AirRecord(31, '测试31'),
+      new AirRecord(32, '测试32')
         .setChildren([
-          new AirRecord().setKey(321)
-            .setLabel('测试321'),
-          new AirRecord().setKey(322)
-            .setLabel('测试322'),
+          new AirRecord(321, '测试321'),
+          new AirRecord(322, '测试322'),
         ]),
-      new AirRecord().setKey(33)
-        .setLabel('测试33')
+      new AirRecord(33, '测试33')
         .setChildren([
-          new AirRecord().setKey(331)
-            .setLabel('测试321'),
-          new AirRecord().setKey(332)
-            .setLabel('测试322'),
+          new AirRecord(331, '测试321'),
+          new AirRecord(332, '测试322'),
         ]),
     ]))
-  list.push(new AirRecord().setKey(4)
-    .setLabel('测试3'))
+  list.push(new AirRecord(4, '测试3'))
   return list
 }
 departmentTreeData.value = initTree()
