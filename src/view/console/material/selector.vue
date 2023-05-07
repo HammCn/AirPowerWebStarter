@@ -71,13 +71,12 @@ import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 defineProps(airPropsSelector<MaterialEntity>())
 
 const isLoading = ref(false)
-const service = new MaterialService(isLoading)
 
 const request = ref(new AirRequestPage<MaterialEntity>())
 const response = ref(new AirResponsePage<MaterialEntity>())
 
 async function getList() {
-  response.value = await service.getPage(request.value)
+  response.value = await MaterialService.loading(isLoading).getPage(request.value)
 }
 getList()
 
