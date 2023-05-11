@@ -13,7 +13,7 @@
       ref="form"
       :model="data"
       label-width="120px"
-      :rules="MaterialService.createValidateRules(data, rules)"
+      :rules="MaterialService.createValidateRules(param, rules)"
       @submit.prevent
     >
       <AGroup
