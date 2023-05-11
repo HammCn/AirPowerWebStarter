@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
+    :title="(param.id ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
     confirm-text="保存"
     width="1000px"
     height="600px"
@@ -13,7 +13,7 @@
       ref="form"
       :model="data"
       label-width="120px"
-      :rules="rules"
+      :rules="MaterialService.createValidateRules(data, rules)"
       @submit.prevent
     >
       <AGroup
@@ -94,24 +94,20 @@ import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
 import { AirInputType } from '@/airpower/enum/AirInputType'
 
-const props = defineProps(airPropsParam<MaterialEntity>())
+const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
 const isLoading = ref(false)
 
 const data = ref(new MaterialEntity())
 
 async function getDetail() {
-  if (props.param) {
+  if (props.param.id) {
     data.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
 
-const rules = AirValidator.createRules({
-  spc: [
-    AirValidator.show('规格型号必须填写').ifEmpty(),
-  ],
+const rules = AirValidator.create({
   name: [
-    AirValidator.show('物料名称必须填写').ifEmpty(),
     AirValidator.show('只允许输入字母和数字和.').ifNot(
       AirInputType.NUMBER,
       AirInputType.LETTER,

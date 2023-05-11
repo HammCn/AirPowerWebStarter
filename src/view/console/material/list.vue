@@ -130,6 +130,7 @@ function getTreeData() {
 const currentTreeData: Ref<ITree | undefined> = ref()
 function treeDataChanged(tree: ITree | undefined) {
   currentTreeData.value = tree
+  // eslint-disable-next-line no-console
   console.log('currentTreeData', currentTreeData.value)
 }
 getTreeData()

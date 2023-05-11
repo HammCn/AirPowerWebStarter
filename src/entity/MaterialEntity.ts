@@ -40,7 +40,9 @@ export class MaterialEntity extends BaseEntity {
     forceShow: true,
   })
   @SearchField()
-  @FormField()
+  @FormField({
+    isRequired: true,
+  })
   @Expose() name!: string
 
   @FieldName('规格型号')
