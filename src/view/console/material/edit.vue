@@ -59,7 +59,6 @@
         </el-form-item>
       </AGroup>
       <AGroup
-        v-if="false"
         title="循环方式"
         disable-collapse
         :column="2"
@@ -113,9 +112,6 @@ const rules = AirValidator.create({
       AirInputType.LETTER,
       '.',
     ),
-  ],
-  materialType: [
-    AirValidator.show('请选择物料类型').toNumber().ifEmpty(),
   ],
 })
 

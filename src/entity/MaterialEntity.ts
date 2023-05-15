@@ -41,7 +41,7 @@ export class MaterialEntity extends BaseEntity {
   })
   @SearchField()
   @FormField({
-    isRequired: true,
+    isRequiredString: true,
   })
   @Expose() name!: string
 
@@ -62,6 +62,7 @@ export class MaterialEntity extends BaseEntity {
   @FormField({
     enumRecord: MaterialTypeRecord,
     defaultValue: MaterialType.PUBLIC,
+    isRequiredNumber: true,
   })
   @SearchField({
     enumRecord: MaterialTypeRecord,
