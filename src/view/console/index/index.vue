@@ -83,7 +83,7 @@ import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'
 import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
 
-const hello = computed(() => appStore().$state.hello)
+const hello = computed(() => appStore().hello)
 
 const newHello = () => {
   appStore().newHello()
