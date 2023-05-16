@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   APanel, AInput, AButton, AImage,
 } from '@/airpower/component'
@@ -88,6 +88,10 @@ const hello = computed(() => appStore().hello)
 const newHello = () => {
   appStore().newHello()
 }
+
+watch(() => appStore().hello, () => {
+  console.log(appStore().hello)
+})
 
 function uploadSuccess(data: AirFileEntity) {
   // eslint-disable-next-line no-console
