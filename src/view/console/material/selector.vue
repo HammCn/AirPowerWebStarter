@@ -6,6 +6,7 @@
     title="请选择用户"
     is-selector
     :loading="isLoading"
+    :disable-confirm="mult && selected.length === 0"
     @on-confirm="onConfirm(selected)"
     @on-cancel="onCancel()"
   >
@@ -22,7 +23,7 @@
       :hide-select="!mult"
       hide-delete
       hide-edit
-      :select-list="selectList"
+      :select-list="selected"
       :entity="MaterialEntity"
       :ctrl-width="80"
       hide-field-selector
@@ -68,7 +69,7 @@ import { MaterialService } from '@/service/MaterialService'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
 import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 
-defineProps(airPropsSelector<MaterialEntity>())
+const props = defineProps(airPropsSelector<MaterialEntity>())
 
 const isLoading = ref(false)
 
@@ -83,7 +84,7 @@ getList()
 /**
  * 已选择的数据
  */
-const selected = ref([] as MaterialEntity[])
+const selected = ref(props.selectList)
 
 </script>
 <style scoped lang="scss"></style>
