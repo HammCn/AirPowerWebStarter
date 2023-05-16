@@ -86,7 +86,7 @@ import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
 const hello = computed(() => appStore().hello)
 
 const newHello = () => {
-  appStore().newHello()
+  appStore().hello = 'new Hello'
 }
 
 watch(() => appStore().hello, () => {
