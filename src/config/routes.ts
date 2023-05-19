@@ -19,10 +19,6 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'console',
     component: () => import('@/component/Console.vue'),
     children: [
-      {
-        path: '/:catchAll(.*)',
-        component: () => import('@/airpower/ErrorPage.vue'),
-      },
     ],
   },
   {
