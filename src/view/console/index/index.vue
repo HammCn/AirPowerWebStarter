@@ -82,15 +82,17 @@ import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'
 import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
+import { AirRand } from '@/airpower/helper/AirRand'
 
 const hello = computed(() => appStore().hello)
 
 const newHello = () => {
-  appStore().hello = 'new Hello'
+  appStore().hello = AirRand.getRandCharString()
 }
 
 watch(() => appStore().hello, () => {
-  console.log(appStore().hello)
+  // eslint-disable-next-line no-console
+  console.log('watch', appStore().hello)
 })
 
 function uploadSuccess(data: AirFileEntity) {

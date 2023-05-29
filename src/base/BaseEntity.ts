@@ -5,24 +5,7 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { AirEntity } from '@/airpower/dto/AirEntity'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
 import { SearchField } from '@/airpower/decorator/SearchField'
-import { IRecord } from '@/airpower/interface/IRecord'
-import { AirColor } from '@/airpower/enum/AirColor'
-
-/**
- * # 禁用状态字典
- */
-export const DisableRecord: IRecord[] = [
-  {
-    key: true,
-    label: '禁用',
-    color: AirColor.DANGER,
-  },
-  {
-    key: false,
-    label: '正常',
-    color: AirColor.SUCCESS,
-  },
-]
+import { DisableRecord } from '@/record/DisableRecord'
 
 /**
  * # 数据库实体基类

@@ -2,7 +2,8 @@ import { Expose, Type } from 'class-transformer'
 import { BaseAbstractTreeEntity } from '@/base/BaseTreeEntity'
 
 /**
- * 实体
+ * # 部门实体
+ * @author Hamm
  */
 export class DepartmentEntity extends BaseAbstractTreeEntity<DepartmentEntity> {
   /**

@@ -1,33 +1,16 @@
-/* eslint-disable no-unused-vars */
 import { Expose } from 'class-transformer'
 import { ClassName, FieldName } from '@/airpower/decorator/CustomName'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
-import { AirColor } from '@/airpower/enum/AirColor'
-import { IRecord } from '@/airpower/interface/IRecord'
 import { BaseEntity } from '@/base/BaseEntity'
-
-export enum MaterialType {
-  PUBLIC = 1,
-  PRIVATE = 2
-}
-export const MaterialTypeRecord: IRecord[] = [
-  {
-    key: MaterialType.PUBLIC,
-    label: '公共物料',
-    color: AirColor.SUCCESS,
-  },
-  {
-    key: MaterialType.PRIVATE,
-    label: '私有物料',
-    color: AirColor.NORMAL,
-  },
-]
+import { MaterialType } from '@/enum/MaterialType'
+import { MaterialTypeRecord } from '@/record/MaterialTypeRecord'
 
 /**
  * # 物料
+ * @author Hamm
  */
 @ClassName('物料')
 @EntityConfig({
