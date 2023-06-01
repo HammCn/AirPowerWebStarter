@@ -31,7 +31,7 @@ import { MaterialService } from '@/service/MaterialService'
 
 const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
 const isLoading = ref(false)
-const detail = ref(new MaterialEntity())
+const detail = ref(props.param.copy())
 
 async function getDetail() {
   detail.value = await MaterialService.loading(isLoading).getDetail(props.param.id)

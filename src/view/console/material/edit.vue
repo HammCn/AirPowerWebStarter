@@ -96,7 +96,7 @@ import { AirInputType } from '@/airpower/enum/AirInputType'
 const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
 const isLoading = ref(false)
 
-const data = ref(new MaterialEntity())
+const data = ref(props.param.copy())
 
 async function getDetail() {
   if (props.param.id) {

@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer'
-import { BaseAbstractTreeEntity } from '@/base/BaseTreeEntity'
+import { BaseAbstractTreeEntity } from '@/base/BaseAbstractTreeEntity'
 
 /**
  * # 部门实体

@@ -34,16 +34,15 @@
         v-if="!mult"
         #customRow="{ data }"
       >
-        <el-button
-          size="small"
-          type="primary"
+        <AButton
+          type="SELECT"
+          icon-button
           :disabled="data.isDisabled"
+          tooltip="选择"
           @click="
             onConfirm(data)
           "
-        >
-          选择
-        </el-button>
+        />
       </template>
     </ATable>
     <template #footerRight>
@@ -61,7 +60,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import {
-  APage, ATable, AToolBar, ADialog,
+  APage, ATable, AToolBar, ADialog, AButton,
 } from '@/airpower/component'
 import { MaterialEntity } from '@/entity/MaterialEntity'
 import { airPropsSelector } from '@/airpower/config/AirProps'
