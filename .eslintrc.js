@@ -14,7 +14,6 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    'no-use-before-define': 'off',
     radix: 'off',
     'max-len': 'off', // 强制一行的最大长度
     'import/extensions': 'off', // 不验证导入文件扩展名
