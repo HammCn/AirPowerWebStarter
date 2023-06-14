@@ -1,7 +1,6 @@
 <template>
   <ADialog
     :title="(param.id ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
-    confirm-text="保存"
     width="1000px"
     height="600px"
     :form-ref="form"
@@ -13,7 +12,7 @@
       ref="form"
       :model="data"
       label-width="120px"
-      :rules="MaterialService.createValidateRules(param, rules)"
+      :rules="MaterialService.createValidator(param, rules)"
       @submit.prevent
     >
       <AGroup

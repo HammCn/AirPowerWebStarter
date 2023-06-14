@@ -30,7 +30,7 @@
         @on-edit="onEdit"
         @on-delete="onDelete"
         @on-add="onRowAdd"
-        @on-sort-change=" request.sort = $event; getList()"
+        @on-sort-change="request.sort = $event; getList()"
       />
       <template #footerLeft>
         <APage
@@ -51,14 +51,13 @@ import {
   ATreeBox, APanel, APage, ATable, AToolBar,
 } from '@/airpower/component'
 import { MaterialEntity } from '@/entity/MaterialEntity'
-import EditView from './edit.vue'
 import { MaterialService } from '@/service/MaterialService'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { MaterialDetail } from '@/component/detail'
 import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
+import { MaterialDetail, MaterialEditor } from '.'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())
@@ -74,7 +73,7 @@ function onRowAdd(row: MaterialEntity) {
 }
 
 async function onEdit(row: MaterialEntity) {
-  await AirDialog.show(EditView, row)
+  await AirDialog.show(MaterialEditor, row)
   getList()
 }
 
@@ -84,7 +83,7 @@ async function onDelete(data: MaterialEntity) {
 }
 
 async function onAdd() {
-  await AirDialog.show(EditView)
+  await AirDialog.show(MaterialEditor)
   getList()
 }
 

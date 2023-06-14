@@ -11,19 +11,20 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/view/login.vue'),
   },
   {
-    path: '/',
+    path: '/home',
     name: '首页',
     component: () => import('@/view/home.vue'),
   },
   {
-    path: '/console',
+    path: '/',
     name: 'console',
+    redirect: '/home',
     component: () => import('@/component/Console.vue'),
     children: [
+      {
+        path: ':catchAll(.*)',
+        component: () => import('@/airpower/ErrorPage.vue'),
+      },
     ],
-  },
-  {
-    path: '/:catchAll(.*)',
-    component: () => import('@/airpower/ErrorPage.vue'),
   },
 ]
