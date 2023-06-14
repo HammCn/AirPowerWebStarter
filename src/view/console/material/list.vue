@@ -57,7 +57,7 @@ import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
-import { MaterialDetail, MaterialEditor } from '.'
+import { MaterialDetail, MaterialEditor } from './component'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())
