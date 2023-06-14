@@ -61,7 +61,7 @@ import { MaterialDetail, MaterialEditor } from './component'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())
-const request = ref(new AirRequestPage<MaterialEntity>())
+const request = ref(new AirRequestPage(MaterialEntity))
 
 async function getList() {
   response.value = await MaterialService.loading(isLoading).getPage(request.value)
