@@ -77,7 +77,7 @@ import {
 } from '@/airpower/component'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirRecord } from '@/airpower/model/AirRecord'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'

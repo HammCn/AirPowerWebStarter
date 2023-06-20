@@ -26,7 +26,7 @@
 import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 
 const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))

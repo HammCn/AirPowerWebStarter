@@ -62,7 +62,7 @@ import { ref } from 'vue'
 import {
   APage, ATable, AToolBar, ADialog, AButton,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
 import { AirRequestPage } from '@/airpower/dto/AirRequestPage'

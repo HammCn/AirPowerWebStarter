@@ -86,7 +86,7 @@
 import { ref } from 'vue'
 import { ADialog, AGroup, AInput } from '@/airpower/component'
 import { AirValidator } from '@/airpower/helper/AirValidator'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'

@@ -5,7 +5,7 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { AirEntity } from '@/airpower/dto/AirEntity'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
 import { SearchField } from '@/airpower/decorator/SearchField'
-import { DisableRecord } from '@/record/DisableRecord'
+import { DisableRecord } from '@/model/record/DisableRecord'
 
 /**
  * # 数据库实体基类

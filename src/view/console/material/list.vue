@@ -50,7 +50,7 @@ import { Ref, ref } from 'vue'
 import {
   ATreeBox, APanel, APage, ATable, AToolBar,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { AirResponsePage } from '@/airpower/dto/AirResponsePage'

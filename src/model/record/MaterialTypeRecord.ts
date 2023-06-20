@@ -1,6 +1,6 @@
 import { AirColor } from '@/airpower/enum/AirColor'
 import { IRecord } from '@/airpower/interface/IRecord'
-import { MaterialType } from '@/enum/MaterialType'
+import { MaterialType } from '@/model/enum/MaterialType'
 
 /**
  * # 物料类型枚举字典

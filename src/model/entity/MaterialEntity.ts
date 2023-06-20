@@ -5,8 +5,8 @@ import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
-import { MaterialType } from '@/enum/MaterialType'
-import { MaterialTypeRecord } from '@/record/MaterialTypeRecord'
+import { MaterialType } from '@/model/enum/MaterialType'
+import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
 
 /**
  * # 物料
