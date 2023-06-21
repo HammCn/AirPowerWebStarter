@@ -23,8 +23,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# 基础框架
-src/airpower
 yarn.lock
 package-lock.json
 
