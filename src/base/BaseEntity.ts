@@ -1,7 +1,6 @@
 import { FormField } from '@/airpower/decorator/FormField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
-import { SearchField } from '@/airpower/decorator/SearchField'
 import { DisableRecord } from '@/model/record/DisableRecord'
 import { FieldName } from '@/airpower/decorator/Custom'
 import { AirEntity } from '@/airpower/base/AirEntity'
@@ -27,13 +26,6 @@ export class BaseEntity extends AirEntity {
     orderNumber: -100,
   })
     isDisabled!: boolean
-
-  @FieldName('创建时间')
-  @SearchField({
-    between: true,
-    orderNumber: -200,
-  })
-    createBetween!: Array<string | number>
 
   @FieldName('备注')
   @FormField({
