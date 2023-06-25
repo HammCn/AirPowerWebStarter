@@ -64,7 +64,7 @@ const response = ref(new AirResponsePage<MaterialEntity>())
 const request = ref(new AirRequestPage(MaterialEntity))
 
 async function getList() {
-  response.value = await MaterialService.loading(isLoading).getPage(request.value)
+  response.value = await MaterialService.create(isLoading).getPage(request.value)
 }
 
 function onRowAdd(row: MaterialEntity) {
@@ -78,7 +78,7 @@ async function onEdit(row: MaterialEntity) {
 }
 
 async function onDelete(data: MaterialEntity) {
-  await MaterialService.loading(isLoading).delete(data.id, '删除物料成功')
+  await MaterialService.create(isLoading).delete(data.id, '删除物料成功')
   getList()
 }
 

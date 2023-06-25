@@ -34,7 +34,7 @@ const isLoading = ref(false)
 const detail = ref(props.param.copy())
 
 async function getDetail() {
-  detail.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
+  detail.value = await MaterialService.create(isLoading).getDetail(props.param.id)
 }
 
 getDetail()

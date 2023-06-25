@@ -100,7 +100,7 @@ const data = ref(props.param.copy())
 
 async function getDetail() {
   if (props.param.id) {
-    data.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
+    data.value = await MaterialService.create(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
@@ -118,7 +118,7 @@ const rules = AirValidator.create({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await MaterialService.loading(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await MaterialService.create(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>

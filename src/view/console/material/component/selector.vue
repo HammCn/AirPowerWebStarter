@@ -76,7 +76,7 @@ const request = ref(new AirRequestPage(MaterialEntity))
 const response = ref(new AirResponsePage<MaterialEntity>())
 
 async function getList() {
-  response.value = await MaterialService.loading(isLoading).getPage(request.value)
+  response.value = await MaterialService.create(isLoading).getPage(request.value)
 }
 getList()
 

@@ -148,7 +148,7 @@ function test() {
 }
 const loading = ref(false)
 async function getById() {
-  await MaterialService.loading(loading).getDetail(1)
+  await MaterialService.create(loading).getDetail(1)
 }
 
 async function customAlert() {
