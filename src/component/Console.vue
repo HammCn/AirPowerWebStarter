@@ -17,10 +17,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { AFrame, AUser, AImage } from '@/airpower/component'
-import { AirConfig } from '@/airpower/AirConfig'
+import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { AirUserEntity } from '@/airpower/dto/AirUserEntity'
-import { AirMenuEntity } from '@/airpower/dto/AirMenuEntity'
+import { AirMenuEntity } from '@/airpower/model/entity/AirMenuEntity'
+import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
 
 const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as AirMenuEntity[])
@@ -32,6 +32,7 @@ async function getMenuList() {
 }
 
 async function init() {
+  console.log('Console init')
   currentUserInfo.value.nickname = 'Hamm'
   currentUserInfo.value.avatar = 'https://cdn.hamm.cn/static/img/logo/1024.png'
   AirConfig.permissionList = []

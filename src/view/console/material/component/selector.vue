@@ -6,6 +6,7 @@
     title="请选择用户"
     is-selector
     :loading="isLoading"
+    :disable-confirm="mult && selected.length === 0"
     @on-confirm="onConfirm(selected)"
     @on-cancel="onCancel()"
   >
@@ -22,7 +23,7 @@
       :hide-select="!mult"
       hide-delete
       hide-edit
-      :select-list="selectList"
+      :select-list="selected"
       :entity="MaterialEntity"
       :ctrl-width="80"
       hide-field-selector
@@ -33,16 +34,15 @@
         v-if="!mult"
         #customRow="{ data }"
       >
-        <el-button
-          size="small"
-          type="primary"
+        <AButton
+          type="SELECT"
+          icon-button
           :disabled="data.isDisabled"
+          tooltip="选择"
           @click="
             onConfirm(data)
           "
-        >
-          选择
-        </el-button>
+        />
       </template>
     </ATable>
     <template #footerRight>
@@ -60,30 +60,30 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import {
-  APage, ATable, AToolBar, ADialog,
+  APage, ATable, AToolBar, ADialog, AButton,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
-import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
-import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
+import { AirRequestPage } from '@/airpower/model/AirRequestPage'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
-defineProps(airPropsSelector<MaterialEntity>())
+const props = defineProps(airPropsSelector<MaterialEntity>())
 
 const isLoading = ref(false)
 
-const request = ref(new AirRequestPage<MaterialEntity>())
+const request = ref(new AirRequestPage(MaterialEntity))
 const response = ref(new AirResponsePage<MaterialEntity>())
 
 async function getList() {
-  response.value = await MaterialService.loading(isLoading).getPage(request.value)
+  response.value = await MaterialService.create(isLoading).getPage(request.value)
 }
 getList()
 
 /**
  * 已选择的数据
  */
-const selected = ref([] as MaterialEntity[])
+const selected = ref(props.selectList)
 
 </script>
 <style scoped lang="scss"></style>

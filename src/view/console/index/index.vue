@@ -71,23 +71,29 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   APanel, AInput, AButton, AImage,
 } from '@/airpower/component'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirRecord } from '@/airpower/model/AirRecord'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'
-import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
+import { AirRand } from '@/airpower/helper/AirRand'
+import { AirFileEntity } from '@/airpower/model/entity/AirFileEntity'
 
-const hello = computed(() => appStore().$state.hello)
+const hello = computed(() => appStore().hello)
 
 const newHello = () => {
-  appStore().newHello()
+  appStore().hello = AirRand.getRandCharString()
 }
+
+watch(() => appStore().hello, () => {
+  // eslint-disable-next-line no-console
+  console.log('watch', appStore().hello)
+})
 
 function uploadSuccess(data: AirFileEntity) {
   // eslint-disable-next-line no-console
@@ -138,11 +144,11 @@ function upload() {
 
 function test() {
   // eslint-disable-next-line no-console
-  console.log(materialInfo.value.toJsonString())
+  console.log(materialInfo.value.toJson())
 }
 const loading = ref(false)
 async function getById() {
-  await MaterialService.loading(loading).getDetail(1)
+  await MaterialService.create(loading).getDetail(1)
 }
 
 async function customAlert() {

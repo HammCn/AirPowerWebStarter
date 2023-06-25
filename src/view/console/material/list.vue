@@ -30,7 +30,7 @@
         @on-edit="onEdit"
         @on-delete="onDelete"
         @on-add="onRowAdd"
-        @on-sort-change=" request.sort = $event; getList()"
+        @on-sort-change="request.sort = $event; getList()"
       />
       <template #footerLeft>
         <APage
@@ -50,22 +50,21 @@ import { Ref, ref } from 'vue'
 import {
   ATreeBox, APanel, APage, ATable, AToolBar,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/entity/MaterialEntity'
-import EditView from './edit.vue'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { MaterialDetail } from '@/component/detail'
-import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
-import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
+import { MaterialDetail, MaterialEditor } from './component'
+import { AirRequestPage } from '@/airpower/model/AirRequestPage'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())
-const request = ref(new AirRequestPage<MaterialEntity>())
+const request = ref(new AirRequestPage(MaterialEntity))
 
 async function getList() {
-  response.value = await MaterialService.loading(isLoading).getPage(request.value)
+  response.value = await MaterialService.create(isLoading).getPage(request.value)
 }
 
 function onRowAdd(row: MaterialEntity) {
@@ -74,17 +73,17 @@ function onRowAdd(row: MaterialEntity) {
 }
 
 async function onEdit(row: MaterialEntity) {
-  await AirDialog.show(EditView, row)
+  await AirDialog.show(MaterialEditor, row)
   getList()
 }
 
 async function onDelete(data: MaterialEntity) {
-  await MaterialService.loading(isLoading).delete(data.id, '删除物料成功')
+  await MaterialService.create(isLoading).delete(data.id, '删除物料成功')
   getList()
 }
 
 async function onAdd() {
-  await AirDialog.show(EditView)
+  await AirDialog.show(MaterialEditor)
   getList()
 }
 
@@ -130,6 +129,7 @@ function getTreeData() {
 const currentTreeData: Ref<ITree | undefined> = ref()
 function treeDataChanged(tree: ITree | undefined) {
   currentTreeData.value = tree
+  // eslint-disable-next-line no-console
   console.log('currentTreeData', currentTreeData.value)
 }
 getTreeData()

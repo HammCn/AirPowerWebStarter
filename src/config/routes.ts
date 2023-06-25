@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 
 /**
  * # 路由配置
+ * @author Hamm
  */
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -10,23 +11,20 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/view/login.vue'),
   },
   {
-    path: '/',
+    path: '/home',
     name: '首页',
     component: () => import('@/view/home.vue'),
   },
   {
-    path: '/console',
+    path: '/',
     name: 'console',
+    redirect: '/home',
     component: () => import('@/component/Console.vue'),
     children: [
       {
-        path: '/:catchAll(.*)',
+        path: ':catchAll(.*)',
         component: () => import('@/airpower/ErrorPage.vue'),
       },
     ],
-  },
-  {
-    path: '/:catchAll(.*)',
-    component: () => import('@/airpower/ErrorPage.vue'),
   },
 ]

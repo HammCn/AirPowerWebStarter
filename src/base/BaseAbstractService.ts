@@ -1,4 +1,4 @@
-import { AirAbstractService } from '@/airpower/service/AirAbstractService'
+import { AirAbstractService } from '@/airpower/base/AirAbstractBaseService'
 import { BaseEntity } from './BaseEntity'
 
 /**

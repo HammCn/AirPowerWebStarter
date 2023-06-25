@@ -14,7 +14,14 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    'no-use-before-define': 'off',
+    indent: ['error', 2, {
+      SwitchCase: 1,
+      VariableDeclarator: {
+        var: 2, let: 2, const: 3,
+      },
+      MemberExpression: 1,
+    }],
+    'import/named': 'off',
     radix: 'off',
     'max-len': 'off', // 强制一行的最大长度
     'import/extensions': 'off', // 不验证导入文件扩展名

@@ -10,42 +10,32 @@ declare module '*.vue' {
 
 interface ImportMetaEnv extends Readonly<Record<string, string | boolean>> {
   /**
-   * 环境名称
+   * # 环境名称
    */
   VITE_APP_NAME: string
 
   /**
-   * API根路径
+   * # API根路径
    */
-  VITE_APP_API: string
+  VITE_APP_API_URL: string
 
   /**
-   * 基础服务首页地址
+   * # 静态资源根路径
    */
-  VITE_APP_HOME_URL: string
+  VITE_APP_STATIC_URL: string
 
   /**
-   * 单点登录SSO地址
-   */
-  VITE_APP_SSO_URL: string
-
-  /**
-   * 静态资源根路径
-   */
-  readonly VITE_APP_STATIC: string
-
-  /**
-   * 是否开发模式
+   * # 是否开发模式
    */
   DEV: boolean
 
   /**
-   * 是否生产模式
+   * # 是否生产模式
    */
   PROD: boolean
 
   /**
-   * 当前环境模式
+   * # 当前环境模式
    */
   MODE: string
 }

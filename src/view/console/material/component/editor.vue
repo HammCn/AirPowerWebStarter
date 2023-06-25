@@ -1,7 +1,6 @@
 <template>
   <ADialog
-    :title="(param ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
-    confirm-text="保存"
+    :title="(param.id ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
     width="1000px"
     height="600px"
     :form-ref="form"
@@ -9,11 +8,12 @@
     @on-confirm="submit()"
     @on-cancel="onCancel()"
   >
+    {{ data }}
     <el-form
       ref="form"
       :model="data"
       label-width="120px"
-      :rules="rules"
+      :rules="MaterialService.createValidator(param, rules)"
       @submit.prevent
     >
       <AGroup
@@ -59,7 +59,6 @@
         </el-form-item>
       </AGroup>
       <AGroup
-        v-if="false"
         title="循环方式"
         disable-collapse
         :column="2"
@@ -88,45 +87,38 @@
 import { ref } from 'vue'
 import { ADialog, AGroup, AInput } from '@/airpower/component'
 import { AirValidator } from '@/airpower/helper/AirValidator'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
 import { AirInputType } from '@/airpower/enum/AirInputType'
 
-const props = defineProps(airPropsParam<MaterialEntity>())
+const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
 const isLoading = ref(false)
 
-const data = ref(new MaterialEntity())
+const data = ref(props.param.copy())
 
 async function getDetail() {
-  if (props.param) {
-    data.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
+  if (props.param.id) {
+    data.value = await MaterialService.create(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
 
-const rules = AirValidator.createRules({
-  spc: [
-    AirValidator.show('规格型号必须填写').ifEmpty(),
-  ],
+const rules = AirValidator.create({
   name: [
-    AirValidator.show('物料名称必须填写').ifEmpty(),
     AirValidator.show('只允许输入字母和数字和.').ifNot(
       AirInputType.NUMBER,
       AirInputType.LETTER,
       '.',
     ),
   ],
-  materialType: [
-    AirValidator.show('请选择物料类型').toNumber().ifEmpty(),
-  ],
 })
 
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await MaterialService.loading(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await MaterialService.create(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
   props.onConfirm()
 }
 </script>

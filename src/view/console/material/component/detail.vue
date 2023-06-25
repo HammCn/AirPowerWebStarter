@@ -17,7 +17,7 @@
     <div>
       原始接口数据:<br>
 
-      {{ detail.toJsonString() }}
+      {{ detail.toJson() }}
     </div>
   </ADialog>
 </template>
@@ -26,15 +26,15 @@
 import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
-import { MaterialEntity } from '@/entity/MaterialEntity'
+import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 
-const props = defineProps(airPropsParam<MaterialEntity>())
+const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
 const isLoading = ref(false)
-const detail = ref(new MaterialEntity())
+const detail = ref(props.param.copy())
 
 async function getDetail() {
-  detail.value = await MaterialService.loading(isLoading).getDetail(props.param.id)
+  detail.value = await MaterialService.create(isLoading).getDetail(props.param.id)
 }
 
 getDetail()
