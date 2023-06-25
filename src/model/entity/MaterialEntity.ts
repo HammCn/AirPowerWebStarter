@@ -52,6 +52,6 @@ export class MaterialEntity extends BaseEntity {
   })
     materialType!: MaterialType
 
-  @ToModel((obj: IPayload) => obj.unitInfo?.id || undefined)
+  @ToModel((obj: IPayload) => obj.unitId || obj.unitInfo?.id || undefined)
     unitId = 1
 }
