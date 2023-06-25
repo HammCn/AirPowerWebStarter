@@ -1,6 +1,6 @@
 import { BaseEntity } from '@/base/BaseEntity'
 import { ITree } from '@/airpower/interface/ITree'
-import { Type } from '@/airpower/decorator/Custom'
+import { IsArray, Type } from '@/airpower/decorator/Custom'
 
 /**
  * # 部门实体
@@ -14,5 +14,5 @@ export class DepartmentEntity extends BaseEntity implements ITree {
    */
   // eslint-disable-next-line no-use-before-define
   @Type(DepartmentEntity)
-    children: this[] = []
+  @IsArray() children: this[] = []
 }

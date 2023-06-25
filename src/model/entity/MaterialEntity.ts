@@ -18,7 +18,6 @@ import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
   keywordSearchPlaceholder: '物料编码/名称搜索...',
 })
 export class MaterialEntity extends BaseEntity {
-  @FieldName('物料名称')
   @TableField({
     forceShow: true,
   })
@@ -26,17 +25,15 @@ export class MaterialEntity extends BaseEntity {
   @FormField({
     isRequiredString: true,
   })
-    name!: string
+  @FieldName('物料名称') name!: string
 
-  @FieldName('规格型号')
   @TableField({
     isCopyField: true,
   })
   @SearchField()
   @FormField()
-    spc!: string
+  @FieldName('规格型号') spc!: string
 
-  @FieldName('物料类型')
   @TableField({
     enumRecord: MaterialTypeRecord,
     showStatus: true,
@@ -50,8 +47,8 @@ export class MaterialEntity extends BaseEntity {
   @SearchField({
     enumRecord: MaterialTypeRecord,
   })
-    materialType!: MaterialType
+  @FieldName('物料类型') materialType!: MaterialType
 
   @ToModel((obj: IPayload) => obj.unitId || obj.unitInfo?.id || undefined)
-    unitId = 1
+  @FieldName('单位ID') unitId = 1
 }
