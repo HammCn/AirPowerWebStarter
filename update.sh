@@ -1,1 +1,1 @@
-git pull && cd src/airpower && git checkout wechat && git pull && cd ../../
+git pull && cd src/airpower && git checkout web && git pull && cd ../../
