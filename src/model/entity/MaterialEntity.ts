@@ -3,7 +3,7 @@ import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
-import { IPayload } from '@/airpower/interface/IPayload'
+import { IJson } from '@/airpower/interface/IPayload'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MaterialType } from '@/model/enum/MaterialType'
 import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
@@ -49,6 +49,6 @@ export class MaterialEntity extends BaseEntity {
   })
   @FieldName('物料类型') materialType!: MaterialType
 
-  @ToModel((obj: IPayload) => obj.unitId || obj.unitInfo?.id || undefined)
+  @ToModel((obj: IJson) => obj.unitId || obj.unitInfo?.id || undefined)
   @FieldName('单位ID') unitId = 1
 }
