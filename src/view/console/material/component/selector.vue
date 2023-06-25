@@ -65,14 +65,14 @@ import {
 import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
-import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
-import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
+import { AirRequestPage } from '@/airpower/model/AirRequestPage'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
 const props = defineProps(airPropsSelector<MaterialEntity>())
 
 const isLoading = ref(false)
 
-const request = ref(new AirRequestPage<MaterialEntity>())
+const request = ref(new AirRequestPage(MaterialEntity))
 const response = ref(new AirResponsePage<MaterialEntity>())
 
 async function getList() {

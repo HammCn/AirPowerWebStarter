@@ -17,7 +17,7 @@
     <div>
       原始接口数据:<br>
 
-      {{ detail.toJsonString() }}
+      {{ detail.toJson() }}
     </div>
   </ADialog>
 </template>

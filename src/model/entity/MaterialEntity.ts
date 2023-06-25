@@ -1,5 +1,4 @@
-import { Expose } from 'class-transformer'
-import { ClassName, FieldName } from '@/airpower/decorator/CustomName'
+import { ClassName, FieldName } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
@@ -26,7 +25,7 @@ export class MaterialEntity extends BaseEntity {
   @FormField({
     isRequiredString: true,
   })
-  @Expose() name!: string
+    name!: string
 
   @FieldName('规格型号')
   @TableField({
@@ -34,7 +33,7 @@ export class MaterialEntity extends BaseEntity {
   })
   @SearchField()
   @FormField()
-  @Expose() spc!: string
+    spc!: string
 
   @FieldName('物料类型')
   @TableField({
@@ -50,7 +49,7 @@ export class MaterialEntity extends BaseEntity {
   @SearchField({
     enumRecord: MaterialTypeRecord,
   })
-  @Expose() materialType!: MaterialType
+    materialType!: MaterialType
 
-  @Expose() unitId = 1
+  unitId = 1
 }

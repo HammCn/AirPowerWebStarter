@@ -53,11 +53,11 @@ import {
 import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { AirResponsePage } from '@/airpower/dto/AirResponsePage'
-import { AirRequestPage } from '@/airpower/dto/AirRequestPage'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
 import { MaterialDetail, MaterialEditor } from './component'
+import { AirRequestPage } from '@/airpower/model/AirRequestPage'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())

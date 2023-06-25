@@ -1,17 +1,18 @@
-import { Expose, Type } from 'class-transformer'
 import { BaseEntity } from '@/base/BaseEntity'
 import { ITree } from '@/airpower/interface/ITree'
+import { Type } from '@/airpower/decorator/Custom'
 
 /**
  * # 部门实体
  * @author Hamm
  */
 export class DepartmentEntity extends BaseEntity implements ITree {
-  @Expose() name!: string
+  name!: string
 
   /**
    * # 下级部门
    */
-  @Type(() => DepartmentEntity)
-  @Expose() children: this[] = []
+  // eslint-disable-next-line no-use-before-define
+  @Type(DepartmentEntity)
+    children: this[] = []
 }

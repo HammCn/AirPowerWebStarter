@@ -81,8 +81,8 @@ import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { MaterialService } from '@/service/MaterialService'
-import { AirFileEntity } from '@/airpower/dto/AirFileEntity'
 import { AirRand } from '@/airpower/helper/AirRand'
+import { AirFileEntity } from '@/airpower/model/entity/AirFileEntity'
 
 const hello = computed(() => appStore().hello)
 
@@ -144,7 +144,7 @@ function upload() {
 
 function test() {
   // eslint-disable-next-line no-console
-  console.log(materialInfo.value.toJsonString())
+  console.log(materialInfo.value.toJson())
 }
 const loading = ref(false)
 async function getById() {
