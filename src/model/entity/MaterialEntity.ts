@@ -1,8 +1,9 @@
-import { ClassName, FieldName } from '@/airpower/decorator/Custom'
+import { ClassName, FieldName, ToModel } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
+import { IPayload } from '@/airpower/interface/IPayload'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MaterialType } from '@/model/enum/MaterialType'
 import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
@@ -51,5 +52,6 @@ export class MaterialEntity extends BaseEntity {
   })
     materialType!: MaterialType
 
-  unitId = 1
+  @ToModel((obj: IPayload) => obj.unitInfo.id)
+    unitId = 1
 }

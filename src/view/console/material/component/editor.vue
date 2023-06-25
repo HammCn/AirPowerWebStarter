@@ -8,6 +8,7 @@
     @on-confirm="submit()"
     @on-cancel="onCancel()"
   >
+    {{ data }}
     <el-form
       ref="form"
       :model="data"
