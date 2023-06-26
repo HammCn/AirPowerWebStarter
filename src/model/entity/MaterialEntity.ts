@@ -20,6 +20,7 @@ import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
 export class MaterialEntity extends BaseEntity {
   @TableField({
     forceShow: true,
+    isCopyField: true,
   })
   @SearchField()
   @FormField({
