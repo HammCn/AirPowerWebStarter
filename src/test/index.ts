@@ -14,6 +14,7 @@ export function runTest() {
   entity.role = role
   // entity.roleList = [role.copy(), role.copy()]
   const json = entity.copy().toJson()
+  json.user_id += ''
   json.user_roleList = null
   console.log('原始对象', json)
   const newEntity = UserEntity.fromJson(json)

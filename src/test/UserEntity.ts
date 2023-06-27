@@ -20,8 +20,7 @@ export class UserEntity extends BaseEntity {
   @Default(0)
   @Type(Number) money!: number
 
-  @Type(RoleEntity)
-    role!: RoleEntity
+  @Type(RoleEntity) role!: RoleEntity
 
   @Type(RoleEntity)
   @Default([])
