@@ -20,7 +20,8 @@ export class BaseEntity extends AirEntity {
     orderNumber: -99,
     dateTimeFormatter: AirDateTimeFormatter.YYYY_MM_DD_HH_mm_ss,
   })
-  @FieldName('创建时间') createTime!: number
+  @FieldName('创建时间')
+    createTime!: number
 
   @TableField({
     enumRecord: DisableRecord,
@@ -28,10 +29,12 @@ export class BaseEntity extends AirEntity {
     width: 80,
     orderNumber: -100,
   })
-  @FieldName('状态') isDisabled!: boolean
+  @FieldName('状态')
+    isDisabled!: boolean
 
   @FormField({
     isTextarea: true,
   })
-  @FieldName('备注') remark!: string
+  @FieldName('备注')
+    remark!: string
 }
