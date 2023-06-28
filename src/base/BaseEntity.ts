@@ -1,14 +1,19 @@
 import { FormField } from '@/airpower/decorator/FormField'
 import { TableField } from '@/airpower/decorator/TableField'
+import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
 import { DisableRecord } from '@/model/record/DisableRecord'
-import { FieldName } from '@/airpower/decorator/Custom'
+import { ClassName, FieldName } from '@/airpower/decorator/Custom'
 import { AirEntity } from '@/airpower/base/AirEntity'
 
 /**
  * # 数据库实体基类
  * @author Hamm
  */
+@ClassName('数据')
+@EntityConfig({
+  keywordSearchPlaceholder: '搜的一下~',
+})
 export class BaseEntity extends AirEntity {
   @FieldName('创建时间')
   @TableField({

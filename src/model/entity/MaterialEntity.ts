@@ -15,7 +15,7 @@ import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
 @ClassName('物料')
 @EntityConfig({
   addTitle: '创建物料',
-  keywordSearchPlaceholder: '物料编码/名称搜索...',
+  // keywordSearchPlaceholder: '物料编码/名称搜索...',
 })
 export class MaterialEntity extends BaseEntity {
   @TableField({
