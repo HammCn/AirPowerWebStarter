@@ -2,7 +2,7 @@
   <div class="home">
     <el-image
       class="logo"
-      src="logo"
+      :src="logo"
     />
     <h1>Hello AirPower!</h1>
     <div class="intro">
