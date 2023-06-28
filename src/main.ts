@@ -6,12 +6,12 @@ import '@/assets/css/main.scss'
 
 import { runTest } from '@/test'
 import { MaterialEntity } from './model/entity/MaterialEntity'
-import { getEntityConfig } from './airpower/decorator/EntityConfig'
 
 AirConfig.defaultHttpSuccessCode = 200000
 AirConfig.autoPermission = false
 app.use(AirConfig.createRouter(routes)).mount('#app')
 
 runTest()
+
+// eslint-disable-next-line no-console
 console.log(new MaterialEntity())
-console.log(getEntityConfig(MaterialEntity))

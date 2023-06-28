@@ -32,7 +32,6 @@ async function getMenuList() {
 }
 
 async function init() {
-  console.log('Console init')
   currentUserInfo.value.nickname = 'Hamm'
   currentUserInfo.value.avatar = 'https://cdn.hamm.cn/static/img/logo/1024.png'
   AirConfig.permissionList = []
