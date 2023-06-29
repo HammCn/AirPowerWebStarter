@@ -18,5 +18,7 @@ export function runTest() {
   json.user_roleList = null
   console.log('原始对象', json)
   const newEntity = UserEntity.fromJson(json)
+  newEntity.id = 22
   console.log('实体对象', newEntity)
+  console.log('原始实体', entity)
 }
