@@ -6,8 +6,8 @@ import '@/assets/css/main.scss'
 
 import { runTest } from '@/test'
 import { MaterialEntity } from './model/entity/MaterialEntity'
-import { MaterialTypeRecord } from './model/record/MaterialTypeRecord'
-import { DisableRecord } from './model/record/DisableRecord'
+import { MaterialTypeDictionary } from './model/dictionary/MaterialTypeDictionary'
+import { DisableDictionary } from './model/dictionary/DisableDictionary'
 
 AirConfig.successCode = 200000
 AirConfig.autoPermission = false
@@ -18,6 +18,6 @@ runTest()
 // eslint-disable-next-line no-console
 console.log(new MaterialEntity())
 
-console.log(MaterialTypeRecord.get(2).other)
+console.log(MaterialTypeDictionary.get(2).other)
 
-console.log(DisableRecord.get(true).color)
+console.log(DisableDictionary.get(true).color)

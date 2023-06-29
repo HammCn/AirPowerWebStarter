@@ -1,11 +1,11 @@
 import { AirColor } from '@/airpower/enum/AirColor'
-import { AirRecordArray } from '@/airpower/model/extend/AirRecordArray'
+import { AirDictionaryArray } from '@/airpower/model/extend/AirDictionaryArray'
 
 /**
  * # 禁用状态字典
  * @author Hamm
  */
-export const DisableRecord = AirRecordArray.create([
+export const DisableDictionary = AirDictionaryArray.create([
   {
     key: true,
     label: '禁用',

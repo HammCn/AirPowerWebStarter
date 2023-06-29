@@ -1,5 +1,5 @@
 import {
-  ClassName, EnumRecord, FieldName, ToModel,
+  ClassName, Dictionary, FieldName, ToModel,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -8,7 +8,7 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { IJson } from '@/airpower/interface/IJson'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MaterialType } from '@/model/enum/MaterialType'
-import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
+import { MaterialTypeDictionary } from '@/model/dictionary/MaterialTypeDictionary'
 
 /**
  * # 物料
@@ -39,19 +39,19 @@ export class MaterialEntity extends BaseEntity {
   @FieldName('规格型号')
     spc!: string
 
-  @EnumRecord(MaterialTypeRecord)
+  @Dictionary(MaterialTypeDictionary)
   @TableField({
     showStatus: true,
     width: 100,
-    enumRecord: MaterialTypeRecord,
+    dictionary: MaterialTypeDictionary,
   })
   @SearchField({
-    enumRecord: MaterialTypeRecord,
+    dictionary: MaterialTypeDictionary,
   })
   @FormField({
     defaultValue: MaterialType.PUBLIC,
     isRequiredNumber: true,
-    enumRecord: MaterialTypeRecord,
+    dictionary: MaterialTypeDictionary,
   })
   @FieldName('物料类型')
     materialType!: MaterialType

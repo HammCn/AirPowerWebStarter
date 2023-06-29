@@ -1,13 +1,13 @@
 import { AirColor } from '@/airpower/enum/AirColor'
 import { MaterialType } from '@/model/enum/MaterialType'
-import { IMaterialTypeRecord } from '../IMaterialTypeRecord'
-import { AirRecordArray } from '@/airpower/model/extend/AirRecordArray'
+import { IMaterialTypeDictionary } from '../IMaterialTypeDictionary'
+import { AirDictionaryArray } from '@/airpower/model/extend/AirDictionaryArray'
 
 /**
  * # 物料类型枚举字典
  * @author Hamm
  */
-export const MaterialTypeRecord = AirRecordArray.createCustom<IMaterialTypeRecord>([
+export const MaterialTypeDictionary = AirDictionaryArray.createCustom<IMaterialTypeDictionary>([
   {
     key: MaterialType.PUBLIC,
     label: '公共物料',

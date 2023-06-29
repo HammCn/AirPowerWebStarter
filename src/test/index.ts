@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { MaterialTypeRecord } from '@/model/record/MaterialTypeRecord'
+import { MaterialTypeDictionary } from '@/model/dictionary/MaterialTypeDictionary'
 import { RoleEntity } from './RoleEntity'
 import { UserEntity } from './UserEntity'
 import { MaterialType } from '@/model/enum/MaterialType'
@@ -24,7 +24,7 @@ export function runTest() {
   console.log('实体对象', newEntity)
   console.log('原始实体', entity)
 
-  console.log('MaterialTypeRecord', MaterialTypeRecord)
-  console.log('MaterialTypeRecord.getLabel(MaterialType.PRIVATE)', MaterialTypeRecord.getLabel(MaterialType.PRIVATE))
-  console.log('MaterialTypeRecord.getColor(MaterialType.PRIVATE)', MaterialTypeRecord.getColor(MaterialType.PRIVATE))
+  console.log('MaterialTypeDictionary', MaterialTypeDictionary)
+  console.log('MaterialTypeDictionary.getLabel(MaterialType.PRIVATE)', MaterialTypeDictionary.getLabel(MaterialType.PRIVATE))
+  console.log('MaterialTypeDictionary.getColor(MaterialType.PRIVATE)', MaterialTypeDictionary.getColor(MaterialType.PRIVATE))
 }

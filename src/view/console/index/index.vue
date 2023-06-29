@@ -76,7 +76,7 @@ import {
   APanel, AInput, AButton, AImage,
 } from '@/airpower/component'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
-import { AirRecord } from '@/airpower/model/AirRecord'
+import { AirDictionary } from '@/airpower/model/AirDictionary'
 import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
@@ -101,36 +101,36 @@ function uploadSuccess(data: AirFileEntity) {
 }
 const materialInfo = ref(new MaterialEntity())
 
-const departmentTreeData = ref([] as AirRecord[])
+const departmentTreeData = ref([] as AirDictionary[])
 
-function initTree(): AirRecord[] {
-  const list: AirRecord[] = []
-  list.push(new AirRecord(1, '测试1'))
-  list.push(new AirRecord(2, '测试2')
+function initTree(): AirDictionary[] {
+  const list: AirDictionary[] = []
+  list.push(new AirDictionary(1, '测试1'))
+  list.push(new AirDictionary(2, '测试2')
     .setChildren([
-      new AirRecord(21, '测试21'),
-      new AirRecord(22, '测试22'),
-      new AirRecord(23, '测试23')
+      new AirDictionary(21, '测试21'),
+      new AirDictionary(22, '测试22'),
+      new AirDictionary(23, '测试23')
         .setChildren([
-          new AirRecord(231, '测试231'),
-          new AirRecord(232, '测试232'),
+          new AirDictionary(231, '测试231'),
+          new AirDictionary(232, '测试232'),
         ]),
     ]))
-  list.push(new AirRecord(3, '测试3')
+  list.push(new AirDictionary(3, '测试3')
     .setChildren([
-      new AirRecord(31, '测试31'),
-      new AirRecord(32, '测试32')
+      new AirDictionary(31, '测试31'),
+      new AirDictionary(32, '测试32')
         .setChildren([
-          new AirRecord(321, '测试321'),
-          new AirRecord(322, '测试322'),
+          new AirDictionary(321, '测试321'),
+          new AirDictionary(322, '测试322'),
         ]),
-      new AirRecord(33, '测试33')
+      new AirDictionary(33, '测试33')
         .setChildren([
-          new AirRecord(331, '测试321'),
-          new AirRecord(332, '测试322'),
+          new AirDictionary(331, '测试321'),
+          new AirDictionary(332, '测试322'),
         ]),
     ]))
-  list.push(new AirRecord(4, '测试3'))
+  list.push(new AirDictionary(4, '测试3'))
   return list
 }
 departmentTreeData.value = initTree()

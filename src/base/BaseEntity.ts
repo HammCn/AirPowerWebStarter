@@ -2,7 +2,7 @@ import { FormField } from '@/airpower/decorator/FormField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
-import { DisableRecord } from '@/model/record/DisableRecord'
+import { DisableDictionary } from '@/model/dictionary/DisableDictionary'
 import { ClassName, FieldName } from '@/airpower/decorator/Custom'
 import { AirEntity } from '@/airpower/base/AirEntity'
 
@@ -24,7 +24,7 @@ export class BaseEntity extends AirEntity {
     createTime!: number
 
   @TableField({
-    enumRecord: DisableRecord,
+    dictionary: DisableDictionary,
     showStatus: true,
     width: 80,
     orderNumber: -100,
