@@ -43,11 +43,15 @@ export class MaterialEntity extends BaseEntity {
   @TableField({
     showStatus: true,
     width: 100,
+    enumRecord: MaterialTypeRecord,
   })
-  @SearchField()
+  @SearchField({
+    enumRecord: MaterialTypeRecord,
+  })
   @FormField({
     defaultValue: MaterialType.PUBLIC,
     isRequiredNumber: true,
+    enumRecord: MaterialTypeRecord,
   })
   @FieldName('物料类型')
     materialType!: MaterialType

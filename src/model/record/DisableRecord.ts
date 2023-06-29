@@ -1,11 +1,11 @@
 import { AirColor } from '@/airpower/enum/AirColor'
-import { IRecord } from '@/airpower/interface/IRecord'
+import { AirRecord } from '@/airpower/model/AirRecord'
 
 /**
  * # 禁用状态字典
  * @author Hamm
  */
-export const DisableRecord: IRecord[] = [
+export const DisableRecord = AirRecord.create([
   {
     key: true,
     label: '禁用',
@@ -16,4 +16,4 @@ export const DisableRecord: IRecord[] = [
     label: '正常',
     color: AirColor.SUCCESS,
   },
-]
+])
