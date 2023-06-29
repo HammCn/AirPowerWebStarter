@@ -25,7 +25,7 @@ export class BaseEntity extends AirEntity {
 
   @TableField({
     dictionary: DisableDictionary,
-    showStatus: true,
+    showColor: true,
     width: 80,
     orderNumber: -100,
   })

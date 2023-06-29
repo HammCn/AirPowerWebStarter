@@ -41,7 +41,7 @@ export class MaterialEntity extends BaseEntity {
 
   @Dictionary(MaterialTypeDictionary)
   @TableField({
-    showStatus: true,
+    showColor: true,
     width: 100,
     dictionary: MaterialTypeDictionary,
   })
