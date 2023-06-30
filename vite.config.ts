@@ -11,6 +11,7 @@ export default defineConfig({
     },
   },
   build: {
+    assetsDir: 'assets-vite-config',
     minify: 'terser',
     terserOptions: {
       keep_classnames: true,
