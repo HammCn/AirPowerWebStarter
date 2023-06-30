@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '新增') + MaterialEntity.getCustomClassName()"
+    :title="(param.id ? '修改' : '新增') + MaterialEntity.getClassName()"
     width="1000px"
     height="600px"
     :form-ref="form"

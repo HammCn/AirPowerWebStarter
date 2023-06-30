@@ -20,6 +20,6 @@ if [ ! -n "$desc" ]; then
     desc="修复了一些已知的BUG"
 fi
 
-git pull && git add -A && git commit -S -m $type"($scope): "$desc && git push
+git add -A && git commit -S -m $type"($scope): "$desc && git pull && git push
 echo "\033[32m"
 echo "\n\033[0m Ok, thanks for using and bye!\n"
