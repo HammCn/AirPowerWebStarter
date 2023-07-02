@@ -1,4 +1,5 @@
 import {
+  ClassName,
   Dictionary, FieldName, ToModel, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
@@ -15,9 +16,10 @@ import { MaterialTypeDictionary } from '@/model/dictionary/MaterialTypeDictionar
  * @author Hamm
  */
 @EntityConfig({
-  addTitle: '创建物料',
-  keywordSearchPlaceholder: '物料编码/名称搜索...',
+  // addTitle: '创建物料',
+  // keywordSearchPlaceholder: '物料编码/名称搜索...',
 })
+@ClassName('物料')
 export class MaterialEntity extends BaseEntity {
   @TableField({
     forceShow: true,
