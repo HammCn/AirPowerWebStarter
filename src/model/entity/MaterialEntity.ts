@@ -1,5 +1,5 @@
 import {
-  ClassName, Dictionary, FieldName, ToModel,
+  Dictionary, FieldName, ToModel, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -14,10 +14,9 @@ import { MaterialTypeDictionary } from '@/model/dictionary/MaterialTypeDictionar
  * # 物料
  * @author Hamm
  */
-@ClassName('物料')
 @EntityConfig({
   addTitle: '创建物料',
-  // keywordSearchPlaceholder: '物料编码/名称搜索...',
+  keywordSearchPlaceholder: '物料编码/名称搜索...',
 })
 export class MaterialEntity extends BaseEntity {
   @TableField({
@@ -29,7 +28,7 @@ export class MaterialEntity extends BaseEntity {
     isRequiredString: true,
   })
   @FieldName('物料名称')
-    name!: string
+  @Type(String) name!: string
 
   @TableField({
     isCopyField: true,
@@ -59,4 +58,10 @@ export class MaterialEntity extends BaseEntity {
   @ToModel((obj: IJson) => obj.unitId || obj.unitInfo?.id || undefined)
   @FieldName('单位ID')
     unitId = 1
+
+  @TableField({
+    orderNumber: 999,
+    label: '物料创建时间',
+  })
+  declare createTime: number
 }

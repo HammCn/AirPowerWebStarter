@@ -10,10 +10,11 @@ import { AirEntity } from '@/airpower/base/AirEntity'
  * # 数据库实体基类
  * @author Hamm
  */
-@ClassName('数据')
+
 @EntityConfig({
   keywordSearchPlaceholder: '搜的一下~',
 })
+@ClassName('BaseEntity')
 export class BaseEntity extends AirEntity {
   @TableField({
     width: 170,
