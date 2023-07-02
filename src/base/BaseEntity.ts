@@ -10,7 +10,6 @@ import { AirEntity } from '@/airpower/base/AirEntity'
  * # 数据库实体基类
  * @author Hamm
  */
-
 @EntityConfig({
   keywordSearchPlaceholder: 'BaseEntity配置的兜底搜索~',
 })
