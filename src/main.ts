@@ -9,4 +9,5 @@ AirConfig.successCode = 200000
 AirConfig.autoPermission = false
 app.use(AirConfig.createRouter(routes)).mount('#app')
 
+// eslint-disable-next-line no-console
 console.log(new MaterialEntity())

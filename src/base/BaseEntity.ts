@@ -3,7 +3,7 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
 import { DisableDictionary } from '@/model/dictionary/DisableDictionary'
-import { ClassName, FieldName } from '@/airpower/decorator/Custom'
+import { ClassName, FieldName, Type } from '@/airpower/decorator/Custom'
 import { AirEntity } from '@/airpower/base/AirEntity'
 
 /**
@@ -21,7 +21,7 @@ export class BaseEntity extends AirEntity {
     dateTimeFormatter: AirDateTimeFormatter.YYYY_MM_DD_HH_mm_ss,
   })
   @FieldName('创建时间')
-    createTime!: number
+  @Type(Number) createTime!: number
 
   @TableField({
     dictionary: DisableDictionary,
@@ -30,11 +30,11 @@ export class BaseEntity extends AirEntity {
     orderNumber: -100,
   })
   @FieldName('状态')
-    isDisabled!: boolean
+  @Type(Boolean) isDisabled!: boolean
 
   @FormField({
     isTextarea: true,
   })
   @FieldName('备注')
-    remark!: string
+  @Type(String) remark!: string
 }
