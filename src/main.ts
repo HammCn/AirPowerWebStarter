@@ -12,3 +12,5 @@ app.use(AirConfig.createRouter(routes)).mount('#app')
 const material = new MaterialEntity()
 // eslint-disable-next-line no-console
 console.log(material)
+
+console.log(MaterialEntity.getTableFieldConfigList())
