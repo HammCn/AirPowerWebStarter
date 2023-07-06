@@ -105,21 +105,21 @@ function getTreeData() {
           const children2 = [] as ITree[]
           for (let k = 1; k <= 10; k += 1) {
             children1.push({
-              id: parseInt(AirRand.getRandNumberString(6)),
+              id: parseInt(AirRand.getRandNumberString(6), 10),
               name: `我是孙子节点${k}`,
               children: children2,
             } as ITree)
           }
         }
         children.push({
-          id: parseInt(AirRand.getRandNumberString(6)),
+          id: parseInt(AirRand.getRandNumberString(6), 10),
           name: `我是子节点${j}`,
           children: children1,
         } as ITree)
       }
     }
     treeData.value.push({
-      id: parseInt(AirRand.getRandNumberString(6)),
+      id: parseInt(AirRand.getRandNumberString(6), 10),
       name: `我是根节点${i}`,
       children,
     } as ITree)
