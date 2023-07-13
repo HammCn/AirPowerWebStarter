@@ -28,7 +28,7 @@
       <br><br>
       <AImage
         :upload="true"
-        src="https://cdn.hamm.cn/static/img/logo/1024.png"
+        src="https://cdn.hamm.cn/img/logo.png"
         @on-upload="uploadSuccess"
       />
       <br><br>

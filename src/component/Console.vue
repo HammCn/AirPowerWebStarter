@@ -33,7 +33,7 @@ async function getMenuList() {
 
 async function init() {
   currentUserInfo.value.nickname = 'Hamm'
-  currentUserInfo.value.avatar = 'https://cdn.hamm.cn/static/img/logo/1024.png'
+  currentUserInfo.value.avatar = 'https://cdn.hamm.cn/img/logo.png'
   AirConfig.permissionList = []
   await getMenuList()
 }
