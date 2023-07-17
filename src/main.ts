@@ -13,4 +13,5 @@ const material = new MaterialEntity()
 // eslint-disable-next-line no-console
 console.log(material)
 
+// eslint-disable-next-line no-console
 console.log(MaterialEntity.getTableFieldConfigList())
