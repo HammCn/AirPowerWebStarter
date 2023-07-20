@@ -26,8 +26,12 @@ const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as AirMenuEntity[])
 
 async function getMenuList() {
-  const jsonString = '[{"id":1,"children":[],"name":"首页","path":"/console","icon":"icon-commonicon_shanchu airpower","component":"/console/index/index","isHide":false},{"id":2,"children":[],"name":"物料列表","path":"/console/material","icon":"icon-commonicon_shanchu airpower","component":"/console/material/list","isHide":false},{"id":31,"children":[{"id":331,"children":[],"name":"子菜单1","path":"/console/user/tree","component":"/console/user/tree","isHide":false}],"name":"子菜单列表","icon":"icon-commonicon_shanchu airpower","isHide":false},{"id":4,"children":[],"name":"AirHttp","path":"/console/demo/http","icon":"icon-commonicon_shanchu airpower","component":"/console/demo/http","isHide":false}]'
-  menuList.value = AirMenuEntity.fromJsonArray(JSON.parse(jsonString))
+  menuList.value = []
+  menuList.value.push(new AirMenuEntity(1).setName('首页').setPath('/console').setComponent('/console/index/index'))
+  menuList.value.push(new AirMenuEntity(2).setName('表格示例').setChildren([
+    new AirMenuEntity(21).setName('树表格').setPath('/console/material/tree'),
+    new AirMenuEntity(22).setName('普通表格').setPath('/console/material/list'),
+  ]))
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 

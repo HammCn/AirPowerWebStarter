@@ -1,4 +1,5 @@
 import {
+  Alias,
   ClassName,
   Dictionary, FieldName, ToModel, Type,
 } from '@/airpower/decorator/Custom'
@@ -30,6 +31,7 @@ export class MaterialEntity extends BaseEntity {
     isRequiredString: true,
   })
   @FieldName('物料名称')
+  @Alias('materialName')
   @Type(String) name!: string
 
   @TableField({
