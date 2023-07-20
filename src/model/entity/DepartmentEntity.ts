@@ -14,6 +14,5 @@ export class DepartmentEntity extends BaseEntity implements ITree {
    */
   // eslint-disable-next-line no-use-before-define
   @Type(DepartmentEntity)
-  @IsArray()
-    children: this[] = []
+  @IsArray() children: this[] = []
 }
