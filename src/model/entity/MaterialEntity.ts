@@ -1,4 +1,5 @@
 import {
+  Alias,
   ClassName,
   Dictionary, FieldName, ToModel, Type,
 } from '@/airpower/decorator/Custom'
@@ -31,28 +32,26 @@ export class MaterialEntity extends BaseEntity {
   })
 
   @Type(String)
-  @FieldName('物料名称') name!: string
+  @Alias('name')
+  @FieldName('物料名称') materialName!: string
 
   @TableField({
     isCopyField: true,
   })
   @SearchField()
   @FormField()
-  @FieldName('规格型号') spc!: string
+  @Alias('spc')
+  @FieldName('规格型号') materialSpc!: string
 
   @Dictionary(MaterialTypeDictionary)
   @TableField({
     showColor: true,
     width: 100,
-    dictionary: MaterialTypeDictionary,
   })
-  @SearchField({
-    dictionary: MaterialTypeDictionary,
-  })
+  @SearchField()
   @FormField({
     defaultValue: MaterialType.PUBLIC,
     isRequiredNumber: true,
-    dictionary: MaterialTypeDictionary,
   })
   @FieldName('物料类型') materialType!: MaterialType
 

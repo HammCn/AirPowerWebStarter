@@ -22,20 +22,20 @@
         :column="1"
       >
         <el-form-item
-          :label="MaterialEntity.getFormFieldLabel('name')"
-          prop="name"
+          :label="MaterialEntity.getFormFieldLabel('materialName')"
+          prop="materialName"
         >
           <AInput
-            v-model.name="data.name"
+            v-model.materialName="data.materialName"
             :entity="MaterialEntity"
           />
         </el-form-item>
         <el-form-item
-          :label="MaterialEntity.getFormFieldLabel('spc')"
-          prop="spc"
+          :label="MaterialEntity.getFormFieldLabel('materialSpc')"
+          prop="materialSpc"
         >
           <AInput
-            v-model.spc="data.spc"
+            v-model.materialSpc="data.materialSpc"
             :entity="MaterialEntity"
           />
         </el-form-item>

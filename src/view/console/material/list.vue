@@ -7,7 +7,14 @@
       show-import
       @on-add="onAdd()"
       @on-search="request = $event; getList()"
-    />
+    >
+      <template #materialName="{ data }">
+        <el-input
+          v-model="data.materialName"
+          placeholder="自定义搜索插槽"
+        />
+      </template>
+    </AToolBar>
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
