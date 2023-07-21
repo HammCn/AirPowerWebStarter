@@ -61,7 +61,7 @@ export class MaterialEntity extends BaseEntity {
 
   @TableField({
     orderNumber: 999,
-    label: '物料创建时间',
+    label: '重写的时间',
   })
   declare createTime: number
 }
