@@ -31,6 +31,9 @@ async function getMenuList() {
   menuList.value.push(new AirMenuEntity(2).setName('表格示例').setChildren([
     new AirMenuEntity(21).setName('树表格').setPath('/console/material/tree'),
     new AirMenuEntity(22).setName('普通表格').setPath('/console/material/list'),
+    new AirMenuEntity(22).setName('更多表格').setChildren([
+      new AirMenuEntity(221).setName('孙子菜单').setPath('/console/material').setComponent('/console/material/list'),
+    ]),
   ]))
   AirRouter.initVueRouter(menuList.value, 'console')
 }
