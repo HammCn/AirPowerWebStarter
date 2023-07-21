@@ -9,12 +9,12 @@
       Based on Vue3 & TypeScript & Element-Plus & Vite
     </div>
     <div class="link">
-      <el-link href="/console">
+      <router-link to="/console">
         Console
-      </el-link>
-      <el-link href="/login">
+      </router-link>
+      <router-link to="/login">
         Login
-      </el-link>
+      </router-link>
     </div>
   </div>
 </template>
@@ -43,9 +43,16 @@ import logo from '@/airpower/assets/img/logo.png'
     flex-direction: row;
     margin-top: 20px;
 
-    .el-link {
+    a {
       margin: 0px 5px;
       font-size: 16px;
+      color: var(--el-color-primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      font-weight: bold;
     }
   }
 }

@@ -16,7 +16,7 @@
       </router-link>
       <hr>
       <AInput
-        v-model.name="materialInfo.name"
+        v-model.materialName="materialInfo.materialName"
         :entity="MaterialEntity"
         @change="change"
       />
