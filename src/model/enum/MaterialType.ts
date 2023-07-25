@@ -4,13 +4,13 @@
  * @author Hamm
  */
 export enum MaterialType {
-    /**
-     * # 公共物料
-     */
-    PUBLIC = 1,
+  /**
+   * # 公共物料
+   */
+  PUBLIC = 1,
 
-    /**
-     * # 私有物料
-     */
-    PRIVATE = 2
-  }
+  /**
+   * # 私有物料
+   */
+  PRIVATE = 2
+}

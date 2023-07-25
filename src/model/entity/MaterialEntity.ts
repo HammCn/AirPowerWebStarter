@@ -35,7 +35,9 @@ export class MaterialEntity extends BaseEntity {
   @Alias('name')
   @FieldName('物料名称') materialName!: string
 
-  @TableField()
+  @TableField({
+    emptyValue: '暂无信息',
+  })
   @SearchField()
   @FormField()
   @Alias('spc')
