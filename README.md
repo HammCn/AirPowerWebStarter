@@ -4,7 +4,7 @@
 
 你当前正在查看基于 ```AirPower``` 基础库的 DEMO宿主项目的代码, 我们使用的是 ```Vite``` 构建, 包管理使用的是 ```yarn```, 请先安装前叙的相关工具后继续接下来的操作 ：）
 
-### 一、初始化仓库(推荐ssh)
+### 一、初始化仓库
 
 > 建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
 
@@ -12,17 +12,9 @@
 
 - ssh方式
 ```shell
-git clone git@e.coding.net:airpower/airpower/WebDemo.git &&
-cd WebDemo/src && 
-git clone git@e.coding.net:airpower/airpower/airpower.git && cd ../ &&
-yarn && cp .env.dev .env && yarn s
-```
-
-- https方式
-```shell
-git clone https://e.coding.net/airpower/airpower/WebDemo.git &&
-cd WebDemo/src && 
-git clone https://e.coding.net/airpower/airpower/airpower.git && cd ../ &&
+git clone git@github.com:HammCn/AirPowerDemo.git &&
+cd AirPowerDemo/src && 
+git clone git@github.com:HammCn/airpower.git && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
 
