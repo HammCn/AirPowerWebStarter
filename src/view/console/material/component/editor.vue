@@ -93,7 +93,7 @@ import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialService } from '@/service/MaterialService'
 import { AirInputType } from '@/airpower/enum/AirInputType'
 
-const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
+const props = defineProps(airPropsParam(new MaterialEntity()))
 const isLoading = ref(false)
 
 const data = ref(props.param.copy())

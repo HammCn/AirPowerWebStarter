@@ -29,7 +29,7 @@ import { airPropsParam } from '@/airpower/config/AirProps'
 import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { MaterialService } from '@/service/MaterialService'
 
-const props = defineProps(airPropsParam<MaterialEntity>(new MaterialEntity()))
+const props = defineProps(airPropsParam(new MaterialEntity()))
 const isLoading = ref(false)
 const detail = ref(props.param.copy())
 
