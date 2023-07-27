@@ -18,6 +18,14 @@ git clone git@github.com:HammCn/airpower.git && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
 
+- https方式
+```shell
+git clone https://github.com/HammCn/AirPowerDemo.git &&
+cd AirPowerDemo/src && 
+git clone https://github.com/HammCn/airpower.git && cd ../ &&
+yarn && cp .env.dev .env && yarn s
+```
+
 ### 二、修改环境变量
 
 按需修改配置
