@@ -4,7 +4,7 @@ import { RouteRecordRaw } from 'vue-router'
  * # 路由配置
  * @author Hamm
  */
-export const routes: Array<RouteRecordRaw> = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: '登录',
