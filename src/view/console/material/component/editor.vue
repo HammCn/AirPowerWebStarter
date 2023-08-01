@@ -87,11 +87,11 @@
 import { ref } from 'vue'
 import { ADialog, AGroup, AInput } from '@/airpower/component'
 import { AirValidator } from '@/airpower/helper/AirValidator'
-import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
-import { MaterialService } from '@/service/MaterialService'
 import { AirInputType } from '@/airpower/enum/AirInputType'
+import { MaterialEntity } from '@/model/material/MaterialEntity'
+import { MaterialService } from '@/model/material/MaterialService'
 
 const props = defineProps(airPropsParam(new MaterialEntity()))
 const isLoading = ref(false)

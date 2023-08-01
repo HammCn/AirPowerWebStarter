@@ -26,8 +26,8 @@
 import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
-import { MaterialEntity } from '@/model/entity/MaterialEntity'
-import { MaterialService } from '@/service/MaterialService'
+import { MaterialEntity } from '@/model/material/MaterialEntity'
+import { MaterialService } from '@/model/material/MaterialService'
 
 const props = defineProps(airPropsParam(new MaterialEntity()))
 const isLoading = ref(false)

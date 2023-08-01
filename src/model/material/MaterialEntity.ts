@@ -9,8 +9,8 @@ import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { IJson } from '@/airpower/interface/IJson'
 import { BaseEntity } from '@/base/BaseEntity'
-import { MaterialType } from '@/model/enum/MaterialType'
-import { MaterialTypeDictionary } from '@/model/dictionary/MaterialTypeDictionary'
+import { MaterialType } from './MaterialType'
+import { MaterialTypeDictionary } from './MaterialTypeDictionary'
 
 /**
  * # 物料

@@ -1,7 +1,7 @@
 import { AirColor } from '@/airpower/enum/AirColor'
-import { MaterialType } from '@/model/enum/MaterialType'
-import { IMaterialTypeDictionary } from '../IMaterialTypeDictionary'
 import { AirDictionaryArray } from '@/airpower/model/extend/AirDictionaryArray'
+import { IMaterialTypeDictionary } from './IMaterialTypeDictionary'
+import { MaterialType } from './MaterialType'
 
 /**
  * # 物料类型枚举字典

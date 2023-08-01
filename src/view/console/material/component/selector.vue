@@ -62,11 +62,11 @@ import { ref } from 'vue'
 import {
   APage, ATable, AToolBar, ADialog, AButton,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { airPropsSelector } from '@/airpower/config/AirProps'
-import { MaterialService } from '@/service/MaterialService'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { AirResponsePage } from '@/airpower/model/AirResponsePage'
+import { MaterialEntity } from '@/model/material/MaterialEntity'
+import { MaterialService } from '@/model/material/MaterialService'
 
 const props = defineProps(airPropsSelector<MaterialEntity>())
 

@@ -50,14 +50,14 @@ import { Ref, ref } from 'vue'
 import {
   ATreeBox, APanel, APage, ATable, AToolBar,
 } from '@/airpower/component'
-import { MaterialEntity } from '@/model/entity/MaterialEntity'
-import { MaterialService } from '@/service/MaterialService'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { ITree } from '@/airpower/interface/ITree'
 import { MaterialDetail, MaterialEditor } from './component'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { AirResponsePage } from '@/airpower/model/AirResponsePage'
+import { MaterialEntity } from '@/model/material/MaterialEntity'
+import { MaterialService } from '@/model/material/MaterialService'
 
 const isLoading = ref(false)
 const response = ref(new AirResponsePage<MaterialEntity>())

@@ -2,7 +2,7 @@ import { FormField } from '@/airpower/decorator/FormField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
-import { DisableDictionary } from '@/model/dictionary/DisableDictionary'
+import { DisableDictionary } from '@/model/DisableDictionary'
 import { ClassName, FieldName, Type } from '@/airpower/decorator/Custom'
 import { AirEntity } from '@/airpower/base/AirEntity'
 

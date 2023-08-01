@@ -77,12 +77,12 @@ import {
 } from '@/airpower/component'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirDictionary } from '@/airpower/model/AirDictionary'
-import { MaterialEntity } from '@/model/entity/MaterialEntity'
 import { appStore } from '@/config/store'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { MaterialService } from '@/service/MaterialService'
 import { AirRand } from '@/airpower/helper/AirRand'
 import { AirFileEntity } from '@/airpower/model/entity/AirFileEntity'
+import { MaterialEntity } from '@/model/material/MaterialEntity'
+import { MaterialService } from '@/model/material/MaterialService'
 
 const hello = computed(() => appStore().hello)
 
