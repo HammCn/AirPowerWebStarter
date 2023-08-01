@@ -37,12 +37,12 @@
               >
                 立即登录
               </AButton>
-              <el-link href="/register">
+              <router-link to="/register">
                 注册账号
-              </el-link>
-              <el-link href="/forget">
+              </router-link>
+              <router-link to="/forget">
                 忘记密码
-              </el-link>
+              </router-link>
             </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -112,6 +112,16 @@ async function onLogin() {
 
           .el-form-item__content>* {
             margin-right: 20px;
+          }
+
+          a {
+            color: #333;
+            text-decoration: none;
+          }
+
+          a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
           }
         }
       }

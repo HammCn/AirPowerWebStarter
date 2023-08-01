@@ -6,6 +6,8 @@ export class UserEntity extends BaseEntity {
   @FormField()
   @FieldName('邮箱') email!: string
 
-  @FormField()
+  @FormField({
+    isPassword: true,
+  })
   @FieldName('密码') password!: string
 }

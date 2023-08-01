@@ -36,12 +36,12 @@
             </el-form-item>
             <el-form-item
               v-if="regVo.email && AirValidator.isEmail(regVo.email)"
-              :label="UserRegVo.getFieldName('code')"
+              :label="UserRequestVo.getFieldName('code')"
               prop="code"
             >
               <AInput
                 v-model.code="regVo.code"
-                :entity="UserRegVo"
+                :entity="UserRequestVo"
               />
             </el-form-item>
             <el-form-item
@@ -63,9 +63,9 @@
               >
                 重置密码
               </AButton>
-              <el-link href="/login">
+              <router-link to="/login">
                 想起来了,去登录
-              </el-link>
+              </router-link>
             </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -82,10 +82,10 @@ import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { MailService } from '@/model/mail/MailService'
 import { AirDateTime } from '@/airpower/helper/AirDateTime'
-import { UserRegVo } from '@/model/user/UserRegVo'
+import { UserRequestVo } from '@/model/user/UserRequestVo'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 
-const regVo = ref(new UserRegVo())
+const regVo = ref(new UserRequestVo())
 
 const isLoading = ref(false)
 
@@ -170,6 +170,16 @@ async function onSendCode() {
 
           .el-form-item__content>* {
             margin-right: 20px;
+          }
+
+          a {
+            color: #333;
+            text-decoration: none;
+          }
+
+          a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
           }
         }
       }

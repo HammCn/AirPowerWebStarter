@@ -21,6 +21,7 @@ import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import { AirMenuEntity } from '@/airpower/model/entity/AirMenuEntity'
 import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
+import { AirRand } from '@/airpower/helper/AirRand'
 
 const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as AirMenuEntity[])
@@ -35,6 +36,7 @@ async function getMenuList() {
       new AirMenuEntity(221).setName('孙子菜单').setPath('/console/material').setComponent('/console/material/list'),
     ]),
   ]))
+  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('权限管理').setPath('/console/permission/list'))
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 

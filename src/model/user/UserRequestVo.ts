@@ -2,7 +2,7 @@ import { FieldName } from '@/airpower/decorator/Custom'
 import { UserEntity } from './UserEntity'
 import { FormField } from '@/airpower/decorator/FormField'
 
-export class UserRegVo extends UserEntity {
+export class UserRequestVo extends UserEntity {
   @FormField({
     isRequiredString: '请填写收到的邮箱验证码',
   })
