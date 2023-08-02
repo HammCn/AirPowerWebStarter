@@ -19,26 +19,20 @@ import { ref } from 'vue'
 import { AFrame, AUser, AImage } from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { AirMenuEntity } from '@/airpower/model/entity/AirMenuEntity'
 import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
-import { AirRand } from '@/airpower/helper/AirRand'
+import { MenuService } from '@/model/menu/MenuService'
+import { AirRequest } from '@/airpower/model/AirRequest'
+import { MenuEntity } from '@/model/menu/MenuEntity'
+import { AirSort } from '@/airpower/model/AirSort'
 
 const currentUserInfo = ref(new AirUserEntity())
-const menuList = ref([] as AirMenuEntity[])
+const menuList = ref([] as MenuEntity[])
+
+const isLoading = ref(false)
 
 async function getMenuList() {
-  menuList.value = []
-  menuList.value.push(new AirMenuEntity(1).setName('首页').setPath('/console').setComponent('/console/index/index'))
-  menuList.value.push(new AirMenuEntity(2).setName('表格示例').setChildren([
-    new AirMenuEntity(21).setName('树表格').setPath('/console/material/tree'),
-    new AirMenuEntity(22).setName('普通表格').setPath('/console/material/list'),
-    new AirMenuEntity(22).setName('更多表格').setChildren([
-      new AirMenuEntity(221).setName('孙子菜单').setPath('/console/material').setComponent('/console/material/list'),
-    ]),
-  ]))
-  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('权限管理').setPath('/console/permission/list'))
-  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('用户管理').setPath('/console/user/list'))
-  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('角色管理').setPath('/console/role/list'))
+  const request = new AirRequest(MenuEntity).setSort(new AirSort().setField('orderNo'))
+  menuList.value = await MenuService.create(isLoading).getList(request)
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 
