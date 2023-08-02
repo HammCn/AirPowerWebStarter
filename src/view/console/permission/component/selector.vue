@@ -28,7 +28,7 @@
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
-      @select=" selected = $event"
+      @on-select=" selected = $event"
     >
       <template
         v-if="!mult"

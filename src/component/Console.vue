@@ -37,6 +37,8 @@ async function getMenuList() {
     ]),
   ]))
   menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('权限管理').setPath('/console/permission/list'))
+  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('用户管理').setPath('/console/user/list'))
+  menuList.value.push(new AirMenuEntity(AirRand.getRandNumber(1000, 9999)).setName('角色管理').setPath('/console/role/list'))
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 

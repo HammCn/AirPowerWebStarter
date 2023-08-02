@@ -13,7 +13,7 @@
     <AToolBar
       hide-add
       :loading="isLoading"
-      :entity="MaterialEntity"
+      :entity="UserEntity"
       @on-search="
         request = $event;
         getList()"
@@ -24,7 +24,7 @@
       hide-delete
       hide-edit
       :select-list="selected"
-      :entity="MaterialEntity"
+      :entity="UserEntity"
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
@@ -65,18 +65,18 @@ import {
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { AirResponsePage } from '@/airpower/model/AirResponsePage'
-import { MaterialEntity } from '@/model/material/MaterialEntity'
-import { MaterialService } from '@/model/material/MaterialService'
+import { UserEntity } from '@/model/user/UserEntity'
+import { UserService } from '@/model/user/UserService'
 
-const props = defineProps(airPropsSelector<MaterialEntity>())
+const props = defineProps(airPropsSelector<UserEntity>())
 
 const isLoading = ref(false)
 
-const request = ref(new AirRequestPage(MaterialEntity))
-const response = ref(new AirResponsePage<MaterialEntity>())
+const request = ref(new AirRequestPage(UserEntity))
+const response = ref(new AirResponsePage<UserEntity>())
 
 async function getList() {
-  response.value = await MaterialService.create(isLoading).getPage(request.value)
+  response.value = await UserService.create(isLoading).getPage(request.value)
 }
 getList()
 

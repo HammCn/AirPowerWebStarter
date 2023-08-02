@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '新增') + MaterialEntity.getClassName()"
+    :title="(param.id ? '修改' : '添加') + MaterialEntity.getClassName()"
     width="1000px"
     height="600px"
     :form-ref="form"
@@ -118,7 +118,7 @@ const rules = AirValidator.create({
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await MaterialService.create(isLoading).save(data.value, data.value.id ? '修改物料成功' : '新增物料成功')
+  await MaterialService.create(isLoading).save(data.value, data.value.id ? '修改物料成功' : '添加物料成功')
   props.onConfirm()
 }
 </script>

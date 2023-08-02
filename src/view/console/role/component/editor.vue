@@ -1,9 +1,9 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + PermissionEntity.getClassName()"
+    :title="(param.id ? '修改' : '添加') + RoleEntity.getClassName()"
     :form-ref="form"
-    :fullable="false"
     :loading="isLoading"
+    :fullable="false"
     confirm-text="保存"
     @on-confirm="submit()"
     @on-cancel="onCancel()"
@@ -12,31 +12,25 @@
       ref="form"
       :model="data"
       label-width="120px"
-      :rules="PermissionService.createValidator(param)"
+      :rules="RoleService.createValidator(param)"
       @submit.prevent
     >
       <el-form-item
-        v-if="param.parent"
-        label="父权限"
-      >
-        {{ param.parent.name }}
-      </el-form-item>
-      <el-form-item
-        :label="PermissionEntity.getFormFieldLabel('name')"
+        :label="RoleEntity.getFormFieldLabel('name')"
         prop="name"
       >
         <AInput
           v-model.name="data.name"
-          :entity="PermissionEntity"
+          :entity="RoleEntity"
         />
       </el-form-item>
       <el-form-item
-        :label="PermissionEntity.getFormFieldLabel('identity')"
-        prop="identity"
+        :label="RoleEntity.getFormFieldLabel('remark')"
+        prop="remark"
       >
         <AInput
-          v-model.identity="data.identity"
-          :entity="PermissionEntity"
+          v-model.remark="data.remark"
+          :entity="RoleEntity"
         />
       </el-form-item>
     </el-form>
@@ -48,17 +42,17 @@ import { ref } from 'vue'
 import { ADialog, AInput } from '@/airpower/component'
 import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
-import { PermissionService } from '@/model/permission/PermissionService'
-import { PermissionEntity } from '@/model/permission/PermissionEntity'
+import { RoleService } from '@/model/role/RoleService'
+import { RoleEntity } from '@/model/role/RoleEntity'
 
-const props = defineProps(airPropsParam(new PermissionEntity()))
+const props = defineProps(airPropsParam(new RoleEntity()))
 const isLoading = ref(false)
 
 const data = ref(props.param.copy())
 
 async function getDetail() {
   if (props.param.id) {
-    data.value = await PermissionService.create(isLoading).getDetail(props.param.id)
+    data.value = await RoleService.create(isLoading).getDetail(props.param.id)
   }
 }
 getDetail()
@@ -66,7 +60,7 @@ getDetail()
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await PermissionService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
+  await RoleService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
   props.onConfirm()
 }
 </script>

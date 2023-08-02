@@ -3,7 +3,7 @@
     width="70%"
     height="70%"
     :hide-footer="!mult"
-    title="请选择用户"
+    title="请选择角色"
     is-selector
     :loading="isLoading"
     :disable-confirm="mult && selected.length === 0"
@@ -13,7 +13,7 @@
     <AToolBar
       hide-add
       :loading="isLoading"
-      :entity="MaterialEntity"
+      :entity="RoleEntity"
       @on-search="
         request = $event;
         getList()"
@@ -24,7 +24,7 @@
       hide-delete
       hide-edit
       :select-list="selected"
-      :entity="MaterialEntity"
+      :entity="RoleEntity"
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
@@ -65,18 +65,18 @@ import {
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { AirResponsePage } from '@/airpower/model/AirResponsePage'
-import { MaterialEntity } from '@/model/material/MaterialEntity'
-import { MaterialService } from '@/model/material/MaterialService'
+import { RoleEntity } from '@/model/role/RoleEntity'
+import { RoleService } from '@/model/role/RoleService'
 
-const props = defineProps(airPropsSelector<MaterialEntity>())
+const props = defineProps(airPropsSelector<RoleEntity>())
 
 const isLoading = ref(false)
 
-const request = ref(new AirRequestPage(MaterialEntity))
-const response = ref(new AirResponsePage<MaterialEntity>())
+const request = ref(new AirRequestPage(RoleEntity))
+const response = ref(new AirResponsePage<RoleEntity>())
 
 async function getList() {
-  response.value = await MaterialService.create(isLoading).getPage(request.value)
+  response.value = await RoleService.create(isLoading).getPage(request.value)
 }
 getList()
 
