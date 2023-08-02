@@ -15,7 +15,6 @@ import { RoleSystemDictionary } from './RoleSystemDictionary'
  * @author Hamm
  */
 @EntityConfig({
-  hideFieldSelector: true,
   hideAdvanceSearch: true,
   hideKeywordSearch: true,
 })
@@ -36,6 +35,7 @@ export class RoleEntity extends BaseEntity {
   @TableField({
     showColor: true,
     width: 100,
+    orderNumber: -100,
   })
-  @FieldName('系统角色') isSystem!: boolean
+  @FieldName('类别') isSystem!: boolean
 }

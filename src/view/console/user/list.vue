@@ -12,7 +12,7 @@
       :data-list="list"
       hide-select
       :entity="UserEntity"
-      :ctrl-width="105"
+      :ctrl-width="80"
       @on-edit="onEdit"
       @on-delete="onDelete"
     />

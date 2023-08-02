@@ -16,7 +16,6 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
  * @author Hamm
  */
 @EntityConfig({
-  hideFieldSelector: true,
   hideAdvanceSearch: true,
   hideKeywordSearch: true,
 })
@@ -24,7 +23,6 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
 export class PermissionEntity extends BaseEntity implements ITree {
   @TableField({
     forceShow: true,
-    isCopyField: true,
   })
   @SearchField()
   @FormField({
@@ -47,8 +45,9 @@ export class PermissionEntity extends BaseEntity implements ITree {
   @TableField({
     showColor: true,
     width: 100,
+    orderNumber: -100,
   })
-  @FieldName('系统权限') isSystem!: boolean
+  @FieldName('类别') isSystem!: boolean
 
   @FieldName('父级ID') parentId!: number
 

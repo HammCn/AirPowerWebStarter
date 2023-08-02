@@ -13,7 +13,7 @@
       hide-select
       :entity="RoleEntity"
       :disable-delete="(row: RoleEntity) => row.isSystem"
-      :ctrl-width="105"
+      :ctrl-width="80"
       @on-edit="onEdit"
       @on-delete="onDelete"
     />

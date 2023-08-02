@@ -36,6 +36,7 @@ export class BaseEntity extends AirEntity {
     showColor: true,
     width: 80,
     orderNumber: -100,
+    removed: true,
   })
   @Type(Boolean) isDisabled!: boolean
 

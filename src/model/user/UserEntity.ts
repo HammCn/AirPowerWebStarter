@@ -1,11 +1,12 @@
 import {
-  ClassName, FieldName, IsArray, Type,
+  ClassName, Dictionary, FieldName, IsArray, Type,
 } from '@/airpower/decorator/Custom'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
+import { UserSystemDictionary } from './UserSystemDictionary'
 
 @ClassName('用户')
 export class UserEntity extends BaseEntity {
@@ -40,4 +41,12 @@ export class UserEntity extends BaseEntity {
   })
   @Type(RoleEntity)
   @IsArray() roleList!: RoleEntity[]
+
+  @Dictionary(UserSystemDictionary)
+  @TableField({
+    showColor: true,
+    width: 100,
+    orderNumber: -100,
+  })
+  @FieldName('类别') isSystem!: boolean
 }
