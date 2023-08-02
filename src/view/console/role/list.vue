@@ -22,7 +22,7 @@
           type="CONFIRM"
           tooltip="授权菜单"
           icon-button
-          :disabled1="row.data.isSystem"
+          :disabled="row.data.isSystem"
           @click="onMenuEditor(row.data)"
         />
       </template>

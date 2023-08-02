@@ -78,7 +78,9 @@ const rules = AirValidator.create({
 async function onLogin() {
   const accessToken = await UserService.create(isLoading).login(loginVo.value)
   AirConfig.saveAccessToken(accessToken)
-  AirConfig.router.replace('/console')
+  // 强制重新加载 更新下权限和菜单
+  // eslint-disable-next-line no-restricted-globals
+  location.replace('/console')
 }
 </script>
 <style scoped lang="scss">

@@ -13,6 +13,7 @@
       hide-select
       :entity="UserEntity"
       :ctrl-width="80"
+      :disable-delete="(row: UserEntity) => row.isSystem"
       @on-edit="onEdit"
       @on-delete="onDelete"
     />
