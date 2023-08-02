@@ -9,11 +9,11 @@
     />
     <ATable
       v-loading="isLoading"
-      :data-list="list"
+      :data-list="response.list"
       hide-select
       :entity="RoleEntity"
       :disable-delete="(row: RoleEntity) => row.isSystem"
-      :ctrl-width="105"
+      :ctrl-width="130"
       @on-edit="onEdit"
       @on-delete="onDelete"
     >
@@ -25,8 +25,21 @@
           :disabled="row.data.isSystem"
           @click="onMenuEditor(row.data)"
         />
+        <AButton
+          type="LOCK"
+          tooltip="授权权限"
+          icon-button
+          :disabled="row.data.isSystem"
+          @click="onPermissionEditor(row.data)"
+        />
       </template>
     </ATable>
+    <template #footerRight>
+      <APage
+        :response="response"
+        @on-change="request.page = $event; getList()"
+      />
+    </template>
   </APanel>
 </template>
 
@@ -34,20 +47,22 @@
 import { ref } from 'vue'
 import {
   AButton,
+  APage,
   APanel, ATable, AToolBar,
 } from '@/airpower/component'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { RoleEditor, RoleMenuEditor } from './component'
+import { RoleEditor, RoleMenuEditor, RolePermissionEditor } from './component'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { RoleEntity } from '@/model/role/RoleEntity'
 import { RoleService } from '@/model/role/RoleService'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
 const isLoading = ref(false)
 const request = ref(new AirRequestPage(RoleEntity))
-const list = ref([] as RoleEntity[])
+const response = ref(new AirResponsePage<RoleEntity>())
 
 async function getList() {
-  list.value = await RoleService.create(isLoading).getList(request.value)
+  response.value = await RoleService.create(isLoading).getPage(request.value)
 }
 
 async function onEdit(row: RoleEntity) {
@@ -67,6 +82,10 @@ async function onAdd() {
 
 async function onMenuEditor(role: RoleEntity) {
   AirDialog.show(RoleMenuEditor, role)
+}
+
+async function onPermissionEditor(role: RoleEntity) {
+  AirDialog.show(RolePermissionEditor, role)
 }
 
 getList()

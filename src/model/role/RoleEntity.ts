@@ -10,6 +10,7 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleSystemDictionary } from './RoleSystemDictionary'
 import { MenuEntity } from '../menu/MenuEntity'
+import { PermissionEntity } from '../permission/PermissionEntity'
 
 /**
  * # 角色
@@ -41,4 +42,7 @@ export class RoleEntity extends BaseEntity {
 
   @Type(MenuEntity)
   @IsArray() menuList!: MenuEntity[]
+
+  @Type(PermissionEntity)
+  @IsArray() permissionList!: PermissionEntity[]
 }

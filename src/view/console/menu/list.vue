@@ -32,10 +32,9 @@ import { MenuEditor } from './component'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { MenuService } from '@/model/menu/MenuService'
-import { AirSort } from '@/airpower/model/AirSort'
 
 const isLoading = ref(false)
-const request = ref(new AirRequestPage(MenuEntity).setSort(new AirSort().setField('orderNo')))
+const request = ref(new AirRequestPage(MenuEntity))
 const list = ref([] as MenuEntity[])
 
 async function getList() {

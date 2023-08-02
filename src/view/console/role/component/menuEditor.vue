@@ -63,7 +63,7 @@ getMenuTreeList()
 const form = ref<AirFormInstance>()
 // 表单提交
 async function submit() {
-  await RoleService.create(isLoading).update(data.value, '菜单权限授权成功')
+  await RoleService.create(isLoading).authorizeMenu(data.value.id, data.value.menuList)
   props.onConfirm()
 }
 </script>

@@ -9,7 +9,7 @@
     />
     <ATable
       v-loading="isLoading"
-      :data-list="list"
+      :data-list="response.list"
       hide-select
       :entity="UserEntity"
       :ctrl-width="80"
@@ -17,26 +17,33 @@
       @on-edit="onEdit"
       @on-delete="onDelete"
     />
+    <template #footerRight>
+      <APage
+        :response="response"
+        @on-change="request.page = $event; getList()"
+      />
+    </template>
   </APanel>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import {
-  APanel, ATable, AToolBar,
+  APanel, ATable, AToolBar, APage,
 } from '@/airpower/component'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { UserEditor } from './component'
 import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { UserEntity } from '@/model/user/UserEntity'
 import { UserService } from '@/model/user/UserService'
+import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 
 const isLoading = ref(false)
 const request = ref(new AirRequestPage(UserEntity))
-const list = ref([] as UserEntity[])
+const response = ref(new AirResponsePage<UserEntity>())
 
 async function getList() {
-  list.value = await UserService.create(isLoading).getList(request.value)
+  response.value = await UserService.create(isLoading).getPage(request.value)
 }
 
 async function onEdit(row: UserEntity) {
