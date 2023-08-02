@@ -20,10 +20,8 @@ import { AFrame, AUser, AImage } from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
-import { MenuService } from '@/model/menu/MenuService'
-import { AirRequest } from '@/airpower/model/AirRequest'
 import { MenuEntity } from '@/model/menu/MenuEntity'
-import { AirSort } from '@/airpower/model/AirSort'
+import { UserService } from '@/model/user/UserService'
 
 const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as MenuEntity[])
@@ -31,8 +29,7 @@ const menuList = ref([] as MenuEntity[])
 const isLoading = ref(false)
 
 async function getMenuList() {
-  const request = new AirRequest(MenuEntity).setSort(new AirSort().setField('orderNo'))
-  menuList.value = await MenuService.create(isLoading).getList(request)
+  menuList.value = await UserService.create(isLoading).getMyMenuList()
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 

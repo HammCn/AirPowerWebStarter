@@ -1,7 +1,7 @@
 import {
   ClassName,
   Dictionary,
-  FieldName, Type,
+  FieldName, IsArray, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -9,6 +9,7 @@ import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleSystemDictionary } from './RoleSystemDictionary'
+import { MenuEntity } from '../menu/MenuEntity'
 
 /**
  * # 角色
@@ -22,7 +23,6 @@ import { RoleSystemDictionary } from './RoleSystemDictionary'
 export class RoleEntity extends BaseEntity {
   @TableField({
     forceShow: true,
-    isCopyField: true,
   })
   @SearchField()
   @FormField({
@@ -38,4 +38,7 @@ export class RoleEntity extends BaseEntity {
     orderNumber: -100,
   })
   @FieldName('类别') isSystem!: boolean
+
+  @Type(MenuEntity)
+  @IsArray() menuList!: MenuEntity[]
 }

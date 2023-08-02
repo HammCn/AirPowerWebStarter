@@ -1,5 +1,6 @@
 import { AbstractBaseService } from '@/base/AbstractBaseService'
 import { UserEntity } from '@/model/user/UserEntity'
+import { MenuEntity } from '../menu/MenuEntity'
 
 export class UserService extends AbstractBaseService<UserEntity> {
   baseUrl = 'user'
@@ -29,5 +30,13 @@ export class UserService extends AbstractBaseService<UserEntity> {
    */
   async resetMyPassword(user: UserEntity): Promise<void> {
     await this.api('resetMyPassword').post(user)
+  }
+
+  /**
+   * # 获取我有权限的菜单列表
+   */
+  async getMyMenuList(): Promise<MenuEntity[]> {
+    const jsonArray = await this.api('getMyMenuList').post()
+    return MenuEntity.fromJsonArray(jsonArray)
   }
 }
