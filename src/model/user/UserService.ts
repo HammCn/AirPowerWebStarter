@@ -1,6 +1,7 @@
 import { AbstractBaseService } from '@/base/AbstractBaseService'
 import { UserEntity } from '@/model/user/UserEntity'
 import { MenuEntity } from '../menu/MenuEntity'
+import { PermissionEntity } from '../permission/PermissionEntity'
 
 export class UserService extends AbstractBaseService<UserEntity> {
   baseUrl = 'user'
@@ -38,5 +39,13 @@ export class UserService extends AbstractBaseService<UserEntity> {
   async getMyMenuList(): Promise<MenuEntity[]> {
     const jsonArray = await this.api('getMyMenuList').post()
     return MenuEntity.fromJsonArray(jsonArray)
+  }
+
+  /**
+   * # 获取我d的权限列表
+   */
+  async getMyPermissionList(): Promise<PermissionEntity[]> {
+    const jsonArray = await this.api('getMyPermissionList').post()
+    return PermissionEntity.fromJsonArray(jsonArray)
   }
 }

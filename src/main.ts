@@ -6,5 +6,5 @@ import '@/assets/css/main.scss'
 
 AirConfig.successCode = 200000
 AirConfig.unAuthorizeCode = 401000
-AirConfig.autoPermission = false
+AirConfig.autoPermission = true
 app.use(AirConfig.createRouter(routes)).mount('#app')

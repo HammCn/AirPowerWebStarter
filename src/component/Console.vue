@@ -22,10 +22,10 @@ import { AirRouter } from '@/airpower/helper/AirRouter'
 import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
+import { PermissionEntity } from '@/model/permission/PermissionEntity'
 
 const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as MenuEntity[])
-
 const isLoading = ref(false)
 
 async function getMenuList() {
@@ -33,10 +33,24 @@ async function getMenuList() {
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 
+function getPermissionList(permissionList: PermissionEntity[]): string[] {
+  let list: string[] = []
+  permissionList.forEach((item) => {
+    list.push(item.identity)
+    if (item.children && item.children.length > 0) {
+      list = list.concat(getPermissionList(item.children))
+    }
+  })
+  return list
+}
+
 async function init() {
   currentUserInfo.value.nickname = 'Hamm'
   currentUserInfo.value.avatar = 'https://cdn.hamm.cn/img/logo.png'
   AirConfig.permissionList = []
+
+  const permissionList = await UserService.create(isLoading).getMyPermissionList()
+  AirConfig.permissionList = getPermissionList(permissionList)
   await getMenuList()
 }
 

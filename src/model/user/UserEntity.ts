@@ -7,8 +7,12 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { UserSystemDictionary } from './UserSystemDictionary'
+import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 
 @ClassName('用户')
+@EntityConfig({
+  addTitle: '添加用户',
+})
 export class UserEntity extends BaseEntity {
   @FormField({
     isEmail: true,
