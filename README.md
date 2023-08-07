@@ -13,7 +13,7 @@
 - ssh方式
 ```shell
 git clone git@github.com:HammCn/AirPowerWebDemo.git &&
-cd AirPowerDemo/src && 
+cd AirPowerWebDemo/src && 
 git clone git@github.com:HammCn/AirPower4T.git airpower && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
@@ -21,7 +21,7 @@ yarn && cp .env.dev .env && yarn s
 - https方式
 ```shell
 git clone https://github.com/HammCn/AirPowerWebDemo.git &&
-cd AirPowerDemo/src && 
+cd AirPowerWebDemo/src && 
 git clone https://github.com/HammCn/AirPower4T.git airpower && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
