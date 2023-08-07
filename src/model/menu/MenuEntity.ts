@@ -16,6 +16,7 @@ import { IMenu } from '@/airpower/interface/IMenu'
 @EntityConfig({
   hideAdvanceSearch: true,
   hideKeywordSearch: true,
+  addChildPermission: 'add',
 })
 @ClassName('菜单')
 export class MenuEntity extends BaseEntity implements IMenu {

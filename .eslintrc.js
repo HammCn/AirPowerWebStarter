@@ -36,5 +36,6 @@ module.exports = {
     'no-await-in-loop': 'error', // 禁止在循环中出现 await
     'import/no-unresolved': 'off', // 确保导入指向一个可以解析的文件/模块
     '@typescript-eslint/no-var-requires': 'off', // 允许require
+    'vue/no-setup-props-destructure': 'off',
   },
 }
