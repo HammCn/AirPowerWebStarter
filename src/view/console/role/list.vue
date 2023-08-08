@@ -33,7 +33,7 @@
         />
       </template>
     </ATable>
-    <template #footerRight>
+    <template #footerLeft>
       <APage
         :response="response"
         @on-change="onPageChanged"

@@ -15,7 +15,7 @@
       @on-edit="onEdit"
       @on-delete="onDelete"
     />
-    <template #footerRight>
+    <template #footerLeft>
       <APage
         :response="response"
         @on-change="onPageChanged"
