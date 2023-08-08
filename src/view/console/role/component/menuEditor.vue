@@ -16,7 +16,7 @@
       :data="treeList"
       show-checkbox
       node-key="id"
-      :props="AirConfig.defaultTreeProps"
+      :props="AirConfig.treeProps"
       @check="onSelect"
     />
   </ADialog>

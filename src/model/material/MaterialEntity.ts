@@ -24,11 +24,11 @@ import { MaterialTypeDictionary } from './MaterialTypeDictionary'
 export class MaterialEntity extends BaseEntity {
   @TableField({
     forceShow: true,
-    isCopyField: true,
+    copyField: true,
   })
   @SearchField()
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
 
   @Type(String)
@@ -51,7 +51,7 @@ export class MaterialEntity extends BaseEntity {
   @SearchField()
   @FormField({
     defaultValue: MaterialType.PUBLIC,
-    isRequiredNumber: true,
+    requiredNumber: true,
   })
   @FieldName('物料类型') materialType!: MaterialType
 

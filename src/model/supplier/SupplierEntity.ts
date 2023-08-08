@@ -8,17 +8,17 @@ import { SupplierLevelDictionary } from './SupplierLevelDictionary'
 @ClassName('供应商')
 export class SupplierEntity extends BaseEntity {
   @TableField({
-    isCopyField: true,
+    copyField: true,
     forceShow: true,
   })
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @FieldName('供应商编码') code!: string
 
   @TableField()
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @FieldName('供应商名称') name!: string
 
@@ -27,14 +27,14 @@ export class SupplierEntity extends BaseEntity {
     showColor: true,
   })
   @FormField({
-    isRequiredNumber: true,
+    requiredNumber: true,
     defaultValue: SupplierLevel.GOLD,
   })
   @FieldName('供应商级别') level!: SupplierLevel
 
   @TableField()
   @FormField({
-    isMobilePhone: true,
+    mobilePhone: true,
   })
   @FieldName('联系电话') phone!: string
 }

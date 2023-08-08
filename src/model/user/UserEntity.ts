@@ -15,8 +15,8 @@ import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 })
 export class UserEntity extends BaseEntity {
   @FormField({
-    isEmail: true,
-    isRequiredString: true,
+    email: true,
+    requiredString: true,
   })
   @TableField({
     forceShow: true,
@@ -25,12 +25,12 @@ export class UserEntity extends BaseEntity {
   @FieldName('邮箱') email!: string
 
   @FormField({
-    isPassword: true,
+    password: true,
   })
   @FieldName('密码') password!: string
 
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @TableField({
     forceShow: true,

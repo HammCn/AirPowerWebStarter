@@ -16,8 +16,8 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
  * @author Hamm
  */
 @EntityConfig({
-  hideAdvanceSearch: true,
-  hideKeywordSearch: true,
+  showFilter: true,
+  showSearch: true,
   addChildPermission: 'add',
 })
 @ClassName('权限')
@@ -27,18 +27,18 @@ export class PermissionEntity extends BaseEntity implements ITree {
   })
   @SearchField()
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @Type(String)
   @FieldName('权限名称') name!: string
 
   @TableField({
     forceShow: true,
-    isCopyField: true,
+    copyField: true,
   })
   @FormField({
-    isRequiredString: '请输入权限标识...',
-    isUnique: true,
+    requiredString: '请输入权限标识...',
+    unique: true,
   })
   @FieldName('权限标识') identity!: string
 

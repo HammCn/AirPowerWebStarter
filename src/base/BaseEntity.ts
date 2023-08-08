@@ -15,7 +15,6 @@ import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
  * @author Hamm
  */
 @EntityConfig({
-  keywordSearchPlaceholder: '关键词搜索...',
 })
 @ClassName('记录')
 export class BaseEntity extends AirEntity {
@@ -46,7 +45,7 @@ export class BaseEntity extends AirEntity {
     dataType: AirSearchDataType.TEXTAREA,
   })
   @FormField({
-    isTextarea: true,
+    textarea: true,
   })
   @Type(String) remark!: string
 }

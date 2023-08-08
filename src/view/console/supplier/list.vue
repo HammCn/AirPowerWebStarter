@@ -6,16 +6,21 @@
       :service="SupplierService"
       @on-add="onAdd"
       @on-search="onSearch"
-    />
+    >
+      <template #afterButton>
+        123
+      </template>
+    </AToolBar>
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
-      hide-select
       :entity="SupplierEntity"
       :ctrl-width="80"
+      :select-list="selectList"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
+      @on-select="onSelected"
     />
     <template #footerLeft>
       <APage
@@ -39,7 +44,8 @@ import { AirRequest } from '@/airpower/model/AirRequest'
 const {
   isLoading,
   response,
-  onSearch, onAdd, onDelete, onEdit, onPageChanged, onSortChanged,
+  selectList,
+  onSearch, onAdd, onDelete, onEdit, onPageChanged, onSortChanged, onSelected,
 } = useAirTable(SupplierEntity, SupplierService, {
   editor: SupplierEditor,
   beforeSearch: (request: AirRequest<SupplierEntity>) => {

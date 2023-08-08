@@ -17,8 +17,8 @@ import { PermissionEntity } from '../permission/PermissionEntity'
  * @author Hamm
  */
 @EntityConfig({
-  hideAdvanceSearch: true,
-  hideKeywordSearch: true,
+  showFilter: true,
+  showSearch: true,
 })
 @ClassName('角色')
 export class RoleEntity extends BaseEntity {
@@ -27,7 +27,7 @@ export class RoleEntity extends BaseEntity {
   })
   @SearchField()
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @Type(String)
   @FieldName('角色名称') name!: string

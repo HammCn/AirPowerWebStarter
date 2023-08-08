@@ -14,8 +14,8 @@ import { IMenu } from '@/airpower/interface/IMenu'
  * @author Hamm
  */
 @EntityConfig({
-  hideAdvanceSearch: true,
-  hideKeywordSearch: true,
+  showFilter: true,
+  showSearch: true,
   addChildPermission: 'add',
 })
 @ClassName('菜单')
@@ -25,13 +25,13 @@ export class MenuEntity extends BaseEntity implements IMenu {
   })
   @SearchField()
   @FormField({
-    isRequiredString: true,
+    requiredString: true,
   })
   @Type(String)
   @FieldName('菜单名称') name!: string
 
   @TableField({
-    isCopyField: true,
+    copyField: true,
     forceShow: true,
   })
   @FormField()
@@ -43,7 +43,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @FieldName('菜单图标') icon!: string
 
   @TableField({
-    isCopyField: true,
+    copyField: true,
   })
   @FormField()
   @Type(String)
