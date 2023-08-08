@@ -61,7 +61,7 @@ import { AirConfig } from '@/airpower/config/AirConfig'
 const loginVo = ref(new UserEntity())
 
 loginVo.value.email = 'admin@hamm.cn'
-loginVo.value.password = '12345678'
+loginVo.value.password = 'Aa123456'
 
 const isLoading = ref(false)
 
