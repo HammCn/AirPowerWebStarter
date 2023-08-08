@@ -32,7 +32,9 @@ export class MenuEntity extends BaseEntity implements IMenu {
     copyField: true,
     forceShow: true,
   })
-  @FormField()
+  @FormField({
+    requiredString: true,
+  })
   @Type(String)
   @FieldName('菜单路径') path!: string
 
