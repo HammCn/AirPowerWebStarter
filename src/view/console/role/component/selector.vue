@@ -3,7 +3,7 @@
     width="70%"
     height="70%"
     :hide-footer="!mult"
-    title="请选择角色"
+    :title="title"
     is-selector
     :loading="isLoading"
     :disable-confirm="mult && selected.length === 0"
@@ -14,9 +14,7 @@
       hide-add
       :loading="isLoading"
       :entity="RoleEntity"
-      @on-search="
-        request = $event;
-        getList()"
+      @on-search="onSearch"
     />
     <ATable
       :data-list="response.list"
@@ -28,7 +26,7 @@
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
-      @on-select=" selected = $event"
+      @on-select="onSelect"
     >
       <template
         v-if="!mult"
@@ -48,42 +46,26 @@
     <template #footerRight>
       <APage
         :response="response"
-        @changed="
-          request.page = $event;
-          getList()
-        "
+        @changed="onPageChanged"
       />
     </template>
   </ADialog>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   APage, ATable, AToolBar, ADialog, AButton,
 } from '@/airpower/component'
 import { airPropsSelector } from '@/airpower/config/AirProps'
-import { AirRequestPage } from '@/airpower/model/AirRequestPage'
-import { AirResponsePage } from '@/airpower/model/AirResponsePage'
 import { RoleEntity } from '@/model/role/RoleEntity'
 import { RoleService } from '@/model/role/RoleService'
+import { useAirSelector } from '@/airpower/hook/useAirSelector'
 
 const props = defineProps(airPropsSelector<RoleEntity>())
 
-const isLoading = ref(false)
-
-const request = ref(new AirRequestPage(RoleEntity))
-const response = ref(new AirResponsePage<RoleEntity>())
-
-async function getList() {
-  response.value = await RoleService.create(isLoading).getPage(request.value)
-}
-getList()
-
-/**
- * 已选择的数据
- */
-const selected = ref(props.selectList)
-
+const {
+  title, selected, onSelect, isLoading, response,
+  onSearch, onPageChanged,
+} = useAirSelector(props, RoleEntity, RoleService)
 </script>
 <style scoped lang="scss"></style>
