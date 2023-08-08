@@ -1,17 +1,17 @@
 <template>
   <ADialog
     :title="RoleEntity.getClassName() + '权限授权'"
-    :form-ref="form"
+    :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
     height="60%"
     width="80%"
     confirm-text="保存"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <ATable
-      :select-list="data.permissionList"
+      :select-list="formData.permissionList"
       :entity="PermissionEntity"
       :data-list="treeList"
       hide-index
@@ -26,28 +26,30 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ADialog, ATable } from '@/airpower/component'
-import { AirFormInstance, AirTreeInstance } from '@/airpower/type/AirType'
+import { AirTreeInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { RoleService } from '@/model/role/RoleService'
 import { RoleEntity } from '@/model/role/RoleEntity'
 import { AirRequest } from '@/airpower/model/AirRequest'
 import { PermissionService } from '@/model/permission/PermissionService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
 const treeRef = ref<AirTreeInstance>()
+
 const props = defineProps(airPropsParam(new RoleEntity()))
-const isLoading = ref(false)
 
-const data = ref(props.param.copy())
-
-async function getDetail() {
-  data.value = await RoleService.create(isLoading).getDetail(props.param.id)
-  treeRef.value?.setCheckedKeys(data.value.permissionList.map((item) => item.id))
-}
-getDetail()
+const {
+  isLoading, formRef, formData,
+  onSubmit,
+} = useAirEditor(props, RoleEntity, RoleService, {
+  afterGetDetail: () => {
+    treeRef.value?.setCheckedKeys(formData.value.permissionList.map((item) => item.id))
+  },
+})
 
 async function onSelect(selectList: PermissionEntity[]) {
-  data.value.permissionList = selectList
+  formData.value.permissionList = selectList
 }
 
 const treeList = ref([] as PermissionEntity[])
@@ -58,12 +60,6 @@ async function getPermissionList() {
 
 getPermissionList()
 
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await RoleService.create(isLoading).authorizePermission(data.value.id, data.value.permissionList)
-  props.onConfirm()
-}
 </script>
 
 <style scoped lang="scss"></style>

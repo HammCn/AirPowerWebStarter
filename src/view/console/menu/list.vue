@@ -4,8 +4,8 @@
       :loading="isLoading"
       :entity="MenuEntity"
       :service="MenuService"
-      @on-add="onAdd()"
-      @on-search="request = $event; getList()"
+      @on-add="onAdd"
+      @on-search="onSearch"
     />
     <ATable
       v-loading="isLoading"
@@ -17,53 +17,30 @@
       :disable-delete="(row: MenuEntity) => row.children.length > 0"
       @on-edit="onEdit"
       @on-delete="onDelete"
-      @on-add="onRowAdd"
+      @on-add="onAddRow"
     />
   </APanel>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   APanel, ATable, AToolBar,
 } from '@/airpower/component'
-import { AirDialog } from '@/airpower/helper/AirDialog'
-import { MenuEditor } from './component'
-import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { MenuService } from '@/model/menu/MenuService'
+import { useAirTableTree } from '@/airpower/hook/useAirTable'
+import { MenuEditor } from './component'
 
-const isLoading = ref(false)
-const request = ref(new AirRequestPage(MenuEntity))
-const list = ref([] as MenuEntity[])
-
-async function getList() {
-  list.value = await MenuService.create(isLoading).getList(request.value)
-}
-
-async function onRowAdd(row: MenuEntity) {
-  const entity = new MenuEntity()
-  entity.parentId = row.id
-  entity.parent = row
-  await AirDialog.show(MenuEditor, entity)
-  getList()
-}
-
-async function onEdit(row: MenuEntity) {
-  await AirDialog.show(MenuEditor, row)
-  getList()
-}
-
-async function onDelete(data: MenuEntity) {
-  await MenuService.create(isLoading).delete(data.id, '删除权限成功')
-  getList()
-}
-
-async function onAdd() {
-  await AirDialog.show(MenuEditor)
-  getList()
-}
-getList()
-
+const {
+  list, isLoading,
+  onAddRow, onAdd, onDelete, onEdit, onSearch,
+} = useAirTableTree(MenuEntity, MenuService, {
+  unPaginate: true,
+  editor: MenuEditor,
+  beforeAddRow: (param: MenuEntity, row: MenuEntity) => {
+    param.parent = row
+    return param
+  },
+})
 </script>
 <style scoped lang="scss"></style>

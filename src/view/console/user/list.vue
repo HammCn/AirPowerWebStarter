@@ -4,8 +4,8 @@
       :loading="isLoading"
       :entity="UserEntity"
       :service="UserService"
-      @on-add="onAdd()"
-      @on-search="request = $event; getList()"
+      @on-add="onAdd"
+      @on-search="onSearch"
     />
     <ATable
       v-loading="isLoading"
@@ -20,47 +20,27 @@
     <template #footerRight>
       <APage
         :response="response"
-        @on-change="request.page = $event; getList()"
+        @on-change="onPageChanged"
       />
     </template>
   </APanel>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   APanel, ATable, AToolBar, APage,
 } from '@/airpower/component'
-import { AirDialog } from '@/airpower/helper/AirDialog'
-import { UserEditor } from './component'
-import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { UserEntity } from '@/model/user/UserEntity'
 import { UserService } from '@/model/user/UserService'
-import { AirResponsePage } from '@/airpower/model/AirResponsePage'
+import { useAirTable } from '@/airpower/hook/useAirTable'
+import { UserEditor } from './component'
 
-const isLoading = ref(false)
-const request = ref(new AirRequestPage(UserEntity))
-const response = ref(new AirResponsePage<UserEntity>())
-
-async function getList() {
-  response.value = await UserService.create(isLoading).getPage(request.value)
-}
-
-async function onEdit(row: UserEntity) {
-  await AirDialog.show(UserEditor, row)
-  getList()
-}
-
-async function onDelete(data: UserEntity) {
-  await UserService.create(isLoading).delete(data.id, '删除权限成功')
-  getList()
-}
-
-async function onAdd() {
-  await AirDialog.show(UserEditor)
-  getList()
-}
-getList()
+const {
+  isLoading, response,
+  onPageChanged, onDelete, onEdit, onAdd, onSearch,
+} = useAirTable(UserEntity, UserService, {
+  editor: UserEditor,
+})
 
 </script>
 <style scoped lang="scss"></style>

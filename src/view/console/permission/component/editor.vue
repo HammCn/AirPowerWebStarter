@@ -1,16 +1,16 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + PermissionEntity.getClassName()"
-    :form-ref="form"
+    :title="title"
+    :form-ref="formRef"
     :fullable="false"
     :loading="isLoading"
     confirm-text="保存"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <el-form
-      ref="form"
-      :model="data"
+      ref="formRef"
+      :model="formData"
       label-width="120px"
       :rules="PermissionService.createValidator(param)"
       @submit.prevent
@@ -26,7 +26,7 @@
         prop="name"
       >
         <AInput
-          v-model.name="data.name"
+          v-model.name="formData.name"
           :entity="PermissionEntity"
         />
       </el-form-item>
@@ -35,7 +35,7 @@
         prop="identity"
       >
         <AInput
-          v-model.identity="data.identity"
+          v-model.identity="formData.identity"
           :entity="PermissionEntity"
         />
       </el-form-item>
@@ -44,31 +44,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { ADialog, AInput } from '@/airpower/component'
-import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { PermissionService } from '@/model/permission/PermissionService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
 const props = defineProps(airPropsParam(new PermissionEntity()))
-const isLoading = ref(false)
-
-const data = ref(props.param.copy())
-
-async function getDetail() {
-  if (props.param.id) {
-    data.value = await PermissionService.create(isLoading).getDetail(props.param.id)
-  }
-}
-getDetail()
-
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await PermissionService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
-  props.onConfirm()
-}
+const {
+  isLoading, formData, formRef, title,
+  onSubmit,
+} = useAirEditor(props, PermissionEntity, PermissionService, {})
 </script>
 
 <style scoped lang="scss"></style>

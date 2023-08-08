@@ -1,18 +1,18 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + RoleEntity.getClassName()"
-    :form-ref="form"
+    :title="title"
+    :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
     confirm-text="保存"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <el-form
       ref="form"
-      :model="data"
+      :model="formData"
       label-width="120px"
-      :rules="RoleService.createValidator(param)"
+      :rules="rules"
       @submit.prevent
     >
       <el-form-item
@@ -20,7 +20,7 @@
         prop="name"
       >
         <AInput
-          v-model.name="data.name"
+          v-model.name="formData.name"
           :entity="RoleEntity"
         />
       </el-form-item>
@@ -29,7 +29,7 @@
         prop="remark"
       >
         <AInput
-          v-model.remark="data.remark"
+          v-model.remark="formData.remark"
           :entity="RoleEntity"
         />
       </el-form-item>
@@ -38,31 +38,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { ADialog, AInput } from '@/airpower/component'
-import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { RoleService } from '@/model/role/RoleService'
 import { RoleEntity } from '@/model/role/RoleEntity'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
 const props = defineProps(airPropsParam(new RoleEntity()))
-const isLoading = ref(false)
 
-const data = ref(props.param.copy())
-
-async function getDetail() {
-  if (props.param.id) {
-    data.value = await RoleService.create(isLoading).getDetail(props.param.id)
-  }
-}
-getDetail()
-
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await RoleService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
-  props.onConfirm()
-}
+const {
+  formRef, isLoading, formData, rules, title,
+  onSubmit,
+} = useAirEditor(props, RoleEntity, RoleService)
 </script>
 
 <style scoped lang="scss"></style>

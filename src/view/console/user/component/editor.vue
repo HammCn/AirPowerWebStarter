@@ -1,16 +1,16 @@
 <template>
   <ADialog
     :title="(param.id ? '修改' : '添加') + UserEntity.getClassName()"
-    :form-ref="form"
+    :form-ref="formRef"
     :loading="isLoading"
     confirm-text="保存"
     :fullable="false"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <el-form
-      ref="form"
-      :model="data"
+      ref="formRef"
+      :model="formData"
       label-width="120px"
       :rules="UserService.createValidator(param)"
       @submit.prevent
@@ -24,7 +24,7 @@
           prop="email"
         >
           <AInput
-            v-model.email="data.email"
+            v-model.email="formData.email"
             :entity="UserEntity"
           />
         </el-form-item>
@@ -33,7 +33,7 @@
           prop="nickname"
         >
           <AInput
-            v-model.nickname="data.nickname"
+            v-model.nickname="formData.nickname"
             :entity="UserEntity"
           />
         </el-form-item>
@@ -42,7 +42,7 @@
           prop="remark"
         >
           <AInput
-            v-model.remark="data.remark"
+            v-model.remark="formData.remark"
             :entity="UserEntity"
           />
         </el-form-item>
@@ -59,11 +59,11 @@
             选择
           </AButton>
           <el-tag
-            v-for="(role, index) in data.roleList"
+            v-for="(role, index) in formData.roleList"
             :key="role.id"
             size="large"
             closable
-            @close="data.roleList.splice(index, 1)"
+            @close="formData.roleList.splice(index, 1)"
           >
             {{ role.name }}
           </el-tag>
@@ -74,39 +74,27 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   AButton, ADialog, AGroup, AInput,
 } from '@/airpower/component'
-import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { UserService } from '@/model/user/UserService'
 import { UserEntity } from '@/model/user/UserEntity'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { RoleSelector } from '../../role/component'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
 const props = defineProps(airPropsParam(new UserEntity()))
-const isLoading = ref(false)
 
-const data = ref(props.param.copy())
+const {
+  isLoading, formData, formRef,
+  onSubmit,
+} = useAirEditor(props, UserEntity, UserService, {
 
-async function getDetail() {
-  if (props.param.id) {
-    data.value = await UserService.create(isLoading).getDetail(props.param.id)
-  }
-}
-getDetail()
-
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await UserService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
-  props.onConfirm()
-}
+})
 
 async function selectRole() {
-  data.value.roleList = data.value.roleList || []
-  data.value.roleList = await AirDialog.selectList(RoleSelector, data.value.roleList)
+  formData.value.roleList = await AirDialog.selectList(RoleSelector, formData.value.roleList)
 }
 </script>
 

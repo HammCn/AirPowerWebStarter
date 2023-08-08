@@ -18,6 +18,7 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
 @EntityConfig({
   hideAdvanceSearch: true,
   hideKeywordSearch: true,
+  addChildPermission: 'add',
 })
 @ClassName('权限')
 export class PermissionEntity extends BaseEntity implements ITree {

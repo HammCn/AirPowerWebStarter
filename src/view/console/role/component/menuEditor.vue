@@ -1,12 +1,12 @@
 <template>
   <ADialog
     :title="RoleEntity.getClassName() + '菜单授权'"
-    :form-ref="form"
+    :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
     height="80%"
     confirm-text="保存"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <el-tree
@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
-import { AirFormInstance, AirTreeInstance } from '@/airpower/type/AirType'
+import { AirTreeInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { RoleService } from '@/model/role/RoleService'
 import { RoleEntity } from '@/model/role/RoleEntity'
@@ -35,21 +35,19 @@ import { MenuService } from '@/model/menu/MenuService'
 import { AirRequest } from '@/airpower/model/AirRequest'
 import { AirSort } from '@/airpower/model/AirSort'
 import { IJson } from '@/airpower/interface/IJson'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
+
+const props = defineProps(airPropsParam(new RoleEntity()))
+
+const {
+  isLoading, formRef, formData,
+  onSubmit,
+} = useAirEditor(props, RoleEntity, RoleService)
 
 const treeRef = ref<AirTreeInstance>()
-const props = defineProps(airPropsParam(new RoleEntity()))
-const isLoading = ref(false)
-
-const data = ref(props.param.copy())
-
-async function getDetail() {
-  data.value = await RoleService.create(isLoading).getDetail(props.param.id)
-  treeRef.value?.setCheckedKeys(data.value.menuList.map((item) => item.id))
-}
-getDetail()
 
 async function onSelect(current: MenuEntity, more: IJson) {
-  data.value.menuList = more.checkedNodes
+  formData.value.menuList = more.checkedNodes
 }
 
 const treeList = ref([] as MenuEntity[])
@@ -60,12 +58,6 @@ async function getMenuTreeList() {
 
 getMenuTreeList()
 
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await RoleService.create(isLoading).authorizeMenu(data.value.id, data.value.menuList)
-  props.onConfirm()
-}
 </script>
 
 <style scoped lang="scss"></style>

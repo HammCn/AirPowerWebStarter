@@ -5,7 +5,7 @@
       :entity="RoleEntity"
       :service="RoleService"
       @on-add="onAdd()"
-      @on-search="request = $event; getList()"
+      @on-search="onSearch"
     />
     <ATable
       v-loading="isLoading"
@@ -37,14 +37,13 @@
     <template #footerRight>
       <APage
         :response="response"
-        @on-change="request.page = $event; getList()"
+        @on-change="onPageChanged"
       />
     </template>
   </APanel>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   AButton,
   APage,
@@ -52,33 +51,9 @@ import {
 } from '@/airpower/component'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { RoleEditor, RoleMenuEditor, RolePermissionEditor } from './component'
-import { AirRequestPage } from '@/airpower/model/AirRequestPage'
 import { RoleEntity } from '@/model/role/RoleEntity'
 import { RoleService } from '@/model/role/RoleService'
-import { AirResponsePage } from '@/airpower/model/AirResponsePage'
-
-const isLoading = ref(false)
-const request = ref(new AirRequestPage(RoleEntity))
-const response = ref(new AirResponsePage<RoleEntity>())
-
-async function getList() {
-  response.value = await RoleService.create(isLoading).getPage(request.value)
-}
-
-async function onEdit(row: RoleEntity) {
-  await AirDialog.show(RoleEditor, row)
-  getList()
-}
-
-async function onDelete(data: RoleEntity) {
-  await RoleService.create(isLoading).delete(data.id, '删除权限成功')
-  getList()
-}
-
-async function onAdd() {
-  await AirDialog.show(RoleEditor)
-  getList()
-}
+import { useAirTable } from '@/airpower/hook/useAirTable'
 
 async function onMenuEditor(role: RoleEntity) {
   AirDialog.show(RoleMenuEditor, role)
@@ -88,7 +63,11 @@ async function onPermissionEditor(role: RoleEntity) {
   AirDialog.show(RolePermissionEditor, role)
 }
 
-getList()
-
+const {
+  isLoading, response,
+  onSearch, onAdd, onEdit, onDelete, onPageChanged,
+} = useAirTable(RoleEntity, RoleService, {
+  editor: RoleEditor,
+})
 </script>
 <style scoped lang="scss"></style>
