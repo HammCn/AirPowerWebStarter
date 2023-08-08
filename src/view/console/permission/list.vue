@@ -10,7 +10,6 @@
     <ATable
       v-loading="isLoading"
       :data-list="list"
-      hide-select
       :entity="PermissionEntity"
       :ctrl-width="105"
       show-add

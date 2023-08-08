@@ -14,11 +14,12 @@
       hide-add
       :loading="isLoading"
       :entity="PermissionEntity"
+      :service="PermissionService"
       @on-search="onSearch"
     />
     <ATable
       :data-list="response.list"
-      :hide-select="!mult"
+      :show-select="mult"
       hide-delete
       hide-edit
       :select-list="selected"

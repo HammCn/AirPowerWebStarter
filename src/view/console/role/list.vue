@@ -10,7 +10,6 @@
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
-      hide-select
       :entity="RoleEntity"
       :disable-delete="(row: RoleEntity) => row.isSystem"
       :ctrl-width="130"

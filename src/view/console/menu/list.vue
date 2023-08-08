@@ -10,7 +10,6 @@
     <ATable
       v-loading="isLoading"
       :data-list="list"
-      hide-select
       show-add
       :entity="MenuEntity"
       :ctrl-width="105"

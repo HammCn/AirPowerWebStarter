@@ -14,8 +14,6 @@ import { IMenu } from '@/airpower/interface/IMenu'
  * @author Hamm
  */
 @EntityConfig({
-  showFilter: true,
-  showSearch: true,
   addChildPermission: 'add',
 })
 @ClassName('菜单')

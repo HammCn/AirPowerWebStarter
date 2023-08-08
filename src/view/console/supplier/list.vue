@@ -6,17 +6,13 @@
       :service="SupplierService"
       @on-add="onAdd"
       @on-search="onSearch"
-    >
-      <template #afterButton>
-        123
-      </template>
-    </AToolBar>
+    />
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
       :entity="SupplierEntity"
-      :ctrl-width="80"
       :select-list="selectList"
+      show-select
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"

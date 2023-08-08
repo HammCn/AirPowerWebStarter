@@ -14,11 +14,12 @@
       hide-add
       :loading="isLoading"
       :entity="MenuEntity"
+      :service="MenuService"
       @on-search="onSearch"
     />
     <ATable
       :data-list="response.list"
-      :hide-select="!mult"
+      :show-select="mult"
       hide-delete
       hide-edit
       :select-list="selected"

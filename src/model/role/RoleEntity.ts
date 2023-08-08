@@ -17,8 +17,6 @@ import { PermissionEntity } from '../permission/PermissionEntity'
  * @author Hamm
  */
 @EntityConfig({
-  showFilter: true,
-  showSearch: true,
 })
 @ClassName('角色')
 export class RoleEntity extends BaseEntity {

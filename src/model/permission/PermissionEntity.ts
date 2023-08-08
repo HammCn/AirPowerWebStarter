@@ -16,8 +16,6 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
  * @author Hamm
  */
 @EntityConfig({
-  showFilter: true,
-  showSearch: true,
   addChildPermission: 'add',
 })
 @ClassName('权限')
