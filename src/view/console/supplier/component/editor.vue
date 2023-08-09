@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + SupplierEntity.getClassName()"
+    :title="title"
     :form-ref="formRef"
     :loading="isLoading"
     @on-confirm="onSubmit()"
@@ -63,6 +63,7 @@ import { SupplierService } from '@/model/supplier/SupplierService'
 const props = defineProps(airPropsParam(new SupplierEntity()))
 
 const {
+  title,
   formData,
   rules,
   onSubmit,

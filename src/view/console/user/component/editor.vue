@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + UserEntity.getClassName()"
+    :title="title"
     :form-ref="formRef"
     :loading="isLoading"
     confirm-text="保存"
@@ -87,7 +87,7 @@ import { useAirEditor } from '@/airpower/hook/useAirEditor'
 const props = defineProps(airPropsParam(new UserEntity()))
 
 const {
-  isLoading, formData, formRef,
+  isLoading, formData, formRef, title,
   onSubmit,
 } = useAirEditor(props, UserEntity, UserService, {
 

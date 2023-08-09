@@ -1,18 +1,18 @@
 <template>
   <ADialog
-    :title="(param.id ? '修改' : '添加') + MenuEntity.getClassName()"
-    :form-ref="form"
+    :title="title"
+    :form-ref="formRef"
     :fullable="false"
     :loading="isLoading"
     confirm-text="保存"
-    @on-confirm="submit()"
+    @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
   >
     <el-form
-      ref="form"
-      :model="data"
+      ref="formRef"
+      :model="formData"
       label-width="120px"
-      :rules="MenuService.createValidator(param)"
+      :rules="rules"
       @submit.prevent
     >
       <el-form-item
@@ -26,7 +26,7 @@
         prop="name"
       >
         <AInput
-          v-model.name="data.name"
+          v-model.name="formData.name"
           :entity="MenuEntity"
         />
       </el-form-item>
@@ -35,7 +35,7 @@
         prop="path"
       >
         <AInput
-          v-model.path="data.path"
+          v-model.path="formData.path"
           :entity="MenuEntity"
         />
       </el-form-item>
@@ -44,7 +44,7 @@
         prop="component"
       >
         <AInput
-          v-model.path="data.component"
+          v-model.path="formData.component"
           :entity="MenuEntity"
         />
       </el-form-item>
@@ -53,7 +53,7 @@
         prop="orderNo"
       >
         <AInput
-          v-model.orderNo="data.orderNo"
+          v-model.orderNo="formData.orderNo"
           :entity="MenuEntity"
         />
       </el-form-item>
@@ -62,7 +62,7 @@
         prop="icon"
       >
         <AInput
-          v-model.icon="data.icon"
+          v-model.icon="formData.icon"
           :entity="MenuEntity"
         />
       </el-form-item>
@@ -71,31 +71,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { ADialog, AInput } from '@/airpower/component'
-import { AirFormInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { MenuService } from '@/model/menu/MenuService'
 import { MenuEntity } from '@/model/menu/MenuEntity'
+import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
 const props = defineProps(airPropsParam(new MenuEntity()))
-const isLoading = ref(false)
 
-const data = ref(props.param.copy())
-
-async function getDetail() {
-  if (props.param.id) {
-    data.value = await MenuService.create(isLoading).getDetail(props.param.id)
-  }
-}
-getDetail()
-
-const form = ref<AirFormInstance>()
-// 表单提交
-async function submit() {
-  await MenuService.create(isLoading).save(data.value, data.value.id ? '修改权限成功' : '添加权限成功')
-  props.onConfirm()
-}
+const {
+  title, formData, formRef, isLoading, rules,
+  onSubmit,
+} = useAirEditor(props, MenuEntity, MenuService)
 </script>
 
 <style scoped lang="scss"></style>
