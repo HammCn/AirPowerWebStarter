@@ -12,7 +12,7 @@
       ref="formRef"
       :model="formData"
       label-width="120px"
-      :rules="UserService.createValidator(param)"
+      :rules="rules"
       @submit.prevent
     >
       <AGroup
@@ -87,7 +87,7 @@ import { useAirEditor } from '@/airpower/hook/useAirEditor'
 const props = defineProps(airPropsParam(new UserEntity()))
 
 const {
-  isLoading, formData, formRef, title,
+  isLoading, formData, formRef, title, rules,
   onSubmit,
 } = useAirEditor(props, UserEntity, UserService, {
 
