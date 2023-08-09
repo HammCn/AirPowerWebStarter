@@ -15,6 +15,7 @@
       :entity="PermissionEntity"
       :data-list="treeList"
       hide-index
+      show-select
       :default-expand-all="false"
       hide-ctrl
       hide-field-selector
