@@ -9,6 +9,9 @@ import { RoleEntity } from '../role/RoleEntity'
 import { UserSystemDictionary } from './UserSystemDictionary'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 
+/**
+ * # 用户实体
+ */
 @ClassName('用户')
 @EntityConfig({
   addTitle: '添加用户',

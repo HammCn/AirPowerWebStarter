@@ -3,6 +3,9 @@ import { UserEntity } from '@/model/user/UserEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
 
+/**
+ * # 用户服务接口
+ */
 export class UserService extends AbstractBaseService<UserEntity> {
   baseUrl = 'user'
 
