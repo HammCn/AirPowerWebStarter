@@ -16,16 +16,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
+        node-version: '18.x'
+    - name: Install dependencies
+      run: yarn
+      
     - run: cd ./src && git clone https://github.com/HammCn/AirPower4T.git
-    - run: yarn && yarn dev
+    - run: yarn dev
