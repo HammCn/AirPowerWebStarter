@@ -27,5 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: cd ./src && git clone https://github.com/HammCn/AirPower4T.git
-    - run: npm install
-    - run: npm run dev
+    - run: yarn && yarn dev
