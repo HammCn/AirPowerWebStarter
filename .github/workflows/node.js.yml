@@ -28,5 +28,5 @@ jobs:
     - name: Install dependencies
       run: yarn
       
-    - run: cd ./src && git clone https://github.com/HammCn/AirPower4T.git
+    - run: cd ./src && git clone https://github.com/HammCn/AirPower4T.git airpower
     - run: yarn dev
