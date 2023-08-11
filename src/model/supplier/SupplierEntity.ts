@@ -10,13 +10,16 @@ export class SupplierEntity extends BaseEntity {
   @TableField({
     copyField: true,
     forceShow: true,
+    orderNumber: 99,
   })
   @FormField({
     requiredString: true,
   })
   @FieldName('供应商编码') code!: string
 
-  @TableField()
+  @TableField({
+    forceShow: true,
+  })
   @FormField({
     requiredString: true,
   })
