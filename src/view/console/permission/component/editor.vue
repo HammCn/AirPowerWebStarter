@@ -54,7 +54,7 @@ const props = defineProps(airPropsParam(new PermissionEntity()))
 const {
   isLoading, formData, formRef, title,
   onSubmit,
-} = useAirEditor(props, PermissionEntity, PermissionService, {})
+} = useAirEditor(props, PermissionEntity, PermissionService)
 </script>
 
 <style scoped lang="scss"></style>

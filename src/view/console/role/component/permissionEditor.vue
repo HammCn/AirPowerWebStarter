@@ -44,7 +44,7 @@ const {
   isLoading, formRef, formData,
   onSubmit,
 } = useAirEditor(props, RoleEntity, RoleService, {
-  afterGetDetail: () => {
+  afterGetDetail() {
     treeRef.value?.setCheckedKeys(formData.value.permissionList.map((item) => item.id))
   },
 })

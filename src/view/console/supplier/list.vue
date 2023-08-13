@@ -46,7 +46,6 @@ import { useAirTable } from '@/airpower/hook/useAirTable'
 import { SupplierEntity } from '@/model/supplier/SupplierEntity'
 import { SupplierService } from '@/model/supplier/SupplierService'
 import { SupplierEditor } from './component'
-import { AirRequest } from '@/airpower/model/AirRequest'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const {
@@ -56,9 +55,9 @@ const {
   onSearch, onAdd, onDelete, onEdit, onPageChanged, onSortChanged, onSelected,
 } = useAirTable(SupplierEntity, SupplierService, {
   editor: SupplierEditor,
-  beforeSearch: (request: AirRequest<SupplierEntity>) => {
-    request.keyword = '强制搜索的关键词'
-    return request
+  beforeSearch(requestData) {
+    requestData.keyword = '强制搜索关键词'
+    return requestData
   },
 })
 </script>

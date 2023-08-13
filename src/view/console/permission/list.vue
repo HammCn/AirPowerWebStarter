@@ -30,8 +30,8 @@ import {
 } from '@/airpower/component'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
 import { PermissionService } from '@/model/permission/PermissionService'
-import { useAirTableTree } from '@/airpower/hook/useAirTable'
 import { PermissionEditor } from './component'
+import { useAirTableTree } from '@/airpower/hook/useAirTableTree'
 
 const {
   isLoading, list,

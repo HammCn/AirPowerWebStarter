@@ -70,10 +70,11 @@ const {
   formRef,
   isLoading,
 } = useAirEditor(props, SupplierEntity, SupplierService, {
-  beforeSubmit: (data: SupplierEntity) => {
-    data.name = '我是拦截之后设置的名字'
-    return data
+  beforeSubmit(submitData) {
+    submitData.name = '拦截后的名字'
+    return submitData
   },
+
 })
 
 </script>

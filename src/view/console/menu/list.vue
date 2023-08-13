@@ -27,7 +27,7 @@ import {
 } from '@/airpower/component'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { MenuService } from '@/model/menu/MenuService'
-import { useAirTableTree } from '@/airpower/hook/useAirTable'
+import { useAirTableTree } from '@/airpower/hook/useAirTableTree'
 import { MenuEditor } from './component'
 
 const {
@@ -36,7 +36,7 @@ const {
 } = useAirTableTree(MenuEntity, MenuService, {
   unPaginate: true,
   editor: MenuEditor,
-  beforeAddRow: (param: MenuEntity, row: MenuEntity) => {
+  beforeAddRow(param, row) {
     param.parent = row
     return param
   },
