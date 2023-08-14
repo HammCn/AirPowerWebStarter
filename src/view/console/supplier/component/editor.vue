@@ -63,12 +63,8 @@ import { SupplierService } from '@/model/supplier/SupplierService'
 const props = defineProps(airPropsParam(new SupplierEntity()))
 
 const {
-  title,
-  formData,
-  rules,
+  title, formData, rules, formRef, isLoading,
   onSubmit,
-  formRef,
-  isLoading,
 } = useAirEditor(props, SupplierEntity, SupplierService, {
   beforeSubmit(submitData) {
     submitData.name = '拦截后的名字'
