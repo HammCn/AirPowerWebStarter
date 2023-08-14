@@ -9,10 +9,10 @@
     >
       <template #afterButton>
         <AButton
-          v-if="selectList.length>0"
+          v-if="selectList.length > 0"
           type="DELETE_LIST"
           danger
-          @click="AirNotification.warning('就是玩');selectList=[]"
+          @click="AirNotification.warning('就是玩'); selectList = []"
         >
           批量删除
         </AButton>
