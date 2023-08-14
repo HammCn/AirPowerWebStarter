@@ -35,7 +35,7 @@ const {
   onAddRow, onAdd, onDelete, onEdit, onSearch,
 } = useAirTableTree(MenuEntity, MenuService, {
   unPaginate: true,
-  editor: MenuEditor,
+  editView: MenuEditor,
   beforeAddRow(param, row) {
     param.parent = row
     return param

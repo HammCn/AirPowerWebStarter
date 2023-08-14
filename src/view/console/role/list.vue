@@ -66,7 +66,7 @@ const {
   isLoading, response,
   onSearch, onAdd, onEdit, onDelete, onPageChanged,
 } = useAirTable(RoleEntity, RoleService, {
-  editor: RoleEditor,
+  editView: RoleEditor,
 })
 </script>
 <style scoped lang="scss"></style>

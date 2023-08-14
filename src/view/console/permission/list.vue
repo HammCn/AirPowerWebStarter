@@ -38,7 +38,7 @@ const {
   onEdit, onAdd, onAddRow, onSearch, onDelete,
 } = useAirTableTree(PermissionEntity, PermissionService, {
   unPaginate: true,
-  editor: PermissionEditor,
+  editView: PermissionEditor,
   beforeAddRow: (param: PermissionEntity, row: PermissionEntity) => {
     param.parent = row
     return param

@@ -54,7 +54,7 @@ const {
   selectList,
   onSearch, onAdd, onDelete, onEdit, onPageChanged, onSortChanged, onSelected,
 } = useAirTable(SupplierEntity, SupplierService, {
-  editor: SupplierEditor,
+  editView: SupplierEditor,
   beforeSearch(requestData) {
     requestData.keyword = '强制搜索关键词'
     return requestData

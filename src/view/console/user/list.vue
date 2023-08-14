@@ -37,7 +37,7 @@ const {
   isLoading, response,
   onPageChanged, onDelete, onEdit, onAdd, onSearch,
 } = useAirTable(UserEntity, UserService, {
-  editor: UserEditor,
+  editView: UserEditor,
 })
 
 </script>
