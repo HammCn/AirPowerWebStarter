@@ -4,7 +4,7 @@
     :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
-    height="60%"
+    height="70%"
     width="80%"
     confirm-text="保存"
     @on-confirm="onSubmit()"
