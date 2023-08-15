@@ -2,6 +2,7 @@ import { AbstractBaseService } from '@/base/AbstractBaseService'
 import { UserEntity } from '@/model/user/UserEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
+import { IJson } from '@/airpower/interface/IJson'
 
 /**
  * # 用户服务接口
@@ -18,6 +19,14 @@ export class UserService extends AbstractBaseService<UserEntity> {
   async login(user: UserEntity): Promise<string> {
     const json = await this.api('login').post(user)
     return json as unknown as string
+  }
+
+  /**
+   * # App登录
+   * @param user 用户
+   */
+  async appLogin(user: UserEntity): Promise<IJson> {
+    return this.api('login').post(user)
   }
 
   /**

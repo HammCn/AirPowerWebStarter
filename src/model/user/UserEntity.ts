@@ -41,6 +41,16 @@ export class UserEntity extends BaseEntity {
   @SearchField()
   @FieldName('昵称') nickname!: string
 
+  @FormField({
+    mobilePhone: true,
+    requiredString: true,
+  })
+  @TableField({
+    forceShow: true,
+  })
+  @SearchField()
+  @FieldName('手机') phone!: string
+
   @FieldName('角色')
   @TableField({
     payloadArray: true,

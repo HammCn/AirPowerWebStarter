@@ -11,6 +11,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/view/login.vue'),
   },
   {
+    path: '/auth',
+    name: '授权登录',
+    component: () => import('@/view/auth.vue'),
+  },
+  {
     path: '/register',
     name: '注册',
     component: () => import('@/view/register.vue'),
