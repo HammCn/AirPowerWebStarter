@@ -294,7 +294,6 @@ getAppInfo()
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 
     .qrcode-login {
       margin: 30px 0px;
