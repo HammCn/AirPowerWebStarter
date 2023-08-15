@@ -5,7 +5,7 @@
     :loading="isLoading"
     :fullable="false"
     height="70%"
-    width="80%"
+    width="70%"
     confirm-text="保存"
     @on-confirm="onSubmit()"
     @on-cancel="onCancel()"
