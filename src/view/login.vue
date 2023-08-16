@@ -14,7 +14,7 @@
       <template v-if="isQrcodeLogin">
         <div class="qrcode-login">
           <div class="qrcode-img">
-            <img src="@/assets/img/auth/qrcode.png">
+            <img src="@/assets/img/login/qrcode.png">
           </div>
           <div class="desc">
             请使用App或微信扫码登录
@@ -403,7 +403,7 @@ getAppInfo()
   bottom: 0;
   display: flex;
   flex-direction: column;
-  background: white url(@/assets/img/auth/bg.jpg) no-repeat bottom center;
+  background: white url(@/assets/img/login/bg.jpg) no-repeat bottom center;
   background-size: cover;
   align-items: center;
   justify-content: center;

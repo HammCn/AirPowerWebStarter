@@ -11,10 +11,19 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="AppEntity"
+      :ctrl-width="105"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
-    />
+    >
+      <template #customRow="{data}">
+        <AButton
+          icon-button
+          type="MONITOR"
+          @click="openOAuth2(data)"
+        />
+      </template>
+    </ATable>
     <template #footerLeft>
       <APage
         :response="response"
@@ -26,12 +35,13 @@
 
 <script lang="ts" setup>
 import {
-  APanel, APage, ATable, AToolBar,
+  APanel, APage, ATable, AToolBar, AButton,
 } from '@/airpower/component'
 import { useAirTable } from '@/airpower/hook/useAirTable'
 import { AppEntity } from '@/model/app/AppEntity'
 import { AppService } from '@/model/app/AppService'
 import { AppEditor } from './component'
+import { AirConfig } from '@/airpower/config/AirConfig'
 
 const {
   isLoading,
@@ -40,5 +50,10 @@ const {
 } = useAirTable(AppEntity, AppService, {
   editView: AppEditor,
 })
+
+function openOAuth2(app: AppEntity) {
+  // eslint-disable-next-line no-restricted-globals
+  window.open(`${AirConfig.oauthUrl}?appKey=${app.appKey}&redirectUri=${encodeURIComponent(`${location.origin}/callback`)}`)
+}
 </script>
 <style scoped lang="scss"></style>

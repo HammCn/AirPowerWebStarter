@@ -8,7 +8,14 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: '登录',
+    // 如需启用Oauth2登录 请使用 @/airpower/view/login.vue
     component: () => import('@/view/login.vue'),
+  },
+  {
+    // 如需启用Oauth2登录 这里这个是必须
+    path: '/callback',
+    name: 'Oauth2登录回调',
+    component: () => import('@/view/callback.vue'),
   },
   {
     path: '/register',
@@ -33,7 +40,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: ':catchAll(.*)',
-        component: () => import('@/airpower/ErrorPage.vue'),
+        component: () => import('@/airpower/view/error.vue'),
       },
     ],
   },
