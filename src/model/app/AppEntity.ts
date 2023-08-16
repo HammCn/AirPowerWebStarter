@@ -20,4 +20,11 @@ export class AppEntity extends BaseEntity {
     requiredString: true,
   })
   @FieldName('应用名称') appName!: string
+
+  @TableField()
+  @FormField({
+    requiredString: true,
+    placeholder: '带协议头,无需/结尾',
+  })
+  @FieldName('应用地址') url!: string
 }

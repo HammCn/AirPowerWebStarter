@@ -31,6 +31,15 @@
           :entity="AppEntity"
         />
       </el-form-item>
+      <el-form-item
+        :label="AppEntity.getFormFieldLabel('url')"
+        prop="url"
+      >
+        <AInput
+          v-model.url="formData.url"
+          :entity="AppEntity"
+        />
+      </el-form-item>
     </el-form>
   </ADialog>
 </template>
