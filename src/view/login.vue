@@ -24,7 +24,7 @@
       <template v-else>
         <div class="tabs">
           <div
-            v-for="item in [AuthAction.LOGIN_VIA_PASSWORD, AuthAction.LOGIN_VIA_EMAIL, AuthAction.REGISTER_VIA_EMAIL]"
+            v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.REGISTER_VIA_EMAIL]"
             :key="item"
             class="item"
             :class="currentAction === item ? 'active' : ''"
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div
-          v-if="currentAction === AuthAction.LOGIN_VIA_PASSWORD"
+          v-if="currentAction === LoginAction.LOGIN_VIA_PASSWORD"
           class="form"
         >
           <div class="item">
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div
-          v-if="currentAction === AuthAction.LOGIN_VIA_EMAIL"
+          v-if="currentAction === LoginAction.LOGIN_VIA_EMAIL"
           class="form"
         >
           <div class="item">
@@ -102,7 +102,7 @@
           </div>
         </div>
         <div
-          v-if="currentAction === AuthAction.LOGIN_VIA_PHONE"
+          v-if="currentAction === LoginAction.LOGIN_VIA_PHONE"
           class="form"
         >
           <div class="item">
@@ -142,7 +142,7 @@
           </div>
         </div>
         <div
-          v-if="currentAction === AuthAction.REGISTER_VIA_EMAIL"
+          v-if="currentAction === LoginAction.REGISTER_VIA_EMAIL"
           class="form"
         >
           <div class="item">
@@ -207,7 +207,7 @@
         <div class="button">
           <div class="submit">
             <el-button
-              v-if="AuthAction.REGISTER_VIA_EMAIL === currentAction"
+              v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
               :loading="isLoadingReg"
               type="primary"
               :disabled="isButtonDisabled"
@@ -248,7 +248,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { AuthAction } from '@/model/common/AuthAction'
+import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { UserRequestVo } from '@/model/user/UserRequestVo'
 import { AirValidator } from '@/airpower/helper/AirValidator'
@@ -265,7 +265,7 @@ import { MailService } from '@/model/mail/MailService'
  */
 const isQrcodeLogin = ref(false)
 
-const currentAction = ref(AuthAction.LOGIN_VIA_PASSWORD)
+const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
 
 /**
  * # 是否已阅读
@@ -295,13 +295,13 @@ const isValidAccount = computed(() => requestVo.value.email && (AirValidator.isE
 
 const isButtonDisabled = computed(() => {
   switch (currentAction.value) {
-    case AuthAction.REGISTER_VIA_EMAIL:
+    case LoginAction.REGISTER_VIA_EMAIL:
       return !isValidEmail.value || !isValidCode.value || !isValidPassword.value
-    case AuthAction.LOGIN_VIA_PHONE:
+    case LoginAction.LOGIN_VIA_PHONE:
       return !isValidPhone.value || !isValidCode.value
-    case AuthAction.LOGIN_VIA_EMAIL:
+    case LoginAction.LOGIN_VIA_EMAIL:
       return !isValidEmail.value || !isValidCode.value
-    case AuthAction.LOGIN_VIA_PASSWORD:
+    case LoginAction.LOGIN_VIA_PASSWORD:
       return !requestVo.value.password || !isValidAccount.value
     default:
       return true
@@ -363,7 +363,7 @@ async function onReg() {
   // eslint-disable-next-line no-case-declarations
   await UserService.create(isLoadingLogin).register(requestVo.value)
   AirAlert.create().setConfirmText('去登录').show('账号注册成功, 你可以使用账号密码去登录了!')
-  currentAction.value = AuthAction.LOGIN_VIA_PASSWORD
+  currentAction.value = LoginAction.LOGIN_VIA_PASSWORD
 }
 
 async function onSubmit() {
@@ -372,13 +372,13 @@ async function onSubmit() {
     isReaded.value = true
   }
   switch (currentAction.value) {
-    case AuthAction.LOGIN_VIA_PASSWORD:
+    case LoginAction.LOGIN_VIA_PASSWORD:
       onLogin()
       break
-    case AuthAction.REGISTER_VIA_EMAIL:
+    case LoginAction.REGISTER_VIA_EMAIL:
       onReg()
       break
-    case AuthAction.LOGIN_VIA_EMAIL:
+    case LoginAction.LOGIN_VIA_EMAIL:
       onEmailLogin()
       break
     default:

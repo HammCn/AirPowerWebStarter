@@ -3,7 +3,7 @@
  * # 登录方式枚举
  * @author Hamm
  */
-export enum AuthAction {
+export enum LoginAction {
   LOGIN_VIA_PASSWORD = '密码登录',
   LOGIN_VIA_EMAIL = '邮箱登录',
   LOGIN_VIA_PHONE = '手机登录',
