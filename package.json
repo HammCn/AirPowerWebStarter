@@ -6,6 +6,7 @@
     "scripts": {
         "s": "vite",
         "dev": "vite build --mode dev",
+        "d": "vite build --mode dev && cd dist && zip dist.zip -r ./* && scp dist.zip root@hamm.cn:/home/AirPowerWeb/ && ssh root@hamm.cn",
         "test": "vite build --mode test",
         "production": "vite build --mode production",
         "l": "clear && git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit",
