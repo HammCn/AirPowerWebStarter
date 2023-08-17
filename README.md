@@ -1,8 +1,8 @@
-# Demo宿主项目
+# AirPowerWebStarter
 
 ### 写在前面
 
-你当前正在查看基于 ```AirPower``` 基础库的 DEMO宿主项目的代码, 我们使用的是 ```Vite``` 构建, 包管理使用的是 ```yarn```, 请先安装前叙的相关工具后继续接下来的操作 ：）
+你当前正在查看基于 ```AirPower``` 基础库的 宿主项目的代码, 我们使用的是 ```Vite``` 构建, 包管理使用的是 ```yarn```, 请先安装前叙的相关工具后继续接下来的操作 ：）
 
 ### 一、初始化仓库
 
@@ -12,16 +12,16 @@
 
 - ssh方式
 ```shell
-git clone git@github.com:HammCn/AirPowerWebDemo.git &&
-cd AirPowerWebDemo/src && 
+git clone git@github.com:HammCn/AirPowerWebStarter.git &&
+cd AirPowerWebStarter/src && 
 git clone git@github.com:HammCn/AirPower4T.git airpower && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
 
 - https方式
 ```shell
-git clone https://github.com/HammCn/AirPowerWebDemo.git &&
-cd AirPowerWebDemo/src && 
+git clone https://github.com/HammCn/AirPowerWebStarter.git &&
+cd AirPowerWebStarter/src && 
 git clone https://github.com/HammCn/AirPower4T.git airpower && cd ../ &&
 yarn && cp .env.dev .env && yarn s
 ```
