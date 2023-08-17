@@ -20,9 +20,6 @@
 </template>
 <script lang="ts" setup>
 import logo from '@/airpower/assets/img/logo.png'
-import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
-
-const websocket = AirWebsocket.create()
 
 </script>
 <style scoped lang="scss">

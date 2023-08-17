@@ -23,6 +23,8 @@ import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
+import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const currentUserInfo = ref(new AirUserEntity())
 const menuList = ref([] as MenuEntity[])
@@ -52,6 +54,16 @@ async function init() {
   const permissionList = await UserService.create(isLoading).getMyPermissionList()
   AirConfig.permissionList = getPermissionList(permissionList)
   await getMenuList()
+
+  AirWebsocket.create({
+    onmessage(message) {
+      // eslint-disable-next-line no-console
+      console.log(message)
+    },
+    onopen() {
+      AirNotification.success('Websocket连接成功')
+    },
+  })
 }
 
 init()
