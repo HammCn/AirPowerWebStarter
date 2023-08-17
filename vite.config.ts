@@ -30,6 +30,7 @@ export default defineConfig({
         changeOrigin: true,
       },
       '/oauth2': 'http://localhost:8080',
+      '/websocket': 'http://localhost:8080',
     },
   },
 })
