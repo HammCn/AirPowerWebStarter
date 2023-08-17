@@ -25,11 +25,11 @@ export default defineConfig({
     https: false,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://service.hamm.cn',
         rewrite: (path) => path.replace(/^\/api/, ''),
         changeOrigin: true,
       },
-      '/oauth2': 'http://localhost:8080',
+      '/oauth2': 'https://service.hamm.cn',
     },
   },
 })
