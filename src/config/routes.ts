@@ -18,16 +18,6 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/view/callback.vue'),
   },
   {
-    path: '/register',
-    name: '注册',
-    component: () => import('@/view/register.vue'),
-  },
-  {
-    path: '/forget',
-    name: '忘记密码',
-    component: () => import('@/view/forget.vue'),
-  },
-  {
     path: '/home',
     name: '首页',
     component: () => import('@/view/home.vue'),
