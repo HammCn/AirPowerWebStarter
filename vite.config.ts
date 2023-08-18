@@ -14,10 +14,6 @@ export default defineConfig({
     assetsDir: 'assets-vite-config',
     // 暂时设置为false vite的BUG keep_classnames不生效导致反射获取类失败
     minify: false,
-    terserOptions: {
-      keep_classnames: true,
-      keep_fnames: true,
-    },
   },
   server: {
     open: true,
