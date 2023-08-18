@@ -17,11 +17,12 @@
     "dependencies": {
         "@element-plus/icons-vue": "^2.1.0",
         "@types/crypto-js": "^4.1.1",
-        "js-base64": "^3.3.1",
         "@vue/eslint-config-standard": "^8.0.1",
         "axios": "^1.4.0",
         "core-js": "^3.32.0",
+        "crypto-js": "^4.1.1",
         "element-plus": "^2.3.9",
+        "js-base64": "^3.3.1",
         "pinia": "^2.1.6",
         "register-service-worker": "^1.7.2",
         "vue": "^3.3.4",
