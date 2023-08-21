@@ -1,5 +1,5 @@
 <template>
-  <div class="auth">
+  <div class="login">
     <div
       v-loading="isLoadingApp"
       class="card"
@@ -395,7 +395,7 @@ async function onSendEmailCode() {
 getAppInfo()
 </script>
 <style scoped lang="scss">
-.auth {
+.login {
   position: fixed;
   left: 0;
   top: 0;
@@ -612,5 +612,16 @@ getAppInfo()
   color: #aaa;
   font-size: 12px;
   text-shadow: 0px 1px 1px rgba($color: #fff, $alpha: 1);
+}
+
+@media screen and ((orientation:portrait) and (max-width: 600px)) {
+  .login {
+    .card {
+      width: 90% !important;
+      background: transparent !important;
+      backdrop-filter: blur(0px) !important;
+      box-shadow: none !important;
+    }
+  }
 }
 </style>
