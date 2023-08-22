@@ -23,11 +23,11 @@ export default defineConfig({
     // 测试可以用我们提供的 https://service.hamm.cn 推荐我们的后端项目 https://github.com/HammCn/AirPower4J
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://service.hamm.cn/api/',
         rewrite: (path) => path.replace(/^\/api/, ''),
         changeOrigin: true,
       },
-      '/oauth2': 'http://localhost:8080',
+      '/oauth2': 'https://service.hamm.cn',
     },
   },
 })
