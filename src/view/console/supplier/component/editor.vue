@@ -65,12 +65,6 @@ const props = defineProps(airPropsParam(new SupplierEntity()))
 const {
   title, formData, rules, formRef, isLoading,
   onSubmit,
-} = useAirEditor(props, SupplierEntity, SupplierService, {
-  beforeSubmit(submitData) {
-    submitData.name = '拦截后的名字'
-    return submitData
-  },
-
-})
+} = useAirEditor(props, SupplierEntity, SupplierService)
 
 </script>
