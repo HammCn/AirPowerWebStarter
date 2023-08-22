@@ -19,14 +19,14 @@ import { ref } from 'vue'
 import { AFrame, AUser, AImage } from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { AirUserEntity } from '@/airpower/model/entity/AirUserEntity'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
+import { UserEntity } from '@/model/user/UserEntity'
 
-const currentUserInfo = ref(new AirUserEntity())
+const currentUserInfo = ref(new UserEntity())
 const menuList = ref([] as MenuEntity[])
 const isLoading = ref(false)
 
@@ -47,8 +47,7 @@ function getPermissionList(permissionList: PermissionEntity[]): string[] {
 }
 
 async function init() {
-  currentUserInfo.value.nickname = 'Hamm'
-  currentUserInfo.value.avatar = 'https://cdn.hamm.cn/img/logo.png'
+  currentUserInfo.value = await UserService.create().getMyInfo()
   AirConfig.permissionList = []
 
   const permissionList = await UserService.create(isLoading).getMyPermissionList()

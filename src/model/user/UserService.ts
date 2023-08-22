@@ -60,4 +60,12 @@ export class UserService extends AbstractBaseService<UserEntity> {
     const jsonArray = await this.api('getMyPermissionList').post()
     return PermissionEntity.fromJsonArray(jsonArray)
   }
+
+  /**
+   * # 获取我的个人信息
+   */
+  async getMyInfo(): Promise<UserEntity> {
+    const json = await this.api('getMyInfo').post()
+    return UserEntity.fromJson(json)
+  }
 }

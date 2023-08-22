@@ -8,6 +8,7 @@ import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { UserSystemDictionary } from './UserSystemDictionary'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
+import { IUser } from '@/airpower/interface/IUser'
 
 /**
  * # 用户实体
@@ -16,7 +17,7 @@ import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 @EntityConfig({
   addTitle: '添加用户',
 })
-export class UserEntity extends BaseEntity {
+export class UserEntity extends BaseEntity implements IUser {
   @FormField({
     email: true,
     requiredString: true,
@@ -40,6 +41,8 @@ export class UserEntity extends BaseEntity {
   })
   @SearchField()
   @FieldName('昵称') nickname!: string
+
+  @FieldName('头像') avatar!: string
 
   @FormField({
     mobilePhone: true,
