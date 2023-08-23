@@ -21,10 +21,10 @@ import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
-import { PermissionEntity } from '@/model/permission/PermissionEntity'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserEntity } from '@/model/user/UserEntity'
+import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
 
 const currentUserInfo = ref(new UserEntity())
 const menuList = ref([] as MenuEntity[])
@@ -35,23 +35,12 @@ async function getMenuList() {
   AirRouter.initVueRouter(menuList.value, 'console')
 }
 
-function getPermissionList(permissionList: PermissionEntity[]): string[] {
-  let list: string[] = []
-  permissionList.forEach((item) => {
-    list.push(item.identity)
-    if (item.children && item.children.length > 0) {
-      list = list.concat(getPermissionList(item.children))
-    }
-  })
-  return list
-}
-
 async function init() {
   currentUserInfo.value = await UserService.create().getMyInfo()
   AirConfig.permissionList = []
 
   const permissionList = await UserService.create(isLoading).getMyPermissionList()
-  AirConfig.permissionList = getPermissionList(permissionList)
+  AirConfig.permissionList = AirClassTransformer.treeList2List(permissionList).map((item) => item.identity)
   await getMenuList()
 
   AirWebsocket.create({
