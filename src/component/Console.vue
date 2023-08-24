@@ -5,7 +5,11 @@
         <div>
           <AImage :src="currentUserInfo.avatar" />
         </div>
-        你完全自定义的区域
+        <AInput
+          v-model.nickname="currentUserInfo.nickname"
+          :tree="menuList"
+          :entity="UserEntity"
+        />
         <template #setting>
           可选插槽
         </template>
@@ -16,7 +20,9 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { AFrame, AUser, AImage } from '@/airpower/component'
+import {
+  AFrame, AUser, AImage, AInput,
+} from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import { MenuEntity } from '@/model/menu/MenuEntity'

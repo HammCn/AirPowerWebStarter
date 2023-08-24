@@ -13,6 +13,7 @@ export class SupplierEntity extends BaseEntity {
     orderNumber: 99,
   })
   @FormField({
+    orderNumber: 99,
     requiredString: true,
   })
   @FieldName('供应商编码') code!: string
@@ -21,6 +22,7 @@ export class SupplierEntity extends BaseEntity {
     forceShow: true,
   })
   @FormField({
+    orderNumber: 98,
     requiredString: true,
   })
   @FieldName('供应商名称') name!: string

@@ -14,6 +14,18 @@
       @submit.prevent
     >
       <el-form-item
+        v-for="item in SupplierEntity.getFormFieldConfigList()"
+        :key="item.key"
+        :label="item.label"
+        :prop="item.key"
+      >
+        <AInput
+          v-model="(formData as IJson)[item.key]"
+          :modifier="item.key"
+          :entity="SupplierEntity"
+        />
+      </el-form-item>
+      <!-- <el-form-item
         :label="SupplierEntity.getFormFieldLabel('code')"
         prop="code"
       >
@@ -48,7 +60,7 @@
           v-model.phone="formData.phone"
           :entity="SupplierEntity"
         />
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
   </ADialog>
 </template>
@@ -57,6 +69,7 @@
 import { ADialog, AInput } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { useAirEditor } from '@/airpower/hook/useAirEditor'
+import { IJson } from '@/airpower/interface/IJson'
 import { SupplierEntity } from '@/model/supplier/SupplierEntity'
 import { SupplierService } from '@/model/supplier/SupplierService'
 
