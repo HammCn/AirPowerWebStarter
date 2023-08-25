@@ -25,42 +25,6 @@
           :entity="SupplierEntity"
         />
       </el-form-item>
-      <!-- <el-form-item
-        :label="SupplierEntity.getFormFieldLabel('code')"
-        prop="code"
-      >
-        <AInput
-          v-model.code="formData.code"
-          :entity="SupplierEntity"
-        />
-      </el-form-item>
-      <el-form-item
-        :label="SupplierEntity.getFormFieldLabel('name')"
-        prop="name"
-      >
-        <AInput
-          v-model.name="formData.name"
-          :entity="SupplierEntity"
-        />
-      </el-form-item>
-      <el-form-item
-        :label="SupplierEntity.getFormFieldLabel('level')"
-        prop="level"
-      >
-        <AInput
-          v-model.level="formData.level"
-          :entity="SupplierEntity"
-        />
-      </el-form-item>
-      <el-form-item
-        :label="SupplierEntity.getFormFieldLabel('phone')"
-        prop="phone"
-      >
-        <AInput
-          v-model.phone="formData.phone"
-          :entity="SupplierEntity"
-        />
-      </el-form-item> -->
     </el-form>
   </ADialog>
 </template>
