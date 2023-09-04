@@ -33,7 +33,6 @@ import { AirConfig } from '@/airpower/config/AirConfig'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { MenuService } from '@/model/menu/MenuService'
 import { AirRequest } from '@/airpower/model/AirRequest'
-import { AirSort } from '@/airpower/model/AirSort'
 import { IJson } from '@/airpower/interface/IJson'
 import { useAirEditor } from '@/airpower/hook/useAirEditor'
 
@@ -53,7 +52,7 @@ async function onSelect(current: MenuEntity, more: IJson) {
 const treeList = ref([] as MenuEntity[])
 
 async function getMenuTreeList() {
-  treeList.value = await MenuService.create(isLoading).getList(new AirRequest(MenuEntity).setSort(new AirSort().setField('orderNo')))
+  treeList.value = await MenuService.create(isLoading).getList(new AirRequest(MenuEntity))
 }
 
 getMenuTreeList()
