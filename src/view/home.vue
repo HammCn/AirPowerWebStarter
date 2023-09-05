@@ -15,6 +15,24 @@
       <router-link to="/login">
         Login
       </router-link>
+      <el-link
+        href="https://github.com/HammCn"
+        target="_blank"
+      >
+        Github
+      </el-link>
+      <el-link
+        href="https://gitee.com/air-power"
+        target="_blank"
+      >
+        Gitee
+      </el-link>
+      <el-link
+        href="https://juejin.cn/post/7273290114921889807"
+        target="_blank"
+      >
+        JueJin
+      </el-link>
     </div>
   </div>
 </template>
