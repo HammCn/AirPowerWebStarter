@@ -53,6 +53,8 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @FormField({
     dictionary: OrderNumberDictionary,
     filterable: true,
+    requiredNumber: true,
+    defaultValue: 1,
   })
   @TableField({
     width: 100,
