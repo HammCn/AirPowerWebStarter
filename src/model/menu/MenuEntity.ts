@@ -8,6 +8,7 @@ import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { IMenu } from '@/airpower/interface/IMenu'
+import { OrderNumberDictionary } from '../OrderNumberDictionary'
 
 /**
  * # 菜单
@@ -49,7 +50,10 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Type(String)
   @FieldName('组件地址') component!: string
 
-  @FormField()
+  @FormField({
+    dictionary: OrderNumberDictionary,
+    filterable: true,
+  })
   @TableField({
     width: 100,
   })
