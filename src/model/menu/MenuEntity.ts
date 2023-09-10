@@ -19,6 +19,9 @@ import { OrderNumberDictionary } from '../OrderNumberDictionary'
 })
 @ClassName('菜单')
 export class MenuEntity extends BaseEntity implements IMenu {
+  /**
+   * # 菜单名称
+   */
   @TableField({
     forceShow: true,
   })
@@ -29,6 +32,9 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Type(String)
   @FieldName('菜单名称') name!: string
 
+  /**
+   * # 菜单路径
+   */
   @TableField({
     copyField: true,
     forceShow: true,
@@ -39,10 +45,16 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Type(String)
   @FieldName('菜单路径') path!: string
 
+  /**
+   * # 菜单图标
+   */
   @FormField()
   @Type(String)
   @FieldName('菜单图标') icon!: string
 
+  /**
+   * # 组件地址
+   */
   @TableField({
     copyField: true,
   })
@@ -50,6 +62,9 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Type(String)
   @FieldName('组件地址') component!: string
 
+  /**
+   * # 排序编号
+   */
   @FormField({
     dictionary: OrderNumberDictionary,
     filterable: true,
@@ -62,12 +77,21 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Type(String)
   @FieldName('排序编号') orderNo!: number
 
+  /**
+   * # 父菜单ID
+   */
   @FieldName('父级ID') parentId!: number
 
+  /**
+   * # 子菜单列表
+   */
   // eslint-disable-next-line no-use-before-define
   @Type(MenuEntity)
   @IsArray() children!: this[]
 
+  /**
+   * # 父菜单
+   */
   // eslint-disable-next-line no-use-before-define
   @Type(MenuEntity) parent!: this
 

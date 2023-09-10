@@ -22,6 +22,9 @@ import { MaterialTypeDictionary } from './MaterialTypeDictionary'
 })
 @ClassName('物料')
 export class MaterialEntity extends BaseEntity {
+  /**
+   * # 物料名称
+   */
   @TableField({
     forceShow: true,
     copyField: true,
@@ -30,11 +33,13 @@ export class MaterialEntity extends BaseEntity {
   @FormField({
     requiredString: true,
   })
-
   @Type(String)
   @Alias('name')
   @FieldName('物料名称') materialName!: string
 
+  /**
+   * # 规格型号
+   */
   @TableField({
     emptyValue: '暂无信息',
   })
@@ -43,6 +48,9 @@ export class MaterialEntity extends BaseEntity {
   @Alias('spc')
   @FieldName('规格型号') materialSpc!: string
 
+  /**
+   * # 物料类型
+   */
   @Dictionary(MaterialTypeDictionary)
   @TableField({
     showColor: true,
@@ -55,6 +63,9 @@ export class MaterialEntity extends BaseEntity {
   })
   @FieldName('物料类型') materialType!: MaterialType
 
+  /**
+   * # 单位ID
+   */
   @ToModel((obj: IJson) => obj.unitId || obj.unitInfo?.id || undefined)
   @FieldName('单位ID')
     unitId = 1

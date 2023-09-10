@@ -6,6 +6,10 @@ export class AppService extends AbstractBaseService<AppEntity> {
 
   baseUrl = 'app'
 
+  /**
+   * # 通过应用Key获取一个应用
+   * @param appKey 应用Key
+   */
   async getAppByKey(appKey: string): Promise<AppEntity> {
     const app = new AppEntity()
     app.appKey = appKey

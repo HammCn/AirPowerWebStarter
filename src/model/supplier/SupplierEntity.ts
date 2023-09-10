@@ -7,6 +7,9 @@ import { SupplierLevelDictionary } from './SupplierLevelDictionary'
 
 @ClassName('供应商')
 export class SupplierEntity extends BaseEntity {
+  /**
+   * # 供应商编码
+   */
   @TableField({
     copyField: true,
     forceShow: true,
@@ -18,6 +21,9 @@ export class SupplierEntity extends BaseEntity {
   })
   @FieldName('供应商编码') code!: string
 
+  /**
+   * # 供应商名称
+   */
   @TableField({
     forceShow: true,
   })
@@ -27,6 +33,9 @@ export class SupplierEntity extends BaseEntity {
   })
   @FieldName('供应商名称') name!: string
 
+  /**
+   * # 供应商级别
+   */
   @Dictionary(SupplierLevelDictionary)
   @TableField({
     showColor: true,
@@ -37,6 +46,9 @@ export class SupplierEntity extends BaseEntity {
   })
   @FieldName('供应商级别') level!: SupplierLevel
 
+  /**
+   * # 联系电话
+   */
   @TableField()
   @FormField({
     mobilePhone: true,

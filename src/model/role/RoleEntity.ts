@@ -20,6 +20,9 @@ import { PermissionEntity } from '../permission/PermissionEntity'
 })
 @ClassName('角色')
 export class RoleEntity extends BaseEntity {
+  /**
+   * # 角色名称
+   */
   @TableField({
     forceShow: true,
   })
@@ -30,6 +33,9 @@ export class RoleEntity extends BaseEntity {
   @Type(String)
   @FieldName('角色名称') name!: string
 
+  /**
+   * # 角色类别
+   */
   @Dictionary(RoleSystemDictionary)
   @TableField({
     showColor: true,
@@ -38,9 +44,15 @@ export class RoleEntity extends BaseEntity {
   })
   @FieldName('类别') isSystem!: boolean
 
+  /**
+   * # 菜单列表
+   */
   @Type(MenuEntity)
   @IsArray() menuList!: MenuEntity[]
 
+  /**
+   * # 权限列表
+   */
   @Type(PermissionEntity)
   @IsArray() permissionList!: PermissionEntity[]
 }

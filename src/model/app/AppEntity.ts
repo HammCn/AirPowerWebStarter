@@ -9,18 +9,27 @@ import { BaseEntity } from '@/base/BaseEntity'
 })
 @ClassName('应用')
 export class AppEntity extends BaseEntity {
+  /**
+   * # 应用Key
+   */
   @TableField()
   @FormField({
     requiredString: true,
   })
   @FieldName('AppKey') appKey!: string
 
+  /**
+   * # 应用名称
+   */
   @TableField()
   @FormField({
     requiredString: true,
   })
   @FieldName('应用名称') appName!: string
 
+  /**
+   * # 应用URL
+   */
   @TableField()
   @FormField({
     requiredString: true,

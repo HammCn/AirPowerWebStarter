@@ -7,6 +7,9 @@ import { IsArray, Type } from '@/airpower/decorator/Custom'
  * @author Hamm
  */
 export class DepartmentEntity extends BaseEntity implements ITree {
+  /**
+   * # 部门名称
+   */
   name!: string
 
   /**

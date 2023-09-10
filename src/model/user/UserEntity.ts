@@ -18,6 +18,9 @@ import { IUser } from '@/airpower/interface/IUser'
   addTitle: '添加用户',
 })
 export class UserEntity extends BaseEntity implements IUser {
+  /**
+   * # 邮箱
+   */
   @FormField({
     email: true,
     requiredString: true,
@@ -28,11 +31,17 @@ export class UserEntity extends BaseEntity implements IUser {
   @SearchField()
   @FieldName('邮箱') email!: string
 
+  /**
+   * # 密码
+   */
   @FormField({
     password: true,
   })
   @FieldName('密码') password!: string
 
+  /**
+   * # 昵称
+   */
   @FormField({
     requiredString: true,
   })
@@ -42,8 +51,14 @@ export class UserEntity extends BaseEntity implements IUser {
   @SearchField()
   @FieldName('昵称') nickname!: string
 
+  /**
+   * # 头像
+   */
   @FieldName('头像') avatar!: string
 
+  /**
+   * # 手机
+   */
   @FormField({
     mobilePhone: true,
     requiredString: true,
@@ -54,6 +69,9 @@ export class UserEntity extends BaseEntity implements IUser {
   @SearchField()
   @FieldName('手机') phone!: string
 
+  /**
+   * # 角色列表
+   */
   @FieldName('角色')
   @TableField({
     payloadArray: true,
@@ -62,6 +80,9 @@ export class UserEntity extends BaseEntity implements IUser {
   @Type(RoleEntity)
   @IsArray() roleList!: RoleEntity[]
 
+  /**
+   * # 用户类别
+   */
   @Dictionary(UserSystemDictionary)
   @TableField({
     showColor: true,

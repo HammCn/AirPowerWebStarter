@@ -20,6 +20,9 @@ import { PermissionSystemDictionary } from './PermissionSystemDictionary'
 })
 @ClassName('权限')
 export class PermissionEntity extends BaseEntity implements ITree {
+  /**
+   * # 权限名称
+   */
   @TableField({
     forceShow: true,
   })
@@ -30,6 +33,9 @@ export class PermissionEntity extends BaseEntity implements ITree {
   @Type(String)
   @FieldName('权限名称') name!: string
 
+  /**
+   * # 权限唯一标识
+   */
   @TableField({
     forceShow: true,
     copyField: true,
@@ -40,6 +46,9 @@ export class PermissionEntity extends BaseEntity implements ITree {
   })
   @FieldName('权限标识') identity!: string
 
+  /**
+   * # 权限类别
+   */
   @Dictionary(PermissionSystemDictionary)
   @TableField({
     showColor: true,
@@ -48,12 +57,21 @@ export class PermissionEntity extends BaseEntity implements ITree {
   })
   @FieldName('类别') isSystem!: boolean
 
+  /**
+   * # 父权限ID
+   */
   @FieldName('父级ID') parentId!: number
 
+  /**
+   * # 子权限列表
+   */
   // eslint-disable-next-line no-use-before-define
   @Type(PermissionEntity)
   @IsArray() children!: this[]
 
+  /**
+   * # 父权限
+   */
   // eslint-disable-next-line no-use-before-define
   @Type(PermissionEntity) parent!: this
 
