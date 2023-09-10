@@ -275,7 +275,7 @@ const isReaded = ref(true)
 const requestVo = ref(new UserRequestVo())
 
 const appKey = (AirConfig.router.currentRoute.value.query.appKey || '').toString()
-const redirectUri = (AirConfig.router.currentRoute.value.query.redirectUri || '/home').toString()
+const redirectUri = (AirConfig.router.currentRoute.value.query.redirectUri || '/console').toString()
 
 const appInfo = ref(new AppEntity())
 
