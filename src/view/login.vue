@@ -282,17 +282,22 @@ const appInfo = ref(new AppEntity())
 requestVo.value.email = 'admin@hamm.cn'
 requestVo.value.password = 'Aa123456'
 
+// 一些Loading状态
 const isLoadingApp = ref(false)
 const isLoadingLogin = ref(false)
 const isLoadingReg = ref(false)
 const isEmailCodeLoading = ref(false)
 
+// ! 判断是否输入有效格式的值
 const isValidPassword = computed(() => requestVo.value.password && requestVo.value.password.length >= 6)
 const isValidCode = computed(() => requestVo.value.code && requestVo.value.code.length === 6)
 const isValidEmail = computed(() => requestVo.value.email && AirValidator.isEmail(requestVo.value.email))
 const isValidPhone = computed(() => requestVo.value.phone && AirValidator.isMobilePhone(requestVo.value.phone))
 const isValidAccount = computed(() => requestVo.value.email && (AirValidator.isEmail(requestVo.value.email) || AirValidator.isNaturalNumber(requestVo.value.email)))
 
+/**
+ * # 计算是否禁用登录/注册按钮
+ */
 const isButtonDisabled = computed(() => {
   switch (currentAction.value) {
     case LoginAction.REGISTER_VIA_EMAIL:
@@ -320,7 +325,6 @@ async function getAppInfo() {
 
 /**
  * # 处理登录重定向
- * @param result 登录返回值
  */
 function loginRedirect(result: string) {
   if (appKey) {
@@ -366,6 +370,9 @@ async function onReg() {
   currentAction.value = LoginAction.LOGIN_VIA_PASSWORD
 }
 
+/**
+ * # 登录/注册按钮事件
+ */
 async function onSubmit() {
   if (!isReaded.value) {
     await AirConfirm.create().setConfirmText('我已阅读并同意').show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
@@ -385,6 +392,9 @@ async function onSubmit() {
   }
 }
 
+/**
+ * # 发送邮箱验证码事件
+ */
 async function onSendEmailCode() {
   const request = new UserRequestVo()
   request.email = requestVo.value.email
