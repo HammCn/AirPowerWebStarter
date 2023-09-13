@@ -74,7 +74,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @TableField({
     width: 100,
   })
-  @Type(String)
+  @Type(Number)
   @FieldName('排序编号') orderNo!: number
 
   /**
