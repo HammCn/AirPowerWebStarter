@@ -2,9 +2,8 @@
   <div class="home">
     <el-image
       class="logo"
-      :src="logo"
+      :src="airpower"
     />
-    <h1>Hello AirPower!</h1>
     <div class="intro">
       Based on Vue3 & TypeScript & Element-Plus & Vite
     </div>
@@ -37,7 +36,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import logo from '@/airpower/assets/img/logo.png'
+import airpower from '@/airpower/assets/img/airpower.png'
 
 </script>
 <style scoped lang="scss">
@@ -53,8 +52,8 @@ import logo from '@/airpower/assets/img/logo.png'
   justify-content: center;
 
   .logo {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    margin-bottom: 50px;
   }
 
   .link {
