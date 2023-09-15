@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" src="./assets/img/airpower.png"/>
+  <img width="300" src="./src/assets/img/airpower.png"/>
 </p>
 
 <p align="center">
