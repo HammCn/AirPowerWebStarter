@@ -42,7 +42,6 @@ export class PermissionEntity extends BaseEntity implements ITree {
   })
   @FormField({
     requiredString: '请输入权限标识...',
-    unique: true,
   })
   @FieldName('权限标识') identity!: string
 
