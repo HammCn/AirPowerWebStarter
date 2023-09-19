@@ -19,12 +19,31 @@
 
 > 建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
 
+1. 一键脚本
 
 ```shell
 git clone https://github.com/HammCn/AirPowerWebStarter.git &&
 cd AirPowerWebStarter/src && 
 git clone https://github.com/HammCn/AirPower4T.git airpower && cd ../ &&
 yarn && cp .env.dev .env && yarn s
+```
+
+2. 分步骤执行
+
+```bash
+# 克隆宿主项目
+git clone https://github.com/HammCn/AirPowerWebStarter.git
+
+# 进入 src 目录
+cd AirPowerWebStarter/src
+
+# 克隆依赖项目
+git clone https://github.com/HammCn/AirPower4T.git airpower
+
+# 然后就可以复制一个环境变量，装依赖 启动
+cp .env.dev .env
+yarn
+yarn s
 ```
 
 ### 二、修改环境变量
