@@ -5,7 +5,10 @@
       :src="airpower"
     />
     <div class="intro">
-      Based on Vue3 & TypeScript & Element-Plus & Vite
+      <img src="https://svg.hamm.cn?key=Lang&value=TypeScript&bg=green">
+      <img src="https://svg.hamm.cn?key=Base&value=Vue3">
+      <img src="https://svg.hamm.cn?key=Build&value=Vite">
+      <img src="https://svg.hamm.cn?key=UI&value=ElementPlus">
     </div>
     <div class="link">
       <router-link to="/console">
@@ -54,6 +57,12 @@ import airpower from '@/airpower/assets/img/airpower.png'
   .logo {
     width: 300px;
     margin-bottom: 50px;
+  }
+
+  .intro {
+    img {
+      margin: 0px 5px;
+    }
   }
 
   .link {
