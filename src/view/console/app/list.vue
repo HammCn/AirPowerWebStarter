@@ -50,6 +50,9 @@ import { AppService } from '@/model/app/AppService'
 import { AppEditor } from './component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
+import { AirAlert } from '@/airpower/feedback/AirAlert'
+import { AirClipboard } from '@/airpower/helper/AirClipboard'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const {
   isLoading,
@@ -66,7 +69,10 @@ function openOAuth2(app: AppEntity) {
 
 async function onResetSecret(app: AppEntity) {
   await AirConfirm.warning('是否确认重置指定应用的秘钥?', '重置秘钥')
-  AppService.create(isLoading).resetSecret(app)
+  const newSecret = await AppService.create(isLoading).resetSecret(app)
+  await AirAlert.create().setConfirmText('复制秘钥').show(newSecret, '重置秘钥成功')
+  await AirClipboard.copy(newSecret)
+  AirNotification.success('复制秘钥成功')
 }
 </script>
 <style scoped lang="scss"></style>

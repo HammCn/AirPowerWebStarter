@@ -21,7 +21,8 @@ export class AppService extends AbstractBaseService<AppEntity> {
    * # 重置指定应用的秘钥
    * @param app 应用
    */
-  async resetSecret(app: AppEntity): Promise<void> {
-    this.api('resetSecret').post(app.copy())
+  async resetSecret(app: AppEntity): Promise<string> {
+    const newSecret = await this.api('resetSecret').post(app.copy())
+    return newSecret as unknown as string
   }
 }
