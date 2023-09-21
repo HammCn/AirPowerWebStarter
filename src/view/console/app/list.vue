@@ -11,7 +11,7 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="AppEntity"
-      :ctrl-width="105"
+      :ctrl-width="130"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
@@ -19,7 +19,14 @@
       <template #customRow="{data}">
         <AButton
           icon-button
+          type="SETTING"
+          tooltip="重置秘钥"
+          @click="onResetSecret(data)"
+        />
+        <AButton
+          icon-button
           type="MONITOR"
+          tooltip="测试OAuth2"
           @click="openOAuth2(data)"
         />
       </template>
@@ -42,6 +49,7 @@ import { AppEntity } from '@/model/app/AppEntity'
 import { AppService } from '@/model/app/AppService'
 import { AppEditor } from './component'
 import { AirConfig } from '@/airpower/config/AirConfig'
+import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 
 const {
   isLoading,
@@ -54,6 +62,11 @@ const {
 function openOAuth2(app: AppEntity) {
   // eslint-disable-next-line no-restricted-globals
   window.open(`${AirConfig.oauthUrl}?appKey=${app.appKey}&redirectUri=${encodeURIComponent(`${app.url}/callback`)}`)
+}
+
+async function onResetSecret(app: AppEntity) {
+  await AirConfirm.warning('是否确认重置指定应用的秘钥?', '重置秘钥')
+  AppService.create(isLoading).resetSecret(app)
 }
 </script>
 <style scoped lang="scss"></style>

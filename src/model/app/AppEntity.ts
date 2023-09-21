@@ -28,6 +28,11 @@ export class AppEntity extends BaseEntity {
   @FieldName('应用名称') appName!: string
 
   /**
+   * # 应用秘钥
+   */
+  @FieldName('应用秘钥') appSecret!: string
+
+  /**
    * # 应用URL
    */
   @TableField()

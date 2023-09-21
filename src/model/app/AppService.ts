@@ -16,4 +16,12 @@ export class AppService extends AbstractBaseService<AppEntity> {
     const json = await this.api('getByAppKey').post(app)
     return AppEntity.fromJson(json)
   }
+
+  /**
+   * # 重置指定应用的秘钥
+   * @param app 应用
+   */
+  async resetSecret(app: AppEntity): Promise<void> {
+    this.api('resetSecret').post(app.copy())
+  }
 }
