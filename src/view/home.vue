@@ -5,7 +5,7 @@
       :src="airpower"
     />
     <div class="intro">
-      <img src="https://svg.hamm.cn?key=Lang&value=TypeScript&bg=green">
+      <img src="https://svg.hamm.cn?key=Lang&value=TypeScript">
       <img src="https://svg.hamm.cn?key=Base&value=Vue3">
       <img src="https://svg.hamm.cn?key=Build&value=Vite">
       <img src="https://svg.hamm.cn?key=UI&value=ElementPlus">
