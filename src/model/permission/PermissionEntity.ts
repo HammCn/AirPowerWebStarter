@@ -1,7 +1,7 @@
 import {
   ClassName,
   Dictionary,
-  FieldName, IsArray, Type,
+  FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -65,8 +65,7 @@ export class PermissionEntity extends BaseEntity implements ITree {
    * # 子权限列表
    */
   // eslint-disable-next-line no-use-before-define
-  @Type(PermissionEntity)
-  @IsArray() children!: this[]
+  @Type(PermissionEntity, true) children!: this[]
 
   /**
    * # 父权限

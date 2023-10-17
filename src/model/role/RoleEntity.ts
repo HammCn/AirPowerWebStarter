@@ -1,7 +1,7 @@
 import {
   ClassName,
   Dictionary,
-  FieldName, IsArray, Type,
+  FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -47,12 +47,10 @@ export class RoleEntity extends BaseEntity {
   /**
    * # 菜单列表
    */
-  @Type(MenuEntity)
-  @IsArray() menuList!: MenuEntity[]
+  @Type(MenuEntity, true) menuList!: MenuEntity[]
 
   /**
    * # 权限列表
    */
-  @Type(PermissionEntity)
-  @IsArray() permissionList!: PermissionEntity[]
+  @Type(PermissionEntity, true) permissionList!: PermissionEntity[]
 }

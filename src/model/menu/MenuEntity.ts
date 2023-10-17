@@ -1,6 +1,6 @@
 import {
   ClassName,
-  FieldName, IsArray, Type,
+  FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { FormField } from '@/airpower/decorator/FormField'
@@ -86,8 +86,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
    * # 子菜单列表
    */
   // eslint-disable-next-line no-use-before-define
-  @Type(MenuEntity)
-  @IsArray() children!: this[]
+  @Type(MenuEntity, true) children!: this[]
 
   /**
    * # 父菜单

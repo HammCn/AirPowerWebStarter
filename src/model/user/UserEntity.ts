@@ -1,5 +1,5 @@
 import {
-  ClassName, Dictionary, FieldName, IsArray, Type,
+  ClassName, Dictionary, FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
@@ -77,8 +77,7 @@ export class UserEntity extends BaseEntity implements IUser {
     payloadArray: true,
     payloadField: 'name',
   })
-  @Type(RoleEntity)
-  @IsArray() roleList!: RoleEntity[]
+  @Type(RoleEntity, true) roleList!: RoleEntity[]
 
   /**
    * # 用户类别
