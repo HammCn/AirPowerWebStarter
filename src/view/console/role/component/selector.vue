@@ -6,8 +6,8 @@
     :title="title"
     is-selector
     :loading="isLoading"
-    :disable-confirm="mult && selected.length === 0"
-    @on-confirm="onConfirm(selected)"
+    :disable-confirm="mult && selectList.length === 0"
+    @on-confirm="onConfirm(selectList)"
     @on-cancel="onCancel()"
   >
     <AToolBar
@@ -22,12 +22,12 @@
       :show-select="mult"
       hide-delete
       hide-edit
-      :select-list="selected"
+      :select-list="selectList"
       :entity="RoleEntity"
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
-      @on-select="onSelect"
+      @on-select="onSelected"
     >
       <template
         v-if="!mult"
@@ -65,7 +65,7 @@ import { useAirSelector } from '@/airpower/hook/useAirSelector'
 const props = defineProps(airPropsSelector<RoleEntity>())
 
 const {
-  title, selected, onSelect, isLoading, response,
+  title, selectList, onSelected, isLoading, response,
   onSearch, onPageChanged,
 } = useAirSelector(props, RoleEntity, RoleService)
 </script>

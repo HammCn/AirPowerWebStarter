@@ -6,8 +6,8 @@
     :title="title"
     is-selector
     :loading="isLoading"
-    :disable-confirm="mult && selected.length === 0"
-    @on-confirm="onConfirm(selected)"
+    :disable-confirm="mult && selectList.length === 0"
+    @on-confirm="onConfirm(selectList)"
     @on-cancel="onCancel()"
   >
     <AToolBar
@@ -22,12 +22,12 @@
       :show-select="mult"
       hide-delete
       hide-edit
-      :select-list="selected"
+      :select-list="selectList"
       :entity="MenuEntity"
       :ctrl-width="80"
       hide-field-selector
       :hide-ctrl="mult"
-      @on-select=" onSelect"
+      @on-select="onSelected"
     >
       <template
         v-if="!mult"
@@ -38,7 +38,7 @@
           icon-button
           :disabled="data.isDisabled"
           tooltip="选择"
-          @click=" onConfirm(data) "
+          @click=" onConfirm(data)"
         />
       </template>
     </ATable>
@@ -63,8 +63,8 @@ import { useAirSelector } from '@/airpower/hook/useAirSelector'
 const props = defineProps(airPropsSelector<MenuEntity>())
 
 const {
-  title, selected, onSelect, isLoading, response,
-  onSearch, onPageChanged,
+  title, selectList, isLoading, response,
+  onSearch, onPageChanged, onSelected,
 } = useAirSelector(props, MenuEntity, MenuService)
 
 </script>
