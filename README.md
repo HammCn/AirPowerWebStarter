@@ -19,32 +19,24 @@
 
 > 建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
 
-1. 一键脚本
+- 通过**Gitee**代码仓库初始化(推荐)
 
-```shell
-git clone https://github.com/HammCn/AirPowerWebStarter.git &&
-cd AirPowerWebStarter/src && 
-git clone https://github.com/HammCn/AirPower4T.git airpower && cd ../ &&
-yarn && cp .env.dev .env && yarn s
-```
+  ```shell
+  git clone https://gitee.com/air-power/AirPowerWebStarter.git &&
+  cd AirPowerWebStarter/src && 
+  git clone https://gitee.com/air-power/AirPower4T.git airpower && cd ../ &&
+  yarn && cp .env.dev .env && yarn s
+  ```
 
-2. 分步骤执行
+- 通过**Github**代码仓库初始化
 
-```bash
-# 克隆宿主项目
-git clone https://github.com/HammCn/AirPowerWebStarter.git
+  ```shell
+  git clone https://github.com/HammCn/AirPowerWebStarter.git &&
+  cd AirPowerWebStarter/src && 
+  git clone https://github.com/HammCn/AirPower4T.git airpower && cd ../ &&
+  yarn && cp .env.dev .env && yarn s
+  ```
 
-# 进入 src 目录
-cd AirPowerWebStarter/src
-
-# 克隆依赖项目
-git clone https://github.com/HammCn/AirPower4T.git airpower
-
-# 然后就可以复制一个环境变量，装依赖 启动
-cp .env.dev .env
-yarn
-yarn s
-```
 
 ### 二、修改环境变量
 
@@ -92,4 +84,4 @@ yarn l
 
 > 如碰到其他兼容问题，建议在工作区禁用以上四个插件之外的其他插件，特别是```Vetur```。
 
-### And now, enjoy your coding!
+### 六、Enjoy your coding!
