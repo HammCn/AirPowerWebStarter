@@ -9,7 +9,10 @@
   <img src="https://svg.hamm.cn?key=UI&value=ElementPlus"/>
 </p>
 
-# AirPowerWebStarter
+# AirPowerWebStarter 
+
+via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://github.com/HammCn/AirPowerWebStarter) 
+
 
 ### 写在前面
 
