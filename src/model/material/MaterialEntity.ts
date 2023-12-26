@@ -67,8 +67,7 @@ export class MaterialEntity extends BaseEntity {
    * # 单位ID
    */
   @ToModel((obj: IJson) => obj.unitId || obj.unitInfo?.id || undefined)
-  @FieldName('单位ID')
-    unitId = 1
+  @FieldName('单位ID') unitId = 1
 
   @TableField({
     orderNumber: 999,
