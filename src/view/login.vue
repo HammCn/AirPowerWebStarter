@@ -454,7 +454,6 @@ getAppInfo()
     }
 
     .logo {
-
       width: 80px;
       height: 80px;
       padding: 10px;

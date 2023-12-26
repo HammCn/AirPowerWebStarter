@@ -98,7 +98,6 @@ async function selectRole() {
 
 <style scoped lang="scss">
 .role-list>* {
-
   margin-right: 5px;
 }
 </style>
