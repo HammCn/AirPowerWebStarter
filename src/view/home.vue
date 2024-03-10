@@ -39,7 +39,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import airpower from '@/airpower/assets/img/airpower.png'
+import airpower from '@/airpower/assets/img/airpower.svg'
 
 </script>
 <style scoped lang="scss">
