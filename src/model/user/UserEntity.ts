@@ -9,13 +9,14 @@ import { RoleEntity } from '../role/RoleEntity'
 import { UserSystemDictionary } from './UserSystemDictionary'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { IUser } from '@/airpower/interface/IUser'
+import { Strings } from '@/config/Strings'
 
 /**
  * # 用户实体
  */
-@ClassName('用户')
+@ClassName(Strings.get().User)
 @EntityConfig({
-  addTitle: '添加用户',
+  addTitle: Strings.get().AddUser,
 })
 export class UserEntity extends BaseEntity implements IUser {
   /**
@@ -29,7 +30,7 @@ export class UserEntity extends BaseEntity implements IUser {
     forceShow: true,
   })
   @SearchField()
-  @FieldName('邮箱') email!: string
+  @FieldName(Strings.get().Email) email!: string
 
   /**
    * # 密码
