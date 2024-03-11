@@ -27,7 +27,7 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
 
 ### 一、初始化仓库
 
-> 建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
+建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
 
 - 通过**Gitee**代码仓库初始化(推荐)
 
@@ -51,6 +51,7 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
 ### 二、修改环境变量
 
 按需修改配置
+
 ```conf
 VITE_APP_NAME = "开发环境"
 VITE_APP_API_URL = "/api/"
