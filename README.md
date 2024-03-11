@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" src="/assets/img/airpower.svg"/> <b>WebStarter</b>
+  <img width="300" src="assets/img/airpower.svg"/> <b>WebStarter</b>
 </p>
 
 <p align="center">
