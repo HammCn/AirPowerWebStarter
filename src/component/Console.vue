@@ -37,7 +37,7 @@ import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserEntity } from '@/model/user/UserEntity'
 import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
-import airpower from '@/airpower/assets/img/airpower.png'
+import airpower from '@/airpower/assets/img/airpower.svg'
 
 const currentUserInfo = ref(new UserEntity())
 const menuList = ref([] as MenuEntity[])
