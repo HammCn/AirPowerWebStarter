@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" src="/src/assets/img/airpower.png"/>
+  <img width="300" src="src/main/resources/assets/airpower.svg"/> <b>WebStarter</b>
 </p>
 
 <p align="center">
@@ -8,6 +8,7 @@
   <img src="https://svg.hamm.cn?key=Build&value=Vite"/>
   <img src="https://svg.hamm.cn?key=UI&value=ElementPlus"/>
 </p>
+
 
 # AirPowerWebStarter 
 
