@@ -18,6 +18,14 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
 
 你当前正在查看基于 ```AirPower``` 基础库的 宿主项目的代码, 我们使用的是 ```Vite``` 构建, 包管理使用的是 ```yarn```, 请先安装前叙的相关工具后继续接下来的操作 ：）
 
+- 安装 Vite
+
+- 安装 **TypeScript** :
+
+  ```shell
+  npm install -D typescript
+  ```
+
 ### 一、初始化仓库
 
 > 建议windows开发者使用 ```git bash``` 不要使用windows自带的拉垮的 ```cmd``` ```powershell``` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
@@ -80,11 +88,10 @@ yarn l
 
 ### 五、推荐的VSCODE插件扩展
 
-- TypeScript Vue Plugin (Volar)
-- Vue Language Features (Volar)
+- Vue - Official
 - ESLint
 - SCSS Formatter
 
-> 如碰到其他兼容问题，建议在工作区禁用以上四个插件之外的其他插件，特别是```Vetur```。
+> 如碰到其他兼容问题，建议在工作区禁用以上三个插件之外的其他插件，特别是```Vetur```。
 
 ### 六、Enjoy your coding!
