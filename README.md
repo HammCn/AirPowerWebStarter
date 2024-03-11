@@ -18,8 +18,6 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
 
 你当前正在查看基于 ```AirPower``` 基础库的 宿主项目的代码, 我们使用的是 ```Vite``` 构建, 包管理使用的是 ```yarn```, 请先安装前叙的相关工具后继续接下来的操作 ：）
 
-- 安装 Vite
-
 - 安装 **TypeScript** :
 
   ```shell
