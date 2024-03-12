@@ -63,5 +63,5 @@ export abstract class Strings extends AirI18n {
   abstract LoginNow: string
 
   /** # 登录 */
-  abstract Login:string
+  abstract Login: string
 }

@@ -8,6 +8,6 @@ import { AirConfig } from '@/airpower/config/AirConfig'
 import { createRoutes } from '@/config/routes'
 import '@/assets/css/main.scss'
 
-AirI18n.init(ChineseSimplified, English)
+// AirI18n.init(ChineseSimplified, English)
 
 app.use(AirConfig.createRouter(createRoutes())).mount('#app')

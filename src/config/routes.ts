@@ -9,7 +9,7 @@ export function createRoutes() {
   return [
     {
       path: '/login',
-      name: Strings.get().Login,
+      name: Strings.get().Login || '登录',
       // 如需启用Oauth2登录 请使用 @/airpower/view/login.vue
       component: () => import('@/view/login.vue'),
     },

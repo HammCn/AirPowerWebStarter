@@ -42,7 +42,7 @@
               class="label"
               :class="!isValidAccount ? 'error' : ''"
             >
-              ID / {{ Strings.get().Email }}
+              ID / {{ Strings.get().Email || "邮箱" }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -51,7 +51,7 @@
           </div>
           <div class="item">
             <div class="label">
-              {{ Strings.get().Password }}
+              {{ Strings.get().Password || "密码" }}
             </div>
             <el-input
               v-model="requestVo.password"
@@ -68,7 +68,7 @@
               class="label"
               :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
             >
-              {{ Strings.get().Email }}
+              {{ Strings.get().Email || "邮箱" }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -82,7 +82,7 @@
                   :loading="isEmailCodeLoading"
                   @click="onSendEmailCode()"
                 >
-                  {{ Strings.get().Send }}
+                  {{ Strings.get().Send || "发送" }}
                 </el-button>
               </template>
             </el-input>
@@ -92,7 +92,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              {{ Strings.get().Code }}
+              {{ Strings.get().Code || "验证码" }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -110,7 +110,7 @@
               class="label"
               :class="!AirValidator.isMobilePhone(requestVo.phone) ? 'error' : ''"
             >
-              {{ Strings.get().Phone }}
+              {{ Strings.get().Phone || "手机号" }}
             </div>
             <el-input
               v-model="requestVo.phone"
@@ -122,7 +122,7 @@
                   type="primary"
                   :disabled="!AirValidator.isMobilePhone(requestVo.phone)"
                 >
-                  {{ Strings.get().Send }}
+                  {{ Strings.get().Send || "发送验证码" }}
                 </el-button>
               </template>
             </el-input>
@@ -132,7 +132,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              {{ Strings.get().Code }}
+              {{ Strings.get().Code || "验证码" }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -150,7 +150,7 @@
               class="label"
               :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
             >
-              {{ Strings.get().Email }}
+              {{ Strings.get().Email || "邮箱" }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -164,7 +164,7 @@
                   :loading="isEmailCodeLoading"
                   @click="onSendEmailCode()"
                 >
-                  {{ Strings.get().Send }}
+                  {{ Strings.get().Send || "发送" }}
                 </el-button>
               </template>
             </el-input>
@@ -174,7 +174,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              {{ Strings.get().Code }}
+              {{ Strings.get().Code || "验证码" }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -187,7 +187,7 @@
               class="label"
               :class="!isValidPassword ? 'error' : ''"
             >
-              {{ Strings.get().Password }}
+              {{ Strings.get().Password || "密码" }}
             </div>
             <el-input
               v-model="requestVo.password"
@@ -197,10 +197,10 @@
         </div>
         <div class="rules">
           <el-checkbox v-model="isReaded">
-            {{ Strings.get().ReadAndAgreed }} <a href="">
-              {{ Strings.get().PrivacyPolicy }}
-            </a> {{ Strings.get().And }} <a href="">
-              {{ Strings.get().TermsOfService }}
+            {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
+              {{ Strings.get().PrivacyPolicy || "隐私政策" }}
+            </a> {{ Strings.get().And || "以及" }} <a href="">
+              {{ Strings.get().TermsOfService || "服务条款" }}
             </a>
           </el-checkbox>
         </div>
@@ -222,7 +222,7 @@
               :disabled="isButtonDisabled"
               @click="onSubmit()"
             >
-              {{ Strings.get().LoginNow }}
+              {{ Strings.get().LoginNow || "立即登录" }}
             </el-button>
           </div>
         </div>
@@ -241,6 +241,7 @@
         <a href="">企业微信登录</a>
       </div>
       <el-dropdown
+        v-if="AirI18n.getLanguages().length > 0"
         class="language"
         @command="changeLanguage"
       >
@@ -295,11 +296,11 @@ const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
 function getActionByLanguage(action: LoginAction) {
   switch (action) {
     case LoginAction.LOGIN_VIA_EMAIL:
-      return Strings.get().LoginViaEmail
+      return Strings.get().LoginViaEmail || '邮箱登录'
     case LoginAction.LOGIN_VIA_PHONE:
-      return Strings.get().LoginViaPhone
+      return Strings.get().LoginViaPhone || '手机登录'
     default:
-      return Strings.get().LoginViaPassword
+      return Strings.get().LoginViaPassword || '密码登录'
   }
 }
 

@@ -14,10 +14,6 @@ import { Strings } from '@/config/Strings'
 /**
  * # 用户实体
  */
-@ClassName(Strings.get().User)
-@EntityConfig({
-  addTitle: Strings.get().AddUser,
-})
 export class UserEntity extends BaseEntity implements IUser {
   /**
    * # 邮箱
@@ -30,7 +26,7 @@ export class UserEntity extends BaseEntity implements IUser {
     forceShow: true,
   })
   @SearchField()
-  @FieldName(Strings.get().Email) email!: string
+  @FieldName(Strings.get().Email || '邮箱') email!: string
 
   /**
    * # 密码
