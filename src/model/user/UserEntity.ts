@@ -1,5 +1,5 @@
 import {
-  ClassName, Dictionary, FieldName, Type,
+  Dictionary, FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
@@ -7,7 +7,6 @@ import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { UserSystemDictionary } from './UserSystemDictionary'
-import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { IUser } from '@/airpower/interface/IUser'
 import { Strings } from '@/config/Strings'
 
