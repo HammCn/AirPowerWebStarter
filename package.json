@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "author": "Hamm",
     "private": true,
+    "type": "module",
     "scripts": {
         "s": "vite",
         "dev": "vite build --mode dev",
