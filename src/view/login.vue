@@ -24,13 +24,13 @@
       <template v-else>
         <div class="tabs">
           <div
-            v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.REGISTER_VIA_EMAIL]"
+            v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE]"
             :key="item"
             class="item"
             :class="currentAction === item ? 'active' : ''"
             @click="currentAction = item"
           >
-            {{ item }}
+            {{ getActionByLanguage(item) }}
           </div>
         </div>
         <div
@@ -42,7 +42,7 @@
               class="label"
               :class="!isValidAccount ? 'error' : ''"
             >
-              ID / 邮箱
+              ID / {{ Strings.get().Email }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -51,7 +51,7 @@
           </div>
           <div class="item">
             <div class="label">
-              你的密码
+              {{ Strings.get().Password }}
             </div>
             <el-input
               v-model="requestVo.password"
@@ -68,7 +68,7 @@
               class="label"
               :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
             >
-              你的邮箱
+              {{ Strings.get().Email }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -82,7 +82,7 @@
                   :loading="isEmailCodeLoading"
                   @click="onSendEmailCode()"
                 >
-                  发送
+                  {{ Strings.get().Send }}
                 </el-button>
               </template>
             </el-input>
@@ -92,7 +92,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              验证码
+              {{ Strings.get().Code }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -110,7 +110,7 @@
               class="label"
               :class="!AirValidator.isMobilePhone(requestVo.phone) ? 'error' : ''"
             >
-              手机号
+              {{ Strings.get().Phone }}
             </div>
             <el-input
               v-model="requestVo.phone"
@@ -122,7 +122,7 @@
                   type="primary"
                   :disabled="!AirValidator.isMobilePhone(requestVo.phone)"
                 >
-                  发送
+                  {{ Strings.get().Send }}
                 </el-button>
               </template>
             </el-input>
@@ -132,7 +132,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              验证码
+              {{ Strings.get().Code }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -150,7 +150,7 @@
               class="label"
               :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
             >
-              邮箱
+              {{ Strings.get().Email }}
             </div>
             <el-input
               v-model="requestVo.email"
@@ -164,7 +164,7 @@
                   :loading="isEmailCodeLoading"
                   @click="onSendEmailCode()"
                 >
-                  发送
+                  {{ Strings.get().Send }}
                 </el-button>
               </template>
             </el-input>
@@ -174,7 +174,7 @@
               class="label"
               :class="!isValidCode ? 'error' : ''"
             >
-              验证码
+              {{ Strings.get().Code }}
             </div>
             <el-input
               v-model="requestVo.code"
@@ -187,7 +187,7 @@
               class="label"
               :class="!isValidPassword ? 'error' : ''"
             >
-              你的密码
+              {{ Strings.get().Password }}
             </div>
             <el-input
               v-model="requestVo.password"
@@ -197,10 +197,10 @@
         </div>
         <div class="rules">
           <el-checkbox v-model="isReaded">
-            我已阅读并同意 <a href="">
-              隐私政策
-            </a> 以及 <a href="">
-              服务条款
+            {{ Strings.get().ReadAndAgreed }} <a href="">
+              {{ Strings.get().PrivacyPolicy }}
+            </a> {{ Strings.get().And }} <a href="">
+              {{ Strings.get().TermsOfService }}
             </a>
           </el-checkbox>
         </div>
@@ -222,7 +222,7 @@
               :disabled="isButtonDisabled"
               @click="onSubmit()"
             >
-              立即登录
+              {{ Strings.get().LoginNow }}
             </el-button>
           </div>
         </div>
@@ -240,6 +240,28 @@
         <a href="">钉钉登录</a>
         <a href="">企业微信登录</a>
       </div>
+      <el-dropdown
+        class="language"
+        @command="changeLanguage"
+      >
+        <span class="el-dropdown-link">
+          {{ AirI18n.getCurrentLanguage() }}
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+              v-for="item in AirI18n.getLanguages().map(item => item.language)"
+              :key="item"
+              :command="item"
+            >
+              {{ item }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
     <div class="copyright">
       Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved.
@@ -259,6 +281,9 @@ import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AppEntity } from '@/model/app/AppEntity'
 import { AppService } from '@/model/app/AppService'
 import { MailService } from '@/model/mail/MailService'
+import { Strings } from '@/config/Strings'
+import { AirLanguage } from '@/airpower/enum/AirLanguage'
+import { AirI18n } from '@/airpower/helper/AirI18n'
 
 /**
  * # 是否二维码登录
@@ -266,6 +291,17 @@ import { MailService } from '@/model/mail/MailService'
 const isQrcodeLogin = ref(false)
 
 const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
+
+function getActionByLanguage(action: LoginAction) {
+  switch (action) {
+    case LoginAction.LOGIN_VIA_EMAIL:
+      return Strings.get().LoginViaEmail
+    case LoginAction.LOGIN_VIA_PHONE:
+      return Strings.get().LoginViaPhone
+    default:
+      return Strings.get().LoginViaPassword
+  }
+}
 
 /**
  * # 是否已阅读
@@ -400,6 +436,14 @@ async function onSendEmailCode() {
   request.email = requestVo.value.email
   await MailService.create(isEmailCodeLoading).sendCode(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
+}
+
+/**
+ * # 更换语言
+ */
+async function changeLanguage(language: AirLanguage) {
+  AirI18n.setCurrentLanguage(language)
+  window.location.replace(window.location.href)
 }
 
 getAppInfo()
@@ -609,6 +653,13 @@ getAppInfo()
         font-size: 16px;
       }
     }
+  }
+
+  .language {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
 }
 
