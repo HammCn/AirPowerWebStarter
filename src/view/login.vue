@@ -9,7 +9,7 @@
         <img src="@/assets/img/logo.png">
       </div>
       <div class="app-name">
-        {{ appInfo.appName }}
+        {{ appInfo.appName }} 
       </div>
       <template v-if="isQrcodeLogin">
         <div class="qrcode-login">
@@ -222,7 +222,7 @@
               :disabled="isButtonDisabled"
               @click="onSubmit()"
             >
-              {{ Strings.get().LoginNow || "立即登录" }}
+              {{ Strings.get().LoginNow || "立即登录" }} {{ AppConfig.currentUser.value.nickname }}
             </el-button>
           </div>
         </div>
@@ -270,7 +270,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { UserRequestVo } from '@/model/user/UserRequestVo'
@@ -285,6 +285,11 @@ import { MailService } from '@/model/mail/MailService'
 import { Strings } from '@/config/Strings'
 import { AirLanguage } from '@/airpower/enum/AirLanguage'
 import { AirI18n } from '@/airpower/helper/AirI18n'
+import { AppConfig } from '@/config/AppConfig'
+
+watch(AppConfig.currentUser, () => {
+  alert("有人更新了 user !")
+})
 
 /**
  * # 是否二维码登录
