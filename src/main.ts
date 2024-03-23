@@ -16,7 +16,7 @@ app.use(AirConfig.createRouter(createRoutes())).mount('#app')
 
 setTimeout(() => {
   const user = new UserEntity()
-  user.nickname = "Hamm"
-  user.email = "admin@hamm.cn"
+  user.nickname = 'Hamm'
+  user.email = 'admin@hamm.cn'
   AppConfig.currentUser.value = user
-}, 5000);
+}, 5000)
