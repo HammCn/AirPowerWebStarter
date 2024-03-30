@@ -1,12 +1,11 @@
 import {
-  Dictionary, FieldName, Type,
+  FieldName, Type,
 } from '@/airpower/decorator/Custom'
 import { FormField } from '@/airpower/decorator/FormField'
 import { SearchField } from '@/airpower/decorator/SearchField'
 import { TableField } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
-import { UserSystemDictionary } from './UserSystemDictionary'
 import { IUser } from '@/airpower/interface/IUser'
 import { Strings } from '@/config/Strings'
 
@@ -74,15 +73,4 @@ export class UserEntity extends BaseEntity implements IUser {
     payloadField: 'name',
   })
   @Type(RoleEntity, true) roleList!: RoleEntity[]
-
-  /**
-   * # 用户类别
-   */
-  @Dictionary(UserSystemDictionary)
-  @TableField({
-    showColor: true,
-    width: 100,
-    orderNumber: -100,
-  })
-  @FieldName('类别') isSystem!: boolean
 }

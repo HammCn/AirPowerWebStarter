@@ -11,7 +11,6 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="UserEntity"
-      :disable-delete="(row: UserEntity) => row.isSystem"
       :ctrl-width="90"
       @on-edit="onEdit"
       @on-delete="onDelete"
