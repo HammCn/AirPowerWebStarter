@@ -29,6 +29,7 @@ export class BaseEntity extends AirEntity {
   @FieldName('状态')
   @SearchField({
     orderNumber: -100,
+    hide: true,
   })
   @Dictionary(DisableDictionary)
   @TableField({
@@ -36,6 +37,7 @@ export class BaseEntity extends AirEntity {
     width: 80,
     orderNumber: -100,
     removed: true,
+    hide: true,
   })
   @Type(Boolean) isDisabled!: boolean
 
@@ -43,10 +45,12 @@ export class BaseEntity extends AirEntity {
   @SearchField({
     orderNumber: -100,
     dataType: AirSearchDataType.TEXTAREA,
+    hide: true,
   })
   @FormField({
     textarea: true,
     orderNumber: -100,
+    hide: true,
   })
   @Type(String) remark!: string
 }

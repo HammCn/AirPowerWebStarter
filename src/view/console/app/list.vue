@@ -11,24 +11,26 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="AppEntity"
-      :ctrl-width="130"
+      :ctrl-width="240"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
     >
       <template #customRow="{data}">
         <AButton
-          icon-button
-          type="SETTING"
+          link-button
           tooltip="重置秘钥"
           @click="onResetSecret(data)"
-        />
+        >
+          重置秘钥
+        </AButton>
         <AButton
-          icon-button
-          type="MONITOR"
+          link-button
           tooltip="测试OAuth2"
           @click="openOAuth2(data)"
-        />
+        >
+          测试OAuth2
+        </AButton>
       </template>
     </ATable>
     <template #footerLeft>

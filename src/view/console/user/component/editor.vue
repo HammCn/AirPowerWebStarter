@@ -37,15 +37,6 @@
             :entity="UserEntity"
           />
         </el-form-item>
-        <el-form-item
-          :label="UserEntity.getFormFieldLabel('remark')"
-          prop="remark"
-        >
-          <AInput
-            v-model.remark="formData.remark"
-            :entity="UserEntity"
-          />
-        </el-form-item>
       </AGroup>
       <AGroup
         title="用户角色"

@@ -24,15 +24,6 @@
           :entity="RoleEntity"
         />
       </el-form-item>
-      <el-form-item
-        :label="RoleEntity.getFormFieldLabel('remark')"
-        prop="remark"
-      >
-        <AInput
-          v-model.remark="formData.remark"
-          :entity="RoleEntity"
-        />
-      </el-form-item>
     </el-form>
   </ADialog>
 </template>

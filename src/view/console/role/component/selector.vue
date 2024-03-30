@@ -34,14 +34,15 @@
         #customRow="{ data }"
       >
         <AButton
-          type="SELECT"
-          icon-button
+          link-button
           :disabled="data.isDisabled"
           tooltip="选择"
           @click="
             onConfirm(data)
           "
-        />
+        >
+          选择
+        </AButton>
       </template>
     </ATable>
     <template #footerRight>

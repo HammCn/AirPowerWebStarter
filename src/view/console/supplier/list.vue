@@ -24,6 +24,7 @@
       :entity="SupplierEntity"
       :select-list="selectList"
       show-select
+      :ctrl-width="90"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
