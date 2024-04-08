@@ -9,7 +9,7 @@
         <img src="@/assets/img/logo.png">
       </div>
       <div class="app-name">
-        {{ appInfo.appName }} 
+        {{ appInfo.appName }}
       </div>
       <template v-if="isQrcodeLogin">
         <div class="qrcode-login">
@@ -196,7 +196,7 @@
           </div>
         </div>
         <div class="rules">
-          <el-checkbox v-model="isReaded">
+          <el-checkbox v-model="isRead">
             {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
               {{ Strings.get().PrivacyPolicy || "隐私政策" }}
             </a> {{ Strings.get().And || "以及" }} <a href="">
@@ -271,6 +271,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
+import { ArrowDown } from '@element-plus/icons-vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { UserRequestVo } from '@/model/user/UserRequestVo'
@@ -286,10 +287,9 @@ import { Strings } from '@/config/Strings'
 import { AirLanguage } from '@/airpower/enum/AirLanguage'
 import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
-import {ArrowDown} from "@element-plus/icons-vue";
 
 watch(AppConfig.currentUser, () => {
-  alert("有人更新了 user !")
+  alert('有人更新了 user !')
 })
 
 /**
@@ -417,9 +417,9 @@ async function onReg() {
  * # 登录/注册按钮事件
  */
 async function onSubmit() {
-  if (!isReaded.value) {
+  if (!isRead.value) {
     await AirConfirm.create().setConfirmText('我已阅读并同意').show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
-    isReaded.value = true
+    isRead.value = true
   }
   switch (currentAction.value) {
     case LoginAction.LOGIN_VIA_PASSWORD:
