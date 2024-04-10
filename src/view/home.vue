@@ -61,7 +61,7 @@ import airpower from '@/airpower/assets/img/airpower.svg'
 
   .intro {
     img {
-      margin: 0px 5px;
+      margin: 0 5px;
     }
   }
 
@@ -71,7 +71,7 @@ import airpower from '@/airpower/assets/img/airpower.svg'
     margin-top: 20px;
 
     a {
-      margin: 0px 5px;
+      margin: 0 5px;
       font-size: 16px;
       color: var(--el-color-primary);
       text-decoration: none;

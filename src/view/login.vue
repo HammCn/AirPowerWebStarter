@@ -9,7 +9,7 @@
         <img src="@/assets/img/logo.png">
       </div>
       <div class="app-name">
-        {{ appInfo.appName }} 
+        {{ appInfo.appName }}
       </div>
       <template v-if="isQrcodeLogin">
         <div class="qrcode-login">
@@ -196,7 +196,7 @@
           </div>
         </div>
         <div class="rules">
-          <el-checkbox v-model="isReaded">
+          <el-checkbox v-model="isRead">
             {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
               {{ Strings.get().PrivacyPolicy || "隐私政策" }}
             </a> {{ Strings.get().And || "以及" }} <a href="">
@@ -271,6 +271,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
+import { ArrowDown } from '@element-plus/icons-vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { UserRequestVo } from '@/model/user/UserRequestVo'
@@ -288,7 +289,7 @@ import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
 
 watch(AppConfig.currentUser, () => {
-  alert("有人更新了 user !")
+  alert('有人更新了 user !')
 })
 
 /**
@@ -312,7 +313,7 @@ function getActionByLanguage(action: LoginAction) {
 /**
  * # 是否已阅读
  */
-const isReaded = ref(true)
+const isRead = ref(true)
 
 const requestVo = ref(new UserRequestVo())
 
@@ -416,9 +417,9 @@ async function onReg() {
  * # 登录/注册按钮事件
  */
 async function onSubmit() {
-  if (!isReaded.value) {
+  if (!isRead.value) {
     await AirConfirm.create().setConfirmText('我已阅读并同意').show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
-    isReaded.value = true
+    isRead.value = true
   }
   switch (currentAction.value) {
     case LoginAction.LOGIN_VIA_PASSWORD:
@@ -480,8 +481,8 @@ getAppInfo()
     align-items: center;
 
     .qrcode-login {
-      margin: 30px 0px;
-      padding: 0px 60px;
+      margin: 30px 0;
+      padding: 0 60px;
 
       .qrcode-img {
         background-color: rgba($color: #fff, $alpha: 0.9);
@@ -531,7 +532,7 @@ getAppInfo()
 
       .item {
         position: relative;
-        margin: 0px 4px;
+        margin: 0 4px;
         padding: 4px 16px;
         border-radius: 10px;
         cursor: pointer;
@@ -584,7 +585,7 @@ getAppInfo()
       display: flex;
       flex-direction: row;
       width: 100%;
-      padding: 0px 40px;
+      padding: 0 40px;
       margin-top: 20px;
 
       .submit {
@@ -607,7 +608,7 @@ getAppInfo()
       margin-top: 20px;
 
       a {
-        margin: 0px 5px;
+        margin: 0 5px;
         text-decoration: none;
         color: #333;
         transition: all .3s;
@@ -647,7 +648,7 @@ getAppInfo()
 
       .el-input__wrapper {
         box-shadow: none;
-        padding: 0px;
+        padding: 0;
 
         .el-button {
           margin-right: -10px;
@@ -677,7 +678,7 @@ getAppInfo()
   text-align: center;
   color: #aaa;
   font-size: 12px;
-  text-shadow: 0px 1px 1px rgba($color: #fff, $alpha: 1);
+  text-shadow: 0 1px 1px rgba($color: #fff, $alpha: 1);
 }
 
 @media screen and ((orientation:portrait) and (max-width: 600px)) {
