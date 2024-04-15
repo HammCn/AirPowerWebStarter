@@ -2,41 +2,38 @@
   <AFrame :menu-list="menuList">
     <template #logo>
       <img
-        :src="airpower"
-        height="30"
+          :src="airpower"
+          height="30"
       >
     </template>
     <template #user>
       <AUser :user="currentUserInfo">
         <div>
-          <AImage :src="currentUserInfo.avatar" />
+          <AImage :src="currentUserInfo.avatar"/>
         </div>
         <AInput
-          v-model.nickname="currentUserInfo.nickname"
-          :tree="menuList"
-          :entity="UserEntity"
+            v-model.nickname="currentUserInfo.nickname"
+            :tree="menuList"
+            :entity="UserEntity"
         />
         <template #setting>
           可选插槽
         </template>
       </AUser>
     </template>
-    <router-view />
+    <router-view/>
   </AFrame>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import {
-  AFrame, AUser, AImage, AInput,
-} from '@/airpower/component'
-import { AirConfig } from '@/airpower/config/AirConfig'
-import { AirRouter } from '@/airpower/helper/AirRouter'
-import { MenuEntity } from '@/model/menu/MenuEntity'
-import { UserService } from '@/model/user/UserService'
-import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
-import { AirNotification } from '@/airpower/feedback/AirNotification'
-import { UserEntity } from '@/model/user/UserEntity'
-import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
+import {ref} from 'vue'
+import {AFrame, AImage, AInput, AUser,} from '@/airpower/component'
+import {AirConfig} from '@/airpower/config/AirConfig'
+import {AirRouter} from '@/airpower/helper/AirRouter'
+import {MenuEntity} from '@/model/menu/MenuEntity'
+import {UserService} from '@/model/user/UserService'
+import {AirWebsocket} from '@/airpower/websocket/AirWebSocket'
+import {AirNotification} from '@/airpower/feedback/AirNotification'
+import {UserEntity} from '@/model/user/UserEntity'
 import airpower from '@/airpower/assets/img/airpower.svg'
 
 const currentUserInfo = ref(new UserEntity())
@@ -50,10 +47,11 @@ async function getMenuList() {
 
 async function init() {
   currentUserInfo.value = await UserService.create().getMyInfo()
-  AirConfig.permissionList = []
-
-  const permissionList = await UserService.create(isLoading).getMyPermissionList()
-  AirConfig.permissionList = AirClassTransformer.treeList2List(permissionList).map((item) => item.identity)
+  let permissions = AirConfig.getPermissionList();
+  if (permissions.length === 0) {
+    permissions = await UserService.create(isLoading).getMyPermissionList();
+  }
+  AirConfig.savePermissionList(permissions)
   await getMenuList()
 
   AirWebsocket.create({
