@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "s": "vite",
-        "rundev": "vite --mode dev",
+        "mock": "vite --mode dev",
         "dev": "vite build --mode dev",
         "d": "vite build --mode dev && cd dist && zip dist.zip -r ./* && scp dist.zip root@hamm.cn:/home/AirPowerWeb/ && ssh root@hamm.cn",
         "test": "vite build --mode test",
