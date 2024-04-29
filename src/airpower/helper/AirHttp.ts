@@ -69,23 +69,17 @@ export class AirHttp {
    * @param url (可选) 请求的地址
    */
   constructor(url?: string) {
-    if (url) {
-      this.url = url
-    }
+    if (url) this.url = url
+
     // 初始化一些默认值
     this.axiosRequestConfig.method = <Method>AirHttpMethod.POST
     this.axiosRequestConfig.baseURL = AirConfig.apiUrl
     this.axiosRequestConfig.timeout = this.timeout
-    this.axiosRequestConfig.headers = {
-      'content-type': AirHttpContentType.JSON,
-    }
+    this.axiosRequestConfig.headers = { 'content-type': AirHttpContentType.JSON }
+
     const accessToken = AirConfig.getAccessToken()
-    if (accessToken) {
-      this.axiosRequestConfig.headers[AirConfig.authorizationHeaderKey] = accessToken
-    }
-    if (url) {
-      this.url = url
-    }
+
+    if (accessToken) this.axiosRequestConfig.headers[AirConfig.authorizationHeaderKey] = accessToken
   }
 
   /**

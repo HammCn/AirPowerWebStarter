@@ -16,7 +16,6 @@ export class UserService extends AbstractBaseService<UserEntity> {
      */
   async login(user: UserEntity): Promise<string> {
     const result = await this.api('login').post(user)
-    console.log(`----${result}`)
 
     return result as unknown as string
   }
