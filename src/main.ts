@@ -9,10 +9,15 @@ import { createRoutes } from '@/config/routes'
 import '@/assets/css/main.scss'
 import { AppConfig } from './config/AppConfig'
 import { UserEntity } from './model/user/UserEntity'
+import { mockXHR } from "@/mock/index";
 
 AirI18n.init(ChineseSimplified, English)
 
 app.use(AirConfig.createRouter(createRoutes())).mount('#app')
+
+if (import.meta.env.DEV) {
+  mockXHR()
+}
 
 setTimeout(() => {
   const user = new UserEntity()
