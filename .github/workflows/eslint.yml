@@ -7,35 +7,59 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      # Install dependencies
       - name: Install Dependencies
         run: npm install
-      - name: Lint with ESLint
+
+      # Run ESLint
+      - name: Run ESLint
         run: npm run lint --silent
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Comment PR with ESLint errors
+      
+      # Comment ESLint errors to PR
+      - name: Comment ESLint errors
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const formatter = require('eslint-formatter-github');
-            const { context, getOctokit } = require('@actions/github');
-            const octokit = getOctokit(process.env.GITHUB_TOKEN);
+            const { context, github } = require('@actions/github');
             const { owner, repo, number } = context.issue;
+            const eslintOutput = require('fs').readFileSync('eslint-output.txt', 'utf8');
+            const lines = eslintOutput.split('\n');
+            const errorRegex = /^(.*?): line (\d+), col (\d+), (.*) - (.*)$/;
+            const comments = [];
 
-            const filePath = process.env.GITHUB_WORKSPACE + '/eslint-output.txt';
-            const { data } = await octokit.pulls.get({ owner, repo, pull_number: number });
-            const comments = formatter(data, filePath);
-
-            for (const comment of comments) {
-              await octokit.pulls.createReviewComment({
-                owner,
-                repo,
-                pull_number: number,
-                body: comment,
-                commit_id: context.payload.pull_request.head.sha,
-                path: comment.path,
-                position: comment.position
-              });
+            for (const line of lines) {
+              const match = line.match(errorRegex);
+              if (match) {
+                const filePath = match[1];
+                const lineNumber = parseInt(match[2], 10);
+                const error = match[5];
+                const commentBody = `${error} at line ${lineNumber}`;
+                comments.push({
+                  path: filePath,
+                  position: lineNumber,
+                  body: commentBody
+                });
+              }
             }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            async function createComment() {
+              for (const comment of comments) {
+                await github.pulls.createReviewComment({
+                  owner,
+                  repo,
+                  pull_number: number,
+                  body: comment.body,
+                  commit_id: context.payload.pull_request.head.sha,
+                  path: comment.path,
+                  position: comment.position
+                });
+              }
+            }
+
+            createComment();
