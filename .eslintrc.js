@@ -21,6 +21,8 @@ module.exports = {
       },
       MemberExpression: 1,
     }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'linebreak-style': 0, // 忽略不同系统的换行符检查
     'import/named': 'off',
     'max-len': 'off', // 强制一行的最大长度
     'import/extensions': 'off', // 不验证导入文件扩展名

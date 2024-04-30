@@ -270,7 +270,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
@@ -287,10 +287,6 @@ import { Strings } from '@/config/Strings'
 import { AirLanguage } from '@/airpower/enum/AirLanguage'
 import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
-
-watch(AppConfig.currentUser, () => {
-  alert('有人更新了 user !')
-})
 
 /**
  * # 是否二维码登录
@@ -391,6 +387,7 @@ async function onLogin() {
     request.id = parseInt(request.email, 10)
     request.exclude('email')
   }
+
   const result = await UserService.create(isLoadingLogin).login(request)
   loginRedirect(result)
 }
