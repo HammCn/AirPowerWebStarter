@@ -1,41 +1,27 @@
-name: ESLint
+name: Lint
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-      - name: Lint with ESLint
-        run: npm run lint --silent
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Comment PR with ESLint errors
-        uses: actions/github-script@v7
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          script: |
-            const formatter = require('eslint-formatter-github');
-            const { context, getOctokit } = require('@actions/github');
-            const octokit = getOctokit(process.env.GITHUB_TOKEN);
-            const { owner, repo, number } = context.issue;
-
-            const filePath = process.env.GITHUB_WORKSPACE + '/eslint-output.txt';
-            const { data } = await octokit.pulls.get({ owner, repo, pull_number: number });
-            const comments = formatter(data, filePath);
-
-            for (const comment of comments) {
-              await octokit.pulls.createReviewComment({
-                owner,
-                repo,
-                pull_number: number,
-                body: comment,
-                commit_id: context.payload.pull_request.head.sha,
-                path: comment.path,
-                position: comment.position
-              });
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 16
+      - run: npm install # or yarn install
+      - uses: sibiraj-s/action-eslint@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # optional
+          eslint-args: '--ignore-path=.gitignore --quiet'
+          extensions: 'js,jsx,ts,tsx'
+          annotations: true
+          ignore-path: .eslintignore
+          ignore-pattern: |
+            dist/
+            lib/
