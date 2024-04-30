@@ -1,0 +1,41 @@
+name: ESLint
+
+on: [pull_request]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint with ESLint
+        run: npm run lint --silent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment PR with ESLint errors
+        uses: github-actions/github-script@v4.2.0
+        with:
+          script: |
+            const formatter = require('eslint-formatter-github');
+            const { context, getOctokit } = require('@actions/github');
+            const octokit = getOctokit(process.env.GITHUB_TOKEN);
+            const { owner, repo, number } = context.issue;
+
+            const filePath = process.env.GITHUB_WORKSPACE + '/eslint-output.txt';
+            const { data } = await octokit.pulls.get({ owner, repo, pull_number: number });
+            const comments = formatter(data, filePath);
+
+            for (const comment of comments) {
+              await octokit.pulls.createReviewComment({
+                owner,
+                repo,
+                pull_number: number,
+                body: comment,
+                commit_id: context.payload.pull_request.head.sha,
+                path: comment.path,
+                position: comment.position
+              });
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
