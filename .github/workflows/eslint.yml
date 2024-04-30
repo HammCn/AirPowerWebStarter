@@ -14,7 +14,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment PR with ESLint errors
-        uses: github-actions/github-script@v4.2.0
+        uses: actions/github-script@v7
         with:
           script: |
             const formatter = require('eslint-formatter-github');
