@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       - name: Lint with ESLint
         run: npm run lint --silent
         env:
