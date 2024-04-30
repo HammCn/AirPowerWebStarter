@@ -30,14 +30,7 @@ jobs:
           ignore-pattern: |
             dist/
             lib/
-      - name: Comment PR
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Post Comment
+        uses: ./.github/actions/comment-action
         with:
-          message: |
-            **ESLint Check Results**
-            ```json
-            ${{ steps.eslint.outputs.result }}
-            ```
-            Please review the above violations.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
