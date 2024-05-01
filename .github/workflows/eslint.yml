@@ -15,10 +15,9 @@ jobs:
         with:
           node-version: 16
       - run: npm install # or yarn install
-      - name: ESLint Check
       - uses: sibiraj-s/action-eslint@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }} # optional
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
