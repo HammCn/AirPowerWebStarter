@@ -10,26 +10,14 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install Dependencies
-        run: npm install # or yarn install
-      - name: Run ESLint
-        uses: sibiraj-s/action-eslint@v3
+      - run: npm ci # or yarn install
+      - uses: sibiraj-s/action-eslint@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }} # optional
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
-          ignore-path: .eslintignore
-          ignore-pattern: |
-            dist/
-            lib/
-      - name: Post Comment
-        uses: ./.github/actions/comment-action
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
