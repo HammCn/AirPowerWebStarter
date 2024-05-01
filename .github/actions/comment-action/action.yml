@@ -1,9 +1,0 @@
-name: 'Comment on PR'
-description: 'Post a comment to a pull request'
-inputs:
-  github-token:
-    description: 'GitHub token'
-    required: true
-runs:
-  using: 'node16'
-  main: 'index.js'
