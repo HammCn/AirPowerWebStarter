@@ -1,26 +1,24 @@
-const { GitHub, context } = require('@actions/github');
-const { Toolkit } = require('actions-toolkit');
-
-const tools = new Toolkit();
+const core = require('@actions/core');
+const github = require('@actions/github');
 
 async function run() {
   try {
-    const octokit = new GitHub(tools.inputs['github-token']);
-    const { owner, repo } = context.repo;
-    const issue_number = context.issue.number;
+    const token = core.getInput('github-token');
+    const octokit = github.getOctokit(token);
 
-    const comment = {
+    const { owner, repo } = github.context.repo;
+    const issue_number = github.context.issue.number;
+
+    const response = await octokit.rest.issues.createComment({
       owner,
       repo,
       issue_number,
       body: 'This is a comment from your custom GitHub Action!'
-    };
+    });
 
-    await octokit.issues.createComment(comment);
-    tools.log.success('Comment posted successfully!');
+    console.log(`Comment created: ${response.data.html_url}`);
   } catch (error) {
-    tools.log.error(`Failed to post comment: ${error.message}`);
-    tools.exit.failure();
+    core.setFailed(`Action failed with error ${error}`);
   }
 }
 
