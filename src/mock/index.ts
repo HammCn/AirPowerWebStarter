@@ -7,7 +7,7 @@ Mock.setup({
   timeout: '300',
 })
 
-export function GenerateMock() {
+export default function GenerateMock() {
   for (const i of mocks) {
     Mock.mock(i.url, i.type || 'get', i.response)
   }
