@@ -47,12 +47,12 @@ const IS_ARRAY_KEY = 'IsArray'
 
 /**
  * # 标记属性强制转换类
- * @param Clazz 类型
+ * @param Class 类型
  * @param isArray (可选)是否是数组
  */
-export function Type(Clazz: ClassConstructor<any>, isArray = false): Function {
+export function Type(Class: ClassConstructor<any>, isArray = false): Function {
   return (target: any, key: string) => {
-    AirDecorator.setFieldConfig(target, key, TYPE_KEY, Clazz)
+    AirDecorator.setFieldConfig(target, key, TYPE_KEY, Class)
     AirDecorator.setFieldConfig(target, key, IS_ARRAY_KEY, isArray)
   }
 }

@@ -644,9 +644,8 @@ function init() {
     // 如传入了自定义的modifier 则优先使用
     fieldName.value = props.modifier
   } else {
-    // eslint-disable-next-line guard-for-in
     for (const key in props.modelModifiers) {
-      fieldName.value = key
+      if (Object.prototype.hasOwnProperty.call(props.modelModifiers, key)) fieldName.value = key
     }
   }
 
