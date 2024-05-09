@@ -1,42 +1,42 @@
-import { ClassName, FieldName } from '@/airpower/decorator/Custom'
 import { BaseEntity } from '@/base/BaseEntity'
-import { FormField } from '@/airpower/decorator/FormField'
-import { TableField } from '@/airpower/decorator/TableField'
+import { Form } from '@/airpower/decorator/FormField'
+import { Table } from '@/airpower/decorator/TableField'
+import { Model, Field } from '@/airpower/decorator/Custom'
 
-@ClassName('供应商')
+@Model('供应商')
 export class SupplierEntity extends BaseEntity {
   /**
    * # 供应商编码
    */
-  @TableField({
+  @Table({
     copyField: true,
     forceShow: true,
     orderNumber: 99,
   })
-  @FormField({
+  @Form({
     orderNumber: 99,
     requiredString: true,
   })
-  @FieldName('供应商编码') code!: string
+  @Field('供应商编码') code!: string
 
   /**
    * # 供应商名称
    */
-  @TableField({
+  @Table({
     forceShow: true,
   })
-  @FormField({
+  @Form({
     orderNumber: 98,
     requiredString: true,
   })
-  @FieldName('供应商名称') name!: string
+  @Field('供应商名称') name!: string
 
   /**
    * # 联系电话
    */
-  @TableField()
-  @FormField({
+  @Table()
+  @Form({
     mobilePhone: true,
   })
-  @FieldName('联系电话') phone!: string
+  @Field('联系电话') phone!: string
 }

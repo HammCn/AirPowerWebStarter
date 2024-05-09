@@ -1,6 +1,6 @@
-import { UserEntity } from "@/model/user/UserEntity";
-import { ref } from "vue";
+import { ref } from 'vue'
+import { UserEntity } from '@/model/user/UserEntity'
 
-export class AppConfig{
-  static currentUser  = ref(new UserEntity())
+export class AppConfig {
+  static currentUser = ref(new UserEntity())
 }

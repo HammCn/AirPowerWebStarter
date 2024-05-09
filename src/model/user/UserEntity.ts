@@ -1,9 +1,10 @@
 import {
-  FieldName, Type,
+  Field,
+  Type,
 } from '@/airpower/decorator/Custom'
-import { FormField } from '@/airpower/decorator/FormField'
-import { SearchField } from '@/airpower/decorator/SearchField'
-import { TableField } from '@/airpower/decorator/TableField'
+import { Form } from '@/airpower/decorator/FormField'
+import { Search } from '@/airpower/decorator/SearchField'
+import { Table } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
@@ -16,59 +17,59 @@ export class UserEntity extends BaseEntity implements IUser {
   /**
    * # 邮箱
    */
-  @FormField({
+  @Form({
     email: true,
     requiredString: true,
   })
-  @TableField({
+  @Table({
     forceShow: true,
   })
-  @SearchField()
-  @FieldName(Strings.get().Email || '邮箱') email!: string
+  @Search()
+  @Field(Strings.get().Email || '邮箱') email!: string
 
   /**
    * # 密码
    */
-  @FormField({
+  @Form({
     password: true,
   })
-  @FieldName('密码') password!: string
+  @Field('密码') password!: string
 
   /**
    * # 昵称
    */
-  @FormField({
+  @Form({
     requiredString: true,
   })
-  @TableField({
+  @Table({
     forceShow: true,
   })
-  @SearchField()
-  @FieldName('昵称') nickname!: string
+  @Search()
+  @Field('昵称') nickname!: string
 
   /**
    * # 头像
    */
-  @FieldName('头像') avatar!: string
+  @Field('头像') avatar!: string
 
   /**
    * # 手机
    */
-  @FormField({
+  @Form({
     mobilePhone: true,
     requiredString: true,
   })
-  @TableField({
+  @Table({
     forceShow: true,
   })
-  @SearchField()
-  @FieldName('手机') phone!: string
+  @Search()
+  @Field('手机') phone!: string
 
   /**
    * # 角色列表
    */
-  @FieldName('角色')
-  @TableField({
+  @Field('角色')
+  @Table({
     payloadArray: true,
     payloadField: 'name',
   })
