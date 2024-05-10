@@ -2,40 +2,36 @@
   <AFrame :menu-list="menuList">
     <template #logo>
       <img
-        :src="airpower"
-        height="30"
+          :src="airpower"
+          height="30"
       >
     </template>
     <template #user>
       <AUser :user="currentUserInfo">
         <div>
-          <AImage :src="currentUserInfo.avatar" />
+          <AImage :src="currentUserInfo.avatar"/>
         </div>
         <AInput
-          v-model.nickname="currentUserInfo.nickname"
-          :tree="menuList"
-          :entity="UserEntity"
+            v-model.nickname="currentUserInfo.nickname"
+            :tree="menuList"
+            :entity="UserEntity"
         />
         <template #setting>
           可选插槽
         </template>
       </AUser>
     </template>
-    <router-view />
+    <router-view/>
   </AFrame>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import {
-  AFrame, AImage, AInput, AUser,
-} from '@/airpower/component'
-import { AirConfig } from '@/airpower/config/AirConfig'
-import { AirRouter } from '@/airpower/helper/AirRouter'
-import { MenuEntity } from '@/model/menu/MenuEntity'
-import { UserService } from '@/model/user/UserService'
-import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
-import { AirNotification } from '@/airpower/feedback/AirNotification'
-import { UserEntity } from '@/model/user/UserEntity'
+import {ref} from 'vue'
+import {AFrame, AImage, AInput, AUser,} from '@/airpower/component'
+import {AirConfig} from '@/airpower/config/AirConfig'
+import {AirRouter} from '@/airpower/helper/AirRouter'
+import {MenuEntity} from '@/model/menu/MenuEntity'
+import {UserService} from '@/model/user/UserService'
+import {UserEntity} from '@/model/user/UserEntity'
 import airpower from '@/airpower/assets/img/airpower.svg'
 
 const currentUserInfo = ref(new UserEntity())
@@ -55,16 +51,6 @@ async function init() {
   }
   AirConfig.savePermissionList(permissions)
   await getMenuList()
-
-  AirWebsocket.create({
-    onmessage(message) {
-      // eslint-disable-next-line no-console
-      console.log(message)
-    },
-    onopen() {
-      AirNotification.success('Websocket连接成功')
-    },
-  })
 }
 
 init()
