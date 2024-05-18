@@ -6,7 +6,7 @@
       :style="{ width: isQrcodeLogin ? 'auto' : '400px' }"
     >
       <div class="logo">
-        <img src="@/assets/img/logo.png">
+        <img src="@/airpower/assets/img/airpower.svg">
       </div>
       <div class="app-name">
         {{ appInfo.appName }}
@@ -289,7 +289,7 @@ import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
 
 watch(AppConfig.currentUser, () => {
-  alert('有人更新了 user !')
+  AirNotification.success('User更新了')
 })
 
 /**
@@ -505,12 +505,10 @@ getAppInfo()
     }
 
     .logo {
-      width: 80px;
       height: 80px;
       padding: 10px;
       background-color: rgba($color: #fff, $alpha: 0.1);
       border-radius: 20px;
-      box-shadow: 0 0 60px rgba($color: #000, $alpha: 0.1);
 
       img {
         width: 100%;
