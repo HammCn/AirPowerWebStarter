@@ -10,6 +10,11 @@
       <img src="https://svg.hamm.cn?key=Build&value=Vite">
       <img src="https://svg.hamm.cn?key=UI&value=ElementPlus">
     </div>
+    <el-input v-model="word">
+      <template #append>
+        <el-button @click="AirSpeech.autoSpeak(word)" />
+      </template>
+    </el-input>
     <div class="link">
       <router-link to="/console">
         Console
@@ -39,8 +44,11 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { ref } from 'vue'
 import airpower from '@/airpower/assets/img/airpower.svg'
+import { AirSpeech } from '@/airpower/helper/AirSpeech'
 
+const word = ref('鸡你太美')
 </script>
 <style scoped lang="scss">
 .home {
