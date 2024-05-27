@@ -36,6 +36,8 @@ import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
 import { UserEntity } from '@/model/user/UserEntity'
 import airpower from '@/airpower/assets/img/airpower.svg'
+import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const currentUserInfo = ref(new UserEntity())
 const menuList = ref([] as MenuEntity[])
@@ -54,6 +56,15 @@ async function init() {
   }
   AirConfig.savePermissionList(permissions)
   await getMenuList()
+
+  AirWebsocket.create(`${AirConfig.websocketUrl}?${AirConfig.getAccessToken()}`, {
+    onConnect() {
+      AirNotification.success('连接成功')
+    },
+    onMessage(event) {
+      AirNotification.success(`${event.payload.type} ${event.payload.data}`, event.id)
+    },
+  })
 }
 
 init()
