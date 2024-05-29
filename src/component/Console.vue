@@ -8,6 +8,7 @@
       >
     </template>
     <template #user>
+      {{ currentUserInfo.nickname }}
       <AUser :user="currentUserInfo">
         <div>
           <AImage :src="currentUserInfo.avatar" />
@@ -68,6 +69,7 @@ async function init() {
 }
 
 init()
+
 </script>
 <style scoped lang="scss">
 .logo {

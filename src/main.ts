@@ -20,3 +20,13 @@ setTimeout(() => {
   user.email = 'admin@hamm.cn'
   AppConfig.currentUser.value = user
 }, 5000)
+
+window.addEventListener('storage', (event) => {
+  if (event.key === AirConfig.authorizationHeaderKey) {
+    if (event.newValue) {
+      window.location.replace('/console')
+    } else {
+      window.location.replace('/login')
+    }
+  }
+})
