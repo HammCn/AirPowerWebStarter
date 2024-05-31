@@ -21,30 +21,14 @@
       >
         {{ param.parent.name }}
       </el-form-item>
-      <el-form-item
-        :label="PermissionEntity.getFormFieldLabel('name')"
-        prop="name"
-      >
-        <AInput
-          v-model.name="formData.name"
-          :entity="PermissionEntity"
-        />
-      </el-form-item>
-      <el-form-item
-        :label="PermissionEntity.getFormFieldLabel('identity')"
-        prop="identity"
-      >
-        <AInput
-          v-model.identity="formData.identity"
-          :entity="PermissionEntity"
-        />
-      </el-form-item>
+      <AFormField field="name" />
+      <AFormField field="identity" />
     </el-form>
   </ADialog>
 </template>
 
 <script lang="ts" setup>
-import { ADialog, AInput } from '@/airpower/component'
+import { ADialog, AFormField } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { PermissionService } from '@/model/permission/PermissionService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'

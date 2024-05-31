@@ -19,24 +19,8 @@
         :column="2"
         title="基础信息"
       >
-        <el-form-item
-          :label="UserEntity.getFormFieldLabel('email')"
-          prop="email"
-        >
-          <AInput
-            v-model.email="formData.email"
-            :entity="UserEntity"
-          />
-        </el-form-item>
-        <el-form-item
-          :label="UserEntity.getFormFieldLabel('nickname')"
-          prop="nickname"
-        >
-          <AInput
-            v-model.nickname="formData.nickname"
-            :entity="UserEntity"
-          />
-        </el-form-item>
+        <AFormField field="email" />
+        <AFormField field="nickname" />
       </AGroup>
       <AGroup
         title="用户角色"
@@ -66,7 +50,7 @@
 
 <script lang="ts" setup>
 import {
-  AButton, ADialog, AGroup, AInput,
+  AButton, ADialog, AFormField, AGroup,
 } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { UserService } from '@/model/user/UserService'
