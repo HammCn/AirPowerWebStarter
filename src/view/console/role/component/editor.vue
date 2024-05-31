@@ -15,21 +15,13 @@
       :rules="rules"
       @submit.prevent
     >
-      <el-form-item
-        :label="RoleEntity.getFormFieldLabel('name')"
-        prop="name"
-      >
-        <AInput
-          v-model.name="formData.name"
-          :entity="RoleEntity"
-        />
-      </el-form-item>
+      <AFormField field="name" />
     </el-form>
   </ADialog>
 </template>
 
 <script lang="ts" setup>
-import { ADialog, AInput } from '@/airpower/component'
+import { ADialog, AFormField } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { RoleService } from '@/model/role/RoleService'
 import { RoleEntity } from '@/model/role/RoleEntity'
