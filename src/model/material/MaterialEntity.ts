@@ -1,6 +1,5 @@
 import {
-  Alias,
-  Dictionary, Field, Model, ToModel, Type,
+  Alias, Dictionary, Field, Model, ToModel, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { Form } from '@/airpower/decorator/FormField'
@@ -8,8 +7,7 @@ import { Search } from '@/airpower/decorator/SearchField'
 import { Table } from '@/airpower/decorator/TableField'
 import { IJson } from '@/airpower/interface/IJson'
 import { BaseEntity } from '@/base/BaseEntity'
-import { MaterialType } from './MaterialType'
-import { MaterialTypeDictionary } from './MaterialTypeDictionary'
+import { MaterialTypeEnum } from './MaterialTypeEnum'
 
 /**
  * # 物料
@@ -50,17 +48,17 @@ export class MaterialEntity extends BaseEntity {
   /**
    * # 物料类型
    */
-  @Dictionary(MaterialTypeDictionary)
+  @Dictionary(MaterialTypeEnum)
   @Table({
     showColor: true,
     width: 100,
   })
   @Search()
   @Form({
-    defaultValue: MaterialType.PUBLIC,
+    defaultValue: MaterialTypeEnum.PUBLIC.key,
     requiredNumber: true,
   })
-  @Field('物料类型') materialType!: MaterialType
+  @Field('物料类型') materialType!: number
 
   /**
    * # 单位ID

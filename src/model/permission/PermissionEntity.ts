@@ -1,7 +1,5 @@
 import {
-  Dictionary,
-  Field,
-  Model, Type,
+  Dictionary, Field, Model, Type,
 } from '@/airpower/decorator/Custom'
 import { EntityConfig } from '@/airpower/decorator/EntityConfig'
 import { Form } from '@/airpower/decorator/FormField'
@@ -41,7 +39,7 @@ export class PermissionEntity extends BaseEntity implements ITree {
     copyField: true,
   })
   @Form({
-    requiredString: '请输入权限标识...',
+    requiredString: true,
   })
   @Field('权限标识') identity!: string
 

@@ -25,9 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  APanel, ATable, AToolBar,
-} from '@/airpower/component'
+import { APanel, ATable, AToolBar } from '@/airpower/component'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
 import { PermissionService } from '@/model/permission/PermissionService'
 import { PermissionEditor } from './component'

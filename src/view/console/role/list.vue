@@ -19,7 +19,6 @@
         <AButton
           link-button
           tooltip="授权菜单"
-          :disabled="row.data.isSystem"
           @click="onMenuEditor(row.data)"
         >
           菜单
@@ -27,7 +26,6 @@
         <AButton
           tooltip="授权权限"
           link-button
-          :disabled="row.data.isSystem"
           @click="onPermissionEditor(row.data)"
         >
           权限
@@ -45,9 +43,7 @@
 
 <script lang="ts" setup>
 import {
-  AButton,
-  APage,
-  APanel, ATable, AToolBar,
+  AButton, APage, APanel, ATable, AToolBar,
 } from '@/airpower/component'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import { RoleEditor, RoleMenuEditor, RolePermissionEditor } from './component'

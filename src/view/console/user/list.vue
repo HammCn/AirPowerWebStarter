@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import {
-  APanel, ATable, AToolBar, APage,
+  APage, APanel, ATable, AToolBar,
 } from '@/airpower/component'
 import { UserEntity } from '@/model/user/UserEntity'
 import { UserService } from '@/model/user/UserService'
