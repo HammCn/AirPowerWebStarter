@@ -22,9 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  APanel, ATable, AToolBar,
-} from '@/airpower/component'
+import { APanel, ATable, AToolBar } from '@/airpower/component'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { MenuService } from '@/model/menu/MenuService'
 import { useAirTableTree } from '@/airpower/hook/useAirTableTree'

@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import {
-  APanel, APage, ATable, AToolBar, AButton,
+  AButton, APage, APanel, ATable, AToolBar,
 } from '@/airpower/component'
 import { useAirTable } from '@/airpower/hook/useAirTable'
 import { SupplierEntity } from '@/model/supplier/SupplierEntity'
