@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="RoleEntity.getClassName() + '权限授权'"
+    :title="RoleEntity.getModelName() + '权限授权'"
     :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
@@ -54,7 +54,7 @@ async function onSelect(selectList: PermissionEntity[]) {
   formData.value.permissionList = selectList
 }
 
-const treeList = ref([] as PermissionEntity[])
+const treeList = ref<PermissionEntity[]>([])
 
 async function getPermissionList() {
   treeList.value = await PermissionService.create(isLoading).getList(new AirRequest(PermissionEntity))

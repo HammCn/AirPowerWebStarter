@@ -5,7 +5,7 @@ import { Strings } from './Strings'
  * # 路由配置
  * @author Hamm
  */
-export function createRoutes() {
+export function createRoutes(): RouteRecordRaw[] {
   return [
     {
       path: '/login',
@@ -36,5 +36,5 @@ export function createRoutes() {
         },
       ],
     },
-  ] as RouteRecordRaw[]
+  ]
 }

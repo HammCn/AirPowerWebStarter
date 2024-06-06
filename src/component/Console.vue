@@ -41,7 +41,7 @@ import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const currentUserInfo = ref(new UserEntity())
-const menuList = ref([] as MenuEntity[])
+const menuList = ref<MenuEntity[]>([])
 const isLoading = ref(false)
 
 async function getMenuList() {
