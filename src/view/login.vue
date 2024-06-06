@@ -372,14 +372,12 @@ async function getAppInfo() {
 function loginRedirect(result: string) {
   if (appKey) {
     // Oauth登录 重定向code
-    // eslint-disable-next-line no-restricted-globals
-    location.href = `${decodeURIComponent(redirectUri)}?code=${result}`
+    window.location.href = `${decodeURIComponent(redirectUri)}?code=${result}`
     return
   }
   AirConfig.saveAccessToken(result)
   // 正常登录 保存 AccessToken
-  // eslint-disable-next-line no-restricted-globals
-  location.href = redirectUri
+  window.location.href = redirectUri
 }
 
 /**
@@ -407,7 +405,6 @@ async function onEmailLogin() {
  * # 注册
  */
 async function onReg() {
-  // eslint-disable-next-line no-case-declarations
   await UserService.create(isLoadingLogin).register(requestVo.value)
   AirAlert.create().setConfirmText('去登录').show('账号注册成功, 你可以使用账号密码去登录了!')
   currentAction.value = LoginAction.LOGIN_VIA_PASSWORD

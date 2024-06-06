@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { AirLanguage } from '@/airpower/enum/AirLanguage'
 import { Strings } from '../Strings'
 
