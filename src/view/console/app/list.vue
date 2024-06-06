@@ -65,7 +65,6 @@ const {
 })
 
 function openOAuth2(app: AppEntity) {
-  // eslint-disable-next-line no-restricted-globals
   window.open(`${AirConfig.oauthUrl}?appKey=${app.appKey}&redirectUri=${encodeURIComponent(`${app.url}/callback`)}`)
 }
 

@@ -8,11 +8,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { AirConfig } from '@/airpower/config/AirConfig'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const isLoading = ref(true)
 
-// eslint-disable-next-line no-console
-console.log(AirConfig.router.currentRoute.value.query.code)
+AirNotification.success(AirConfig.router.currentRoute.value.query.code?.toString())
 
 </script>
 <style lang="scss" scoped>

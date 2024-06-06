@@ -1,6 +1,5 @@
 import { AirI18n } from '@/airpower/helper/AirI18n'
 
-/* eslint-disable no-unused-vars */
 /**
  * # 语言包
  */
