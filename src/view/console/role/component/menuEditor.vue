@@ -1,6 +1,6 @@
 <template>
   <ADialog
-    :title="RoleEntity.getClassName() + '菜单授权'"
+    :title="RoleEntity.getModelName() + '菜单授权'"
     :form-ref="formRef"
     :loading="isLoading"
     :fullable="false"
@@ -51,7 +51,7 @@ async function onSelect(current: MenuEntity, more: IJson) {
   formData.value.menuList = more.checkedNodes
 }
 
-const treeList = ref([] as MenuEntity[])
+const treeList = ref<MenuEntity[]>([])
 
 async function getMenuTreeList() {
   treeList.value = await MenuService.create(isLoading).getList(new AirRequest(MenuEntity))
