@@ -16,7 +16,7 @@
       @on-delete="onDelete"
       @on-sort-change="onSortChanged"
     >
-      <template #customRow="{data}">
+      <template #customRow="{ data }">
         <AButton
           link-button
           tooltip="重置秘钥"
