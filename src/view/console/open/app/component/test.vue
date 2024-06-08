@@ -1,0 +1,170 @@
+<template>
+  <ADialog
+    title="测试应用"
+    :loading="isLoading"
+    :fullable="false"
+    with="1000px"
+    :disable-confirm="!app.appSecret || (OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic) && !app.publicKey)"
+    @on-confirm="onTest()"
+    @on-cancel="onCancel()"
+  >
+    <el-form
+      ref="formRef"
+      :model="app"
+      label-width="120px"
+      @submit.prevent
+    >
+      <AGroup
+        title="应用信息"
+        :column="2"
+      >
+        <AFormField
+          v-model="app"
+          field="appKey"
+          :entity="OpenAppEntity"
+        />
+        <AFormField
+          v-model="app"
+          field="appSecret"
+          :entity="OpenAppEntity"
+        />
+        <el-form-item label="版本号">
+          <el-input
+            v-model="version"
+            readonly
+          />
+        </el-form-item>
+        <div />
+        <template v-if="OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic)">
+          <AFormField
+            v-model="app"
+            field="publicKey"
+            :entity="OpenAppEntity"
+          />
+        </template>
+      </AGroup>
+      <AGroup
+        title="业务数据"
+        :column="2"
+      >
+        <el-form-item :label="OpenTestModel.getFormFieldLabel('name')">
+          <el-input v-model="testModel.name" />
+        </el-form-item>
+        <el-form-item :label="OpenTestModel.getFormFieldLabel('age')">
+          <el-input
+            v-model="testModel.age"
+            type="number"
+          />
+        </el-form-item>
+      </AGroup>
+      <AGroup title="验证">
+        <el-form-item label="签名元数据">
+          <div class="source">
+            <font class="appSecret">
+              {{ app.appSecret }}
+            </font>
+            <font class="appKey">
+              {{ app.appKey }}
+            </font>
+            <font class="version">
+              {{ version }}
+            </font>
+            <font class="timestamp">
+              {{ timestamp }}
+            </font>
+            <font class="content">
+              {{ content }}
+            </font>
+          </div>
+        </el-form-item>
+        <el-form-item label="签名">
+          <el-input
+            v-model="signature"
+            type="textarea"
+            readonly
+          />
+        </el-form-item>
+        <el-form-item label="加密数据">
+          <el-input
+            v-model="content"
+            type="textarea"
+            readonly
+          />
+        </el-form-item>
+      </AGroup>
+    </el-form>
+  </ADialog>
+</template>
+
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
+import {
+  ADialog, AFormField, AGroup,
+} from '@/airpower/component'
+import { airPropsParam } from '@/airpower/config/AirProps'
+import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
+import { OpenTestModel } from '@/model/open/app/OpenTestModel'
+import { AirCrypto } from '@/airpower/helper/AirCrypto'
+import { AirHttp } from '@/airpower/helper/AirHttp'
+import { OpenAppArithmeticEnum } from '@/model/open/app/OpenAppArithmeticEnum'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
+import { AirAlert } from '@/airpower/feedback/AirAlert'
+
+const props = defineProps(airPropsParam(new OpenAppEntity()))
+
+const app = ref(props.param)
+app.value.appSecret = ''
+app.value.publicKey = `
+`
+
+const isLoading = ref(false)
+
+const testModel = ref(new OpenTestModel())
+
+const version = 10000
+
+const timestamp = ref(new Date().valueOf())
+
+if (OpenAppArithmeticEnum.RSA.equalsKey(app.value.arithmetic)) {
+  AirAlert.warning('前端暂未支持RSA加解密的测试，请自行测试')
+  props.onCancel()
+}
+
+const content = computed(() => {
+  const str = JSON.stringify(testModel.value.toJson())
+  switch (app.value.arithmetic) {
+    case OpenAppArithmeticEnum.AES.key:
+      return AirCrypto.aesEncrypt(str, app.value.appSecret)
+    default:
+      return str
+  }
+})
+const source = computed(() => app.value.appSecret + app.value.appKey + version + timestamp.value + content.value)
+const signature = computed(() => AirCrypto.sha1(source.value))
+
+async function onTest() {
+  const res = await new AirHttp(`${window.location.origin}/api/openApi/test/test`).send({
+    appKey: app.value.appKey,
+    content: content.value,
+    signature: signature.value,
+    version,
+    timestamp: timestamp.value,
+  })
+  AirNotification.success(JSON.stringify(res))
+}
+
+</script>
+
+<style lang="scss" scoped>
+.source {
+  >font{
+    margin: 0px 3px;
+  }
+  .appKey{
+    color: red;
+  }
+  .timestamp{
+    color: red;
+  }
+}
+</style>
