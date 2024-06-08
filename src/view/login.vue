@@ -280,13 +280,13 @@ import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
-import { AppEntity } from '@/model/app/AppEntity'
-import { AppService } from '@/model/app/AppService'
 import { MailService } from '@/model/mail/MailService'
 import { Strings } from '@/config/Strings'
 import { AirLanguage } from '@/airpower/enum/AirLanguage'
 import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
+import { OpenAppService } from '@/model/open/app/OpenAppService'
+import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 
 watch(AppConfig.currentUser, () => {
   AirNotification.success('User更新了')
@@ -320,7 +320,7 @@ const requestVo = ref(new UserRequestVo())
 const appKey = (AirConfig.router.currentRoute.value.query.appKey || '').toString()
 const redirectUri = (AirConfig.router.currentRoute.value.query.redirectUri || '/console').toString()
 
-const appInfo = ref(new AppEntity())
+const appInfo = ref(new OpenAppEntity())
 
 requestVo.value.email = 'admin@hamm.cn'
 requestVo.value.password = 'Aa123456'
@@ -362,7 +362,7 @@ const isButtonDisabled = computed(() => {
 async function getAppInfo() {
   if (appKey) {
     requestVo.value.appKey = appKey
-    appInfo.value = await AppService.create(isLoadingApp).getAppByKey(appKey)
+    appInfo.value = await OpenAppService.create(isLoadingApp).getAppByKey(appKey)
   }
 }
 
