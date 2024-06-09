@@ -21,7 +21,7 @@
       @on-disable="onDisable"
       @on-enable="onEnable"
     >
-      <template #url="{data}">
+      <template #url="{ data }">
         <el-link @click="openOAuth2(data)">
           {{ data.url }}
         </el-link>
@@ -51,6 +51,13 @@
         >
           重置RSA密钥对
         </AButton>
+        <AButton
+          link-button
+          tooltip="请求日志"
+          @click="onAppLog(data)"
+        >
+          请求日志
+        </AButton>
       </template>
     </ATable>
     <template #footerLeft>
@@ -69,7 +76,7 @@ import {
 import { useAirTable } from '@/airpower/hook/useAirTable'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
-import { OpenAppEditor, OpenAppTest } from './component'
+import { OpenAppEditor, OpenAppLog, OpenAppTest } from './component'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirClipboard } from '@/airpower/helper/AirClipboard'
@@ -136,8 +143,12 @@ async function onAdd() {
   await AirClipboard.copy(appSecret)
 }
 
-async function onTest(app:OpenAppEntity) {
+async function onTest(app: OpenAppEntity) {
   AirDialog.show(OpenAppTest, app)
+}
+
+async function onAppLog(app: OpenAppEntity) {
+  AirDialog.show(OpenAppLog, app)
 }
 
 function openOAuth2(app: OpenAppEntity) {
