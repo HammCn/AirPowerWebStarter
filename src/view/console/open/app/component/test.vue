@@ -90,6 +90,9 @@
             <font class="timestamp">
               {{ timestamp }}
             </font>
+            <font class="nonce">
+              {{ nonce }}
+            </font>
             <font class="content">
               {{ content }}
             </font>
@@ -162,7 +165,7 @@ const content = computed(() => {
       return str
   }
 })
-const source = computed(() => app.value.appSecret + app.value.appKey + version + timestamp.value + content.value)
+const source = computed(() => app.value.appSecret + app.value.appKey + version + timestamp.value + nonce.value + content.value)
 const signature = computed(() => AirCrypto.sha1(source.value))
 
 async function onTest() {
@@ -187,11 +190,9 @@ async function onTest() {
     margin: 0px 3px;
   }
 
-  .appKey {
-    color: red;
-  }
-
-  .timestamp {
+  .appKey,
+  .timestamp,
+  .content {
     color: red;
   }
 }

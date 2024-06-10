@@ -11,7 +11,7 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="OpenAppEntity"
-      :ctrl-width="380"
+      :ctrl-width="310"
       show-enable-and-disable
       hide-delete
       :disable-edit="(app: OpenAppEntity) => app.isDisabled"
@@ -41,7 +41,7 @@
           tooltip="重置AppSecret"
           @click="onResetSecret(data)"
         >
-          重置AppSecret
+          重置Secret
         </AButton>
         <AButton
           :disabled="data.isDisabled"
@@ -49,14 +49,14 @@
           tooltip="重置RSA密钥对"
           @click="onResetKeyPair(data)"
         >
-          重置RSA密钥对
+          重置密钥对
         </AButton>
         <AButton
           link-button
           tooltip="请求日志"
           @click="onAppLog(data)"
         >
-          请求日志
+          日志
         </AButton>
       </template>
     </ATable>
