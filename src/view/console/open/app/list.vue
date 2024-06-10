@@ -6,12 +6,22 @@
       :service="OpenAppService"
       @on-add="onAdd"
       @on-search="onSearch"
-    />
+    >
+      <template #afterButton>
+        <AButton
+          type="CHECKIN"
+          tooltip="测试API"
+          @click="onTest()"
+        >
+          测试API
+        </AButton>
+      </template>
+    </AToolBar>
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
       :entity="OpenAppEntity"
-      :ctrl-width="310"
+      :ctrl-width="280"
       show-enable-and-disable
       hide-delete
       :disable-edit="(app: OpenAppEntity) => app.isDisabled"
@@ -27,14 +37,6 @@
         </el-link>
       </template>
       <template #customRow="{ data }">
-        <AButton
-          link-button
-          :disabled="data.isDisabled"
-          tooltip="测试"
-          @click="onTest(data)"
-        >
-          测试
-        </AButton>
         <AButton
           link-button
           :disabled="data.isDisabled"
@@ -143,8 +145,8 @@ async function onAdd() {
   await AirClipboard.copy(appSecret)
 }
 
-async function onTest(app: OpenAppEntity) {
-  AirDialog.show(OpenAppTest, app)
+async function onTest() {
+  AirDialog.show(OpenAppTest)
 }
 
 async function onAppLog(app: OpenAppEntity) {
