@@ -34,6 +34,24 @@
             readonly
           />
         </el-form-item>
+        <el-form-item label="时间戳">
+          <el-input v-model="timestamp">
+            <template #append>
+              <el-button @click="timestamp = new Date().valueOf()">
+                重置
+              </el-button>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="随机串">
+          <el-input v-model="nonce">
+            <template #append>
+              <el-button @click="nonce = AirRand.getRandMixedCharString()">
+                重置
+              </el-button>
+            </template>
+          </el-input>
+        </el-form-item>
         <div />
         <template v-if="OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic)">
           <AFormField
@@ -97,7 +115,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import {
+  computed, ref,
+} from 'vue'
 import {
   ADialog, AFormField, AGroup,
 } from '@/airpower/component'
@@ -109,6 +129,7 @@ import { AirHttp } from '@/airpower/helper/AirHttp'
 import { OpenAppArithmeticEnum } from '@/model/open/app/OpenAppArithmeticEnum'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
+import { AirRand } from '@/airpower/helper/AirRand'
 
 const props = defineProps(airPropsParam(new OpenAppEntity()))
 
@@ -124,6 +145,8 @@ const testModel = ref(new OpenTestModel())
 const version = 10000
 
 const timestamp = ref(new Date().valueOf())
+
+const nonce = ref(AirRand.getRandMixedCharString())
 
 if (OpenAppArithmeticEnum.RSA.equalsKey(app.value.arithmetic)) {
   AirAlert.warning('前端暂未支持RSA加解密的测试，请自行测试')
@@ -149,7 +172,10 @@ async function onTest() {
     signature: signature.value,
     version,
     timestamp: timestamp.value,
+    nonce: nonce.value,
   })
+
+  AirRand.getRandCharString()
   AirNotification.success(JSON.stringify(res))
 }
 
@@ -157,13 +183,15 @@ async function onTest() {
 
 <style lang="scss" scoped>
 .source {
-  >font{
+  >font {
     margin: 0px 3px;
   }
-  .appKey{
+
+  .appKey {
     color: red;
   }
-  .timestamp{
+
+  .timestamp {
     color: red;
   }
 }

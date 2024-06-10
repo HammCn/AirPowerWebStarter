@@ -11,7 +11,7 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="OpenAppEntity"
-      :ctrl-width="320"
+      :ctrl-width="380"
       show-enable-and-disable
       hide-delete
       :disable-edit="(app: OpenAppEntity) => app.isDisabled"
