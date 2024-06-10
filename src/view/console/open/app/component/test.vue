@@ -4,7 +4,7 @@
     :loading="isLoading"
     :fullable="false"
     with="1000px"
-    :disable-confirm="!app.appSecret || (OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic) && !app.publicKey)"
+    :disable-confirm="!app.appKey || !app.appSecret || (OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic) && !app.publicKey)"
     @on-confirm="onTest()"
     @on-cancel="onCancel()"
   >
@@ -34,6 +34,24 @@
             readonly
           />
         </el-form-item>
+        <el-form-item label="时间戳">
+          <el-input v-model="timestamp">
+            <template #append>
+              <el-button @click="timestamp = new Date().valueOf()">
+                重置
+              </el-button>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="随机串">
+          <el-input v-model="nonce">
+            <template #append>
+              <el-button @click="nonce = AirRand.getRandMixedCharString()">
+                重置
+              </el-button>
+            </template>
+          </el-input>
+        </el-form-item>
         <div />
         <template v-if="OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic)">
           <AFormField
@@ -45,15 +63,12 @@
       </AGroup>
       <AGroup
         title="业务数据"
-        :column="2"
       >
-        <el-form-item :label="OpenTestModel.getFormFieldLabel('name')">
-          <el-input v-model="testModel.name" />
-        </el-form-item>
-        <el-form-item :label="OpenTestModel.getFormFieldLabel('age')">
+        <el-form-item label="业务数据">
           <el-input
-            v-model="testModel.age"
-            type="number"
+            v-model="json"
+            placeholder="请求的业务数据JSON"
+            type="textarea"
           />
         </el-form-item>
       </AGroup>
@@ -71,6 +86,9 @@
             </font>
             <font class="timestamp">
               {{ timestamp }}
+            </font>
+            <font class="nonce">
+              {{ nonce }}
             </font>
             <font class="content">
               {{ content }}
@@ -97,33 +115,34 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import {
+  computed, ref,
+} from 'vue'
 import {
   ADialog, AFormField, AGroup,
 } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
-import { OpenTestModel } from '@/model/open/app/OpenTestModel'
 import { AirCrypto } from '@/airpower/helper/AirCrypto'
 import { AirHttp } from '@/airpower/helper/AirHttp'
 import { OpenAppArithmeticEnum } from '@/model/open/app/OpenAppArithmeticEnum'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
+import { AirRand } from '@/airpower/helper/AirRand'
 
-const props = defineProps(airPropsParam(new OpenAppEntity()))
+const props = defineProps(airPropsParam())
 
-const app = ref(props.param)
-app.value.appSecret = ''
-app.value.publicKey = `
-`
+const app = ref(new OpenAppEntity())
 
 const isLoading = ref(false)
 
-const testModel = ref(new OpenTestModel())
+const json = ref('{"name":"Hamm","age":"18","len":"18cm"}')
 
 const version = 10000
 
 const timestamp = ref(new Date().valueOf())
+
+const nonce = ref(AirRand.getRandMixedCharString())
 
 if (OpenAppArithmeticEnum.RSA.equalsKey(app.value.arithmetic)) {
   AirAlert.warning('前端暂未支持RSA加解密的测试，请自行测试')
@@ -131,15 +150,14 @@ if (OpenAppArithmeticEnum.RSA.equalsKey(app.value.arithmetic)) {
 }
 
 const content = computed(() => {
-  const str = JSON.stringify(testModel.value.toJson())
   switch (app.value.arithmetic) {
     case OpenAppArithmeticEnum.AES.key:
-      return AirCrypto.aesEncrypt(str, app.value.appSecret)
+      return AirCrypto.aesEncrypt(json.value, app.value.appSecret)
     default:
-      return str
+      return json.value
   }
 })
-const source = computed(() => app.value.appSecret + app.value.appKey + version + timestamp.value + content.value)
+const source = computed(() => app.value.appSecret + app.value.appKey + version + timestamp.value + nonce.value + content.value)
 const signature = computed(() => AirCrypto.sha1(source.value))
 
 async function onTest() {
@@ -149,7 +167,10 @@ async function onTest() {
     signature: signature.value,
     version,
     timestamp: timestamp.value,
+    nonce: nonce.value,
   })
+
+  AirRand.getRandCharString()
   AirNotification.success(JSON.stringify(res))
 }
 
@@ -157,13 +178,13 @@ async function onTest() {
 
 <style lang="scss" scoped>
 .source {
-  >font{
+  >font {
     margin: 0px 3px;
   }
-  .appKey{
-    color: red;
-  }
-  .timestamp{
+
+  .appKey,
+  .timestamp,
+  .content {
     color: red;
   }
 }
