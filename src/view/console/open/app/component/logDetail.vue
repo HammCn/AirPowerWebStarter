@@ -9,7 +9,7 @@
     <el-tabs type="border-card">
       <el-tab-pane label="请求">
         <el-tree
-          :data="getTreeData(JSON.parse(param.request))"
+          :data="getTreeData(json)"
           :props="AirConfig.treeProps"
         >
           <template #default="{ node, data }">
@@ -41,17 +41,18 @@
   </ADialog>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import { ACopy, ADialog } from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { IJson } from '@/airpower/interface/IJson'
 import { OpenLogEntity } from '@/model/open/log/OpenLogEntity'
 
-defineProps(airPropsParam(new OpenLogEntity()))
+const props = defineProps(airPropsParam(new OpenLogEntity()))
 
 function getTreeData(obj: IJson): IJson[] {
   const treeData = []
-  const keys = Object.keys(obj)
+  const keys = Object.keys(obj || {})
 
   for (let i = 0; i < keys.length; i += 1) {
     if (typeof obj[keys[i]] === 'object') {
@@ -72,6 +73,14 @@ function getTreeData(obj: IJson): IJson[] {
   }
   return treeData
 }
+
+const json = computed(() => {
+  try {
+    return JSON.parse(props.param.request)
+  } catch (e) {
+    return {}
+  }
+})
 </script>
 <style scoped lang="scss">
 .custom-tree-node {

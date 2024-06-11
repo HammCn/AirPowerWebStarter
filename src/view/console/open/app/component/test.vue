@@ -4,7 +4,7 @@
     :loading="isLoading"
     :fullable="false"
     with="1000px"
-    :disable-confirm="!app.appKey || !app.appSecret || (OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic) && !app.publicKey)"
+    :disable-confirm="!app.appKey || !app.appSecret || !app.arithmetic || (OpenAppArithmeticEnum.RSA.equalsKey(app.arithmetic) && !app.publicKey)"
     @on-confirm="onTest()"
     @on-cancel="onCancel()"
   >
@@ -26,6 +26,11 @@
         <AFormField
           v-model="app"
           field="appSecret"
+          :entity="OpenAppEntity"
+        />
+        <AFormField
+          v-model="app"
+          field="arithmetic"
           :entity="OpenAppEntity"
         />
         <el-form-item label="版本号">
@@ -152,6 +157,9 @@ if (OpenAppArithmeticEnum.RSA.equalsKey(app.value.arithmetic)) {
 const content = computed(() => {
   switch (app.value.arithmetic) {
     case OpenAppArithmeticEnum.AES.key:
+      if (!app.value.appSecret) {
+        return ''
+      }
       return AirCrypto.aesEncrypt(json.value, app.value.appSecret)
     default:
       return json.value
