@@ -138,6 +138,8 @@ import { AirRand } from '@/airpower/helper/AirRand'
 const props = defineProps(airPropsParam())
 
 const app = ref(new OpenAppEntity())
+app.value.appKey = ''
+app.value.appSecret = ''
 
 const isLoading = ref(false)
 
