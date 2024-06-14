@@ -3,7 +3,7 @@ import { Strings } from './Strings'
 
 /**
  * # 路由配置
- * @author Hamm
+ * @author Hamm.cn
  */
 export const routes: RouteRecordRaw[] = [
   {

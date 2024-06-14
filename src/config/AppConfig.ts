@@ -4,7 +4,7 @@ import { UserEntity } from '@/model/user/UserEntity'
 /**
  * # 应用配置
  *
- * @author Hamm
+ * @author Hamm.cn
  */
 export class AppConfig {
   /**

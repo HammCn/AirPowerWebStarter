@@ -11,7 +11,7 @@ import { PermissionSystemEnum } from './PermissionSystemEnum'
 
 /**
  * # 权限
- * @author Hamm
+ * @author Hamm.cn
  */
 @EntityConfig({
   addChildPermission: 'add',

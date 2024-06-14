@@ -13,7 +13,7 @@ import { Search } from '@/airpower/decorator/SearchField'
 
 /**
  * # 角色
- * @author Hamm
+ * @author Hamm.cn
  */
 @EntityConfig({
 })

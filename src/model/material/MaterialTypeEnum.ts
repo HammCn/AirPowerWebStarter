@@ -4,7 +4,7 @@ import { AirColor } from '@/airpower/enum/AirColor'
 /**
  * # 物料类型枚举
  *
- * @author Hamm
+ * @author Hamm.cn
  */
 export class MaterialTypeEnum extends AirEnum {
   /**

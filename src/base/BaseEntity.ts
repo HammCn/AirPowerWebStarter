@@ -11,7 +11,7 @@ import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
 
 /**
  * # 数据库实体基类
- * @author Hamm
+ * @author Hamm.cn
  */
 @EntityConfig({
 })

@@ -12,7 +12,7 @@ import { OrderNumberDictionary } from '../OrderNumberDictionary'
 
 /**
  * # 菜单
- * @author Hamm
+ * @author Hamm.cn
  */
 @EntityConfig({
   addChildPermission: 'add',
