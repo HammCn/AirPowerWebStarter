@@ -5,7 +5,7 @@ import { AirColor } from '@/airpower/enum/AirColor'
 
 /**
  * # 开放应用加密方式
- * @author Hamm
+ * @author Hamm.cn
  */
 export class OpenAppArithmeticEnum extends AirEnum {
   static readonly AES = new OpenAppArithmeticEnum(1, 'AES', AirColor.WARNING)

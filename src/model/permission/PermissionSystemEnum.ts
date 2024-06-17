@@ -4,7 +4,7 @@ import { AirColor } from '@/airpower/enum/AirColor'
 /**
  * # 权限类型
  *
- * @author Hamm
+ * @author Hamm.cn
  */
 export class PermissionSystemEnum extends AirEnum<boolean> {
   /**

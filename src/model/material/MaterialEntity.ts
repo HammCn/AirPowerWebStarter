@@ -11,7 +11,7 @@ import { MaterialTypeEnum } from './MaterialTypeEnum'
 
 /**
  * # 物料
- * @author Hamm
+ * @author Hamm.cn
  */
 @EntityConfig({
   // addTitle: '创建物料',
