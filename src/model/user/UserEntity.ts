@@ -61,6 +61,7 @@ export class UserEntity extends BaseEntity implements IUser {
   })
   @Table({
     forceShow: true,
+    phone: true,
   })
   @Search()
   @Field('手机') phone!: string
