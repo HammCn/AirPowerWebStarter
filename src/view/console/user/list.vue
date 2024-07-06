@@ -11,9 +11,12 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="UserEntity"
-      :ctrl-width="90"
+      :ctrl-width="150"
+      show-enable-and-disable
       @on-edit="onEdit"
       @on-delete="onDelete"
+      @on-enable="onEnable"
+      @on-disable="onDisable"
     />
     <template #footerLeft>
       <APage
@@ -33,12 +36,23 @@ import { UserService } from '@/model/user/UserService'
 import { useAirTable } from '@/airpower/hook/useAirTable'
 import { UserEditor } from './component'
 
+import { AirDialog } from '@/airpower/helper/AirDialog'
+import { UserSelector } from '@/view/console/user/component'
+
 const {
   isLoading, response,
-  onPageChanged, onDelete, onEdit, onAdd, onSearch,
+  onPageChanged, onDelete, onEdit, onAdd, onSearch, onEnable, onDisable,
 } = useAirTable(UserEntity, UserService, {
   editView: UserEditor,
 })
 
+async function init() {
+  const userList = await AirDialog.selectList(UserSelector)
+  console.log(userList)
+  const user = await AirDialog.select(UserSelector)
+  console.log(user)
+}
+
+init()
 </script>
 <style scoped lang="scss"></style>
