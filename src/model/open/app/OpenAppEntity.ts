@@ -8,7 +8,6 @@ import { Search } from '@/airpower/decorator/SearchField'
 
 @EntityConfig({
   hideFieldSelector: true,
-  permissionPrefix: 'open/app_',
 })
 @Model('应用')
 export class OpenAppEntity extends BaseEntity {
@@ -58,12 +57,12 @@ export class OpenAppEntity extends BaseEntity {
     textarea: true,
     maxLength: 9999,
   })
-  @Field('公钥') publicKey!:string
+  @Field('公钥') publicKey!: string
 
   @Form({
     textarea: true,
   })
-  @Field('私钥') privateKey!:string
+  @Field('私钥') privateKey!: string
 
   /**
    * # 应用URL
