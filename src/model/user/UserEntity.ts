@@ -75,4 +75,9 @@ export class UserEntity extends BaseEntity implements IUser {
     payloadField: 'name',
   })
   @Type(RoleEntity, true) roleList!: RoleEntity[]
+
+  @Table({
+    removed: false,
+  })
+  declare isDisabled: boolean
 }
