@@ -11,7 +11,7 @@
 
 # AirPowerWebStarter
 
-via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://github.com/HammCn/AirPowerWebStarter)
+via [Github](https://github.com/HammCn/AirPowerWebStarter) / [Gitee](https://gitee.com/air-power/AirPowerWebStarter)
 
 ### 写在前面
 
@@ -28,15 +28,6 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
 
 建议windows开发者使用 `git bash` 不要使用windows自带的拉垮的 `cmd` `powershell` 等。否则接下来的脚本可能出现问题，你只能通过自己手动去操作。
 
-- 通过**Gitee**代码仓库初始化(推荐)
-
-  ```shell
-  git clone https://gitee.com/air-power/AirPowerWebStarter.git &&
-  cd AirPowerWebStarter/src && 
-  git clone https://gitee.com/air-power/AirPower4T.git airpower && cd ../ &&
-  yarn && cp .env.dev .env && yarn s
-  ```
-
 - 通过**Github**代码仓库初始化
 
   ```shell
@@ -46,6 +37,16 @@ via [Gitee](https://gitee.com/air-power/AirPowerWebStarter) / [Github](https://g
   yarn && cp .env.dev .env && yarn s
   ```
 
+
+- 通过**Gitee**代码仓库初始化(推荐)
+
+  ```shell
+  git clone https://gitee.com/air-power/AirPowerWebStarter.git &&
+  cd AirPowerWebStarter/src && 
+  git clone https://gitee.com/air-power/AirPower4T.git airpower && cd ../ &&
+  yarn && cp .env.dev .env && yarn s
+  ```
+  
 ### 二、修改环境变量
 
 按需修改配置
