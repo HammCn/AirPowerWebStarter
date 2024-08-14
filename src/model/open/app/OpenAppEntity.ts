@@ -74,13 +74,13 @@ export class OpenAppEntity extends BaseEntity {
     requiredString: true,
     placeholder: '带协议头,无需/结尾',
   })
-  @Field('应用地址') url!: string
+  @Field('回调网关') url!: string
 
   @Field('IP白名单')
   @Form({
     textarea: true,
     defaultValue: '',
-    placeholder: '请输入IP白名单，一行一个',
+    placeholder: '请输入IP白名单，一行一个，不填写则不验证',
   })
   @Type(String) ipWhiteList!: string
 }
