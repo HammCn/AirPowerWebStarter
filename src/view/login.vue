@@ -12,10 +12,10 @@
       </div>
       <div class="tabs">
         <div
-          v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE, LoginAction.LOGIN_VIA_QRCODE]"
+          v-for="(item,index) in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE, LoginAction.LOGIN_VIA_QRCODE]"
           :key="item"
           class="item"
-          :class="currentAction === item ? 'active' : ''"
+          :class="(currentAction === item ? 'active item-' : 'item-') + index"
           @click="
             currentAction = item;
             isQrcodeLogin = LoginAction.LOGIN_VIA_QRCODE === item;
@@ -455,11 +455,13 @@ async function changeLanguage(language: AirLanguage) {
 }
 
 async function loginViaPrivateKey() {
+  // eslint-disable-next-line no-console
   console.log(123)
 }
 
 async function regViaPrivateKey() {
   const user = await UserService.create(isLoadingLogin).getWebAuthnParam()
+  // eslint-disable-next-line no-console
   console.log(user)
 }
 
@@ -707,6 +709,10 @@ getAppInfo()
       background: transparent !important;
       backdrop-filter: blur(0px) !important;
       box-shadow: none !important;
+    }
+
+    .item-3{
+      display: none;
     }
   }
 }
