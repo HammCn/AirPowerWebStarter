@@ -3,7 +3,6 @@
     <div
       v-loading="isLoadingApp"
       class="card"
-      :style="{ width: isQrcodeLogin ? 'auto' : '400px' }"
     >
       <div class="logo">
         <img src="@/airpower/assets/img/airpower.svg">
@@ -11,234 +10,237 @@
       <div class="app-name">
         {{ appInfo.appName }}
       </div>
-      <template v-if="isQrcodeLogin">
-        <div class="qrcode-login">
-          <div class="qrcode-img">
-            <img src="@/assets/img/login/qrcode.png">
-          </div>
-          <div class="desc">
-            请使用App或微信扫码登录
-          </div>
+      <div class="tabs">
+        <div
+          v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE, LoginAction.LOGIN_VIA_QRCODE]"
+          :key="item"
+          class="item"
+          :class="currentAction === item ? 'active' : ''"
+          @click="
+            currentAction = item;
+            isQrcodeLogin = LoginAction.LOGIN_VIA_QRCODE === item;
+          "
+        >
+          {{ getActionByLanguage(item) }}
         </div>
-      </template>
-      <template v-else>
-        <div class="tabs">
+      </div>
+      <div class="body">
+        <template v-if="isQrcodeLogin">
+          <div class="qrcode-login">
+            <div class="qrcode-img">
+              <img src="@/assets/img/login/qrcode.png">
+            </div>
+            <div class="desc">
+              请使用App或微信扫码登录
+            </div>
+          </div>
+        </template>
+
+        <template v-else>
           <div
-            v-for="item in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE]"
-            :key="item"
-            class="item"
-            :class="currentAction === item ? 'active' : ''"
-            @click="currentAction = item"
+            v-if="currentAction === LoginAction.LOGIN_VIA_PASSWORD"
+            class="form"
           >
-            {{ getActionByLanguage(item) }}
-          </div>
-        </div>
-        <div
-          v-if="currentAction === LoginAction.LOGIN_VIA_PASSWORD"
-          class="form"
-        >
-          <div class="item">
-            <div
-              class="label"
-              :class="!isValidAccount ? 'error' : ''"
-            >
-              ID / {{ Strings.get().Email || "邮箱" }}
+            <div class="item">
+              <div
+                class="label"
+                :class="!isValidAccount ? 'error' : ''"
+              >
+                ID / {{ Strings.get().Email || "邮箱" }}
+              </div>
+              <el-input
+                v-model="requestVo.email"
+                type="text"
+              />
             </div>
-            <el-input
-              v-model="requestVo.email"
-              type="text"
-            />
-          </div>
-          <div class="item">
-            <div class="label">
-              {{ Strings.get().Password || "密码" }}
+            <div class="item">
+              <div class="label">
+                {{ Strings.get().Password || "密码" }}
+              </div>
+              <el-input
+                v-model="requestVo.password"
+                type="password"
+              />
             </div>
-            <el-input
-              v-model="requestVo.password"
-              type="password"
-            />
           </div>
-        </div>
-        <div
-          v-if="currentAction === LoginAction.LOGIN_VIA_EMAIL"
-          class="form"
-        >
-          <div class="item">
-            <div
-              class="label"
-              :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
-            >
-              {{ Strings.get().Email || "邮箱" }}
+          <div
+            v-if="currentAction === LoginAction.LOGIN_VIA_EMAIL"
+            class="form"
+          >
+            <div class="item">
+              <div
+                class="label"
+                :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
+              >
+                {{ Strings.get().Email || "邮箱" }}
+              </div>
+              <el-input
+                v-model="requestVo.email"
+                type="text"
+              >
+                <template #suffix>
+                  <el-button
+                    text
+                    type="primary"
+                    :disabled="!AirValidator.isEmail(requestVo.email)"
+                    :loading="isEmailCodeLoading"
+                    @click="onSendEmailCode()"
+                  >
+                    {{ Strings.get().Send || "发送" }}
+                  </el-button>
+                </template>
+              </el-input>
             </div>
-            <el-input
-              v-model="requestVo.email"
-              type="text"
-            >
-              <template #suffix>
-                <el-button
-                  text
-                  type="primary"
-                  :disabled="!AirValidator.isEmail(requestVo.email)"
-                  :loading="isEmailCodeLoading"
-                  @click="onSendEmailCode()"
-                >
-                  {{ Strings.get().Send || "发送" }}
-                </el-button>
-              </template>
-            </el-input>
-          </div>
-          <div class="item">
-            <div
-              class="label"
-              :class="!isValidCode ? 'error' : ''"
-            >
-              {{ Strings.get().Code || "验证码" }}
+            <div class="item">
+              <div
+                class="label"
+                :class="!isValidCode ? 'error' : ''"
+              >
+                {{ Strings.get().Code || "验证码" }}
+              </div>
+              <el-input
+                v-model="requestVo.code"
+                type="text"
+                maxlength="8"
+              />
             </div>
-            <el-input
-              v-model="requestVo.code"
-              type="text"
-              maxlength="8"
-            />
           </div>
-        </div>
-        <div
-          v-if="currentAction === LoginAction.LOGIN_VIA_PHONE"
-          class="form"
-        >
-          <div class="item">
-            <div
-              class="label"
-              :class="!AirValidator.isMobilePhone(requestVo.phone) ? 'error' : ''"
-            >
-              {{ Strings.get().Phone || "手机号" }}
+          <div
+            v-if="currentAction === LoginAction.LOGIN_VIA_PHONE"
+            class="form"
+          >
+            <div class="item">
+              <div
+                class="label"
+                :class="!AirValidator.isMobilePhone(requestVo.phone) ? 'error' : ''"
+              >
+                {{ Strings.get().Phone || "手机号" }}
+              </div>
+              <el-input
+                v-model="requestVo.phone"
+                type="text"
+              >
+                <template #suffix>
+                  <el-button
+                    text
+                    type="primary"
+                    :disabled="!AirValidator.isMobilePhone(requestVo.phone)"
+                  >
+                    {{ Strings.get().Send || "发送验证码" }}
+                  </el-button>
+                </template>
+              </el-input>
             </div>
-            <el-input
-              v-model="requestVo.phone"
-              type="text"
-            >
-              <template #suffix>
-                <el-button
-                  text
-                  type="primary"
-                  :disabled="!AirValidator.isMobilePhone(requestVo.phone)"
-                >
-                  {{ Strings.get().Send || "发送验证码" }}
-                </el-button>
-              </template>
-            </el-input>
-          </div>
-          <div class="item">
-            <div
-              class="label"
-              :class="!isValidCode ? 'error' : ''"
-            >
-              {{ Strings.get().Code || "验证码" }}
+            <div class="item">
+              <div
+                class="label"
+                :class="!isValidCode ? 'error' : ''"
+              >
+                {{ Strings.get().Code || "验证码" }}
+              </div>
+              <el-input
+                v-model="requestVo.code"
+                type="text"
+                maxlength="8"
+              />
             </div>
-            <el-input
-              v-model="requestVo.code"
-              type="text"
-              maxlength="8"
-            />
           </div>
-        </div>
-        <div
-          v-if="currentAction === LoginAction.REGISTER_VIA_EMAIL"
-          class="form"
-        >
-          <div class="item">
-            <div
-              class="label"
-              :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
-            >
-              {{ Strings.get().Email || "邮箱" }}
+          <div
+            v-if="currentAction === LoginAction.REGISTER_VIA_EMAIL"
+            class="form"
+          >
+            <div class="item">
+              <div
+                class="label"
+                :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
+              >
+                {{ Strings.get().Email || "邮箱" }}
+              </div>
+              <el-input
+                v-model="requestVo.email"
+                type="text"
+              >
+                <template #suffix>
+                  <el-button
+                    text
+                    type="primary"
+                    :disabled="!AirValidator.isEmail(requestVo.email)"
+                    :loading="isEmailCodeLoading"
+                    @click="onSendEmailCode()"
+                  >
+                    {{ Strings.get().Send || "发送" }}
+                  </el-button>
+                </template>
+              </el-input>
             </div>
-            <el-input
-              v-model="requestVo.email"
-              type="text"
-            >
-              <template #suffix>
-                <el-button
-                  text
-                  type="primary"
-                  :disabled="!AirValidator.isEmail(requestVo.email)"
-                  :loading="isEmailCodeLoading"
-                  @click="onSendEmailCode()"
-                >
-                  {{ Strings.get().Send || "发送" }}
-                </el-button>
-              </template>
-            </el-input>
-          </div>
-          <div class="item">
-            <div
-              class="label"
-              :class="!isValidCode ? 'error' : ''"
-            >
-              {{ Strings.get().Code || "验证码" }}
+            <div class="item">
+              <div
+                class="label"
+                :class="!isValidCode ? 'error' : ''"
+              >
+                {{ Strings.get().Code || "验证码" }}
+              </div>
+              <el-input
+                v-model="requestVo.code"
+                type="text"
+                maxlength="8"
+              />
             </div>
-            <el-input
-              v-model="requestVo.code"
-              type="text"
-              maxlength="8"
-            />
-          </div>
-          <div class="item">
-            <div
-              class="label"
-              :class="!isValidPassword ? 'error' : ''"
-            >
-              {{ Strings.get().Password || "密码" }}
+            <div class="item">
+              <div
+                class="label"
+                :class="!isValidPassword ? 'error' : ''"
+              >
+                {{ Strings.get().Password || "密码" }}
+              </div>
+              <el-input
+                v-model="requestVo.password"
+                type="password"
+              />
             </div>
-            <el-input
-              v-model="requestVo.password"
-              type="password"
-            />
           </div>
-        </div>
-        <div class="rules">
-          <el-checkbox v-model="isRead">
-            {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
-              {{ Strings.get().PrivacyPolicy || "隐私政策" }}
-            </a> {{ Strings.get().And || "以及" }} <a href="">
-              {{ Strings.get().TermsOfService || "服务条款" }}
-            </a>
-          </el-checkbox>
-        </div>
-        <div class="button">
-          <div class="submit">
-            <el-button
-              v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
-              :loading="isLoadingReg"
-              type="primary"
-              :disabled="isButtonDisabled"
-              @click="onSubmit()"
-            >
-              注册账号
-            </el-button>
-            <el-button
-              v-else
-              :loading="isLoadingLogin"
-              type="primary"
-              :disabled="isButtonDisabled"
-              @click="onSubmit()"
-            >
-              {{ Strings.get().LoginNow || "立即登录" }} {{ AppConfig.currentUser.value.nickname }}
-            </el-button>
+          <div class="rules">
+            <el-checkbox v-model="isRead">
+              {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
+                {{ Strings.get().PrivacyPolicy || "隐私政策" }}
+              </a> {{ Strings.get().And || "以及" }} <a href="">
+                {{ Strings.get().TermsOfService || "服务条款" }}
+              </a>
+            </el-checkbox>
           </div>
-        </div>
-      </template>
-      <div
-        v-if="false"
-        class="link"
-      >
+          <div class="button">
+            <div class="submit">
+              <el-button
+                v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
+                :loading="isLoadingReg"
+                type="primary"
+                :disabled="isButtonDisabled"
+                @click="onSubmit()"
+              >
+                注册账号
+              </el-button>
+              <el-button
+                v-else
+                :loading="isLoadingLogin"
+                type="primary"
+                :disabled="isButtonDisabled"
+                @click="onSubmit()"
+              >
+                {{ Strings.get().LoginNow || "立即登录" }} {{ AppConfig.currentUser.value.nickname }}
+              </el-button>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="link">
         <a
-          href="#"
-          @click="isQrcodeLogin = !isQrcodeLogin"
-        >
-          {{ isQrcodeLogin ? '普通登录' : '扫码登录' }}
-        </a>
-        <a href="">钉钉登录</a>
-        <a href="">企业微信登录</a>
+          href="javascript:;"
+          @click="loginViaPrivateKey()"
+        >安全密钥登录</a>
+        <a
+          href="javascript:;"
+          @click="regViaPrivateKey()"
+        >安全密钥注册</a>
       </div>
       <el-dropdown
         v-if="AirI18n.getLanguages().length > 0"
@@ -305,6 +307,8 @@ function getActionByLanguage(action: LoginAction) {
       return Strings.get().LoginViaEmail || '邮箱登录'
     case LoginAction.LOGIN_VIA_PHONE:
       return Strings.get().LoginViaPhone || '手机登录'
+    case LoginAction.LOGIN_VIA_QRCODE:
+      return Strings.get().LoginViaQrcode || '手机登录'
     default:
       return Strings.get().LoginViaPassword || '密码登录'
   }
@@ -450,6 +454,15 @@ async function changeLanguage(language: AirLanguage) {
   window.location.replace(window.location.href)
 }
 
+async function loginViaPrivateKey() {
+  console.log(123)
+}
+
+async function regViaPrivateKey() {
+  const user = await UserService.create(isLoadingLogin).getWebAuthnParam()
+  console.log(user)
+}
+
 getAppInfo()
 </script>
 <style scoped lang="scss">
@@ -472,14 +485,18 @@ getAppInfo()
     box-shadow: 0 0 60px rgba($color: #000, $alpha: 0.1);
     backdrop-filter: blur(20px);
     border-radius: 20px;
-    padding: 60px;
+    padding: 40px 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 360px;
+    height: 480px;
 
     .qrcode-login {
-      margin: 30px 0;
-      padding: 0 60px;
+      margin-top: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .qrcode-img {
         background-color: rgba($color: #fff, $alpha: 0.9);
@@ -527,8 +544,8 @@ getAppInfo()
 
       .item {
         position: relative;
-        margin: 0 4px;
-        padding: 4px 16px;
+        margin: 0 2px;
+        padding: 4px 14px;
         border-radius: 10px;
         cursor: pointer;
         font-size: 14px;
@@ -551,45 +568,52 @@ getAppInfo()
       }
     }
 
-    .form {
+    .body {
       display: flex;
       flex-direction: column;
       width: 100%;
       padding: 10px 60px;
+      flex: 1;
+      height: 0;
 
-      .item {
-        height: 50px;
-        background-color: white;
-        margin: 5px;
-        font-size: 14px;
-        border-radius: 10px;
-        overflow: hidden;
-        padding: 10px 20px;
+      .form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
 
-        .label {
-          color: #999;
-        }
+        .item {
+          height: 50px;
+          background-color: white;
+          margin: 5px;
+          font-size: 14px;
+          border-radius: 10px;
+          overflow: hidden;
+          padding: 10px 20px;
 
-        .error {
-          color: red;
+          .label {
+            color: #999;
+          }
+
+          .error {
+            color: red;
+          }
         }
       }
-    }
 
-    .button {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      padding: 0 40px;
-      margin-top: 20px;
+      .button {
+        display: flex;
+        flex-direction: row;
+        margin: 0 5px;
+        margin-top: 20px;
 
-      .submit {
-        width: 100%;
-        flex: 1;
-
-        .el-button {
-          padding: 20px;
+        .submit {
           width: 100%;
+          flex: 1;
+
+          .el-button {
+            padding: 20px;
+            width: 100%;
+          }
         }
       }
     }

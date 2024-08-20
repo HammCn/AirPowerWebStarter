@@ -43,6 +43,9 @@ export abstract class Strings extends AirI18n {
   /** # 手机登录 */
   abstract LoginViaPhone: string
 
+  /** # 扫码登录 */
+  abstract LoginViaQrcode: string
+
   /** # 我已阅读并同意 */
   abstract ReadAndAgreed: string
 

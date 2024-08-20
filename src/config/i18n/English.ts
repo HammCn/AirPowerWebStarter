@@ -12,6 +12,7 @@ export const English: Strings = {
   Code: 'Code',
   LoginViaEmail: 'Via Email',
   LoginViaPhone: 'Via Phone',
+  LoginViaQrcode: 'Via Qrcode',
   LoginViaPassword: 'Via Password',
   ReadAndAgreed: 'I have read and agreed',
   TermsOfService: 'Terms of Service',

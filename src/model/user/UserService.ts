@@ -67,4 +67,12 @@ export class UserService extends AbstractBaseService<UserEntity> {
     const json = await this.api('getMyInfo').post()
     return UserEntity.fromJson(json)
   }
+
+  /**
+     * # 获取WebAuthn参数
+     */
+  async getWebAuthnParam(): Promise<UserEntity> {
+    const json = await this.api('getWebAuthnParam').post()
+    return UserEntity.fromJson(json)
+  }
 }
