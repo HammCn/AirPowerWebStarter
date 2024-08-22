@@ -9,11 +9,11 @@ import '@/assets/css/main.scss'
 import { AppConfig } from '@/config/AppConfig'
 import { UserEntity } from '@/model/user/UserEntity'
 
+AirConfig.product = 'AirPower'
 AirI18n.init(ChineseSimplified, English)
 
 app.use(AirConfig.createRouter(routes))
   .mount('#app')
-
 setTimeout(() => {
   const user = new UserEntity()
   user.nickname = 'Hamm'

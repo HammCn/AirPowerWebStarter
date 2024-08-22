@@ -233,14 +233,9 @@
         </template>
       </div>
       <div class="link">
-        <a
-          href="javascript:;"
-          @click="loginViaPrivateKey()"
-        >安全密钥登录</a>
-        <a
-          href="javascript:;"
-          @click="regViaPrivateKey()"
-        >安全密钥注册</a>
+        <a href="javascript:;">
+          使用其他方式登录
+        </a>
       </div>
       <el-dropdown
         v-if="AirI18n.getLanguages().length > 0"
@@ -452,17 +447,6 @@ async function onSendEmailCode() {
 async function changeLanguage(language: AirLanguage) {
   AirI18n.setCurrentLanguage(language)
   window.location.replace(window.location.href)
-}
-
-async function loginViaPrivateKey() {
-  // eslint-disable-next-line no-console
-  console.log(123)
-}
-
-async function regViaPrivateKey() {
-  const user = await UserService.create(isLoadingLogin).getWebAuthnParam()
-  // eslint-disable-next-line no-console
-  console.log(user)
 }
 
 getAppInfo()
