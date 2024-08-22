@@ -12,6 +12,7 @@ export const ChineseSimplified: Strings = {
   Code: '验证码',
   LoginViaEmail: '邮箱登录',
   LoginViaPhone: '手机登录',
+  LoginViaQrcode: '扫码登录',
   LoginViaPassword: '密码登录',
   ReadAndAgreed: '我已阅读并同意',
   TermsOfService: '服务条款',

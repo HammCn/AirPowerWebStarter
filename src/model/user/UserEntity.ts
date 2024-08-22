@@ -80,4 +80,6 @@ export class UserEntity extends BaseEntity implements IUser {
     removed: false,
   })
   declare isDisabled: boolean
+
+  code!: string
 }
