@@ -17,20 +17,20 @@
     "dependencies": {
         "@element-plus/icons-vue": "^2.3.1",
         "@types/crypto-js": "^4.2.2",
+        "@vitejs/plugin-vue": "^5.0.4",
         "@vue/eslint-config-standard": "^8.0.1",
         "axios": "^1.6.7",
         "core-js": "^3.36.0",
         "crypto-js": "^4.2.0",
-        "element-plus": "^2.6.1",
+        "element-plus": "^2.8.0",
         "js-base64": "^3.7.7",
         "pinia": "^2.1.7",
+        "qrcode.vue": "^3.4.1",
         "register-service-worker": "^1.7.2",
         "vite": "^5.1.5",
         "vue": "^3.4.21",
-        "@vitejs/plugin-vue": "^5.0.4",
         "vue-clipboard3": "^2.0.0",
-        "vue-router": "^4.3.0",
-        "qrcode.vue": "^3.4.1"
+        "vue-router": "^4.3.0"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^7.1.1",
