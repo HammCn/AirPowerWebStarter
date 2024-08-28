@@ -49,7 +49,7 @@
                 ID / {{ Strings.get().Email || "邮箱" }}
               </div>
               <el-input
-                v-model="requestVo.email"
+                v-model="user.email"
                 type="text"
               />
             </div>
@@ -58,7 +58,7 @@
                 {{ Strings.get().Password || "密码" }}
               </div>
               <el-input
-                v-model="requestVo.password"
+                v-model="user.password"
                 type="password"
               />
             </div>
@@ -70,19 +70,19 @@
             <div class="item">
               <div
                 class="label"
-                :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
+                :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
               >
                 {{ Strings.get().Email || "邮箱" }}
               </div>
               <el-input
-                v-model="requestVo.email"
+                v-model="user.email"
                 type="text"
               >
                 <template #suffix>
                   <el-button
                     text
                     type="primary"
-                    :disabled="!AirValidator.isEmail(requestVo.email)"
+                    :disabled="!AirValidator.isEmail(user.email)"
                     :loading="isEmailCodeLoading"
                     @click="onSendEmailCode()"
                   >
@@ -99,7 +99,7 @@
                 {{ Strings.get().Code || "验证码" }}
               </div>
               <el-input
-                v-model="requestVo.code"
+                v-model="user.code"
                 type="text"
                 maxlength="8"
               />
@@ -112,19 +112,19 @@
             <div class="item">
               <div
                 class="label"
-                :class="!AirValidator.isMobilePhone(requestVo.phone) ? 'error' : ''"
+                :class="!AirValidator.isMobilePhone(user.phone) ? 'error' : ''"
               >
                 {{ Strings.get().Phone || "手机号" }}
               </div>
               <el-input
-                v-model="requestVo.phone"
+                v-model="user.phone"
                 type="text"
               >
                 <template #suffix>
                   <el-button
                     text
                     type="primary"
-                    :disabled="!AirValidator.isMobilePhone(requestVo.phone)"
+                    :disabled="!AirValidator.isMobilePhone(user.phone)"
                   >
                     {{ Strings.get().Send || "发送验证码" }}
                   </el-button>
@@ -139,7 +139,7 @@
                 {{ Strings.get().Code || "验证码" }}
               </div>
               <el-input
-                v-model="requestVo.code"
+                v-model="user.code"
                 type="text"
                 maxlength="8"
               />
@@ -152,19 +152,19 @@
             <div class="item">
               <div
                 class="label"
-                :class="!AirValidator.isEmail(requestVo.email) ? 'error' : ''"
+                :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
               >
                 {{ Strings.get().Email || "邮箱" }}
               </div>
               <el-input
-                v-model="requestVo.email"
+                v-model="user.email"
                 type="text"
               >
                 <template #suffix>
                   <el-button
                     text
                     type="primary"
-                    :disabled="!AirValidator.isEmail(requestVo.email)"
+                    :disabled="!AirValidator.isEmail(user.email)"
                     :loading="isEmailCodeLoading"
                     @click="onSendEmailCode()"
                   >
@@ -181,7 +181,7 @@
                 {{ Strings.get().Code || "验证码" }}
               </div>
               <el-input
-                v-model="requestVo.code"
+                v-model="user.code"
                 type="text"
                 maxlength="8"
               />
@@ -194,7 +194,7 @@
                 {{ Strings.get().Password || "密码" }}
               </div>
               <el-input
-                v-model="requestVo.password"
+                v-model="user.password"
                 type="password"
               />
             </div>
@@ -271,7 +271,6 @@ import { computed, ref, watch } from 'vue'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
-import { UserRequestVo } from '@/model/user/UserRequestVo'
 import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
@@ -284,6 +283,7 @@ import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
+import { UserEntity } from '@/model/user/UserEntity'
 
 watch(AppConfig.currentUser, () => {
   AirNotification.success('User更新了')
@@ -314,15 +314,15 @@ function getActionByLanguage(action: LoginAction) {
  */
 const isRead = ref(true)
 
-const requestVo = ref(new UserRequestVo())
+const user = ref(new UserEntity())
 
 const appKey = (AirConfig.router.currentRoute.value.query.appKey || '').toString()
 const redirectUri = (AirConfig.router.currentRoute.value.query.redirectUri || '/console').toString()
 
 const appInfo = ref(new OpenAppEntity())
 
-requestVo.value.email = 'admin@hamm.cn'
-requestVo.value.password = 'Aa123456'
+user.value.email = 'admin@hamm.cn'
+user.value.password = 'Aa123456'
 
 // 一些Loading状态
 const isLoadingApp = ref(false)
@@ -331,11 +331,11 @@ const isLoadingReg = ref(false)
 const isEmailCodeLoading = ref(false)
 
 // ! 判断是否输入有效格式的值
-const isValidPassword = computed(() => requestVo.value.password && requestVo.value.password.length >= 6)
-const isValidCode = computed(() => requestVo.value.code && requestVo.value.code.length === 6)
-const isValidEmail = computed(() => requestVo.value.email && AirValidator.isEmail(requestVo.value.email))
-const isValidPhone = computed(() => requestVo.value.phone && AirValidator.isMobilePhone(requestVo.value.phone))
-const isValidAccount = computed(() => requestVo.value.email && (AirValidator.isEmail(requestVo.value.email) || AirValidator.isNaturalNumber(requestVo.value.email)))
+const isValidPassword = computed(() => user.value.password && user.value.password.length >= 6)
+const isValidCode = computed(() => user.value.code && user.value.code.length === 6)
+const isValidEmail = computed(() => user.value.email && AirValidator.isEmail(user.value.email))
+const isValidPhone = computed(() => user.value.phone && AirValidator.isMobilePhone(user.value.phone))
+const isValidAccount = computed(() => user.value.email && (AirValidator.isEmail(user.value.email) || AirValidator.isNaturalNumber(user.value.email)))
 
 /**
  * # 计算是否禁用登录/注册按钮
@@ -349,7 +349,7 @@ const isButtonDisabled = computed(() => {
     case LoginAction.LOGIN_VIA_EMAIL:
       return !isValidEmail.value || !isValidCode.value
     case LoginAction.LOGIN_VIA_PASSWORD:
-      return !requestVo.value.password || !isValidAccount.value
+      return !user.value.password || !isValidAccount.value
     default:
       return true
   }
@@ -360,7 +360,7 @@ const isButtonDisabled = computed(() => {
  */
 async function getAppInfo() {
   if (appKey) {
-    requestVo.value.appKey = appKey
+    user.value.appKey = appKey
     appInfo.value = await OpenAppService.create(isLoadingApp).getAppByKey(appKey)
   }
 }
@@ -383,7 +383,7 @@ function loginRedirect(result: string) {
  * # 邮箱+密码登录
  */
 async function onLogin() {
-  const request = requestVo.value.copy()
+  const request = user.value.copy()
   if (AirValidator.isNumber(request.email)) {
     request.id = parseInt(request.email, 10)
     request.exclude('email')
@@ -396,7 +396,7 @@ async function onLogin() {
  * # 邮箱+验证码登录
  */
 async function onEmailLogin() {
-  const result = await UserService.create(isLoadingLogin).loginViaEmail(requestVo.value)
+  const result = await UserService.create(isLoadingLogin).loginViaEmail(user.value)
   loginRedirect(result)
 }
 
@@ -404,7 +404,7 @@ async function onEmailLogin() {
  * # 注册
  */
 async function onReg() {
-  await UserService.create(isLoadingLogin).register(requestVo.value)
+  await UserService.create(isLoadingLogin).register(user.value)
   AirAlert.create().setConfirmText('去登录').show('账号注册成功, 你可以使用账号密码去登录了!')
   currentAction.value = LoginAction.LOGIN_VIA_PASSWORD
 }
@@ -435,8 +435,8 @@ async function onSubmit() {
  * # 发送邮箱验证码事件
  */
 async function onSendEmailCode() {
-  const request = new UserRequestVo()
-  request.email = requestVo.value.email
+  const request = new UserEntity()
+  request.email = user.value.email
   await MailService.create(isEmailCodeLoading).sendCode(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }

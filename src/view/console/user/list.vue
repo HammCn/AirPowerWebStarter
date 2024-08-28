@@ -48,8 +48,10 @@ const {
 
 async function init() {
   const userList = await AirDialog.selectList(UserSelector)
+  // eslint-disable-next-line no-console
   console.log(userList)
   const user = await AirDialog.select(UserSelector)
+  // eslint-disable-next-line no-console
   console.log(user)
 }
 
