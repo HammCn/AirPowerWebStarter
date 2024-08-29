@@ -17,14 +17,14 @@
       show-checkbox
       node-key="id"
       :props="AirConfig.treeProps"
-      :default-checked-keys="checkedKeys"
+      :default-checked-keys="formData.menuList.map(item => item.id)"
       @check="onSelect"
     />
   </ADialog>
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { AirTreeInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
@@ -40,15 +40,9 @@ import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const props = defineProps(airPropsParam(new RoleEntity()))
 
-const checkedKeys:Ref<number[]> = ref([])
-
 const {
   isLoading, formRef, formData,
 } = useAirEditor(props, RoleEntity, RoleService, {
-  afterGetDetail(detailData) {
-    checkedKeys.value = detailData.menuList.map((item) => item.id)
-    return detailData
-  },
 })
 
 const treeRef = ref<AirTreeInstance>()

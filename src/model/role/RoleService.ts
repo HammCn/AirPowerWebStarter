@@ -1,6 +1,5 @@
 import { AbstractBaseService } from '@/base/AbstractBaseService'
 import { RoleEntity } from './RoleEntity'
-import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
 
