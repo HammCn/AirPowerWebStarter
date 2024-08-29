@@ -8,7 +8,7 @@
     :loading="isLoading"
     :disable-confirm="mult && selectList.length === 0"
     @on-confirm="onConfirm(selectList)"
-    @on-cancel="onCancel()"
+    @on-cancel="onCancel"
   >
     <AToolBar
       hide-add
