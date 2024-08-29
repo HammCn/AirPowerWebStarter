@@ -35,6 +35,7 @@ import { AirRequest } from '@/airpower/model/AirRequest'
 import { PermissionService } from '@/model/permission/PermissionService'
 import { PermissionEntity } from '@/model/permission/PermissionEntity'
 import { useAirEditor } from '@/airpower/hook/useAirEditor'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const treeRef = ref<AirTreeInstance>()
 
@@ -42,12 +43,10 @@ const props = defineProps(airPropsParam(new RoleEntity()))
 
 const {
   isLoading, formRef, formData,
-  onSubmit,
 } = useAirEditor(props, RoleEntity, RoleService, {
   afterGetDetail() {
     treeRef.value?.setCheckedKeys(formData.value.permissionList.map((item) => item.id))
   },
-  successMessage: '角色权限授权成功',
 })
 
 async function onSelect(selectList: PermissionEntity[]) {
@@ -58,6 +57,11 @@ const treeList = ref<PermissionEntity[]>([])
 
 async function getPermissionList() {
   treeList.value = await PermissionService.create(isLoading).getList(new AirRequest(PermissionEntity))
+}
+async function onSubmit() {
+  await RoleService.create(isLoading).authorizePermission(formData.value.id, formData.value.permissionList)
+  AirNotification.success('授权权限成功')
+  props.onConfirm()
 }
 
 getPermissionList()

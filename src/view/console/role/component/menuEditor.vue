@@ -17,13 +17,14 @@
       show-checkbox
       node-key="id"
       :props="AirConfig.treeProps"
+      :default-checked-keys="checkedKeys"
       @check="onSelect"
     />
   </ADialog>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { ADialog } from '@/airpower/component'
 import { AirTreeInstance } from '@/airpower/type/AirType'
 import { airPropsParam } from '@/airpower/config/AirProps'
@@ -35,14 +36,19 @@ import { MenuService } from '@/model/menu/MenuService'
 import { AirRequest } from '@/airpower/model/AirRequest'
 import { IJson } from '@/airpower/interface/IJson'
 import { useAirEditor } from '@/airpower/hook/useAirEditor'
+import { AirNotification } from '@/airpower/feedback/AirNotification'
 
 const props = defineProps(airPropsParam(new RoleEntity()))
 
+const checkedKeys:Ref<number[]> = ref([])
+
 const {
   isLoading, formRef, formData,
-  onSubmit,
 } = useAirEditor(props, RoleEntity, RoleService, {
-  successMessage: '角色菜单授权成功',
+  afterGetDetail(detailData) {
+    checkedKeys.value = detailData.menuList.map((item) => item.id)
+    return detailData
+  },
 })
 
 const treeRef = ref<AirTreeInstance>()
@@ -57,6 +63,11 @@ async function getMenuTreeList() {
   treeList.value = await MenuService.create(isLoading).getList(new AirRequest(MenuEntity))
 }
 
+async function onSubmit() {
+  await RoleService.create(isLoading).authorizeMenu(formData.value.id, formData.value.menuList)
+  AirNotification.success('授权菜单成功')
+  props.onConfirm()
+}
 getMenuTreeList()
 
 </script>
