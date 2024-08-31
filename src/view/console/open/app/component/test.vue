@@ -130,12 +130,8 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  computed, ref,
-} from 'vue'
-import {
-  ADialog, AFormField, AGroup,
-} from '@/airpower/component'
+import { computed, ref } from 'vue'
+import { ADialog, AFormField, AGroup } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { AirCrypto } from '@/airpower/helper/AirCrypto'
@@ -210,7 +206,7 @@ async function onTest() {
 <style lang="scss" scoped>
 .source {
   >font {
-    margin: 0px 3px;
+    margin: 0 3px;
   }
 
   .appKey,

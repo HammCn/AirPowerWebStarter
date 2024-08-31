@@ -589,8 +589,7 @@ getAppInfo()
       .button {
         display: flex;
         flex-direction: row;
-        margin: 0 5px;
-        margin-top: 20px;
+        margin: 20px 5px 0;
 
         .submit {
           width: 100%;
