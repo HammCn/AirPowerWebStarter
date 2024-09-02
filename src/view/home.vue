@@ -4,6 +4,7 @@
       class="logo"
       :src="airpower"
     />
+    <iframe src="https://ac.hamm.cn" />
     <div class="intro">
       <img src="https://svg.hamm.cn?key=Lang&value=TypeScript">
       <img src="https://svg.hamm.cn?key=Base&value=Vue3">
@@ -52,6 +53,12 @@ import airpower from '@/airpower/assets/img/airpower.svg'
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  iframe{
+    width: 400px;
+    height: auto;
+    border: none;
+    height: 200px;
+  }
 
   .logo {
     width: 300px;
