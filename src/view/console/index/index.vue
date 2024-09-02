@@ -11,7 +11,7 @@ import { APanel } from '@/airpower/component'
 </script>
 
 <style scoped lang="scss">
-.index{
+.index {
   position: absolute;
   left: 0;
   right: 0;
@@ -20,10 +20,11 @@ import { APanel } from '@/airpower/component'
   display: flex;
   justify-content: center;
   align-items: center;
-  iframe{
+
+  iframe {
     width: 400px;
     height: auto;
-    border:none;
+    border: none;
   }
 }
 </style>
