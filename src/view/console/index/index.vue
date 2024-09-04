@@ -22,7 +22,7 @@ import { APanel } from '@/airpower/component'
   align-items: center;
 
   iframe {
-    width: 400px;
+    width: 420px;
     height: auto;
     border: none;
   }

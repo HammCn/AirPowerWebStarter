@@ -53,8 +53,9 @@ import airpower from '@/airpower/assets/img/airpower.svg'
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  iframe{
-    width: 400px;
+
+  iframe {
+    width: 420px;
     height: auto;
     border: none;
     height: 200px;
