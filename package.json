@@ -8,7 +8,6 @@
         "dev": "vite build --mode dev",
         "test": "vite build --mode test",
         "production": "vite build --mode production",
-        "l": "clear && git log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset %s %C(yellow)%d%Creset' --abbrev-commit",
         "u": "sh update.sh",
         "v": "vite preview"
     },
