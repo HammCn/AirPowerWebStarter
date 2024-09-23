@@ -19,7 +19,7 @@ setTimeout(() => {
   user.nickname = 'Hamm'
   user.email = 'admin@hamm.cn'
   AppConfig.currentUser.value = user
-}, 5000)
+}, 3000)
 
 window.addEventListener('storage', (event) => {
   if (event.key === AirConfig.authorizationHeaderKey) {
