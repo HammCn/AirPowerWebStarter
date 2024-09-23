@@ -476,7 +476,6 @@ getAppInfo()
     flex-direction: column;
     align-items: center;
     width: 360px;
-    height: 480px;
 
     .qrcode-login {
       margin-top: 5px;
