@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <el-image
-      class="logo"
       :src="airpower"
+      class="logo"
     />
     <iframe src="https://ac.hamm.cn" />
     <div class="intro">
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import airpower from '@/airpower/assets/img/airpower.svg'
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .home {
   position: fixed;
   left: 0;
@@ -56,7 +56,6 @@ import airpower from '@/airpower/assets/img/airpower.svg'
 
   iframe {
     width: 420px;
-    height: auto;
     border: none;
     height: 200px;
   }
