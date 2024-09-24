@@ -21,6 +21,12 @@
       >
         <AFormField field="email" />
         <AFormField field="nickname" />
+        <el-form-item :label="UserEntity.getFieldName('phone')">
+          <AInput
+            v-model.phone="formData.phone"
+            :entity="UserEntity"
+          />
+        </el-form-item>
       </AGroup>
       <AGroup
         title="用户角色"
@@ -51,6 +57,7 @@
 <script lang="ts" setup>
 import {
   AButton, ADialog, AFormField, AGroup,
+  AInput,
 } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { UserService } from '@/model/user/UserService'

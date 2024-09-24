@@ -23,6 +23,7 @@ export class UserEntity extends BaseEntity implements IUser {
   })
   @Table({
     forceShow: true,
+    copyField: true,
   })
   @Search()
   @Field(Strings.get().Email || '邮箱') email!: string
@@ -58,10 +59,12 @@ export class UserEntity extends BaseEntity implements IUser {
   @Form({
     mobilePhone: true,
     requiredString: true,
+    defaultValue: '13888888888',
   })
   @Table({
     forceShow: true,
     phone: true,
+    copyField: true,
   })
   @Search()
   @Field('手机') phone!: string
@@ -90,4 +93,14 @@ export class UserEntity extends BaseEntity implements IUser {
    * ## 所属应用AppKey
    */
   appKey!: string
+
+  /**
+   * ## 设置邮箱
+   * @param email 邮箱
+   * @returns
+   */
+  setEmail(email: string): this {
+    this.email = email
+    return this
+  }
 }

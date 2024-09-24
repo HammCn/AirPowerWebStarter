@@ -3,7 +3,7 @@
     :entity="UserEntity"
     :service="UserService"
     :props="props"
-    :field-list="UserEntity.getTableFieldConfigList().filter(item=>['email','isDisabled'].includes(item.key))"
+    :field-list="UserEntity.getTableFieldConfigList().filter(item=>!['isDisabled'].includes(item.key))"
     :editor="UserEditor"
   >
     <template #nickname="{ data }">
@@ -20,7 +20,9 @@ import { UserService } from '@/model/user/UserService'
 
 import { UserEditor } from '.'
 
-const props = defineProps(airPropsSelector<UserEntity>())
+const filter = new UserEntity()
+filter.isDisabled = false
+const props = defineProps(airPropsSelector<UserEntity>(new UserEntity().setDisable(false).setEmail('admi1n@hamm')))
 
 </script>
 <style scoped lang="scss"></style>
