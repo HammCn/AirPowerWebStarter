@@ -24,6 +24,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/view/home.vue'),
   },
   {
+    path: '/three',
+    name: '首页',
+    component: () => import('@/view/three.vue'),
+  },
+  {
     path: '/',
     name: 'console',
     redirect: '/home',
