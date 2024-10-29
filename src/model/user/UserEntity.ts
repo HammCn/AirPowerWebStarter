@@ -85,17 +85,17 @@ export class UserEntity extends BaseEntity implements IUser {
   declare isDisabled: boolean
 
   /**
-   * ## 验证码
+   * # 验证码
    */
   code!: string
 
   /**
-   * ## 所属应用AppKey
+   * # 所属应用AppKey
    */
   appKey!: string
 
   /**
-   * ## 设置邮箱
+   * # 设置邮箱
    * @param email 邮箱
    * @returns
    */
