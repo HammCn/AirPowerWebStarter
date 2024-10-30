@@ -25,7 +25,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/three',
-    name: '首页',
+    name: '3D',
     component: () => import('@/view/three.vue'),
   },
   {
