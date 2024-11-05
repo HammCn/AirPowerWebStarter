@@ -27,7 +27,7 @@
       :ctrl-width="90"
       @on-edit="onEdit"
       @on-delete="onDelete"
-      @on-sort-change="onSortChanged"
+      @on-sort="onSortChanged"
       @on-select="onSelected"
     />
     <template #footerLeft>
@@ -56,10 +56,6 @@ const {
   onSearch, onAdd, onDelete, onEdit, onPageChanged, onSortChanged, onSelected,
 } = useAirTable(SupplierEntity, SupplierService, {
   editView: SupplierEditor,
-  beforeSearch(requestData) {
-    requestData.keyword = '强制搜索关键词'
-    return requestData
-  },
 })
 </script>
 <style scoped lang="scss"></style>
