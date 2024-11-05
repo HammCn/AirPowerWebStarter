@@ -36,25 +36,11 @@ import { UserService } from '@/model/user/UserService'
 import { useAirTable } from '@/airpower/hook/useAirTable'
 import { UserEditor } from './component'
 
-import { AirDialog } from '@/airpower/helper/AirDialog'
-import { UserSelector } from '@/view/console/user/component'
-
 const {
   isLoading, response,
   onPageChanged, onDelete, onEdit, onAdd, onSearch, onEnable, onDisable,
 } = useAirTable(UserEntity, UserService, {
   editView: UserEditor,
 })
-
-async function init() {
-  const userList = await AirDialog.selectList(UserSelector)
-  // eslint-disable-next-line no-console
-  console.log(userList)
-  const user = await AirDialog.select(UserSelector)
-  // eslint-disable-next-line no-console
-  console.log(user)
-}
-
-init()
 </script>
 <style scoped lang="scss"></style>

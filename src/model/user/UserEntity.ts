@@ -9,6 +9,7 @@ import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
 import { Strings } from '@/config/Strings'
+import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
 
 /**
  * # 用户实体
@@ -24,17 +25,10 @@ export class UserEntity extends BaseEntity implements IUser {
   @Table({
     forceShow: true,
     copyField: true,
+    desensitize: AirDesensitizeType.EMAIL,
   })
   @Search()
   @Field(Strings.get().Email || '邮箱') email!: string
-
-  /**
-   * # 密码
-   */
-  @Form({
-    password: true,
-  })
-  @Field('密码') password!: string
 
   /**
    * # 昵称
@@ -44,14 +38,10 @@ export class UserEntity extends BaseEntity implements IUser {
   })
   @Table({
     forceShow: true,
+    desensitize: AirDesensitizeType.CHINESE_NAME,
   })
   @Search()
   @Field('昵称') nickname!: string
-
-  /**
-   * # 头像
-   */
-  @Field('头像') avatar!: string
 
   /**
    * # 手机
@@ -65,9 +55,23 @@ export class UserEntity extends BaseEntity implements IUser {
     forceShow: true,
     phone: true,
     copyField: true,
+    desensitize: AirDesensitizeType.MOBILE,
   })
   @Search()
   @Field('手机') phone!: string
+
+  /**
+   * # 头像
+   */
+  @Field('头像') avatar!: string
+
+  /**
+   * # 密码
+   */
+  @Form({
+    password: true,
+  })
+  @Field('密码') password!: string
 
   /**
    * # 角色列表
