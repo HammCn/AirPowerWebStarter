@@ -24,6 +24,7 @@ export class SupplierEntity extends BaseEntity {
    */
   @Table({
     forceShow: true,
+    sortable: 'custom',
   })
   @Form({
     orderNumber: 98,
