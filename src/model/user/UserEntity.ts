@@ -1,7 +1,3 @@
-import {
-  Field,
-  Type,
-} from '@/airpower/decorator/Custom'
 import { Form } from '@/airpower/decorator/FormField'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Table } from '@/airpower/decorator/TableField'
@@ -10,6 +6,7 @@ import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
 import { Strings } from '@/config/Strings'
 import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
+import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 用户实体
@@ -28,7 +25,10 @@ export class UserEntity extends BaseEntity implements IUser {
     desensitize: AirDesensitizeType.EMAIL,
   })
   @Search()
-  @Field(Strings.get().Email || '邮箱') email!: string
+  @Field({
+    label: Strings.get().Email || '邮箱',
+  })
+    email!: string
 
   /**
    * # 昵称
@@ -41,7 +41,10 @@ export class UserEntity extends BaseEntity implements IUser {
     desensitize: AirDesensitizeType.CHINESE_NAME,
   })
   @Search()
-  @Field('昵称') nickname!: string
+  @Field({
+    label: '昵称',
+  })
+    nickname!: string
 
   /**
    * # 手机
@@ -58,12 +61,18 @@ export class UserEntity extends BaseEntity implements IUser {
     desensitize: AirDesensitizeType.MOBILE,
   })
   @Search()
-  @Field('手机') phone!: string
+  @Field({
+    label: '手机',
+  })
+    phone!: string
 
   /**
    * # 头像
    */
-  @Field('头像') avatar!: string
+  @Field({
+    label: '头像',
+  })
+    avatar!: string
 
   /**
    * # 密码
@@ -71,17 +80,23 @@ export class UserEntity extends BaseEntity implements IUser {
   @Form({
     password: true,
   })
-  @Field('密码') password!: string
+  @Field({
+    label: '密码',
+  })
+    password!: string
 
   /**
    * # 角色列表
    */
-  @Field('角色')
   @Table({
     payloadArray: true,
     payloadField: 'name',
   })
-  @Type(RoleEntity, true) roleList!: RoleEntity[]
+  @Field({
+    type: RoleEntity,
+    array: true,
+    label: '角色',
+  }) roleList!: RoleEntity[]
 
   @Table({
     removed: false,

@@ -1,17 +1,15 @@
-import {
-  Dictionary, Field, Model, Type,
-} from '@/airpower/decorator/Custom'
-import { EntityConfig } from '@/airpower/decorator/EntityConfig'
+import { Model } from '@/airpower/decorator/Model'
 import { Form } from '@/airpower/decorator/FormField'
 import { Table } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppArithmeticEnum } from './OpenAppArithmeticEnum'
 import { Search } from '@/airpower/decorator/SearchField'
+import { Field } from '@/airpower/decorator/Field'
 
-@EntityConfig({
+@Model({
+  label: '应用',
   hideFieldSelector: true,
 })
-@Model('应用')
 export class OpenAppEntity extends BaseEntity {
   @Table({
     forceShow: true,
@@ -21,9 +19,13 @@ export class OpenAppEntity extends BaseEntity {
   })
   @Search()
   @Form({})
-  @Field('AppKey') appKey!: string
+  @Field({
+    label: 'AppKey',
+  }) appKey!: string
 
-  @Field('AppSecret') appSecret!: string
+  @Field({
+    label: 'AppSecret',
+  }) appSecret!: string
 
   @Table({
     forceShow: true,
@@ -32,9 +34,10 @@ export class OpenAppEntity extends BaseEntity {
   @Form({
     requiredString: true,
   })
-  @Field('应用名称') appName!: string
+  @Field({
+    label: '应用名称',
+  }) appName!: string
 
-  @Dictionary(OpenAppArithmeticEnum)
   @Table({
     width: 80,
     copyField: true,
@@ -48,7 +51,15 @@ export class OpenAppEntity extends BaseEntity {
     showColor: true,
   })
   @Search()
-  @Field('加密算法') arithmetic!: number
+
+  @Field({
+    label: '加密算法',
+    dictionary: OpenAppArithmeticEnum,
+    default: OpenAppArithmeticEnum.AES.key,
+    prefix: true,
+    alias: 'arithmetic',
+    hello: 'World',
+  }) arithmetic!: number
 
   @Table({
     removed: false,
@@ -59,12 +70,16 @@ export class OpenAppEntity extends BaseEntity {
     textarea: true,
     maxLength: 9999,
   })
-  @Field('公钥') publicKey!: string
+  @Field({
+    label: '公钥',
+  }) publicKey!: string
 
   @Form({
     textarea: true,
   })
-  @Field('私钥') privateKey!: string
+  @Field({
+    label: '私钥',
+  }) privateKey!: string
 
   /**
    * # 应用URL
@@ -74,13 +89,18 @@ export class OpenAppEntity extends BaseEntity {
     requiredString: true,
     placeholder: '带协议头,无需/结尾',
   })
-  @Field('回调网关') url!: string
+  @Field({
+    label: '回调网关',
+  }) url!: string
 
-  @Field('IP白名单')
+  @Field({
+    label: 'IP白名单',
+    type: String,
+  })
   @Form({
     textarea: true,
     defaultValue: '',
     placeholder: '请输入IP白名单，一行一个，不填写则不验证',
   })
-  @Type(String) ipWhiteList!: string
+    ipWhiteList!: string
 }

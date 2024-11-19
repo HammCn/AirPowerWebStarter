@@ -21,7 +21,7 @@
       >
         <AFormField field="email" />
         <AFormField field="nickname" />
-        <el-form-item :label="UserEntity.getFieldName('phone')">
+        <el-form-item :label="UserEntity.getFormFieldLabel('phone')">
           <AInput
             v-model.phone="formData.phone"
             :entity="UserEntity"
