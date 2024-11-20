@@ -1,41 +1,41 @@
 <template>
   <ADialog
-    width="70%"
-    height="70%"
-    :hide-footer="!mult"
-    :title="title"
-    is-selector
+    :disable-confirm="isMultiple && selectList.length === 0"
+    :hide-footer="!isMultiple"
     :loading="isLoading"
-    :disable-confirm="mult && selectList.length === 0"
+    :title="title"
+    height="70%"
+    is-selector
+    width="70%"
     @on-confirm="onConfirm(selectList)"
     @on-cancel="onCancel"
   >
     <AToolBar
-      hide-add
-      :loading="isLoading"
       :entity="RoleEntity"
+      :loading="isLoading"
       :service="RoleService"
+      hide-add
       @on-search="onSearch"
     />
     <ATable
+      :ctrl-width="80"
       :data-list="response.list"
-      :show-select="mult"
+      :entity="RoleEntity"
+      :hide-ctrl="isMultiple"
+      :select-list="selectList"
+      :show-select="isMultiple"
       hide-delete
       hide-edit
-      :select-list="selectList"
-      :entity="RoleEntity"
-      :ctrl-width="80"
       hide-field-selector
-      :hide-ctrl="mult"
       @on-select="onSelected"
     >
       <template
-        v-if="!mult"
+        v-if="!isMultiple"
         #customRow="{ data }"
       >
         <AButton
-          link-button
           :disabled="data.isDisabled"
+          link-button
           tooltip="选择"
           @click="
             onConfirm(data)
@@ -56,7 +56,7 @@
 
 <script lang="ts" setup>
 import {
-  APage, ATable, AToolBar, ADialog, AButton,
+  AButton, ADialog, APage, ATable, AToolBar,
 } from '@/airpower/component'
 import { airPropsSelector } from '@/airpower/config/AirProps'
 import { RoleEntity } from '@/model/role/RoleEntity'
@@ -70,4 +70,4 @@ const {
   onSearch, onPageChanged,
 } = useAirSelector(props, RoleEntity, RoleService)
 </script>
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

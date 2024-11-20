@@ -1,43 +1,43 @@
 <template>
   <ADialog
-    width="70%"
-    height="70%"
-    :hide-footer="!mult"
-    :title="title"
-    is-selector
+    :disable-confirm="isMultiple && selectList.length === 0"
+    :hide-footer="!isMultiple"
     :loading="isLoading"
-    :disable-confirm="mult && selectList.length === 0"
+    :title="title"
+    height="70%"
+    is-selector
+    width="70%"
     @on-confirm="onConfirm(selectList)"
     @on-cancel="onCancel"
   >
     <AToolBar
-      hide-add
-      :loading="isLoading"
       :entity="MenuEntity"
+      :loading="isLoading"
       :service="MenuService"
+      hide-add
       @on-search="onSearch"
     />
     <ATable
+      :ctrl-width="80"
       :data-list="response.list"
-      :show-select="mult"
+      :entity="MenuEntity"
+      :hide-ctrl="isMultiple"
+      :select-list="selectList"
+      :show-select="isMultiple"
       hide-delete
       hide-edit
-      :select-list="selectList"
-      :entity="MenuEntity"
-      :ctrl-width="80"
       hide-field-selector
-      :hide-ctrl="mult"
       @on-select="onSelected"
     >
       <template
-        v-if="!mult"
+        v-if="!isMultiple"
         #customRow="{ data }"
       >
         <AButton
-          type="SELECT"
-          icon-button
           :disabled="data.isDisabled"
+          icon-button
           tooltip="选择"
+          type="SELECT"
           @click=" onConfirm(data)"
         />
       </template>
@@ -68,4 +68,4 @@ const {
 } = useAirSelector(props, MenuEntity, MenuService)
 
 </script>
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>
