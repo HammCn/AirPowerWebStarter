@@ -1,9 +1,9 @@
 <template>
   <ADialog
-    :title="title"
+    :allow-fullscreen="false"
     :form-ref="formRef"
     :loading="isLoading"
-    :fullable="false"
+    :title="title"
     confirm-text="保存"
     @on-confirm="onSubmit"
     @on-cancel="onCancel"
@@ -11,8 +11,8 @@
     <el-form
       ref="form"
       :model="formData"
-      label-width="120px"
       :rules="rules"
+      label-width="120px"
       @submit.prevent
     >
       <AFormField field="name" />
@@ -35,4 +35,4 @@ const {
 } = useAirEditor(props, RoleEntity, RoleService)
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

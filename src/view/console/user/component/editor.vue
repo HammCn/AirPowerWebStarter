@@ -1,18 +1,18 @@
 <template>
   <ADialog
-    :title="title"
+    :allow-fullscreen="false"
     :form-ref="formRef"
     :loading="isLoading"
+    :title="title"
     confirm-text="保存"
-    :fullable="false"
     @on-confirm="onSubmit"
     @on-cancel="onCancel"
   >
     <el-form
       ref="formRef"
       :model="formData"
-      label-width="120px"
       :rules="rules"
+      label-width="120px"
       @submit.prevent
     >
       <AGroup
@@ -29,8 +29,8 @@
         </el-form-item>
       </AGroup>
       <AGroup
-        title="用户角色"
         :column="2"
+        title="用户角色"
       >
         <div class="role-list">
           <AButton
@@ -42,8 +42,8 @@
           <el-tag
             v-for="(role, index) in formData.roleList"
             :key="role.id"
-            size="large"
             closable
+            size="large"
             @close="formData.roleList.splice(index, 1)"
           >
             {{ role.name }}
@@ -56,8 +56,7 @@
 
 <script lang="ts" setup>
 import {
-  AButton, ADialog, AFormField, AGroup,
-  AInput,
+  AButton, ADialog, AFormField, AGroup, AInput,
 } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { UserService } from '@/model/user/UserService'
@@ -78,8 +77,8 @@ async function selectRole() {
 }
 </script>
 
-<style scoped lang="scss">
-.role-list>* {
+<style lang="scss" scoped>
+.role-list > * {
   margin-right: 5px;
 }
 </style>

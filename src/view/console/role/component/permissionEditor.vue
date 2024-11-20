@@ -1,24 +1,24 @@
 <template>
   <ADialog
-    :title="(RoleEntity.getModelConfig().label || '') + '权限授权'"
+    :allow-fullscreen="false"
     :form-ref="formRef"
     :loading="isLoading"
-    :fullable="false"
+    :title="(RoleEntity.getModelConfig().label || '') + '权限授权'"
+    confirm-text="保存"
     height="70%"
     width="70%"
-    confirm-text="保存"
     @on-confirm="onSubmit"
     @on-cancel="onCancel"
   >
     <ATable
-      :select-list="formData.permissionList"
-      :entity="PermissionEntity"
       :data-list="treeList"
-      hide-index
-      show-select
       :default-expand-all="false"
+      :entity="PermissionEntity"
+      :select-list="formData.permissionList"
       hide-ctrl
       hide-field-selector
+      hide-index
+      show-select
       @on-select="onSelect"
     />
   </ADialog>
@@ -40,8 +40,7 @@ const props = defineProps(airPropsParam(new RoleEntity()))
 
 const {
   isLoading, formRef, formData,
-} = useAirEditor(props, RoleEntity, RoleService, {
-})
+} = useAirEditor(props, RoleEntity, RoleService, {})
 
 async function onSelect(selectList: PermissionEntity[]) {
   formData.value.permissionList = selectList
@@ -52,6 +51,7 @@ const treeList = ref<PermissionEntity[]>([])
 async function getPermissionList() {
   treeList.value = await PermissionService.create(isLoading).getList(new AirRequest(PermissionEntity))
 }
+
 async function onSubmit() {
   await RoleService.create(isLoading).authorizePermission(formData.value.id, formData.value.permissionList)
   AirNotification.success('授权权限成功')
@@ -62,4 +62,4 @@ getPermissionList()
 
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

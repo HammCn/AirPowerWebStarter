@@ -1,23 +1,23 @@
 <template>
   <ADialog
-    :title="(RoleEntity.getModelConfig().label || '') + '菜单授权'"
+    :allow-fullscreen="false"
     :form-ref="formRef"
     :loading="isLoading"
-    :fullable="false"
-    height="70%"
+    :title="(RoleEntity.getModelConfig().label || '') + '菜单授权'"
     confirm-text="保存"
+    height="70%"
     @on-confirm="onSubmit"
     @on-cancel="onCancel"
   >
     <el-tree
       ref="treeRef"
+      :data="treeList"
+      :default-checked-keys="formData.menuList.map(item => item.id)"
+      :props="AirConfig.treeProps"
       check-strictly
       default-expand-all
-      :data="treeList"
-      show-checkbox
       node-key="id"
-      :props="AirConfig.treeProps"
-      :default-checked-keys="formData.menuList.map(item => item.id)"
+      show-checkbox
       @check="onSelect"
     />
   </ADialog>
@@ -42,8 +42,7 @@ const props = defineProps(airPropsParam(new RoleEntity()))
 
 const {
   isLoading, formRef, formData,
-} = useAirEditor(props, RoleEntity, RoleService, {
-})
+} = useAirEditor(props, RoleEntity, RoleService, {})
 
 const treeRef = ref<AirTreeInstance>()
 
@@ -62,8 +61,9 @@ async function onSubmit() {
   AirNotification.success('授权菜单成功')
   props.onConfirm()
 }
+
 getMenuTreeList()
 
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>
