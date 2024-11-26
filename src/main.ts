@@ -8,11 +8,12 @@ import { routes } from '@/config/routes'
 import '@/assets/css/main.scss'
 import { AppConfig } from '@/config/AppConfig'
 import { UserEntity } from '@/model/user/UserEntity'
+import { AirRouter } from './airpower/helper/AirRouter'
 
 AirConfig.product = 'AirPower'
 AirI18n.init(ChineseSimplified, English)
 
-app.use(AirConfig.createRouter(routes))
+app.use(AirRouter.createRouter(routes))
   .mount('#app')
 setTimeout(() => {
   const user = new UserEntity()

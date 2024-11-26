@@ -284,6 +284,7 @@ import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { UserEntity } from '@/model/user/UserEntity'
+import { AirRouter } from '@/airpower/helper/AirRouter'
 
 watch(AppConfig.currentUser, () => {
   AirNotification.success('User更新了')
@@ -316,8 +317,8 @@ const isRead = ref(true)
 
 const user = ref(new UserEntity())
 
-const appKey = (AirConfig.router.currentRoute.value.query.appKey || '').toString()
-const redirectUri = (AirConfig.router.currentRoute.value.query.redirectUri || '/console').toString()
+const appKey = (AirRouter.router.currentRoute.value.query.appKey || '').toString()
+const redirectUri = (AirRouter.router.currentRoute.value.query.redirectUri || '/console').toString()
 
 const appInfo = ref(new OpenAppEntity())
 

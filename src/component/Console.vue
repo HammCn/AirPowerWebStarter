@@ -39,6 +39,7 @@ import { UserEntity } from '@/model/user/UserEntity'
 import airpower from '@/airpower/assets/img/airpower.svg'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
+import { AirPermission } from '@/airpower/helper/AirPermission'
 
 const currentUserInfo = ref(new UserEntity())
 const menuList = ref<MenuEntity[]>([])
@@ -51,11 +52,11 @@ async function getMenuList() {
 
 async function init() {
   currentUserInfo.value = await UserService.create().getMyInfo()
-  let permissions = AirConfig.getPermissionList()
+  let permissions = AirPermission.getList()
   if (permissions.length === 0) {
     permissions = await UserService.create(isLoading).getMyPermissionList()
   }
-  AirConfig.savePermissionList(permissions)
+  AirPermission.saveList(permissions)
   await getMenuList()
 
   AirWebsocket.create(`${AirConfig.websocketUrl}?${AirConfig.getAccessToken()}`, {
