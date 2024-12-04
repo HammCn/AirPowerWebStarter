@@ -5,6 +5,7 @@ import { Form } from '@/airpower/decorator/FormField'
 import { WebHookTypeEnum } from '@/model/open/webhook/WebHookTypeEnum'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Field } from '@/airpower/decorator/Field'
+import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
 
 @Model({
   label: '通知',
@@ -58,4 +59,19 @@ export class WebHookEntity extends BaseEntity {
     label: '令牌',
   })
     token !: string
+
+  @Search({
+    orderNumber: -100,
+    dataType: AirSearchDataType.TEXTAREA,
+    hide: true,
+  })
+  @Form({
+    textarea: true,
+    orderNumber: -100,
+    hide: true,
+  })
+  @Field({
+    label: '备注',
+  })
+    remark!: string
 }
