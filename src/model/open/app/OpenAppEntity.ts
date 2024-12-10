@@ -56,9 +56,7 @@ export class OpenAppEntity extends BaseEntity {
     label: '加密算法',
     dictionary: OpenAppArithmeticEnum,
     default: OpenAppArithmeticEnum.AES.key,
-    prefix: true,
     alias: 'arithmetic',
-    hello: 'World',
   }) arithmetic!: number
 
   @Table({
