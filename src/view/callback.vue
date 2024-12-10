@@ -7,12 +7,12 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
+import { AirRouter } from '@/airpower/helper/AirRouter'
 
 const isLoading = ref(true)
 
-AirNotification.success(AirConfig.router.currentRoute.value.query.code?.toString())
+AirNotification.success(AirRouter.router.currentRoute.value.query.code?.toString())
 
 </script>
 <style lang="scss" scoped>

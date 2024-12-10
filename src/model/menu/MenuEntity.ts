@@ -1,23 +1,22 @@
 import {
-  Field,
-  Model, Type,
-} from '@/airpower/decorator/Custom'
-import { EntityConfig } from '@/airpower/decorator/EntityConfig'
+  Model,
+} from '@/airpower/decorator/Model'
 import { Form } from '@/airpower/decorator/FormField'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Table } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { IMenu } from '@/airpower/interface/IMenu'
 import { OrderNumberDictionary } from '../OrderNumberDictionary'
+import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 菜单
  * @author Hamm.cn
  */
-@EntityConfig({
+@Model({
+  label: '菜单',
   addChildPermission: 'add',
 })
-@Model('菜单')
 export class MenuEntity extends BaseEntity implements IMenu {
   /**
    * # 菜单名称
@@ -29,8 +28,9 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Form({
     requiredString: true,
   })
-  @Type(String)
-  @Field('菜单名称') name!: string
+  @Field({
+    label: '菜单名称',
+  }) name!: string
 
   /**
    * # 菜单路径
@@ -42,15 +42,17 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Form({
     requiredString: true,
   })
-  @Type(String)
-  @Field('菜单路径') path!: string
+  @Field({
+    label: '菜单路径',
+  }) path!: string
 
   /**
    * # 菜单图标
    */
   @Form()
-  @Type(String)
-  @Field('菜单图标') icon!: string
+  @Field({
+    label: '菜单图标',
+  }) icon!: string
 
   /**
    * # 组件地址
@@ -59,8 +61,9 @@ export class MenuEntity extends BaseEntity implements IMenu {
     copyField: true,
   })
   @Form()
-  @Type(String)
-  @Field('组件地址') component!: string
+  @Field({
+    label: '组件地址',
+  }) component!: string
 
   /**
    * # 排序编号
@@ -74,25 +77,34 @@ export class MenuEntity extends BaseEntity implements IMenu {
   @Table({
     width: 100,
   })
-  @Type(Number)
-  @Field('排序编号') orderNo!: number
+  @Field({
+    label: '排序编号',
+  }) orderNo!: number
 
   /**
    * # 父菜单ID
    */
-  @Field('父级ID') parentId!: number
+  @Field({
+    label: '父级ID',
+    type: Number,
+  }) parentId!: number
 
   /**
    * # 子菜单列表
    */
-  // eslint-disable-next-line no-use-before-define
-  @Type(MenuEntity, true) children!: this[]
+  @Field({
+    // eslint-disable-next-line no-use-before-define
+    type: MenuEntity,
+    array: true,
+  }) children!: this[]
 
   /**
    * # 父菜单
    */
-  // eslint-disable-next-line no-use-before-define
-  @Type(MenuEntity) parent!: this
+  @Field({
+    // eslint-disable-next-line no-use-before-define
+    type: MenuEntity,
+  }) parent!: this
 
   @Table({
     removed: true,

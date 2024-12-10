@@ -1,9 +1,12 @@
 import { BaseEntity } from '@/base/BaseEntity'
 import { Form } from '@/airpower/decorator/FormField'
 import { Table } from '@/airpower/decorator/TableField'
-import { Model, Field } from '@/airpower/decorator/Custom'
+import { Model } from '@/airpower/decorator/Model'
+import { Field } from '@/airpower/decorator/Field'
 
-@Model('供应商')
+@Model({
+  label: '供应商',
+})
 export class SupplierEntity extends BaseEntity {
   /**
    * # 供应商编码
@@ -17,7 +20,10 @@ export class SupplierEntity extends BaseEntity {
     orderNumber: 99,
     requiredString: true,
   })
-  @Field('供应商编码') code!: string
+  @Field({
+    label: '供应商编码',
+  })
+    code!: string
 
   /**
    * # 供应商名称
@@ -30,7 +36,10 @@ export class SupplierEntity extends BaseEntity {
     orderNumber: 98,
     requiredString: true,
   })
-  @Field('供应商名称') name!: string
+  @Field({
+    label: '供应商名称',
+  })
+    name!: string
 
   /**
    * # 联系电话
@@ -39,5 +48,8 @@ export class SupplierEntity extends BaseEntity {
   @Form({
     mobilePhone: true,
   })
-  @Field('联系电话') phone!: string
+  @Field({
+    label: '联系电话',
+  })
+    phone!: string
 }
