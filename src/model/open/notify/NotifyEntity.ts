@@ -76,4 +76,9 @@ export class NotifyEntity extends BaseEntity {
     label: '备注信息',
   })
     remark!: string
+
+  @Table({
+    removed: false,
+  })
+  declare isDisabled: boolean
 }

@@ -242,10 +242,10 @@
     <div class="copyright">
       Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved. Powered By
       <el-link
-        href="https://startauth.cn"
+        href="https://github.com/HammCn/AirPower4T"
         target="_blank"
       >
-        StartAuth
+        AirPower4T
       </el-link>
     </div>
   </div>

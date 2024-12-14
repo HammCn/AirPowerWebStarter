@@ -12,6 +12,8 @@
       :data-list="response.list"
       :entity="NotifyEntity"
       :field-list="fieldList"
+      show-enable-and-disable
+      :ctrl-width="130"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort="onSortChanged"
