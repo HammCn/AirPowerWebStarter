@@ -19,10 +19,14 @@
         :list="sceneList"
         field="scene"
       />
-      <AFormField field="type" />
+      <AFormField field="channel" />
       <AFormField field="url" />
       <AFormField
-        v-if="WebHookTypeEnum.WEB_HOOK.equalsKey(formData.type)"
+        v-if="NotifyChannelEnum.WEB_HOOK.equalsKey(formData.channel)"
+        field="token"
+      />
+      <AFormField
+        v-if="NotifyChannelEnum.WEB_HOOK.equalsKey(formData.type)"
         field="token"
       />
       <AFormField field="remark" />
@@ -35,12 +39,12 @@ import { ref } from 'vue'
 import { ADialog, AFormField } from '@/airpower/component'
 import { airPropsParam } from '@/airpower/config/AirProps'
 import { useAirEditor } from '@/airpower/hook/useAirEditor'
-import { WebHookEntity } from '@/model/open/webhook/WebHookEntity'
-import { WebHookService } from '@/model/open/webhook/WebHookService'
+import { NotifyEntity } from '@/model/open/notify/NotifyEntity'
+import { NotifyService } from '@/model/open/notify/NotifyService'
 import { IDictionary } from '@/airpower/interface/IDictionary'
-import { WebHookTypeEnum } from '@/model/open/webhook/WebHookTypeEnum'
+import { NotifyChannelEnum } from '@/model/open/notify/NotifyChannelEnum'
 
-const props = defineProps(airPropsParam(new WebHookEntity()))
+const props = defineProps(airPropsParam(new NotifyEntity()))
 
 const {
   title,
@@ -49,12 +53,12 @@ const {
   formRef,
   isLoading,
   onSubmit,
-} = useAirEditor(props, WebHookEntity, WebHookService)
+} = useAirEditor(props, NotifyEntity, NotifyService)
 
 const sceneList = ref<IDictionary[]>([])
 
 async function init() {
-  sceneList.value = await WebHookService.create()
+  sceneList.value = await NotifyService.create()
     .getSceneList()
 }
 

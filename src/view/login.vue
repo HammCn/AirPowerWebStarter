@@ -1,41 +1,46 @@
 <template>
   <div class="login">
+    <div class="logo">
+      <img
+        alt=""
+        src="@/assets/img/logo.png"
+      >
+    </div>
     <div
       v-loading="isLoadingApp"
       class="card"
     >
-      <div class="logo">
-        <img src="@/airpower/assets/img/airpower.svg">
-      </div>
       <div class="app-name">
-        {{ appInfo.appName }}
+        {{ appInfo.appName || "欢迎使用统一账号登录" }}
       </div>
       <div class="tabs">
         <div
           v-for="(item,index) in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE, LoginAction.LOGIN_VIA_QRCODE]"
           :key="item"
-          class="item"
           :class="(currentAction === item ? 'active item-' : 'item-') + index"
+          class="item"
           @click="
             currentAction = item;
             isQrcodeLogin = LoginAction.LOGIN_VIA_QRCODE === item;
           "
         >
-          {{ getActionByLanguage(item) }}
+          {{ item }}
         </div>
       </div>
       <div class="body">
         <template v-if="isQrcodeLogin">
           <div class="qrcode-login">
             <div class="qrcode-img">
-              <img src="@/assets/img/login/qrcode.png">
+              <img
+                alt=""
+                src="@/assets/img/login/qrcode.png"
+              >
             </div>
             <div class="desc">
               请使用App或微信扫码登录
             </div>
           </div>
         </template>
-
         <template v-else>
           <div
             v-if="currentAction === LoginAction.LOGIN_VIA_PASSWORD"
@@ -43,10 +48,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!isValidAccount ? 'error' : ''"
+                class="label"
               >
-                ID / {{ Strings.get().Email || "邮箱" }}
+                ID / 邮箱
               </div>
               <el-input
                 v-model="user.email"
@@ -55,7 +60,7 @@
             </div>
             <div class="item">
               <div class="label">
-                {{ Strings.get().Password || "密码" }}
+                密码
               </div>
               <el-input
                 v-model="user.password"
@@ -69,10 +74,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Email || "邮箱" }}
+                邮箱
               </div>
               <el-input
                 v-model="user.email"
@@ -80,28 +85,28 @@
               >
                 <template #suffix>
                   <el-button
-                    text
-                    type="primary"
                     :disabled="!AirValidator.isEmail(user.email)"
                     :loading="isEmailCodeLoading"
+                    text
+                    type="primary"
                     @click="onSendEmailCode()"
                   >
-                    {{ Strings.get().Send || "发送" }}
+                    发送
                   </el-button>
                 </template>
               </el-input>
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidCode ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Code || "验证码" }}
+                验证码
               </div>
               <el-input
                 v-model="user.code"
-                type="text"
                 maxlength="8"
+                type="text"
               />
             </div>
           </div>
@@ -111,10 +116,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!AirValidator.isMobilePhone(user.phone) ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Phone || "手机号" }}
+                手机号
               </div>
               <el-input
                 v-model="user.phone"
@@ -122,26 +127,26 @@
               >
                 <template #suffix>
                   <el-button
+                    :disabled="!AirValidator.isMobilePhone(user.phone)"
                     text
                     type="primary"
-                    :disabled="!AirValidator.isMobilePhone(user.phone)"
                   >
-                    {{ Strings.get().Send || "发送验证码" }}
+                    发送验证码
                   </el-button>
                 </template>
               </el-input>
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidCode ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Code || "验证码" }}
+                验证码
               </div>
               <el-input
                 v-model="user.code"
-                type="text"
                 maxlength="8"
+                type="text"
               />
             </div>
           </div>
@@ -151,10 +156,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Email || "邮箱" }}
+                邮箱
               </div>
               <el-input
                 v-model="user.email"
@@ -162,36 +167,36 @@
               >
                 <template #suffix>
                   <el-button
-                    text
-                    type="primary"
                     :disabled="!AirValidator.isEmail(user.email)"
                     :loading="isEmailCodeLoading"
+                    text
+                    type="primary"
                     @click="onSendEmailCode()"
                   >
-                    {{ Strings.get().Send || "发送" }}
+                    发送
                   </el-button>
                 </template>
               </el-input>
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidCode ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Code || "验证码" }}
+                验证码
               </div>
               <el-input
                 v-model="user.code"
-                type="text"
                 maxlength="8"
+                type="text"
               />
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidPassword ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Password || "密码" }}
+                密码
               </div>
               <el-input
                 v-model="user.password"
@@ -201,74 +206,52 @@
           </div>
           <div class="rules">
             <el-checkbox v-model="isRead">
-              {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
-                {{ Strings.get().PrivacyPolicy || "隐私政策" }}
-              </a> {{ Strings.get().And || "以及" }} <a href="">
-                {{ Strings.get().TermsOfService || "服务条款" }}
-              </a>
+              我已阅读并同意 <a href=""> 隐私政策 </a> 以及 <a href="">服务条款</a>
             </el-checkbox>
           </div>
           <div class="button">
             <div class="submit">
               <el-button
                 v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
+                :disabled="isButtonDisabled"
                 :loading="isLoadingReg"
                 type="primary"
-                :disabled="isButtonDisabled"
                 @click="onSubmit()"
               >
                 注册账号
               </el-button>
               <el-button
                 v-else
+                :disabled="isButtonDisabled"
                 :loading="isLoadingLogin"
                 type="primary"
-                :disabled="isButtonDisabled"
                 @click="onSubmit()"
               >
-                {{ Strings.get().LoginNow || "立即登录" }} {{ AppConfig.currentUser.value.nickname }}
+                立即登录
               </el-button>
             </div>
           </div>
         </template>
       </div>
       <div class="link">
-        <a href="javascript:;">
-          使用其他方式登录
-        </a>
+        <el-link>
+          {{ LoginAction.LOGIN_VIA_THIRD_PARTY }}
+        </el-link>
       </div>
-      <el-dropdown
-        v-if="AirI18n.getLanguages().length > 0"
-        class="language"
-        @command="changeLanguage"
-      >
-        <span class="el-dropdown-link">
-          {{ AirI18n.getCurrentLanguage() }}
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item
-              v-for="item in AirI18n.getLanguages().map(item => item.language)"
-              :key="item"
-              :command="item"
-            >
-              {{ item }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
     </div>
     <div class="copyright">
-      Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved.
+      Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved. Powered By
+      <el-link
+        href="https://startauth.cn"
+        target="_blank"
+      >
+        StartAuth
+      </el-link>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
-import { ArrowDown } from '@element-plus/icons-vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { AirValidator } from '@/airpower/helper/AirValidator'
@@ -277,9 +260,6 @@ import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { MailService } from '@/model/mail/MailService'
-import { Strings } from '@/config/Strings'
-import { AirLanguage } from '@/airpower/enum/AirLanguage'
-import { AirI18n } from '@/airpower/helper/AirI18n'
 import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
@@ -296,19 +276,6 @@ watch(AppConfig.currentUser, () => {
 const isQrcodeLogin = ref(false)
 
 const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
-
-function getActionByLanguage(action: LoginAction) {
-  switch (action) {
-    case LoginAction.LOGIN_VIA_EMAIL:
-      return Strings.get().LoginViaEmail || '邮箱登录'
-    case LoginAction.LOGIN_VIA_PHONE:
-      return Strings.get().LoginViaPhone || '手机登录'
-    case LoginAction.LOGIN_VIA_QRCODE:
-      return Strings.get().LoginViaQrcode || '手机登录'
-    default:
-      return Strings.get().LoginViaPassword || '密码登录'
-  }
-}
 
 /**
  * # 是否已阅读
@@ -442,17 +409,9 @@ async function onSendEmailCode() {
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
-/**
- * # 更换语言
- */
-async function changeLanguage(language: AirLanguage) {
-  AirI18n.setCurrentLanguage(language)
-  window.location.replace(window.location.href)
-}
-
 getAppInfo()
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .login {
   position: fixed;
   left: 0;
@@ -466,6 +425,20 @@ getAppInfo()
   align-items: center;
   justify-content: center;
 
+  .logo {
+    height: 60px;
+    padding: 10px;
+    background-color: rgba($color: #fff, $alpha: 0.1);
+    border-radius: 20px;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+
+    img {
+      height: 100%;
+    }
+  }
+
   .card {
     overflow: hidden;
     background-color: rgba($color: #f5f5f5, $alpha: 0.5);
@@ -477,6 +450,8 @@ getAppInfo()
     flex-direction: column;
     align-items: center;
     width: 360px;
+    position: absolute;
+    right: 10%;
 
     .qrcode-login {
       margin-top: 5px;
@@ -504,29 +479,15 @@ getAppInfo()
       }
     }
 
-    .logo {
-      height: 80px;
-      padding: 10px;
-      background-color: rgba($color: #fff, $alpha: 0.1);
-      border-radius: 20px;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
     .app-name {
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 24px;
       color: #333;
-      margin-top: 20px;
     }
 
     .tabs {
       display: flex;
       flex-direction: row;
-      margin-top: 30px;
+      margin-top: 50px;
 
       .item {
         position: relative;
@@ -609,19 +570,7 @@ getAppInfo()
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      margin-top: 20px;
-
-      a {
-        margin: 0 5px;
-        text-decoration: none;
-        color: #333;
-        transition: all .3s;
-      }
-
-      a:hover {
-        color: var(--primary-color);
-        text-decoration: underline;
-      }
+      margin-top: 10px;
     }
 
     .rules {
@@ -665,13 +614,6 @@ getAppInfo()
       }
     }
   }
-
-  .language {
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
 }
 
 .copyright {
@@ -681,7 +623,7 @@ getAppInfo()
   bottom: 20px;
   text-align: center;
   color: #aaa;
-  font-size: 12px;
+  font-size: 14px;
   text-shadow: 0 1px 1px rgba($color: #fff, $alpha: 1);
 }
 
@@ -694,7 +636,7 @@ getAppInfo()
       box-shadow: none !important;
     }
 
-    .item-3{
+    .item-3 {
       display: none;
     }
   }

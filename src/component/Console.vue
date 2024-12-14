@@ -1,8 +1,11 @@
 <template>
-  <AFrame :menu-list="menuList">
+  <AFrame
+    :menu-list="menuList"
+    header-height="50"
+  >
     <template #logo>
       <img
-        :src="airpower"
+        src="@/assets/img/logo.png"
         height="40"
         class="logo"
       >
@@ -36,7 +39,6 @@ import { AirRouter } from '@/airpower/helper/AirRouter'
 import { MenuEntity } from '@/model/menu/MenuEntity'
 import { UserService } from '@/model/user/UserService'
 import { UserEntity } from '@/model/user/UserEntity'
-import airpower from '@/airpower/assets/img/airpower.svg'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AirPermission } from '@/airpower/helper/AirPermission'

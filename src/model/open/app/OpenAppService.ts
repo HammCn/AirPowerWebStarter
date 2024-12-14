@@ -4,7 +4,7 @@ import { OpenAppEntity } from './OpenAppEntity'
 export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   entityClass = OpenAppEntity
 
-  baseUrl = 'open/app'
+  baseUrl = 'openApp'
 
   /**
    * # 通过应用Key获取一个应用
