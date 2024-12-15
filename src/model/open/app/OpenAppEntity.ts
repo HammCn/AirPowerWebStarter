@@ -5,16 +5,44 @@ import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppArithmeticEnum } from './OpenAppArithmeticEnum'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Field } from '@/airpower/decorator/Field'
+import { BooleanYesNoDictionary } from '@/model/BooleanYesNoDictionary'
 
 @Model({
   label: '应用',
-  hideFieldSelector: true,
 })
 export class OpenAppEntity extends BaseEntity {
   @Table({
     forceShow: true,
     orderNumber: 99,
-    width: 300,
+  })
+  @Search()
+  @Form({
+    requiredString: true,
+  })
+  @Field({
+    label: '应用名称',
+  }) appName!: string
+
+  @Table({
+    showColor: true,
+    width: 80,
+    orderNumber: 98,
+  })
+  @Form({
+    defaultValue: BooleanYesNoDictionary.NO.key,
+    clearable: false,
+  })
+  @Field({
+    label: '内部应用',
+    type: Boolean,
+    dictionary: BooleanYesNoDictionary,
+  })
+    isInternal!: boolean
+
+  @Table({
+    forceShow: true,
+    orderNumber: 98,
+    width: 400,
     copyField: true,
   })
   @Search()
@@ -28,17 +56,6 @@ export class OpenAppEntity extends BaseEntity {
   }) appSecret!: string
 
   @Table({
-    forceShow: true,
-  })
-  @Search()
-  @Form({
-    requiredString: true,
-  })
-  @Field({
-    label: '应用名称',
-  }) appName!: string
-
-  @Table({
     width: 80,
     copyField: true,
     forceShow: true,
@@ -46,16 +63,15 @@ export class OpenAppEntity extends BaseEntity {
   })
   @Form({
     requiredNumber: true,
-    defaultValue: OpenAppArithmeticEnum.AES.key,
+    defaultValue: OpenAppArithmeticEnum.NO.key,
     clearable: false,
     showColor: true,
   })
   @Search()
-
   @Field({
     label: '加密算法',
     dictionary: OpenAppArithmeticEnum,
-    default: OpenAppArithmeticEnum.AES.key,
+    prefix: true,
     alias: 'arithmetic',
   }) arithmetic!: number
 
@@ -88,7 +104,7 @@ export class OpenAppEntity extends BaseEntity {
     placeholder: '带协议头,无需/结尾',
   })
   @Field({
-    label: '回调网关',
+    label: '应用地址',
   }) url!: string
 
   @Field({

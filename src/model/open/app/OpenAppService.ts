@@ -4,10 +4,10 @@ import { OpenAppEntity } from './OpenAppEntity'
 export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   entityClass = OpenAppEntity
 
-  baseUrl = 'open/app'
+  baseUrl = 'openApp'
 
   /**
-   * # 通过应用Key获取一个应用
+   * ### 通过应用Key获取一个应用
    * @param appKey 应用Key
    */
   async getAppByKey(appKey: string): Promise<OpenAppEntity> {
@@ -18,7 +18,7 @@ export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   }
 
   /**
-   * # 重置指定应用的秘钥
+   * ### 重置指定应用的秘钥
    * @param app 应用
    */
   async resetSecret(app: OpenAppEntity): Promise<string> {
@@ -28,6 +28,7 @@ export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   }
 
   async addAndGetSecret(app: OpenAppEntity): Promise<string> {
+    console.log(app)
     const result = await this.api('add')
       .post(app)
     return result as unknown as string

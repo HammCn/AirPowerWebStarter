@@ -28,9 +28,4 @@ export enum LoginAction {
    * # 第三方登录
    */
   LOGIN_VIA_THIRD_PARTY = '第三方登录',
-
-  /**
-   * # 注册账号
-   */
-  REGISTER_VIA_EMAIL = '注册账号',
 }

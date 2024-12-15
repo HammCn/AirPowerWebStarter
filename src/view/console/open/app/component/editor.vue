@@ -16,6 +16,7 @@
       @submit.prevent
     >
       <AFormField field="appName" />
+      <AFormField field="isInternal" />
       <AFormField field="arithmetic" />
       <AFormField field="url" />
       <AFormField field="ipWhiteList" />
@@ -42,7 +43,7 @@ const {
 } = useAirEditor(props, OpenAppEntity, OpenAppService)
 
 // todo 这里需要删掉
-formData.value.url = formData.value.url || 'https://hamm.cn/callback'
+formData.value.url = formData.value.url || 'https://demo.hamm.cn/app'
 
 async function onAdd() {
   const result = await OpenAppService.create(isLoading)
