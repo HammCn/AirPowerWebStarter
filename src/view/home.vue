@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <el-image
-      :src="airpower"
+    <img
+      src="@/assets/img/logo.png"
       class="logo"
-    />
+    >
     <iframe src="https://ac.hamm.cn" />
     <div class="intro">
       <img src="https://svg.hamm.cn?key=Lang&value=TypeScript">
@@ -39,9 +39,7 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import airpower from '@/airpower/assets/img/airpower.svg'
-</script>
+<script lang="ts" setup></script>
 <style lang="scss" scoped>
 .home {
   position: fixed;

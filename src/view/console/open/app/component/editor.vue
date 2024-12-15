@@ -16,6 +16,7 @@
       @submit.prevent
     >
       <AFormField field="appName" />
+      <AFormField field="isInternal" />
       <AFormField field="arithmetic" />
       <AFormField field="url" />
       <AFormField field="ipWhiteList" />

@@ -12,6 +12,11 @@ export class UserService extends AbstractBaseService<UserEntity> {
 
   entityClass = UserEntity
 
+  async logout() {
+    await this.api('logout')
+      .post()
+  }
+
   /**
    * ### App登录
    * @param user 用户

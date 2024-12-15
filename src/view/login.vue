@@ -6,7 +6,7 @@
       class="card"
     >
       <div class="app-name">
-        {{ appInfo.appName || '欢迎使用统一账号登录' }}
+        {{ appInfo.appName || '欢迎使用AirPower4T!' }}
       </div>
       <div class="tabs">
         <div
@@ -253,15 +253,21 @@ async function getAppInfo() {
 /**
  * ### 处理登录重定向
  */
-function loginRedirect(result: string) {
+async function loginRedirect(result: string) {
+  AirConfig.saveAccessToken(result)
   if (appKey) {
+    if (appInfo.value.isInternal) {
+      const result = await UserService.create(isLoadingLogin)
+        .authorize(appKey, scope)
+      window.location.replace(`${redirectUri}?code=${result}`)
+      return
+    }
     // Oauth登录 重定向code
-    window.location.href = `/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`
+    window.location.replace(`/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`)
     return
   }
-  AirConfig.saveAccessToken(result)
   // 正常登录 保存 AccessToken
-  window.location.href = redirectUri
+  window.location.replace(redirectUri)
 }
 
 /**
@@ -319,6 +325,13 @@ async function onSendEmailCode() {
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
+async function logout() {
+  AirConfig.removeAccessToken()
+  await UserService.create(isLoadingLogin)
+    .logout()
+}
+
+logout()
 getAppInfo()
 </script>
 <style lang="scss" scoped>
@@ -514,16 +527,17 @@ getAppInfo()
 
 @media screen and ((orientation:portrait) and (max-width: 600px)) {
   .login {
-    .logo{
-      left: auto!important;
-      top: 100px!important;
+    .logo {
+      left: auto !important;
+      top: 100px !important;
     }
+
     .card {
       width: 90% !important;
       background: transparent !important;
       backdrop-filter: blur(0px) !important;
       box-shadow: none !important;
-      position: initial!important;
+      position: initial !important;
     }
 
     .item-3 {

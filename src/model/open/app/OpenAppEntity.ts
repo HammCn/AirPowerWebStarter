@@ -5,6 +5,7 @@ import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppArithmeticEnum } from './OpenAppArithmeticEnum'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Field } from '@/airpower/decorator/Field'
+import { BooleanYesNoDictionary } from '@/model/BooleanYesNoDictionary'
 
 @Model({
   label: '应用',
@@ -21,6 +22,22 @@ export class OpenAppEntity extends BaseEntity {
   @Field({
     label: '应用名称',
   }) appName!: string
+
+  @Table({
+    showColor: true,
+    width: 80,
+    orderNumber: 98,
+  })
+  @Form({
+    defaultValue: BooleanYesNoDictionary.NO.key,
+    clearable: false,
+  })
+  @Field({
+    label: '内部应用',
+    type: Boolean,
+    dictionary: BooleanYesNoDictionary,
+  })
+    isInternal!: boolean
 
   @Table({
     forceShow: true,

@@ -28,6 +28,7 @@ export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   }
 
   async addAndGetSecret(app: OpenAppEntity): Promise<string> {
+    console.log(app)
     const result = await this.api('add')
       .post(app)
     return result as unknown as string
