@@ -146,7 +146,7 @@ init()
       height: 0;
       overflow: hidden;
       overflow-y: auto;
-      width: 100%;
+      width: 90%;
       padding: 15px 20px;
       border-radius: 15px;
 
