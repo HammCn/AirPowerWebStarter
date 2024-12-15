@@ -8,13 +8,8 @@ import { Field } from '@/airpower/decorator/Field'
 
 @Model({
   label: '应用',
-  hideFieldSelector: true,
 })
 export class OpenAppEntity extends BaseEntity {
-  @Field({
-    label: 'AppSecret',
-  }) appSecret!: string
-
   @Table({
     forceShow: true,
     orderNumber: 99,
@@ -38,6 +33,10 @@ export class OpenAppEntity extends BaseEntity {
   @Field({
     label: 'AppKey',
   }) appKey!: string
+
+  @Field({
+    label: 'AppSecret',
+  }) appSecret!: string
 
   @Table({
     width: 80,
