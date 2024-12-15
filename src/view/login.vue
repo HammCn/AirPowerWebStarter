@@ -1,11 +1,6 @@
 <template>
   <div class="login">
-    <div class="logo">
-      <img
-        alt=""
-        src="@/assets/img/logo.png"
-      >
-    </div>
+    <Logo />
     <div
       v-loading="isLoadingApp"
       class="card"
@@ -175,19 +170,11 @@
         </el-link>
       </div>
     </div>
-    <div class="copyright">
-      Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved. Powered By
-      <el-link
-        href="https://github.com/HammCn/AirPower4T"
-        target="_blank"
-      >
-        AirPower4T
-      </el-link>
-    </div>
+    <Copyright />
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { AirValidator } from '@/airpower/helper/AirValidator'
@@ -195,15 +182,12 @@ import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { MailService } from '@/model/mail/MailService'
-import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { UserEntity } from '@/model/user/UserEntity'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-
-watch(AppConfig.currentUser, () => {
-  AirNotification.success('User更新了')
-})
+import Logo from '@/component/login/Logo.vue'
+import Copyright from '@/component/login/Copyright.vue'
 
 /**
  * ### 是否二维码登录
@@ -220,6 +204,7 @@ const isRead = ref(true)
 const user = ref(new UserEntity())
 
 const appKey = (AirRouter.router.currentRoute.value.query.appKey || '').toString()
+const scope = (AirRouter.router.currentRoute.value.query.scope || '').toString()
 const redirectUri = (AirRouter.router.currentRoute.value.query.redirectUri || '/console').toString()
 
 const appInfo = ref(new OpenAppEntity())
@@ -271,7 +256,7 @@ async function getAppInfo() {
 function loginRedirect(result: string) {
   if (appKey) {
     // Oauth登录 重定向code
-    window.location.href = `${decodeURIComponent(redirectUri)}?code=${result}`
+    window.location.href = `/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`
     return
   }
   AirConfig.saveAccessToken(result)
@@ -349,20 +334,6 @@ getAppInfo()
   background-size: cover;
   align-items: center;
   justify-content: center;
-
-  .logo {
-    height: 60px;
-    padding: 10px;
-    background-color: rgba($color: #fff, $alpha: 0.1);
-    border-radius: 20px;
-    position: absolute;
-    left: 30px;
-    top: 30px;
-
-    img {
-      height: 100%;
-    }
-  }
 
   .card {
     overflow: hidden;
@@ -541,24 +512,18 @@ getAppInfo()
   }
 }
 
-.copyright {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 20px;
-  text-align: center;
-  color: #aaa;
-  font-size: 14px;
-  text-shadow: 0 1px 1px rgba($color: #fff, $alpha: 1);
-}
-
 @media screen and ((orientation:portrait) and (max-width: 600px)) {
   .login {
+    .logo{
+      left: auto!important;
+      top: 100px!important;
+    }
     .card {
       width: 90% !important;
       background: transparent !important;
       backdrop-filter: blur(0px) !important;
       box-shadow: none !important;
+      position: initial!important;
     }
 
     .item-3 {
