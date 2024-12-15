@@ -24,9 +24,9 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/view/home.vue'),
   },
   {
-    path: '/three',
-    name: '3D',
-    component: () => import('@/view/three.vue'),
+    path: '/authorize',
+    name: '授权',
+    component: () => import('@/view/authorize.vue'),
   },
   {
     path: '/',

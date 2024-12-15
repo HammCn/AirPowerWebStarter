@@ -2,7 +2,7 @@ import { BaseEntity } from '@/base/BaseEntity'
 import { Model } from '@/airpower/decorator/Model'
 import { Table } from '@/airpower/decorator/TableField'
 import { Form } from '@/airpower/decorator/FormField'
-import { WebHookTypeEnum } from '@/model/open/webhook/WebHookTypeEnum'
+import { NotifyChannelEnum } from '@/model/open/notify/NotifyChannelEnum'
 import { Search } from '@/airpower/decorator/SearchField'
 import { Field } from '@/airpower/decorator/Field'
 import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
@@ -10,7 +10,7 @@ import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
 @Model({
   label: '通知',
 })
-export class WebHookEntity extends BaseEntity {
+export class NotifyEntity extends BaseEntity {
   @Form({
     requiredNumber: true,
   })
@@ -19,7 +19,7 @@ export class WebHookEntity extends BaseEntity {
     forceShow: true,
   })
   @Field({
-    label: '场景',
+    label: '通知场景',
   })
     scene !: number
 
@@ -28,16 +28,18 @@ export class WebHookEntity extends BaseEntity {
   })
   @Form({
     requiredNumber: true,
+    showColor: true,
   })
   @Table({
     forceShow: true,
     width: 100,
+    showColor: true,
   })
   @Field({
-    label: '类型',
-    dictionary: WebHookTypeEnum,
+    label: '通知渠道',
+    dictionary: NotifyChannelEnum,
   })
-    type !: number
+    channel !: number
 
   @Form({
     requiredString: true,
@@ -46,7 +48,7 @@ export class WebHookEntity extends BaseEntity {
   })
   @Table()
   @Field({
-    label: '网址',
+    label: '通知地址',
   })
     url !: string
 
@@ -56,7 +58,7 @@ export class WebHookEntity extends BaseEntity {
     placeholder: '将在发起请求时携带此令牌作为校验凭证',
   })
   @Field({
-    label: '令牌',
+    label: '通知令牌',
   })
     token !: string
 
@@ -71,7 +73,12 @@ export class WebHookEntity extends BaseEntity {
     hide: true,
   })
   @Field({
-    label: '备注',
+    label: '备注信息',
   })
     remark!: string
+
+  @Table({
+    removed: false,
+  })
+  declare isDisabled: boolean
 }

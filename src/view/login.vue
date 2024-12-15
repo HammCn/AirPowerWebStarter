@@ -1,41 +1,41 @@
 <template>
   <div class="login">
+    <Logo />
     <div
       v-loading="isLoadingApp"
       class="card"
     >
-      <div class="logo">
-        <img src="@/airpower/assets/img/airpower.svg">
-      </div>
       <div class="app-name">
-        {{ appInfo.appName }}
+        {{ appInfo.appName || '欢迎使用AirPower4T!' }}
       </div>
       <div class="tabs">
         <div
           v-for="(item,index) in [LoginAction.LOGIN_VIA_PASSWORD, LoginAction.LOGIN_VIA_EMAIL, LoginAction.LOGIN_VIA_PHONE, LoginAction.LOGIN_VIA_QRCODE]"
           :key="item"
-          class="item"
           :class="(currentAction === item ? 'active item-' : 'item-') + index"
+          class="item"
           @click="
             currentAction = item;
             isQrcodeLogin = LoginAction.LOGIN_VIA_QRCODE === item;
           "
         >
-          {{ getActionByLanguage(item) }}
+          {{ item }}
         </div>
       </div>
       <div class="body">
         <template v-if="isQrcodeLogin">
           <div class="qrcode-login">
             <div class="qrcode-img">
-              <img src="@/assets/img/login/qrcode.png">
+              <img
+                alt=""
+                src="@/assets/img/login/qrcode.png"
+              >
             </div>
             <div class="desc">
               请使用App或微信扫码登录
             </div>
           </div>
         </template>
-
         <template v-else>
           <div
             v-if="currentAction === LoginAction.LOGIN_VIA_PASSWORD"
@@ -43,10 +43,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!isValidAccount ? 'error' : ''"
+                class="label"
               >
-                ID / {{ Strings.get().Email || "邮箱" }}
+                ID / 邮箱
               </div>
               <el-input
                 v-model="user.email"
@@ -55,7 +55,7 @@
             </div>
             <div class="item">
               <div class="label">
-                {{ Strings.get().Password || "密码" }}
+                密码
               </div>
               <el-input
                 v-model="user.password"
@@ -69,10 +69,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Email || "邮箱" }}
+                邮箱
               </div>
               <el-input
                 v-model="user.email"
@@ -80,28 +80,28 @@
               >
                 <template #suffix>
                   <el-button
-                    text
-                    type="primary"
                     :disabled="!AirValidator.isEmail(user.email)"
                     :loading="isEmailCodeLoading"
+                    text
+                    type="primary"
                     @click="onSendEmailCode()"
                   >
-                    {{ Strings.get().Send || "发送" }}
+                    发送
                   </el-button>
                 </template>
               </el-input>
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidCode ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Code || "验证码" }}
+                验证码
               </div>
               <el-input
                 v-model="user.code"
-                type="text"
                 maxlength="8"
+                type="text"
               />
             </div>
           </div>
@@ -111,10 +111,10 @@
           >
             <div class="item">
               <div
-                class="label"
                 :class="!AirValidator.isMobilePhone(user.phone) ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Phone || "手机号" }}
+                手机号
               </div>
               <el-input
                 v-model="user.phone"
@@ -122,202 +122,89 @@
               >
                 <template #suffix>
                   <el-button
-                    text
-                    type="primary"
                     :disabled="!AirValidator.isMobilePhone(user.phone)"
-                  >
-                    {{ Strings.get().Send || "发送验证码" }}
-                  </el-button>
-                </template>
-              </el-input>
-            </div>
-            <div class="item">
-              <div
-                class="label"
-                :class="!isValidCode ? 'error' : ''"
-              >
-                {{ Strings.get().Code || "验证码" }}
-              </div>
-              <el-input
-                v-model="user.code"
-                type="text"
-                maxlength="8"
-              />
-            </div>
-          </div>
-          <div
-            v-if="currentAction === LoginAction.REGISTER_VIA_EMAIL"
-            class="form"
-          >
-            <div class="item">
-              <div
-                class="label"
-                :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
-              >
-                {{ Strings.get().Email || "邮箱" }}
-              </div>
-              <el-input
-                v-model="user.email"
-                type="text"
-              >
-                <template #suffix>
-                  <el-button
                     text
                     type="primary"
-                    :disabled="!AirValidator.isEmail(user.email)"
-                    :loading="isEmailCodeLoading"
-                    @click="onSendEmailCode()"
                   >
-                    {{ Strings.get().Send || "发送" }}
+                    发送验证码
                   </el-button>
                 </template>
               </el-input>
             </div>
             <div class="item">
               <div
-                class="label"
                 :class="!isValidCode ? 'error' : ''"
+                class="label"
               >
-                {{ Strings.get().Code || "验证码" }}
+                验证码
               </div>
               <el-input
                 v-model="user.code"
-                type="text"
                 maxlength="8"
-              />
-            </div>
-            <div class="item">
-              <div
-                class="label"
-                :class="!isValidPassword ? 'error' : ''"
-              >
-                {{ Strings.get().Password || "密码" }}
-              </div>
-              <el-input
-                v-model="user.password"
-                type="password"
+                type="text"
               />
             </div>
           </div>
           <div class="rules">
             <el-checkbox v-model="isRead">
-              {{ Strings.get().ReadAndAgreed || "我已阅读并同意" }} <a href="">
-                {{ Strings.get().PrivacyPolicy || "隐私政策" }}
-              </a> {{ Strings.get().And || "以及" }} <a href="">
-                {{ Strings.get().TermsOfService || "服务条款" }}
-              </a>
+              我已阅读并同意 <a href=""> 隐私政策 </a> 以及 <a href="">服务条款</a>
             </el-checkbox>
           </div>
           <div class="button">
             <div class="submit">
               <el-button
-                v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
-                :loading="isLoadingReg"
-                type="primary"
                 :disabled="isButtonDisabled"
-                @click="onSubmit()"
-              >
-                注册账号
-              </el-button>
-              <el-button
-                v-else
                 :loading="isLoadingLogin"
                 type="primary"
-                :disabled="isButtonDisabled"
                 @click="onSubmit()"
               >
-                {{ Strings.get().LoginNow || "立即登录" }} {{ AppConfig.currentUser.value.nickname }}
+                立即登录
               </el-button>
             </div>
           </div>
         </template>
       </div>
       <div class="link">
-        <a href="javascript:;">
-          使用其他方式登录
-        </a>
+        <el-link>
+          {{ LoginAction.LOGIN_VIA_THIRD_PARTY }}
+        </el-link>
       </div>
-      <el-dropdown
-        v-if="AirI18n.getLanguages().length > 0"
-        class="language"
-        @command="changeLanguage"
-      >
-        <span class="el-dropdown-link">
-          {{ AirI18n.getCurrentLanguage() }}
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item
-              v-for="item in AirI18n.getLanguages().map(item => item.language)"
-              :key="item"
-              :command="item"
-            >
-              {{ item }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
     </div>
-    <div class="copyright">
-      Copyright Hamm.cn &copy;{{ new Date().getFullYear() }}, All Rights Reserved.
-    </div>
+    <Copyright />
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
-import { ArrowDown } from '@element-plus/icons-vue'
+import { computed, ref } from 'vue'
 import { LoginAction } from '@/model/common/LoginAction'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
 import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
-import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { MailService } from '@/model/mail/MailService'
-import { Strings } from '@/config/Strings'
-import { AirLanguage } from '@/airpower/enum/AirLanguage'
-import { AirI18n } from '@/airpower/helper/AirI18n'
-import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { UserEntity } from '@/model/user/UserEntity'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-
-watch(AppConfig.currentUser, () => {
-  AirNotification.success('User更新了')
-})
+import Logo from '@/component/login/Logo.vue'
+import Copyright from '@/component/login/Copyright.vue'
 
 /**
- * # 是否二维码登录
+ * ### 是否二维码登录
  */
 const isQrcodeLogin = ref(false)
 
 const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
 
-function getActionByLanguage(action: LoginAction) {
-  switch (action) {
-    case LoginAction.LOGIN_VIA_EMAIL:
-      return Strings.get().LoginViaEmail || '邮箱登录'
-    case LoginAction.LOGIN_VIA_PHONE:
-      return Strings.get().LoginViaPhone || '手机登录'
-    case LoginAction.LOGIN_VIA_QRCODE:
-      return Strings.get().LoginViaQrcode || '手机登录'
-    default:
-      return Strings.get().LoginViaPassword || '密码登录'
-  }
-}
-
 /**
- * # 是否已阅读
+ * ### 是否已阅读
  */
 const isRead = ref(true)
 
 const user = ref(new UserEntity())
 
 const appKey = (AirRouter.router.currentRoute.value.query.appKey || '').toString()
+const scope = (AirRouter.router.currentRoute.value.query.scope || '').toString()
 const redirectUri = (AirRouter.router.currentRoute.value.query.redirectUri || '/console').toString()
 
 const appInfo = ref(new OpenAppEntity())
@@ -328,23 +215,19 @@ user.value.password = 'Aa123456'
 // 一些Loading状态
 const isLoadingApp = ref(false)
 const isLoadingLogin = ref(false)
-const isLoadingReg = ref(false)
 const isEmailCodeLoading = ref(false)
 
 // ! 判断是否输入有效格式的值
-const isValidPassword = computed(() => user.value.password && user.value.password.length >= 6)
 const isValidCode = computed(() => user.value.code && user.value.code.length === 6)
 const isValidEmail = computed(() => user.value.email && AirValidator.isEmail(user.value.email))
 const isValidPhone = computed(() => user.value.phone && AirValidator.isMobilePhone(user.value.phone))
 const isValidAccount = computed(() => user.value.email && (AirValidator.isEmail(user.value.email) || AirValidator.isNaturalNumber(user.value.email)))
 
 /**
- * # 计算是否禁用登录/注册按钮
+ * ### 计算是否禁用登录/注册按钮
  */
 const isButtonDisabled = computed(() => {
   switch (currentAction.value) {
-    case LoginAction.REGISTER_VIA_EMAIL:
-      return !isValidEmail.value || !isValidCode.value || !isValidPassword.value
     case LoginAction.LOGIN_VIA_PHONE:
       return !isValidPhone.value || !isValidCode.value
     case LoginAction.LOGIN_VIA_EMAIL:
@@ -357,31 +240,38 @@ const isButtonDisabled = computed(() => {
 })
 
 /**
- * # 获取当前应用信息
+ * ### 获取当前应用信息
  */
 async function getAppInfo() {
   if (appKey) {
     user.value.appKey = appKey
-    appInfo.value = await OpenAppService.create(isLoadingApp).getAppByKey(appKey)
+    appInfo.value = await OpenAppService.create(isLoadingApp)
+      .getAppByKey(appKey)
   }
 }
 
 /**
- * # 处理登录重定向
+ * ### 处理登录重定向
  */
-function loginRedirect(result: string) {
+async function loginRedirect(result: string) {
+  AirConfig.saveAccessToken(result)
   if (appKey) {
+    if (appInfo.value.isInternal) {
+      const result = await UserService.create(isLoadingLogin)
+        .authorize(appKey, scope)
+      window.location.replace(`${redirectUri}?code=${result}`)
+      return
+    }
     // Oauth登录 重定向code
-    window.location.href = `${decodeURIComponent(redirectUri)}?code=${result}`
+    window.location.replace(`/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`)
     return
   }
-  AirConfig.saveAccessToken(result)
   // 正常登录 保存 AccessToken
-  window.location.href = redirectUri
+  window.location.replace(redirectUri)
 }
 
 /**
- * # 邮箱+密码登录
+ * ### 邮箱+密码登录
  */
 async function onLogin() {
   const request = user.value.copy()
@@ -389,41 +279,33 @@ async function onLogin() {
     request.id = parseInt(request.email, 10)
     request.exclude('email')
   }
-  const result = await UserService.create(isLoadingLogin).login(request)
+  const result = await UserService.create(isLoadingLogin)
+    .login(request)
   loginRedirect(result)
 }
 
 /**
- * # 邮箱+验证码登录
+ * ### 邮箱+验证码登录
  */
 async function onEmailLogin() {
-  const result = await UserService.create(isLoadingLogin).loginViaEmail(user.value)
+  const result = await UserService.create(isLoadingLogin)
+    .loginViaEmail(user.value)
   loginRedirect(result)
 }
 
 /**
- * # 注册
- */
-async function onReg() {
-  await UserService.create(isLoadingLogin).register(user.value)
-  AirAlert.create().setConfirmText('去登录').show('账号注册成功, 你可以使用账号密码去登录了!')
-  currentAction.value = LoginAction.LOGIN_VIA_PASSWORD
-}
-
-/**
- * # 登录/注册按钮事件
+ * ### 登录/注册按钮事件
  */
 async function onSubmit() {
   if (!isRead.value) {
-    await AirConfirm.create().setConfirmText('我已阅读并同意').show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
+    await AirConfirm.create()
+      .setConfirmText('我已阅读并同意')
+      .show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
     isRead.value = true
   }
   switch (currentAction.value) {
     case LoginAction.LOGIN_VIA_PASSWORD:
       onLogin()
-      break
-    case LoginAction.REGISTER_VIA_EMAIL:
-      onReg()
       break
     case LoginAction.LOGIN_VIA_EMAIL:
       onEmailLogin()
@@ -433,26 +315,26 @@ async function onSubmit() {
 }
 
 /**
- * # 发送邮箱验证码事件
+ * ### 发送邮箱验证码事件
  */
 async function onSendEmailCode() {
   const request = new UserEntity()
   request.email = user.value.email
-  await MailService.create(isEmailCodeLoading).sendCode(request)
+  await MailService.create(isEmailCodeLoading)
+    .sendCode(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
-/**
- * # 更换语言
- */
-async function changeLanguage(language: AirLanguage) {
-  AirI18n.setCurrentLanguage(language)
-  window.location.replace(window.location.href)
+async function logout() {
+  AirConfig.removeAccessToken()
+  await UserService.create(isLoadingLogin)
+    .logout()
 }
 
+logout()
 getAppInfo()
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .login {
   position: fixed;
   left: 0;
@@ -477,6 +359,8 @@ getAppInfo()
     flex-direction: column;
     align-items: center;
     width: 360px;
+    position: absolute;
+    right: 10%;
 
     .qrcode-login {
       margin-top: 5px;
@@ -504,29 +388,15 @@ getAppInfo()
       }
     }
 
-    .logo {
-      height: 80px;
-      padding: 10px;
-      background-color: rgba($color: #fff, $alpha: 0.1);
-      border-radius: 20px;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
     .app-name {
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 24px;
       color: #333;
-      margin-top: 20px;
     }
 
     .tabs {
       display: flex;
       flex-direction: row;
-      margin-top: 30px;
+      margin-top: 50px;
 
       .item {
         position: relative;
@@ -609,19 +479,7 @@ getAppInfo()
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      margin-top: 20px;
-
-      a {
-        margin: 0 5px;
-        text-decoration: none;
-        color: #333;
-        transition: all .3s;
-      }
-
-      a:hover {
-        color: var(--primary-color);
-        text-decoration: underline;
-      }
+      margin-top: 10px;
     }
 
     .rules {
@@ -665,36 +523,24 @@ getAppInfo()
       }
     }
   }
-
-  .language {
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-}
-
-.copyright {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 20px;
-  text-align: center;
-  color: #aaa;
-  font-size: 12px;
-  text-shadow: 0 1px 1px rgba($color: #fff, $alpha: 1);
 }
 
 @media screen and ((orientation:portrait) and (max-width: 600px)) {
   .login {
+    .logo {
+      left: auto !important;
+      top: 100px !important;
+    }
+
     .card {
       width: 90% !important;
       background: transparent !important;
       backdrop-filter: blur(0px) !important;
       box-shadow: none !important;
+      position: initial !important;
     }
 
-    .item-3{
+    .item-3 {
       display: none;
     }
   }

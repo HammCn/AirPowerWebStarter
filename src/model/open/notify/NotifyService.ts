@@ -1,11 +1,11 @@
-import { WebHookEntity } from '@/model/open/webhook/WebHookEntity'
+import { NotifyEntity } from '@/model/open/notify/NotifyEntity'
 import { AbstractBaseService } from '@/base/AbstractBaseService'
 import { IDictionary } from '@/airpower/interface/IDictionary'
 
-export class WebHookService extends AbstractBaseService<WebHookEntity> {
-  baseUrl = 'webhook'
+export class NotifyService extends AbstractBaseService<NotifyEntity> {
+  baseUrl = 'notify'
 
-  entityClass = WebHookEntity
+  entityClass = NotifyEntity
 
   async getSceneList(): Promise<IDictionary[]> {
     const result = await this.api('getSceneList')

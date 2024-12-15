@@ -11,9 +11,12 @@
       v-loading="isLoading"
       :data-list="response.list"
       :entity="RoleEntity"
-      :ctrl-width="160"
+      :ctrl-width="190"
+      show-enable-and-disable
       @on-edit="onEdit"
       @on-delete="onDelete"
+      @on-disable="onDisable"
+      @on-enable="onEnable"
     >
       <template #customRow="{ data }">
         <AButton
@@ -61,7 +64,7 @@ async function onPermissionEditor(role: RoleEntity) {
 
 const {
   isLoading, response,
-  onSearch, onAdd, onEdit, onDelete, onPageChanged,
+  onSearch, onAdd, onEdit, onDelete, onPageChanged, onDisable, onEnable,
 } = useAirTable(RoleEntity, RoleService, {
   editView: RoleEditor,
 })

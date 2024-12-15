@@ -84,7 +84,6 @@ import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirClipboard } from '@/airpower/helper/AirClipboard'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AirDialog } from '@/airpower/helper/AirDialog'
-import { AirConfig } from '@/airpower/config/AirConfig'
 
 const {
   isLoading,
@@ -154,7 +153,7 @@ async function onAppLog(app: OpenAppEntity) {
 }
 
 function openOAuth2(app: OpenAppEntity) {
-  window.open(`${AirConfig.oauthUrl}?appKey=${app.appKey}&redirectUri=${encodeURIComponent(`${app.url}/`)}`)
+  window.open(app.url)
 }
 </script>
 <style scoped lang="scss"></style>

@@ -4,32 +4,14 @@ import { Table } from '@/airpower/decorator/TableField'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
-import { Strings } from '@/config/Strings'
 import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
 import { Field } from '@/airpower/decorator/Field'
+import { Strings } from '@/config/Strings'
 
 /**
  * # 用户实体
  */
 export class UserEntity extends BaseEntity implements IUser {
-  /**
-   * # 邮箱
-   */
-  @Form({
-    email: true,
-    requiredString: true,
-  })
-  @Table({
-    forceShow: true,
-    copyField: true,
-    desensitize: AirDesensitizeType.EMAIL,
-  })
-  @Search()
-  @Field({
-    label: Strings.get().Email || '邮箱',
-  })
-    email!: string
-
   /**
    * # 昵称
    */
@@ -38,7 +20,6 @@ export class UserEntity extends BaseEntity implements IUser {
   })
   @Table({
     forceShow: true,
-    desensitize: AirDesensitizeType.CHINESE_NAME,
   })
   @Search()
   @Field({
@@ -65,6 +46,24 @@ export class UserEntity extends BaseEntity implements IUser {
     label: '手机',
   })
     phone!: string
+
+  /**
+   * # 邮箱
+   */
+  @Form({
+    email: true,
+    requiredString: true,
+  })
+  @Table({
+    forceShow: true,
+    copyField: true,
+    desensitize: AirDesensitizeType.EMAIL,
+  })
+  @Search()
+  @Field({
+    label: Strings.get().Email || '邮箱',
+  })
+    email!: string
 
   /**
    * # 头像

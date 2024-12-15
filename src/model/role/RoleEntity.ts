@@ -1,6 +1,4 @@
-import {
-  Model,
-} from '@/airpower/decorator/Model'
+import { Model } from '@/airpower/decorator/Model'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
@@ -49,4 +47,9 @@ export class RoleEntity extends BaseEntity {
     array: true,
   })
     permissionList!: PermissionEntity[]
+
+  @Table({
+    removed: false,
+  })
+  declare isDisabled: boolean
 }

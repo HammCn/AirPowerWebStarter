@@ -2,16 +2,18 @@
   <APanel>
     <AToolBar
       :loading="isLoading"
-      :entity="WebHookEntity"
-      :service="WebHookService"
+      :entity="NotifyEntity"
+      :service="NotifyService"
       @on-add="onAdd"
       @on-search="onSearch"
     />
     <ATable
       v-loading="isLoading"
       :data-list="response.list"
-      :entity="WebHookEntity"
+      :entity="NotifyEntity"
       :field-list="fieldList"
+      show-enable-and-disable
+      :ctrl-width="130"
       @on-edit="onEdit"
       @on-delete="onDelete"
       @on-sort="onSortChanged"
@@ -33,9 +35,9 @@ import {
   APage, APanel, ATable, AToolBar,
 } from '@/airpower/component'
 import { useAirTable } from '@/airpower/hook/useAirTable'
-import { WebHookEntity } from '@/model/open/webhook/WebHookEntity'
-import { WebHookService } from '@/model/open/webhook/WebHookService'
-import { NotifyEditor } from '@/view/console/open/webhook/component'
+import { NotifyEntity } from '@/model/open/notify/NotifyEntity'
+import { NotifyService } from '@/model/open/notify/NotifyService'
+import { NotifyEditor } from '@/view/console/open/notify/component'
 import { IDictionary } from '@/airpower/interface/IDictionary'
 import { AirDictionaryArray } from '@/airpower/model/extend/AirDictionaryArray'
 
@@ -50,20 +52,20 @@ const {
   onDisable,
   onEnable,
   onAdd,
-} = useAirTable(WebHookEntity, WebHookService, {
+} = useAirTable(NotifyEntity, NotifyService, {
   editView: NotifyEditor,
 })
 
 const sceneList = ref<IDictionary[]>([])
 
 async function init() {
-  sceneList.value = await WebHookService.create()
+  sceneList.value = await NotifyService.create()
     .getSceneList()
 }
 
 init()
 
-const fieldList = computed(() => WebHookEntity.getTableFieldConfigList()
+const fieldList = computed(() => NotifyEntity.getTableFieldConfigList()
   .map((item) => {
     if (item.key === 'scene') {
       item.dictionary = AirDictionaryArray.create(sceneList.value)
