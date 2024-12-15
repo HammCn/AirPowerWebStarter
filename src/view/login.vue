@@ -11,7 +11,7 @@
       class="card"
     >
       <div class="app-name">
-        {{ appInfo.appName || "欢迎使用统一账号登录" }}
+        {{ appInfo.appName || '欢迎使用统一账号登录' }}
       </div>
       <div class="tabs">
         <div
@@ -150,60 +150,6 @@
               />
             </div>
           </div>
-          <div
-            v-if="currentAction === LoginAction.REGISTER_VIA_EMAIL"
-            class="form"
-          >
-            <div class="item">
-              <div
-                :class="!AirValidator.isEmail(user.email) ? 'error' : ''"
-                class="label"
-              >
-                邮箱
-              </div>
-              <el-input
-                v-model="user.email"
-                type="text"
-              >
-                <template #suffix>
-                  <el-button
-                    :disabled="!AirValidator.isEmail(user.email)"
-                    :loading="isEmailCodeLoading"
-                    text
-                    type="primary"
-                    @click="onSendEmailCode()"
-                  >
-                    发送
-                  </el-button>
-                </template>
-              </el-input>
-            </div>
-            <div class="item">
-              <div
-                :class="!isValidCode ? 'error' : ''"
-                class="label"
-              >
-                验证码
-              </div>
-              <el-input
-                v-model="user.code"
-                maxlength="8"
-                type="text"
-              />
-            </div>
-            <div class="item">
-              <div
-                :class="!isValidPassword ? 'error' : ''"
-                class="label"
-              >
-                密码
-              </div>
-              <el-input
-                v-model="user.password"
-                type="password"
-              />
-            </div>
-          </div>
           <div class="rules">
             <el-checkbox v-model="isRead">
               我已阅读并同意 <a href=""> 隐私政策 </a> 以及 <a href="">服务条款</a>
@@ -212,16 +158,6 @@
           <div class="button">
             <div class="submit">
               <el-button
-                v-if="LoginAction.REGISTER_VIA_EMAIL === currentAction"
-                :disabled="isButtonDisabled"
-                :loading="isLoadingReg"
-                type="primary"
-                @click="onSubmit()"
-              >
-                注册账号
-              </el-button>
-              <el-button
-                v-else
                 :disabled="isButtonDisabled"
                 :loading="isLoadingLogin"
                 type="primary"
@@ -258,7 +194,6 @@ import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
-import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { MailService } from '@/model/mail/MailService'
 import { AppConfig } from '@/config/AppConfig'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
@@ -271,14 +206,14 @@ watch(AppConfig.currentUser, () => {
 })
 
 /**
- * # 是否二维码登录
+ * ### 是否二维码登录
  */
 const isQrcodeLogin = ref(false)
 
 const currentAction = ref(LoginAction.LOGIN_VIA_PASSWORD)
 
 /**
- * # 是否已阅读
+ * ### 是否已阅读
  */
 const isRead = ref(true)
 
@@ -295,23 +230,19 @@ user.value.password = 'Aa123456'
 // 一些Loading状态
 const isLoadingApp = ref(false)
 const isLoadingLogin = ref(false)
-const isLoadingReg = ref(false)
 const isEmailCodeLoading = ref(false)
 
 // ! 判断是否输入有效格式的值
-const isValidPassword = computed(() => user.value.password && user.value.password.length >= 6)
 const isValidCode = computed(() => user.value.code && user.value.code.length === 6)
 const isValidEmail = computed(() => user.value.email && AirValidator.isEmail(user.value.email))
 const isValidPhone = computed(() => user.value.phone && AirValidator.isMobilePhone(user.value.phone))
 const isValidAccount = computed(() => user.value.email && (AirValidator.isEmail(user.value.email) || AirValidator.isNaturalNumber(user.value.email)))
 
 /**
- * # 计算是否禁用登录/注册按钮
+ * ### 计算是否禁用登录/注册按钮
  */
 const isButtonDisabled = computed(() => {
   switch (currentAction.value) {
-    case LoginAction.REGISTER_VIA_EMAIL:
-      return !isValidEmail.value || !isValidCode.value || !isValidPassword.value
     case LoginAction.LOGIN_VIA_PHONE:
       return !isValidPhone.value || !isValidCode.value
     case LoginAction.LOGIN_VIA_EMAIL:
@@ -324,17 +255,18 @@ const isButtonDisabled = computed(() => {
 })
 
 /**
- * # 获取当前应用信息
+ * ### 获取当前应用信息
  */
 async function getAppInfo() {
   if (appKey) {
     user.value.appKey = appKey
-    appInfo.value = await OpenAppService.create(isLoadingApp).getAppByKey(appKey)
+    appInfo.value = await OpenAppService.create(isLoadingApp)
+      .getAppByKey(appKey)
   }
 }
 
 /**
- * # 处理登录重定向
+ * ### 处理登录重定向
  */
 function loginRedirect(result: string) {
   if (appKey) {
@@ -348,7 +280,7 @@ function loginRedirect(result: string) {
 }
 
 /**
- * # 邮箱+密码登录
+ * ### 邮箱+密码登录
  */
 async function onLogin() {
   const request = user.value.copy()
@@ -356,41 +288,33 @@ async function onLogin() {
     request.id = parseInt(request.email, 10)
     request.exclude('email')
   }
-  const result = await UserService.create(isLoadingLogin).login(request)
+  const result = await UserService.create(isLoadingLogin)
+    .login(request)
   loginRedirect(result)
 }
 
 /**
- * # 邮箱+验证码登录
+ * ### 邮箱+验证码登录
  */
 async function onEmailLogin() {
-  const result = await UserService.create(isLoadingLogin).loginViaEmail(user.value)
+  const result = await UserService.create(isLoadingLogin)
+    .loginViaEmail(user.value)
   loginRedirect(result)
 }
 
 /**
- * # 注册
- */
-async function onReg() {
-  await UserService.create(isLoadingLogin).register(user.value)
-  AirAlert.create().setConfirmText('去登录').show('账号注册成功, 你可以使用账号密码去登录了!')
-  currentAction.value = LoginAction.LOGIN_VIA_PASSWORD
-}
-
-/**
- * # 登录/注册按钮事件
+ * ### 登录/注册按钮事件
  */
 async function onSubmit() {
   if (!isRead.value) {
-    await AirConfirm.create().setConfirmText('我已阅读并同意').show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
+    await AirConfirm.create()
+      .setConfirmText('我已阅读并同意')
+      .show('请阅读并同意隐私政策以及服务条款相关内容。', '确认提示')
     isRead.value = true
   }
   switch (currentAction.value) {
     case LoginAction.LOGIN_VIA_PASSWORD:
       onLogin()
-      break
-    case LoginAction.REGISTER_VIA_EMAIL:
-      onReg()
       break
     case LoginAction.LOGIN_VIA_EMAIL:
       onEmailLogin()
@@ -400,12 +324,13 @@ async function onSubmit() {
 }
 
 /**
- * # 发送邮箱验证码事件
+ * ### 发送邮箱验证码事件
  */
 async function onSendEmailCode() {
   const request = new UserEntity()
   request.email = user.value.email
-  await MailService.create(isEmailCodeLoading).sendCode(request)
+  await MailService.create(isEmailCodeLoading)
+    .sendCode(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
