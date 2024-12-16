@@ -145,6 +145,8 @@ export class UserEntity extends BaseEntity implements IUser {
    */
   appKey!: string
 
+  oldPassword!: string
+
   /**
    * # 设置邮箱
    * @param email 邮箱

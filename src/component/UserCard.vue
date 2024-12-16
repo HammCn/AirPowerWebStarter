@@ -7,6 +7,9 @@ import { AUser } from '@/airpower/component'
 import { AirFile } from '@/airpower/helper/AirFile'
 import defaultAvatar from '@/airpower/assets/img/avatar.svg'
 import { UserEntity } from '@/model/user/UserEntity'
+import { AirDialog } from '@/airpower/helper/AirDialog'
+import ThirdAccountList from '@/component/user/ThirdAccountList.vue'
+import ModifyPassword from '@/component/user/ModifyPassword.vue'
 
 const props = defineProps({
   user: {
@@ -20,6 +23,14 @@ const userAvatar = computed(() => {
   }
   return defaultAvatar
 })
+
+function onThirdPartyClicked() {
+  AirDialog.show(ThirdAccountList)
+}
+
+function onModifyPassword() {
+  AirDialog.show(ModifyPassword)
+}
 </script>
 
 <template>
@@ -87,10 +98,16 @@ const userAvatar = computed(() => {
       <div class="item">
         修改资料
       </div>
-      <div class="item">
+      <div
+        class="item"
+        @click="onModifyPassword()"
+      >
         修改密码
       </div>
-      <div class="item">
+      <div
+        class="item"
+        @click="onThirdPartyClicked()"
+      >
         社交账号
       </div>
       <div class="item">

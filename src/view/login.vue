@@ -164,11 +164,7 @@
           </div>
         </template>
       </div>
-      <div class="link">
-        <el-link>
-          {{ LoginAction.LOGIN_VIA_THIRD_PARTY }}
-        </el-link>
-      </div>
+      <ThirdLogin />
     </div>
     <Copyright />
   </div>
@@ -188,6 +184,7 @@ import { UserEntity } from '@/model/user/UserEntity'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import Logo from '@/component/login/Logo.vue'
 import Copyright from '@/component/login/Copyright.vue'
+import ThirdLogin from '@/component/login/ThirdLogin.vue'
 
 /**
  * ### 是否二维码登录
