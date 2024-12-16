@@ -65,6 +65,34 @@ export class UserEntity extends BaseEntity implements IUser {
   })
     email!: string
 
+  @Form({
+    mobilePhone: true,
+    requiredString: true,
+    defaultValue: '13888888888',
+  })
+  @Table({
+    forceShow: true,
+    copyField: true,
+    width: 100,
+  })
+  @Search()
+  @Field({
+    label: '姓名',
+  })
+    realName!: string
+
+  @Form({})
+  @Table({
+    forceShow: true,
+    copyField: true,
+    width: 200,
+  })
+  @Search()
+  @Field({
+    label: '身份证号',
+  })
+    idCard!: string
+
   /**
    * # 头像
    */
@@ -96,6 +124,11 @@ export class UserEntity extends BaseEntity implements IUser {
     array: true,
     label: '角色',
   }) roleList!: RoleEntity[]
+
+  @Field({
+    label: '性别',
+  })
+    gender!: number
 
   @Table({
     removed: false,

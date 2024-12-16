@@ -1,39 +1,24 @@
 <template>
   <AFrame
+    :header-height="50"
     :menu-list="menuList"
-    header-height="50"
   >
     <template #logo>
       <img
-        src="@/assets/img/logo.png"
-        height="40"
         class="logo"
+        height="40"
+        src="@/assets/img/logo.png"
       >
     </template>
     <template #user>
-      {{ currentUserInfo.nickname }}
-      <AUser :user="currentUserInfo">
-        <div>
-          <AImage :src="currentUserInfo.avatar" />
-        </div>
-        <AInput
-          v-model.nickname="currentUserInfo.nickname"
-          :tree="menuList"
-          :entity="UserEntity"
-        />
-        <template #setting>
-          可选插槽
-        </template>
-      </AUser>
+      <UserCard :user="currentUserInfo" />
     </template>
     <router-view />
   </AFrame>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import {
-  AFrame, AImage, AInput, AUser,
-} from '@/airpower/component'
+import { AFrame } from '@/airpower/component'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import { MenuEntity } from '@/model/menu/MenuEntity'
@@ -42,6 +27,7 @@ import { UserEntity } from '@/model/user/UserEntity'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AirPermission } from '@/airpower/helper/AirPermission'
+import UserCard from '@/component/UserCard.vue'
 
 const currentUserInfo = ref(new UserEntity())
 const menuList = ref<MenuEntity[]>([])
@@ -74,7 +60,7 @@ async function init() {
 init()
 
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .logo {
   text-decoration: none;
   color: white;
