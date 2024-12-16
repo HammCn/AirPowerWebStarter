@@ -260,7 +260,7 @@ async function loginRedirect(result: string) {
       return
     }
     // Oauth登录 重定向code
-    window.location.replace(`/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`)
+    window.location.replace(`/authorize${window.location.search}`)
     return
   }
   // 正常登录 保存 AccessToken
