@@ -17,7 +17,7 @@
       <div class="scopes">
         <div
           v-for="item in scopeList"
-          :key="item.key"
+          :key="item.name"
           class="item"
         >
           {{ item.description }}
