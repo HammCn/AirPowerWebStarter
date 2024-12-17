@@ -8,7 +8,7 @@ import { UserEntity } from '@/model/user/UserEntity'
  */
 export class AppConfig {
   /**
-   * # 当前登录的用户
+   * ### 当前登录的用户
    */
   static currentUser: Ref<UserEntity> = ref(new UserEntity())
 }

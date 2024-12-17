@@ -13,7 +13,7 @@ import { Strings } from '@/config/Strings'
  */
 export class UserEntity extends BaseEntity implements IUser {
   /**
-   * # 昵称
+   * ### 昵称
    */
   @Form({
     requiredString: true,
@@ -28,7 +28,7 @@ export class UserEntity extends BaseEntity implements IUser {
     nickname!: string
 
   /**
-   * # 手机
+   * ### 手机
    */
   @Form({
     mobilePhone: true,
@@ -48,7 +48,7 @@ export class UserEntity extends BaseEntity implements IUser {
     phone!: string
 
   /**
-   * # 邮箱
+   * ### 邮箱
    */
   @Form({
     email: true,
@@ -94,7 +94,7 @@ export class UserEntity extends BaseEntity implements IUser {
     idCard!: string
 
   /**
-   * # 头像
+   * ### 头像
    */
   @Field({
     label: '头像',
@@ -102,7 +102,7 @@ export class UserEntity extends BaseEntity implements IUser {
     avatar!: string
 
   /**
-   * # 密码
+   * ### 密码
    */
   @Form({
     password: true,
@@ -113,7 +113,7 @@ export class UserEntity extends BaseEntity implements IUser {
     password!: string
 
   /**
-   * # 角色列表
+   * ### 角色列表
    */
   @Table({
     payloadArray: true,
@@ -136,15 +136,18 @@ export class UserEntity extends BaseEntity implements IUser {
   declare isDisabled: boolean
 
   /**
-   * # 验证码
+   * ### 验证码
    */
   code!: string
 
   /**
-   * # 所属应用AppKey
+   * ### 所属应用AppKey
    */
   appKey!: string
 
+  /**
+   * ### 旧密码
+   */
   oldPassword!: string
 
   /**

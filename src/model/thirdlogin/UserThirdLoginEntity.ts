@@ -5,7 +5,7 @@ import { BaseEntity } from '@/base/BaseEntity'
  */
 export class UserThirdLoginEntity extends BaseEntity {
   /**
-   * # 验证码
+   * ### 验证码
    */
   thirdUserId!: string
 

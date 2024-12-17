@@ -71,7 +71,6 @@ export class OpenAppEntity extends BaseEntity {
   @Field({
     label: '加密算法',
     dictionary: OpenAppArithmeticEnum,
-    prefix: true,
     alias: 'arithmetic',
   }) arithmetic!: number
 

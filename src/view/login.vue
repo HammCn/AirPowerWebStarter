@@ -177,7 +177,6 @@ import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
-import { MailService } from '@/model/mail/MailService'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { UserEntity } from '@/model/user/UserEntity'
@@ -317,8 +316,8 @@ async function onSubmit() {
 async function onSendEmailCode() {
   const request = new UserEntity()
   request.email = user.value.email
-  await MailService.create(isEmailCodeLoading)
-    .sendCode(request)
+  await UserService.create(isEmailCodeLoading)
+    .sendEmail(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
