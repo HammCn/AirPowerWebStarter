@@ -1,11 +1,10 @@
-import { Form } from '@/airpower/decorator/FormField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Table } from '@/airpower/decorator/TableField'
+import {
+  Field, Form, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
 import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
-import { Field } from '@/airpower/decorator/Field'
 import { Strings } from '@/config/Strings'
 
 /**

@@ -1,11 +1,9 @@
-import { Model } from '@/airpower/decorator/Model'
+import {
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
-import { Form } from '@/airpower/decorator/FormField'
-import { Table } from '@/airpower/decorator/TableField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 角色
