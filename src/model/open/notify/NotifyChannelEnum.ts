@@ -1,5 +1,9 @@
 import { AirEnum } from '@/airpower/base/AirEnum'
 
+/**
+ * # 通知渠道
+ * @author Hamm.cn
+ */
 export class NotifyChannelEnum extends AirEnum {
   static readonly WORK_WECHAT = new NotifyChannelEnum(1, '企业微信')
 

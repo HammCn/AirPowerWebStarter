@@ -1,8 +1,6 @@
-import { Table } from '@/airpower/decorator/TableField'
+import { Field, Model, Table } from '@/airpower/decorator'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
-import { Model } from '@/airpower/decorator/Model'
 import { AirEntity } from '@/airpower/base/AirEntity'
-import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 数据库实体基类

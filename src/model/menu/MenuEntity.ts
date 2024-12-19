@@ -1,13 +1,9 @@
 import {
-  Model,
-} from '@/airpower/decorator/Model'
-import { Form } from '@/airpower/decorator/FormField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Table } from '@/airpower/decorator/TableField'
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { IMenu } from '@/airpower/interface/IMenu'
 import { OrderNumberDictionary } from '../OrderNumberDictionary'
-import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 菜单
@@ -19,7 +15,7 @@ import { Field } from '@/airpower/decorator/Field'
 })
 export class MenuEntity extends BaseEntity implements IMenu {
   /**
-   * # 菜单名称
+   * ### 菜单名称
    */
   @Table({
     forceShow: true,
@@ -33,7 +29,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) name!: string
 
   /**
-   * # 菜单路径
+   * ### 菜单路径
    */
   @Table({
     copyField: true,
@@ -47,7 +43,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) path!: string
 
   /**
-   * # 菜单图标
+   * ### 菜单图标
    */
   @Form()
   @Field({
@@ -55,7 +51,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) icon!: string
 
   /**
-   * # 组件地址
+   * ### 组件地址
    */
   @Table({
     copyField: true,
@@ -66,7 +62,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) component!: string
 
   /**
-   * # 排序编号
+   * ### 排序编号
    */
   @Form({
     dictionary: OrderNumberDictionary,
@@ -82,7 +78,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) orderNo!: number
 
   /**
-   * # 父菜单ID
+   * ### 父菜单ID
    */
   @Field({
     label: '父级ID',
@@ -90,7 +86,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) parentId!: number
 
   /**
-   * # 子菜单列表
+   * ### 子菜单列表
    */
   @Field({
     // eslint-disable-next-line no-use-before-define
@@ -99,7 +95,7 @@ export class MenuEntity extends BaseEntity implements IMenu {
   }) children!: this[]
 
   /**
-   * # 父菜单
+   * ### 父菜单
    */
   @Field({
     // eslint-disable-next-line no-use-before-define

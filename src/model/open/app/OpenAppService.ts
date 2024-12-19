@@ -27,13 +27,20 @@ export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
     return result as unknown as string
   }
 
+  /**
+   * ### 添加并获取秘钥
+   * @param app 应用
+   */
   async addAndGetSecret(app: OpenAppEntity): Promise<string> {
-    console.log(app)
     const result = await this.api('add')
       .post(app)
     return result as unknown as string
   }
 
+  /**
+   * ### 重置秘钥对
+   * @param app 应用
+   */
   async resetKeyPair(app: OpenAppEntity) {
     const result = await this.api('resetKeyPair')
       .post(app)

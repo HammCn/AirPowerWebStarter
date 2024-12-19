@@ -5,7 +5,13 @@ import { AirModel } from '@/airpower/base/AirModel'
  * @author Hamm.cn
  */
 export class OauthCreateCodeRequest extends AirModel {
+  /**
+   * ### AppKey
+   */
   appKey!: string
 
+  /**
+   * ### 授权范围
+   */
   scope!: string
 }

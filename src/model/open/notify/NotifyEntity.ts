@@ -1,10 +1,8 @@
 import { BaseEntity } from '@/base/BaseEntity'
-import { Model } from '@/airpower/decorator/Model'
-import { Table } from '@/airpower/decorator/TableField'
-import { Form } from '@/airpower/decorator/FormField'
+import {
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { NotifyChannelEnum } from '@/model/open/notify/NotifyChannelEnum'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Field } from '@/airpower/decorator/Field'
 import { AirSearchDataType } from '@/airpower/enum/AirSearchDataType'
 
 @Model({
