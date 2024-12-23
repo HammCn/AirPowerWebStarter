@@ -13,7 +13,7 @@ export class RoleService extends AbstractBaseService<RoleEntity> {
   entityClass = RoleEntity
 
   /**
-   * # 为角色授权菜单
+   * ### 为角色授权菜单
    * @param id 角色ID
    * @param menuList 菜单列表
    */
@@ -24,7 +24,7 @@ export class RoleService extends AbstractBaseService<RoleEntity> {
   }
 
   /**
-   * # 为角色授权权限
+   * ### 为角色授权权限
    * @param id 角色ID
    * @param permissionList 权限列表
    */

@@ -7,6 +7,9 @@ export class NotifyService extends AbstractBaseService<NotifyEntity> {
 
   entityClass = NotifyEntity
 
+  /**
+   * ### 获取通知场景
+   */
   async getSceneList(): Promise<IDictionary[]> {
     const result = await this.api('getSceneList')
       .post()

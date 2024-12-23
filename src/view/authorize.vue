@@ -6,12 +6,18 @@
       class="card"
     >
       <div class="title">
-        授权 {{ appInfo.appName || '...' }} 访问你的
+        Hi, {{ user.nickname }}
+        <el-link @click="onSwitchAccount()">
+          切换账号
+        </el-link>
+      </div>
+      <div class="account">
+        是否授权 {{ appInfo.appName || '...' }} 访问你的：
       </div>
       <div class="scopes">
         <div
           v-for="item in scopeList"
-          :key="item.key"
+          :key="item.name"
           class="item"
         >
           {{ item.description }}
@@ -45,6 +51,10 @@ import Copyright from '@/component/login/Copyright.vue'
 import Logo from '@/component/login/Logo.vue'
 import { UserService } from '@/model/user/UserService'
 import { OauthScope } from '@/model/oauth/OauthScope'
+import { AirConfirm } from '@/airpower/feedback/AirConfirm'
+import { UserEntity } from '@/model/user/UserEntity'
+
+const user = ref(new UserEntity())
 
 const appKey = (AirRouter.router.currentRoute.value.query.appKey || '').toString()
 const scope = (AirRouter.router.currentRoute.value.query.scope || '').toString()
@@ -81,14 +91,20 @@ function onCancel() {
   window.location.href = `${redirectUri}?error=cancel`
 }
 
-function init() {
+async function init() {
   if (!appKey || !scope || !redirectUri) {
     window.location.replace('/')
     return
   }
+  user.value = await UserService.create(isLoading).getMyInfo()
   getAppInfo()
   getScopeList()
   scopeNeed.value = scope.split(',')
+}
+
+async function onSwitchAccount() {
+  await AirConfirm.warning('是否确认切换登录的账号', '切换账号')
+  window.location.replace(`/login${window.location.search}`)
 }
 
 init()
@@ -130,13 +146,18 @@ init()
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
+    width: 400px;
     min-height: 200px;
     max-height: 500px;
 
     .title {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: bold;
+    }
+
+    .account {
+      font-size: 16px;
+      margin-top: 20px;
     }
 
     .scopes {
@@ -150,14 +171,15 @@ init()
       padding: 15px 20px;
       border-radius: 15px;
 
-      .item{
+      .item {
         position: relative;
         color: #999;
         font-size: 14px;
         margin: 5px 0;
       }
-      .item::before{
-        content:'';
+
+      .item::before {
+        content: '';
         background: #999;
         width: 8px;
         height: 8px;
@@ -166,18 +188,19 @@ init()
         border-radius: 100%;
       }
     }
-  }
-}
 
-.copyright {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 20px;
-  text-align: center;
-  color: #aaa;
-  font-size: 14px;
-  text-shadow: 0 1px 1px rgba($color: #fff, $alpha: 1);
+    .footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+
+      .el-button {
+        flex: 1;
+        margin: 0 5px;
+      }
+    }
+  }
 }
 
 @media screen and ((orientation:portrait) and (max-width: 600px)) {

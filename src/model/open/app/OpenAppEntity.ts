@@ -1,10 +1,8 @@
-import { Model } from '@/airpower/decorator/Model'
-import { Form } from '@/airpower/decorator/FormField'
-import { Table } from '@/airpower/decorator/TableField'
+import {
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppArithmeticEnum } from './OpenAppArithmeticEnum'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Field } from '@/airpower/decorator/Field'
 import { BooleanYesNoDictionary } from '@/model/BooleanYesNoDictionary'
 
 @Model({
@@ -71,7 +69,6 @@ export class OpenAppEntity extends BaseEntity {
   @Field({
     label: '加密算法',
     dictionary: OpenAppArithmeticEnum,
-    prefix: true,
     alias: 'arithmetic',
   }) arithmetic!: number
 
@@ -96,7 +93,7 @@ export class OpenAppEntity extends BaseEntity {
   }) privateKey!: string
 
   /**
-   * # 应用URL
+   * ### 应用URL
    */
   @Table()
   @Form({

@@ -3,6 +3,8 @@ import { UserEntity } from '@/model/user/UserEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { OauthScope } from '@/model/oauth/OauthScope'
 import { OauthCreateCodeRequest } from '@/model/oauth/OauthCreateCodeRequest'
+import { ThirdLoginRequest } from '@/model/thirdlogin/ThirdLoginRequest'
+import { UserThirdLoginEntity } from '@/model/thirdlogin/UserThirdLoginEntity'
 
 /**
  * # 用户服务接口
@@ -28,6 +30,14 @@ export class UserService extends AbstractBaseService<UserEntity> {
   }
 
   /**
+   * ### 发送验证码
+   * @param user 用户
+   */
+  async sendEmail(user: UserEntity): Promise<void> {
+    await this.api('sendEmail').setTimeout(10000).post(user)
+  }
+
+  /**
    * ### 邮箱验证码登录
    * @param user 用户
    */
@@ -47,6 +57,15 @@ export class UserService extends AbstractBaseService<UserEntity> {
   }
 
   /**
+   * ### 修改密码
+   * @param user 用户
+   */
+  async updateMyPassword(user: UserEntity): Promise<void> {
+    await this.api('updateMyPassword')
+      .post(user)
+  }
+
+  /**
    * ### 获取我有权限的菜单列表
    */
   async getMyMenuList(): Promise<MenuEntity[]> {
@@ -56,12 +75,21 @@ export class UserService extends AbstractBaseService<UserEntity> {
   }
 
   /**
-   * ### 获取我d的权限列表
+   * ### 获取我的权限列表
    */
   async getMyPermissionList(): Promise<string[]> {
     const arr = await this.api('getMyPermissionList')
       .post()
     return arr as string[]
+  }
+
+  /**
+   * ### 获取我的三方账号
+   */
+  async getMyThirdList(): Promise<UserThirdLoginEntity[]> {
+    const arr = await this.api('getMyThirdList')
+      .post()
+    return UserThirdLoginEntity.fromJsonArray(arr)
   }
 
   /**
@@ -86,5 +114,24 @@ export class UserService extends AbstractBaseService<UserEntity> {
     const code = await this.api('createCode', 'oauth2')
       .post(postData)
     return code as unknown as string
+  }
+
+  async callbackCode(platform: string, code: string) {
+    const postData = new ThirdLoginRequest()
+    postData.platform = platform
+    postData.code = code
+    const result = await this.api('callback', 'oauth2').callbackError().post(postData)
+    return result as unknown as string
+  }
+
+  async thirdBind(platform: string, code: string) {
+    const postData = new ThirdLoginRequest()
+    postData.platform = platform
+    postData.code = code
+    return this.api('thirdBind', 'oauth2').callbackError().post(postData)
+  }
+
+  async unBindThird(data: UserThirdLoginEntity) {
+    return this.api('unBindThird', 'oauth2').callbackError().post(data)
   }
 }

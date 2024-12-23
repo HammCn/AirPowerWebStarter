@@ -8,12 +8,12 @@ import { AirColor } from '@/airpower/enum/AirColor'
  */
 export class PermissionSystemEnum extends AirEnum<boolean> {
   /**
-   * # 普通权限
+   * ### 普通权限
    */
   static readonly NORMAL = new PermissionSystemEnum(false, '普通权限', AirColor.NORMAL)
 
   /**
-   * # 系统权限
+   * ### 系统权限
    */
   static readonly SYSTEM = new PermissionSystemEnum(true, '系统权限', AirColor.DANGER)
 }

@@ -1,11 +1,9 @@
-import { Model } from '@/airpower/decorator/Model'
-import { Form } from '@/airpower/decorator/FormField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Table } from '@/airpower/decorator/TableField'
+import {
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { ITree } from '@/airpower/interface/ITree'
 import { PermissionSystemEnum } from './PermissionSystemEnum'
-import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 权限
@@ -17,7 +15,7 @@ import { Field } from '@/airpower/decorator/Field'
 })
 export class PermissionEntity extends BaseEntity implements ITree {
   /**
-   * # 权限名称
+   * ### 权限名称
    */
   @Table({
     forceShow: true,
@@ -31,7 +29,7 @@ export class PermissionEntity extends BaseEntity implements ITree {
   }) name!: string
 
   /**
-   * # 权限唯一标识
+   * ### 权限唯一标识
    */
   @Table({
     forceShow: true,
@@ -45,7 +43,7 @@ export class PermissionEntity extends BaseEntity implements ITree {
   }) identity!: string
 
   /**
-   * # 权限类别
+   * ### 权限类别
    */
   @Table({
     showColor: true,
@@ -58,14 +56,14 @@ export class PermissionEntity extends BaseEntity implements ITree {
   }) isSystem!: boolean
 
   /**
-   * # 父权限ID
+   * ### 父权限ID
    */
   @Field({
     label: '父级ID',
   }) parentId!: number
 
   /**
-   * # 子权限列表
+   * ### 子权限列表
    */
   @Field({
     // eslint-disable-next-line no-use-before-define
@@ -74,7 +72,7 @@ export class PermissionEntity extends BaseEntity implements ITree {
   }) children!: this[]
 
   /**
-   * # 父权限
+   * ### 父权限
    */
   @Field({
     // eslint-disable-next-line no-use-before-define

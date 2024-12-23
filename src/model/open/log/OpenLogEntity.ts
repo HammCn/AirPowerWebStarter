@@ -1,8 +1,7 @@
 import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppEntity } from '../app/OpenAppEntity'
-import { Table } from '@/airpower/decorator/TableField'
+import { Field, Table } from '@/airpower/decorator'
 import { AirDateTimeFormatter } from '@/airpower/enum/AirDateTimeFormatter'
-import { Field } from '@/airpower/decorator/Field'
 
 export class OpenLogEntity extends BaseEntity {
   @Field({

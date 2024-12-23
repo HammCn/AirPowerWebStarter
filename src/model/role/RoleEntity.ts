@@ -1,11 +1,9 @@
-import { Model } from '@/airpower/decorator/Model'
+import {
+  Field, Form, Model, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { MenuEntity } from '../menu/MenuEntity'
 import { PermissionEntity } from '../permission/PermissionEntity'
-import { Form } from '@/airpower/decorator/FormField'
-import { Table } from '@/airpower/decorator/TableField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Field } from '@/airpower/decorator/Field'
 
 /**
  * # 角色
@@ -16,7 +14,7 @@ import { Field } from '@/airpower/decorator/Field'
 })
 export class RoleEntity extends BaseEntity {
   /**
-   * # 角色名称
+   * ### 角色名称
    */
   @Table({
     forceShow: true,
@@ -31,7 +29,7 @@ export class RoleEntity extends BaseEntity {
     name!: string
 
   /**
-   * # 菜单列表
+   * ### 菜单列表
    */
   @Field({
     type: MenuEntity,
@@ -40,7 +38,7 @@ export class RoleEntity extends BaseEntity {
     menuList!: MenuEntity[]
 
   /**
-   * # 权限列表
+   * ### 权限列表
    */
   @Field({
     type: PermissionEntity,
