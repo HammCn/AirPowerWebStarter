@@ -1,11 +1,10 @@
-import { Form } from '@/airpower/decorator/FormField'
-import { Search } from '@/airpower/decorator/SearchField'
-import { Table } from '@/airpower/decorator/TableField'
+import {
+  Field, Form, Search, Table,
+} from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
 import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
-import { Field } from '@/airpower/decorator/Field'
 import { Strings } from '@/config/Strings'
 
 /**
@@ -13,7 +12,7 @@ import { Strings } from '@/config/Strings'
  */
 export class UserEntity extends BaseEntity implements IUser {
   /**
-   * # 昵称
+   * ### 昵称
    */
   @Form({
     requiredString: true,
@@ -28,7 +27,7 @@ export class UserEntity extends BaseEntity implements IUser {
     nickname!: string
 
   /**
-   * # 手机
+   * ### 手机
    */
   @Form({
     mobilePhone: true,
@@ -48,7 +47,7 @@ export class UserEntity extends BaseEntity implements IUser {
     phone!: string
 
   /**
-   * # 邮箱
+   * ### 邮箱
    */
   @Form({
     email: true,
@@ -65,8 +64,36 @@ export class UserEntity extends BaseEntity implements IUser {
   })
     email!: string
 
+  @Form({
+    mobilePhone: true,
+    requiredString: true,
+    defaultValue: '13888888888',
+  })
+  @Table({
+    forceShow: true,
+    copyField: true,
+    width: 100,
+  })
+  @Search()
+  @Field({
+    label: '姓名',
+  })
+    realName!: string
+
+  @Form({})
+  @Table({
+    forceShow: true,
+    copyField: true,
+    width: 200,
+  })
+  @Search()
+  @Field({
+    label: '身份证号',
+  })
+    idCard!: string
+
   /**
-   * # 头像
+   * ### 头像
    */
   @Field({
     label: '头像',
@@ -74,7 +101,7 @@ export class UserEntity extends BaseEntity implements IUser {
     avatar!: string
 
   /**
-   * # 密码
+   * ### 密码
    */
   @Form({
     password: true,
@@ -85,7 +112,7 @@ export class UserEntity extends BaseEntity implements IUser {
     password!: string
 
   /**
-   * # 角色列表
+   * ### 角色列表
    */
   @Table({
     payloadArray: true,
@@ -97,23 +124,33 @@ export class UserEntity extends BaseEntity implements IUser {
     label: '角色',
   }) roleList!: RoleEntity[]
 
+  @Field({
+    label: '性别',
+  })
+    gender!: number
+
   @Table({
     removed: false,
   })
   declare isDisabled: boolean
 
   /**
-   * # 验证码
+   * ### 验证码
    */
   code!: string
 
   /**
-   * # 所属应用AppKey
+   * ### 所属应用AppKey
    */
   appKey!: string
 
   /**
-   * # 设置邮箱
+   * ### 旧密码
+   */
+  oldPassword!: string
+
+  /**
+   * ### 设置邮箱
    * @param email 邮箱
    * @returns
    */

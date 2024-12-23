@@ -164,11 +164,7 @@
           </div>
         </template>
       </div>
-      <div class="link">
-        <el-link>
-          {{ LoginAction.LOGIN_VIA_THIRD_PARTY }}
-        </el-link>
-      </div>
+      <ThirdLogin />
     </div>
     <Copyright />
   </div>
@@ -181,13 +177,13 @@ import { AirValidator } from '@/airpower/helper/AirValidator'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { UserService } from '@/model/user/UserService'
 import { AirConfig } from '@/airpower/config/AirConfig'
-import { MailService } from '@/model/mail/MailService'
 import { OpenAppService } from '@/model/open/app/OpenAppService'
 import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { UserEntity } from '@/model/user/UserEntity'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import Logo from '@/component/login/Logo.vue'
 import Copyright from '@/component/login/Copyright.vue'
+import ThirdLogin from '@/component/login/ThirdLogin.vue'
 
 /**
  * ### 是否二维码登录
@@ -263,7 +259,7 @@ async function loginRedirect(result: string) {
       return
     }
     // Oauth登录 重定向code
-    window.location.replace(`/authorize?appKey=${appKey}&redirectUri=${encodeURIComponent(redirectUri)}&scope=${scope}`)
+    window.location.replace(`/authorize${window.location.search}`)
     return
   }
   // 正常登录 保存 AccessToken
@@ -320,8 +316,8 @@ async function onSubmit() {
 async function onSendEmailCode() {
   const request = new UserEntity()
   request.email = user.value.email
-  await MailService.create(isEmailCodeLoading)
-    .sendCode(request)
+  await UserService.create(isEmailCodeLoading)
+    .sendEmail(request)
   AirNotification.success('邮箱验证码发送成功, 请注意查看是否被拦截')
 }
 
