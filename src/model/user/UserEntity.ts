@@ -150,7 +150,7 @@ export class UserEntity extends BaseEntity implements IUser {
   oldPassword!: string
 
   /**
-   * # 设置邮箱
+   * ### 设置邮箱
    * @param email 邮箱
    * @returns
    */

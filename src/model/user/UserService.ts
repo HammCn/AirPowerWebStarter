@@ -30,7 +30,7 @@ export class UserService extends AbstractBaseService<UserEntity> {
   }
 
   /**
-   * # 发送验证码
+   * ### 发送验证码
    * @param user 用户
    */
   async sendEmail(user: UserEntity): Promise<void> {
