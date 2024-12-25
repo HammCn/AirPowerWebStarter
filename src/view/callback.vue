@@ -21,8 +21,8 @@ async function init() {
   try {
     const accessToken = await UserService.create(isLoading).callbackCode(platform, code)
     AirConfig.saveAccessToken(accessToken)
-  } catch (e: AirAny) {
-    await AirAlert.create().hideClose().error(e.message, '登录失败')
+  } catch (e) {
+    await AirAlert.create().hideClose().error((e as AirAny).message, '登录失败')
   }
   // 判断当前窗口是否由 window.open 打开
   if (window.opener) {
