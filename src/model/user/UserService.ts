@@ -42,8 +42,7 @@ export class UserService extends AbstractBaseService<UserEntity> {
    * @param user 用户
    */
   async loginViaEmail(user: UserEntity): Promise<string> {
-    const result = await this.api('loginViaEmail')
-      .post(user)
+    const result = await this.api('loginViaEmail').post(user)
     return result as unknown as string
   }
 
@@ -52,8 +51,7 @@ export class UserService extends AbstractBaseService<UserEntity> {
    * @param user 用户
    */
   async resetMyPassword(user: UserEntity): Promise<void> {
-    await this.api('resetMyPassword')
-      .post(user)
+    await this.api('resetMyPassword').post(user)
   }
 
   /**
@@ -61,17 +59,14 @@ export class UserService extends AbstractBaseService<UserEntity> {
    * @param user 用户
    */
   async updateMyPassword(user: UserEntity): Promise<void> {
-    await this.api('updateMyPassword')
-      .post(user)
+    await this.api('updateMyPassword').post(user)
   }
 
   /**
    * ### 获取我有权限的菜单列表
    */
   async getMyMenuList(): Promise<MenuEntity[]> {
-    const jsonArray = await this.api('getMyMenuList')
-      .post()
-    return MenuEntity.fromJsonArray(jsonArray)
+    return this.api('getMyMenuList').requestArray(undefined, MenuEntity)
   }
 
   /**
@@ -87,24 +82,18 @@ export class UserService extends AbstractBaseService<UserEntity> {
    * ### 获取我的三方账号
    */
   async getMyThirdList(): Promise<UserThirdLoginEntity[]> {
-    const arr = await this.api('getMyThirdList')
-      .post()
-    return UserThirdLoginEntity.fromJsonArray(arr)
+    return this.api('getMyThirdList').requestArray(undefined, UserThirdLoginEntity)
   }
 
   /**
    * ### 获取我的个人信息
    */
   async getMyInfo(): Promise<UserEntity> {
-    const json = await this.api('getMyInfo')
-      .post()
-    return UserEntity.fromJson(json)
+    return this.api('getMyInfo').request(undefined, UserEntity)
   }
 
   async getScopeList(): Promise<OauthScope[]> {
-    const json = await this.api('getScopeList', 'oauth2')
-      .post()
-    return OauthScope.fromJsonArray(json)
+    return this.api('getScopeList', 'oauth2').requestArray(undefined, OauthScope)
   }
 
   async authorize(appKey: string, scope: string): Promise<string> {
@@ -116,22 +105,24 @@ export class UserService extends AbstractBaseService<UserEntity> {
     return code as unknown as string
   }
 
-  async callbackCode(platform: string, code: string) {
+  async callbackCode(platform: string, code: string): Promise<string> {
     const postData = new ThirdLoginRequest()
     postData.platform = platform
     postData.code = code
-    const result = await this.api('callback', 'oauth2').callbackError().post(postData)
+    const result = await this.api('callback', 'oauth2')
+      .callbackError()
+      .post(postData)
     return result as unknown as string
   }
 
-  async thirdBind(platform: string, code: string) {
+  async thirdBind(platform: string, code: string): Promise<void> {
     const postData = new ThirdLoginRequest()
     postData.platform = platform
     postData.code = code
-    return this.api('thirdBind', 'oauth2').callbackError().post(postData)
+    await this.api('thirdBind', 'oauth2').callbackError().post(postData)
   }
 
-  async unBindThird(data: UserThirdLoginEntity) {
-    return this.api('unBindThird', 'oauth2').callbackError().post(data)
+  async unBindThird(data: UserThirdLoginEntity): Promise<void> {
+    await this.api('unBindThird', 'oauth2').callbackError().post(data)
   }
 }
