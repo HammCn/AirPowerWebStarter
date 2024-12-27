@@ -1,7 +1,7 @@
-import MenuSelector from './selector.vue'
-import MenuEditor from './editor.vue'
+import DepartmentSelector from './selector.vue'
+import DepartmentEditor from './editor.vue'
 
 export {
-  MenuSelector,
-  MenuEditor,
+  DepartmentSelector,
+  DepartmentEditor,
 }

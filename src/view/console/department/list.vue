@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { APanel, ATable, AToolBar } from '@/airpower/component'
 import { useAirTableTree } from '@/airpower/hook/useAirTableTree'
-import { MenuEditor } from './component'
+import { DepartmentEditor } from './component'
 import { DepartmentEntity } from '@/model/department/DepartmentEntity'
 import { DepartmentService } from '@/model/department/DepartmentService'
 
@@ -32,7 +32,7 @@ const {
   list, isLoading,
   onAddRow, onAdd, onDelete, onEdit, onSearch,
 } = useAirTableTree(DepartmentEntity, DepartmentService, {
-  editView: MenuEditor,
+  editView: DepartmentEditor,
   beforeAddRow(param, row) {
     param.parent = row
     return param
