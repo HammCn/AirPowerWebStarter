@@ -50,7 +50,7 @@ function onLogin(item: ThirdLoginPlatform) {
     cursor: pointer;
 
     .icon {
-      margin: 2px;
+      margin: 2px 3px;
       background-color: #ddd;
       border-radius: 8px;
       width: 20px;
