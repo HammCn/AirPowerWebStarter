@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Hamm",
   "private": true,
+  "main": "main.ts",
   "scripts": {
     "s": "vite",
     "dev": "vite build --mode dev",
