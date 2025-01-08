@@ -6,6 +6,7 @@ import { RoleEntity } from '../role/RoleEntity'
 import { IUser } from '@/airpower/interface/IUser'
 import { AirDesensitizeType } from '@/airpower/enum/AirDesensitizeType'
 import { Strings } from '@/config/Strings'
+import { UserGenderEnum } from '@/model/user/UserGenderEnum'
 
 /**
  * # 用户实体
@@ -126,6 +127,12 @@ export class UserEntity extends BaseEntity implements IUser {
 
   @Field({
     label: '性别',
+    dictionary: UserGenderEnum,
+  })
+  @Form({
+    defaultValue: UserGenderEnum.FEMALE.key,
+    clearable: false,
+    radio: true,
   })
     gender!: number
 
@@ -148,6 +155,15 @@ export class UserEntity extends BaseEntity implements IUser {
    * ### 旧密码
    */
   oldPassword!: string
+
+  @Form({
+    textarea: true,
+    maxLength: 100,
+  })
+  @Field({
+    label: '个人签名',
+  })
+    bio!: string
 
   /**
    * ### 设置邮箱

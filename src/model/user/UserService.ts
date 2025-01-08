@@ -125,4 +125,8 @@ export class UserService extends AbstractBaseService<UserEntity> {
   async unBindThird(data: UserThirdLoginEntity): Promise<void> {
     await this.api('unBindThird', 'oauth2').callbackError().post(data)
   }
+
+  async updateMyInfo(user: UserEntity) {
+    await this.api('updateMyInfo').post(user)
+  }
 }
