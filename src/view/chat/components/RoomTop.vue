@@ -2,7 +2,8 @@
 import { ref, Ref } from 'vue'
 import { DialogStatus } from '@/model/chat/DialogStatus'
 import { UserEntity } from '@/model/user/UserEntity'
-import { AppConfig } from '../../../config/AppConfig'
+import { AppConfig } from '@/config/AppConfig'
+import UserCard from '@/component/UserCard.vue'
 
 function copyToClipboard() {
 }
@@ -59,12 +60,10 @@ const emits = defineEmits(['open'])
       >
         <i class="iconfont icon-icon_addresslist_fil" /><span>房间</span>
       </div>
-      <div
-        class="room-right-menu my-setting"
-        @click="emits('open',DialogStatus.USER_CENTER)"
-      >
-        <i class="iconfont icon-changyongtubiao-mianxing-32" /><span>我的</span>
-      </div>
+      <UserCard
+        :user="AppConfig.currentUser.value"
+        style="margin-left: 10px"
+      />
     </div>
   </div>
 </template>
@@ -76,6 +75,8 @@ const emits = defineEmits(['open'])
   flex-direction: row;
   height: 50px;
   padding: 0 15px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 
   .room-info {
     display: flex;
@@ -95,7 +96,7 @@ const emits = defineEmits(['open'])
     }
 
     .room-left-menu {
-      padding: 5px 10px;
+      padding: 5px 15px;
       font-size: 13px;
       border-radius: 5px;
       cursor: pointer;
@@ -122,6 +123,7 @@ const emits = defineEmits(['open'])
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-right: 20px;
 
     .room-right-menu {
       padding: 5px 10px;

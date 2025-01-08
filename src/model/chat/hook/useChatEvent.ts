@@ -1,6 +1,6 @@
 import { AirWebsocketEvent } from '@/airpower/websocket/AirWebSocketEvent'
 import { IJson } from '@/airpower/interface/IJson'
-import { ChatEventType } from '@/model/chat/websocket/enum/ChatEventType'
+import { ChatEventType } from '@/model/chat/enum/ChatEventType'
 import { AppConfig } from '@/config/AppConfig'
 import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
 import AirEvent from '@/airpower/event/AirEvent'
@@ -21,6 +21,8 @@ export function useChatEvent() {
       json = JSON.parse(event.payload.data)
       const data = AirClassTransformer.parse(json, eventType.eventModel)
       data.time = event.time
+      data.id = event.id
+      data.type = eventType.key
       AirEvent.emit(AppConfig.EVENT_PREFIX + event.payload.type, data)
       return
     }

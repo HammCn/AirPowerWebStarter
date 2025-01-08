@@ -5,14 +5,9 @@ import { AirModel } from '@/airpower/base/AirModel'
  * @author Hamm.cn
  */
 export class ChatEvent extends AirModel {
-  id!: number
+  id!: string
 
   type!: string
 
   time!: number
-
-  constructor() {
-    super()
-    this.id = Math.random()
-  }
 }

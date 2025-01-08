@@ -1,7 +1,7 @@
 import { Ref } from 'vue'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirWebSocketPayload } from '@/airpower/websocket/AirWebSocketPayload'
-import { ChatEventType } from '@/model/chat/websocket/enum/ChatEventType'
+import { ChatEventType } from '@/model/chat/enum/ChatEventType'
 
 /**
  * # 房间文本消息

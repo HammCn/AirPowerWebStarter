@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { Ref, ref } from 'vue'
 import { AppConfig } from '@/config/AppConfig'
-import UserCenter from '@/view/chat/panel/UserCenter.vue'
 import { UserService } from '@/model/user/UserService'
 import { DialogStatus } from '@/model/chat/DialogStatus'
 import Emoji from '@/view/chat/panel/Emoji.vue'
@@ -9,11 +8,7 @@ import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirConfig } from '@/airpower/config/AirConfig'
 import { useCurrentRoom } from '@/model/chat/hook/useCurrentRoom'
 import { useRoomTextMessage } from '@/model/chat/hook/useRoomTextMessage'
-import { useChatEvent } from '@/model/chat/websocket/hook/useChatEvent'
-import { ChatEventType } from '@/model/chat/websocket/enum/ChatEventType'
-import AirEvent from '@/airpower/event/AirEvent'
-import { RoomMemberTextMessageEvent } from '@/model/chat/room/event/RoomMemberTextMessageEvent'
-import { RoomMemberEvent } from '@/model/chat/room/model/RoomMemberEvent'
+import { useChatEvent } from '@/model/chat/hook/useChatEvent'
 import RoomChatList from '@/view/chat/components/RoomChatList.vue'
 import ChatFormTool from '@/view/chat/components/ChatFormTool.vue'
 import RoomTop from '@/view/chat/components/RoomTop.vue'
@@ -22,7 +17,7 @@ const isLoading = ref(false)
 
 const websocket: Ref<AirWebsocket | undefined> = ref()
 
-const messageList: Ref<RoomMemberEvent[]> = ref([])
+const dialogStatus = ref(DialogStatus.NONE)
 
 const messageDom = ref<HTMLTextAreaElement | null>(null)
 
@@ -30,13 +25,13 @@ const { sendTextMessage } = useRoomTextMessage()
 
 const { transferWebsocketEvent } = useChatEvent()
 
-const { joinRoom, onLeaveRoom } = useCurrentRoom(websocket)
-const isShowScrollDown = ref(false)
+const { joinRoom } = useCurrentRoom(websocket)
 
 const message = ref('')
 
 async function init() {
-  AppConfig.currentUser.value = await UserService.create(isLoading).getMyInfo()
+  AppConfig.currentUser.value = await UserService.create(isLoading)
+    .getMyInfo()
 
   websocket.value = AirWebsocket.create(`${AirConfig.websocketUrl}?${AirConfig.getAccessToken()}`, {
     onConnect() {
@@ -47,25 +42,9 @@ async function init() {
       transferWebsocketEvent(event)
     },
   })
-
-  // 监听离开房间事件
-  onLeaveRoom(websocket)
-
-  // 监听离开房间成功后 进入默认房间
-  AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_LEAVE_SUCCESS.key, () => {
-    joinRoom(AppConfig.getLastRoomCode())
-  })
-
-  // 监听离开房间成功后 进入默认房间
-  AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_TEXT_MESSAGE.key, (event: RoomMemberTextMessageEvent) => {
-    event.type = ChatEventType.ROOM_TEXT_MESSAGE.key
-    messageList.value.push(event)
-  })
 }
 
 init()
-
-const dialogStatus = ref(DialogStatus.NONE)
 
 function openPanel(what?: DialogStatus) {
   dialogStatus.value = what || DialogStatus.NONE
@@ -82,6 +61,7 @@ function sendMessage() {
 }
 
 function keydown(e: KeyboardEvent) {
+  openPanel()
   switch (e.key) {
     case 'Enter':
       sendMessage()
@@ -105,19 +85,11 @@ function keydown(e: KeyboardEvent) {
       />
       <div class="chat">
         <RoomChatList
-          :list="messageList"
           @click="openPanel"
         />
 
         <div class="chat-form">
           <ChatFormTool @open="openPanel($event)" />
-          <el-button
-            v-if="isShowScrollDown"
-            class="scroll-button"
-            type="danger"
-          >
-            有新消息
-          </el-button>
           <div class="chat-input">
             <textarea
               ref="messageDom"
@@ -130,20 +102,6 @@ function keydown(e: KeyboardEvent) {
         </div>
       </div>
       <transition-group name="slide">
-        <!--        <SongPicker-->
-        <!--          v-if="dialogs.songPicker"-->
-        <!--          :key="songPicker"-->
-        <!--          :room_id="room_id"-->
-        <!--        />-->
-        <!--        <MySong-->
-        <!--          v-if="dialogs.mySong"-->
-        <!--          :key="mySong"-->
-        <!--          :room_id="room_id"-->
-        <!--        />-->
-        <UserCenter
-          v-if="DialogStatus.USER_CENTER.equalsKey(dialogStatus.key)"
-          @update="openPanel"
-        />
         <!--        <RoomList-->
         <!--          v-if="dialogs.roomList && myInfo"-->
         <!--          :key="roomList"-->
@@ -160,12 +118,6 @@ function keydown(e: KeyboardEvent) {
         <!--          :user-info="myInfo"-->
         <!--          @at="atUser"-->
         <!--          @profile="showUserProfile"-->
-        <!--        />-->
-        <!--        <SongWaiting-->
-        <!--          v-if="dialogs.songWaiting && room_id"-->
-        <!--          :key="songWaiting"-->
-        <!--          :room_id="room_id"-->
-        <!--          :song-list="songList"-->
         <!--        />-->
         <!--        <RoomSetting-->
         <!--          v-if="dialogs.roomSetting"-->
@@ -185,7 +137,7 @@ function keydown(e: KeyboardEvent) {
         <!--        />-->
         <Emoji
           v-if="DialogStatus.EMOJI.equalsKey(dialogStatus.key)"
-          @click="message+= `[emoji${$event}]`;messageInput?.focus()"
+          @click="message+= `[emoji${$event}]`;messageDom?.focus()"
         />
         <!--        <Profile-->
         <!--          v-if="dialogs.profile"-->
@@ -193,22 +145,6 @@ function keydown(e: KeyboardEvent) {
         <!--          :user-id="profileUserId"-->
         <!--          @close="hideTo"-->
         <!--        />-->
-        <!--        <div class="highest">-->
-        <!--          <div-->
-        <!--            v-if="tipsVolumeShow"-->
-        <!--            class="volume"-->
-        <!--          >-->
-        <!--            <i-->
-        <!--              :class="-->
-        <!--                audioVolume == 0-->
-        <!--                  ? 'icon-changyongtubiao-xianxingdaochu-zhuanqu-40'-->
-        <!--                  : 'icon-changyongtubiao-xianxingdaochu-zhuanqu-39'-->
-        <!--              "-->
-        <!--              class="iconfont"-->
-        <!--            />-->
-        <!--            <span> {{ audioVolume }}</span>-->
-        <!--          </div>-->
-        <!--        </div>-->
       </transition-group>
     </div>
   </div>
@@ -256,12 +192,6 @@ function keydown(e: KeyboardEvent) {
             background: -webkit-linear-gradient(to left, #4493d7, #ffffff);
             background: linear-gradient(to left, #4493d7, #ffffff);
           }
-        }
-
-        .scroll-button {
-          position: absolute;
-          right: 10px;
-          top: -40px;
         }
 
         .chat-input {

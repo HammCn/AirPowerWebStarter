@@ -3,7 +3,7 @@ import { RoomMemberJoinEvent } from '@/model/chat/room/event/RoomMemberJoinEvent
 import { RoomMemberLeaveEvent } from '@/model/chat/room/event/RoomMemberLeaveEvent'
 import { RoomMemberEvent } from '@/model/chat/room/model/RoomMemberEvent'
 import { ClassConstructor } from '@/airpower/type/AirType'
-import { ChatEvent } from '@/model/chat/websocket/common/ChatEvent'
+import { ChatEvent } from '@/model/chat/common/ChatEvent'
 import { RoomMemberTextMessageEvent } from '@/model/chat/room/event/RoomMemberTextMessageEvent'
 import { RoomMemberImageMessageEvent } from '@/model/chat/room/event/RoomMemberImageMessageEvent'
 

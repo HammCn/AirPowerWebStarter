@@ -65,11 +65,15 @@ export function useEmoji() {
   }
 
   function getEmojiUrl(str: string) {
-    str = str.replace('[emoji', '').replace(']', '')
-    return `img/emoji/${str}.png`
+    str = str.replace('[emoji', '')
+      .replace(']', '')
+    return `/img/emoji/${str}.png`
   }
 
   return {
-    decodeEmojis, getEmojiUrl, MESSAGE_EMOJI, MESSAGE_STRING,
+    decodeEmojis,
+    getEmojiUrl,
+    MESSAGE_EMOJI,
+    MESSAGE_STRING,
   }
 }

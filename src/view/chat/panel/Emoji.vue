@@ -26,20 +26,19 @@
           </el-image>
         </div>
       </template>
-      <el-empty
-        v-if="imageList.length === 0"
-        description="没有搜索到表情"
-      />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, Ref } from 'vue'
+import { useEmoji } from '@/model/chat/hook/useEmoji'
 
 const imageList: Ref<string[]> = ref([])
 
+const { getEmojiUrl } = useEmoji()
+
 for (let i = 1; i <= 100; i += 1) {
-  imageList.value.push(`img/emoji/${i}.png`)
+  imageList.value.push(getEmojiUrl(i.toString()))
 }
 
 const emits = defineEmits(['click'])
@@ -59,6 +58,10 @@ const emits = defineEmits(['click'])
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  * {
+    user-select: none;
+  }
 
   .list {
     flex: 1;

@@ -3,7 +3,7 @@ import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirNotification } from '@/airpower/feedback/AirNotification'
 import { AppConfig } from '@/config/AppConfig'
 import { AirWebSocketPayload } from '@/airpower/websocket/AirWebSocketPayload'
-import { ChatEventType } from '@/model/chat/websocket/enum/ChatEventType'
+import { ChatEventType } from '@/model/chat/enum/ChatEventType'
 import { RoomJoinRequest } from '@/model/chat/room/model/RoomJoinRequest'
 import AirEvent from '@/airpower/event/AirEvent'
 import { RoomMemberEvent } from '@/model/chat/room/model/RoomMemberEvent'
@@ -52,7 +52,8 @@ export function useCurrentRoom(websocket: Ref<AirWebsocket | undefined>, current
   // 进入房间成功
   AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_JOIN_SUCCESS.key, async (event: RoomMemberEvent) => {
     AppConfig.currentMember.value = event.member
-    AppConfig.currentRoom.value = await RoomService.create().getDetail(AppConfig.currentMember.value.room.id)
+    AppConfig.currentRoom.value = await RoomService.create()
+      .getDetail(AppConfig.currentMember.value.room.id)
     if (currentRoomChanged) {
       currentRoomChanged()
     }
@@ -66,21 +67,18 @@ export function useCurrentRoom(websocket: Ref<AirWebsocket | undefined>, current
     joinRoom(AppConfig.defaultRoomCode)
   })
 
-  /**
-   * ## 离开房间
-   * @param websocket
-   */
-  function onLeaveRoom(websocket: Ref<AirWebsocket | undefined>) {
-    AirEvent.on(AppConfig.CHANGE_ROOM, () => {
-      const payload = new AirWebSocketPayload()
-      payload.type = ChatEventType.ROOM_MEMBER_LEAVE.key
-      websocket.value?.send(payload)
-    })
-  }
+  AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_LEAVE_SUCCESS.key, () => {
+    joinRoom(AppConfig.getLastRoomCode())
+  })
+
+  AirEvent.on(AppConfig.CHANGE_ROOM, () => {
+    const payload = new AirWebSocketPayload()
+    payload.type = ChatEventType.ROOM_MEMBER_LEAVE.key
+    websocket.value?.send(payload)
+  })
 
   return {
     isInRoom,
     joinRoom,
-    onLeaveRoom,
   }
 }
