@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { RoomMemberEvent } from '@/model/chat/room/model/RoomMemberEvent'
 import { ChatEventType } from '@/model/chat/enum/ChatEventType'
-import { UserEntity } from '@/model/user/UserEntity'
+import { UserEntity } from '@/model/personnel/user/UserEntity'
 
 defineProps({
   message: {

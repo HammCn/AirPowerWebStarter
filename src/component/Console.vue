@@ -20,9 +20,9 @@
 import { ref } from 'vue'
 import { AFrame } from '@/airpower/component'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { MenuEntity } from '@/model/menu/MenuEntity'
-import { UserService } from '@/model/user/UserService'
-import { UserEntity } from '@/model/user/UserEntity'
+import { MenuEntity } from '@/model/system/menu/MenuEntity'
+import { UserService } from '@/model/personnel/user/UserService'
+import { UserEntity } from '@/model/personnel/user/UserEntity'
 import { AirPermission } from '@/airpower/helper/AirPermission'
 import UserCard from '@/component/UserCard.vue'
 

@@ -1,5 +1,5 @@
 import { Ref, ref } from 'vue'
-import { UserEntity } from '@/model/user/UserEntity'
+import { UserEntity } from '@/model/personnel/user/UserEntity'
 import { RoomEntity } from '@/model/chat/room/RoomEntity'
 import { MemberEntity } from '@/model/chat/member/MemberEntity'
 

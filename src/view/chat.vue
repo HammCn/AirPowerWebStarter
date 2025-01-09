@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref } from 'vue'
 import { AppConfig } from '@/config/AppConfig'
-import { UserService } from '@/model/user/UserService'
+import { UserService } from '@/model/personnel/user/UserService'
 import { DialogStatus } from '@/model/chat/DialogStatus'
 import Emoji from '@/view/chat/panel/Emoji.vue'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
