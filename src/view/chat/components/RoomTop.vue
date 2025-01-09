@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { ref, Ref } from 'vue'
 import { DialogStatus } from '@/model/chat/DialogStatus'
-import { UserEntity } from '@/model/user/UserEntity'
 import { AppConfig } from '@/config/AppConfig'
 import UserCard from '@/component/UserCard.vue'
+import AirEvent from '@/airpower/event/AirEvent'
+import { ChatEventType } from '@/model/chat/enum/ChatEventType'
 
 function copyToClipboard() {
 }
@@ -12,9 +13,13 @@ function getIfCanModifyRoom() {
   return true
 }
 
-const onlineList: Ref<UserEntity[]> = ref([])
+const onlineList: Ref<number[]> = ref([])
 
 const emits = defineEmits(['open'])
+
+AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ONLINE_COUNT_CHANGED.key, (event: string) => {
+  onlineList.value = JSON.parse(event)
+})
 </script>
 
 <template>

@@ -28,6 +28,8 @@ export class ChatEventType extends AirEnum<string> {
 
   static readonly ROOM_LEAVE_SUCCESS = new ChatEventType('1005', '离开房间成功')
 
+  static readonly ONLINE_COUNT_CHANGED = new ChatEventType('1050', '在线人数变更')
+
   static readonly ROOM_LEAVE_FAIL = new ChatEventType('1006', '离开房间失败')
 
   static readonly ROOM_TEXT_MESSAGE = new ChatEventType('1100', '房间文本消息', RoomMemberTextMessageEvent)

@@ -12,6 +12,9 @@ import { useChatEvent } from '@/model/chat/hook/useChatEvent'
 import RoomChatList from '@/view/chat/components/RoomChatList.vue'
 import ChatFormTool from '@/view/chat/components/ChatFormTool.vue'
 import RoomTop from '@/view/chat/components/RoomTop.vue'
+import { AirDialog } from '@/airpower/helper/AirDialog'
+import HotRoomList from '@/view/chat/dialog/HotRoomList.vue'
+import { RoomEntity } from '@/model/chat/room/RoomEntity'
 
 const isLoading = ref(false)
 
@@ -46,8 +49,13 @@ async function init() {
 
 init()
 
-function openPanel(what?: DialogStatus) {
+async function openPanel(what?: DialogStatus) {
   dialogStatus.value = what || DialogStatus.NONE
+  if (what) {
+    if (DialogStatus.ROOM_LIST.equalsKey(what.key)) {
+      await AirDialog.show<RoomEntity>(HotRoomList)
+    }
+  }
 }
 
 function sendMessage() {

@@ -80,6 +80,13 @@ AirEvent.onAll([
   autoScroll()
 })
 
+AirEvent.onAll([
+  AppConfig.EVENT_PREFIX + ChatEventType.ROOM_JOIN_SUCCESS.key,
+], () => {
+  messageList.value = []
+  autoScroll()
+})
+
 </script>
 
 <template>
@@ -97,7 +104,10 @@ AirEvent.onAll([
         :key="item.id"
       >
         <template
-          v-if="[ChatEventType.ROOM_TEXT_MESSAGE.key,ChatEventType.ROOM_IMAGE_MESSAGE.key].includes(item.type)"
+          v-if="[
+            ChatEventType.ROOM_TEXT_MESSAGE.key,
+            ChatEventType.ROOM_IMAGE_MESSAGE.key
+          ].includes(item.type)"
         >
           <div
             :class="getMessageClass(item)"
@@ -167,7 +177,10 @@ AirEvent.onAll([
           </div>
         </template>
         <SystemMessage
-          v-if="[ChatEventType.ROOM_MEMBER_JOIN.key].includes(item.type)"
+          v-if="[
+            ChatEventType.ROOM_MEMBER_JOIN.key,
+            ChatEventType.ROOM_MEMBER_LEAVE.key
+          ].includes(item.type)"
           :message="item"
         />
       </template>

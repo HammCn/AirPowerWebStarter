@@ -45,12 +45,12 @@ export function useCurrentRoom(websocket: Ref<AirWebsocket | undefined>, current
     request.roomCode = roomCode
     request.password = password
     payload.data = JSON.stringify(request.toJson())
-    websocket.value?.send(payload)
-    AppConfig.saveLastRoomCode(roomCode)
+    websocket.value.send(payload)
   }
 
   // 进入房间成功
   AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_JOIN_SUCCESS.key, async (event: RoomMemberEvent) => {
+    AppConfig.saveLastRoomCode(event.member.room.code)
     AppConfig.currentMember.value = event.member
     AppConfig.currentRoom.value = await RoomService.create()
       .getDetail(AppConfig.currentMember.value.room.id)
@@ -68,6 +68,7 @@ export function useCurrentRoom(websocket: Ref<AirWebsocket | undefined>, current
   })
 
   AirEvent.on(AppConfig.EVENT_PREFIX + ChatEventType.ROOM_LEAVE_SUCCESS.key, () => {
+    isInRoom.value = false
     joinRoom(AppConfig.getLastRoomCode())
   })
 

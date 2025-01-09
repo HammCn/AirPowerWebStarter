@@ -27,7 +27,7 @@ export class AppConfig {
   /**
    * ## 默认房间
    */
-  static readonly defaultRoomCode = 888
+  static readonly defaultRoomCode = 666
 
   /**
    * ## 当前成员
