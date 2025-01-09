@@ -12,7 +12,7 @@ defineProps({
 
 <template>
   <div class="avatar">
-    <el-dropdown trigger="click">
+    <el-dropdown trigger="contextmenu">
       <el-image
         :src="AirFile.getStaticFileUrl(url)"
         fit="cover"
@@ -77,7 +77,7 @@ defineProps({
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    background-color: white;
+    background-color: #f5f5f5;
     cursor: pointer;
   }
 }

@@ -71,19 +71,24 @@ function keydown(e: KeyboardEvent) {
   }
 }
 
+function onContextMenu(e: MouseEvent) {
+  e.preventDefault()
+  e.stopPropagation()
+}
 </script>
 <template>
   <div
     v-loading="!AppConfig.currentUser"
-    class="room"
+    class="chat"
+    @contextmenu="onContextMenu"
   >
     <div
-      class="room-body"
+      class="chat-body"
     >
       <RoomTop
         @open="openPanel($event)"
       />
-      <div class="chat">
+      <div class="message">
         <RoomChatList
           @click="openPanel"
         />
@@ -151,8 +156,14 @@ function keydown(e: KeyboardEvent) {
 </template>
 
 <style lang="scss" scoped>
-.room {
-  .room-body {
+.chat {
+  user-select: none;
+
+  * {
+    user-select: none;
+  }
+
+  .chat-body {
     position: absolute;
     left: 0;
     right: 0;
@@ -165,7 +176,7 @@ function keydown(e: KeyboardEvent) {
     display: flex;
     flex-direction: column;
 
-    .chat {
+    .message {
       flex: 1;
       display: flex;
       flex-direction: column;

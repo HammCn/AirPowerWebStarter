@@ -13,6 +13,7 @@ import { AppConfig } from '@/config/AppConfig'
 import { useEmoji } from '@/model/chat/hook/useEmoji'
 import AirEvent from '@/airpower/event/AirEvent'
 import { AirDateTime } from '@/airpower/helper/AirDateTime'
+import SystemMessage from '@/view/chat/components/SystemMessage.vue'
 
 defineProps({
   list: {
@@ -76,90 +77,99 @@ AirEvent.onAll([
   AppConfig.EVENT_PREFIX + ChatEventType.ROOM_MEMBER_LEAVE.key,
 ], (event: RoomMemberTextMessageEvent) => {
   messageList.value.push(event)
-  console.log(event)
   autoScroll()
 })
+
 </script>
 
 <template>
-  <div class="list">
+  <div
+    class="list"
+  >
     <div
       ref="listDom"
       class="history"
       @click="emits('click')"
       @scroll="onScroll"
     >
-      {{ messageList }}
       <template
         v-for="item in messageList"
         :key="item.id"
       >
-        <div
-          :class="getMessageClass(item)"
-          class="message"
+        <template
+          v-if="[ChatEventType.ROOM_TEXT_MESSAGE.key,ChatEventType.ROOM_IMAGE_MESSAGE.key].includes(item.type)"
         >
-          <ChatAvatar :url="item.member.user.avatar" />
-          <div class="content">
-            <div class="nick copy">
-              {{ item.member.user.nickname }}
-            </div>
-            <el-dropdown trigger="click">
-              <div
-                v-if="ChatEventType.ROOM_TEXT_MESSAGE.equalsKey(item.type)"
-                class="text copy"
-              >
-                <template
-                  v-for="(tempItem, index) in decodeEmojis((item as RoomMemberTextMessageEvent).text)"
-                  :key="index"
-                >
-                  <template v-if="tempItem.type == MESSAGE_STRING">
-                    {{ tempItem.str }}
-                  </template>
-                  <template v-if="tempItem.type ==MESSAGE_EMOJI">
-                    <img :src="getEmojiUrl(tempItem.emoji)">
-                  </template>
-                </template>
+          <div
+            :class="getMessageClass(item)"
+            class="message"
+          >
+            <ChatAvatar :url="item.member.user.avatar" />
+            <div class="content">
+              <div class="nick copy">
+                {{ item.member.user.nickname }}
               </div>
-              <div
-                v-if="ChatEventType.ROOM_IMAGE_MESSAGE.equalsKey(item.type)"
-                class="text img"
-              >
-                <el-image
-                  :src="AirFile.getStaticFileUrl((item as RoomMemberImageMessageEvent).img)"
-                  fit="cover"
-                  @load="autoScroll"
+              <el-dropdown trigger="contextmenu">
+                <div
+                  v-if="ChatEventType.ROOM_TEXT_MESSAGE.equalsKey(item.type)"
+                  class="text copy"
                 >
-                  <template #error>
-                    <div class="image-slot">
-                      <i class="el-icon-picture-outline-round" />
-                    </div>
-                  </template>
-                </el-image>
-              </div>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>
-                    <el-icon>
-                      <Bottom />
-                    </el-icon>
-                    撤回消息
-                  </el-dropdown-item>
-                  <el-dropdown-item
-                    @click="openNewTab((item as RoomMemberImageMessageEvent).img)"
+                  <template
+                    v-for="(tempItem, index) in decodeEmojis((item as RoomMemberTextMessageEvent).text)"
+                    :key="index"
                   >
-                    <el-icon>
-                      <ZoomIn />
-                    </el-icon>
-                    预览大图
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-            <div class="time">
-              {{ AirDateTime.getFriendlyDateTime(item.time) }}
+                    <template v-if="tempItem.type == MESSAGE_STRING">
+                      {{ tempItem.str }}
+                    </template>
+                    <template v-if="tempItem.type ==MESSAGE_EMOJI">
+                      <img :src="getEmojiUrl(tempItem.emoji)">
+                    </template>
+                  </template>
+                </div>
+                <div
+                  v-if="ChatEventType.ROOM_IMAGE_MESSAGE.equalsKey(item.type)"
+                  class="text img"
+                >
+                  <el-image
+                    :src="AirFile.getStaticFileUrl((item as RoomMemberImageMessageEvent).img)"
+                    fit="cover"
+                    @load="autoScroll"
+                  >
+                    <template #error>
+                      <div class="image-slot">
+                        <i class="el-icon-picture-outline-round" />
+                      </div>
+                    </template>
+                  </el-image>
+                </div>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item>
+                      <el-icon>
+                        <Bottom />
+                      </el-icon>
+                      撤回消息
+                    </el-dropdown-item>
+                    <el-dropdown-item
+                      @click="openNewTab((item as RoomMemberImageMessageEvent).img)"
+                    >
+                      <el-icon>
+                        <ZoomIn />
+                      </el-icon>
+                      预览大图
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+              <div class="time">
+                {{ AirDateTime.getFriendlyDateTime(item.time) }}
+              </div>
             </div>
           </div>
-        </div>
+        </template>
+        <SystemMessage
+          v-if="[ChatEventType.ROOM_MEMBER_JOIN.key].includes(item.type)"
+          :message="item"
+        />
       </template>
     </div>
     <el-button
@@ -206,6 +216,7 @@ AirEvent.onAll([
         }
 
         .text {
+          user-select: all;
           background-color: #eee;
           font-size: 13px;
           color: #666;
@@ -219,6 +230,10 @@ AirEvent.onAll([
           cursor: pointer;
           line-height: 18px;
           max-width: 300px;
+
+          * {
+            user-select: all;
+          }
 
           img {
             width: 20px;
@@ -305,33 +320,6 @@ AirEvent.onAll([
 
       .time {
         text-align: right;
-      }
-    }
-
-    .system {
-      display: flex;
-      flex-direction: row;
-      text-align: center;
-      padding: 0 20%;
-      justify-content: center;
-      align-items: center;
-      font-size: 12px;
-      color: #aaa;
-      margin-bottom: 10px;
-
-      div {
-        background-color: #eee;
-        padding: 2px 8px;
-        border-radius: 3px;
-        max-width: 500px;
-      }
-
-      .user {
-        cursor: pointer;
-      }
-
-      .user:hover {
-        color: orangered;
       }
     }
   }

@@ -32,6 +32,7 @@ const emits = defineEmits(['open'])
     align-items: center;
 
     .tool-item {
+      user-select: none;
       padding: 5px 10px;
       vertical-align: middle;
       cursor: pointer;
