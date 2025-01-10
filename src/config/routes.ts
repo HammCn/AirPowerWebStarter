@@ -33,6 +33,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/view/authorize.vue'),
   },
   {
+    path: '/chat',
+    name: '聊天室',
+    component: () => import('@/view/chat.vue'),
+  },
+  {
     path: '/',
     name: 'console',
     redirect: '/home',

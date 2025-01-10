@@ -13,8 +13,7 @@ export class OpenAppService extends AbstractBaseService<OpenAppEntity> {
   async getAppByKey(appKey: string): Promise<OpenAppEntity> {
     const app = new OpenAppEntity()
     app.appKey = appKey
-    const json = await this.api('getByAppKey').post(app)
-    return OpenAppEntity.fromJson(json)
+    return this.api('getByAppKey').request(app, OpenAppEntity)
   }
 
   /**

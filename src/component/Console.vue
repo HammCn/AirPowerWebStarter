@@ -19,13 +19,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { AFrame } from '@/airpower/component'
-import { AirConfig } from '@/airpower/config/AirConfig'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { MenuEntity } from '@/model/menu/MenuEntity'
-import { UserService } from '@/model/user/UserService'
-import { UserEntity } from '@/model/user/UserEntity'
-import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
-import { AirNotification } from '@/airpower/feedback/AirNotification'
+import { MenuEntity } from '@/model/system/menu/MenuEntity'
+import { UserService } from '@/model/personnel/user/UserService'
+import { UserEntity } from '@/model/personnel/user/UserEntity'
 import { AirPermission } from '@/airpower/helper/AirPermission'
 import UserCard from '@/component/UserCard.vue'
 
@@ -46,15 +43,6 @@ async function init() {
   }
   AirPermission.saveList(permissions)
   await getMenuList()
-
-  AirWebsocket.create(`${AirConfig.websocketUrl}?${AirConfig.getAccessToken()}`, {
-    onConnect() {
-      AirNotification.success('连接成功')
-    },
-    onMessage(event) {
-      AirNotification.success(`${event.payload.type} ${event.payload.data}`, event.id)
-    },
-  })
 }
 
 init()

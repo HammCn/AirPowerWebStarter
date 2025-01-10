@@ -49,10 +49,10 @@ import { OpenAppEntity } from '@/model/open/app/OpenAppEntity'
 import { AirRouter } from '@/airpower/helper/AirRouter'
 import Copyright from '@/component/login/Copyright.vue'
 import Logo from '@/component/login/Logo.vue'
-import { UserService } from '@/model/user/UserService'
-import { OauthScope } from '@/model/oauth/OauthScope'
+import { UserService } from '@/model/personnel/user/UserService'
+import { OauthScope } from '@/model/open/oauth/OauthScope'
 import { AirConfirm } from '@/airpower/feedback/AirConfirm'
-import { UserEntity } from '@/model/user/UserEntity'
+import { UserEntity } from '@/model/personnel/user/UserEntity'
 
 const user = ref(new UserEntity())
 

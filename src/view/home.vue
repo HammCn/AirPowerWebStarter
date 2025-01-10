@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <img
-      src="@/assets/img/logo.png"
       class="logo"
+      src="@/assets/img/logo.png"
     >
     <iframe src="https://ac.hamm.cn" />
     <div class="intro">
@@ -14,6 +14,9 @@
     <div class="link">
       <router-link to="/console">
         Console
+      </router-link>
+      <router-link to="/chat">
+        ChatRoom
       </router-link>
       <router-link to="/login">
         Login
@@ -39,7 +42,8 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>
 <style lang="scss" scoped>
 .home {
   position: fixed;

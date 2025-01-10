@@ -3,7 +3,7 @@ import {
 } from '@/airpower/decorator'
 import { BaseEntity } from '@/base/BaseEntity'
 import { OpenAppArithmeticEnum } from './OpenAppArithmeticEnum'
-import { BooleanYesNoDictionary } from '@/model/BooleanYesNoDictionary'
+import { BooleanYesNoDictionary } from '@/model/common/BooleanYesNoDictionary'
 
 @Model({
   label: '应用',
@@ -69,7 +69,6 @@ export class OpenAppEntity extends BaseEntity {
   @Field({
     label: '加密算法',
     dictionary: OpenAppArithmeticEnum,
-    alias: 'arithmetic',
   }) arithmetic!: number
 
   @Table({
