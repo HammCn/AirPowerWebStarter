@@ -1,0 +1,29 @@
+.slide-enter-active {
+  animation: slide-in 0.2s;
+}
+
+.slide-leave-active {
+  animation: slide-out 0.2s;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+}

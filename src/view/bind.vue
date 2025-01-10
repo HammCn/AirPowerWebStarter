@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { AirRouter } from '@/airpower/helper/AirRouter'
-import { UserService } from '@/model/user/UserService'
+import { UserService } from '@/model/personnel/user/UserService'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 import { AirAny } from '@/airpower/type/AirType'
 
@@ -19,8 +19,8 @@ async function init() {
   const code = AirRouter.router.currentRoute.value.query.code?.toString() || ''
   try {
     await UserService.create(isLoading).thirdBind(platform, code)
-  } catch (e: AirAny) {
-    await AirAlert.create().hideClose().error(e.message, '登录失败')
+  } catch (e) {
+    await AirAlert.create().hideClose().error((e as AirAny).message, '登录失败')
   }
   await AirAlert.success('绑定第三方账号成功', '绑定成功')
   window.close()
