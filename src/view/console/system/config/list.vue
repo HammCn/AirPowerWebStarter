@@ -9,12 +9,13 @@
     />
     <ATable
       v-loading="isLoading"
-      :ctrl-width="105"
+      :ctrl-width="90"
       :data-list="response.list"
+      :disable-delete="row => row.isSystem"
       :entity="ConfigEntity"
-      hide-delete
       @on-edit="onEdit"
       @on-sort="onSortChanged"
+      @on-delete="onDelete"
     />
     <template #footerLeft>
       <APage
@@ -42,6 +43,7 @@ const {
   onAdd,
   onPageChanged,
   onSortChanged,
+  onDelete,
 } = useAirTable(ConfigEntity, ConfigService, {
   editView: ConfigurationEditor,
 })
