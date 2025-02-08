@@ -26,7 +26,7 @@
         field="token"
       />
       <AFormField
-        v-if="NotifyChannelEnum.WEB_HOOK.equalsKey(formData.type)"
+        v-if="NotifyChannelEnum.WEB_HOOK.equalsKey(formData.channel)"
         field="token"
       />
       <AFormField field="remark" />
