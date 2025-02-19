@@ -11,12 +11,12 @@ import { RoomService } from '@/model/chat/room/RoomService'
 import { AirAlert } from '@/airpower/feedback/AirAlert'
 
 /**
- * # 当前房间
+ * # 房间Hook
  * @param websocket WebSocket
  * @param currentRoomChanged 房间变更
  * @author Hamm.cn
  */
-export function useCurrentRoom(websocket: Ref<AirWebsocket | undefined>, currentRoomChanged?: () => void) {
+export function useRoom(websocket: Ref<AirWebsocket | undefined>, currentRoomChanged?: () => void) {
   /**
    * ## 是否在房间中
    */

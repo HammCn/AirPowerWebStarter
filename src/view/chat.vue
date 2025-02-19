@@ -6,7 +6,7 @@ import { DialogStatus } from '@/model/chat/DialogStatus'
 import Emoji from '@/view/chat/panel/Emoji.vue'
 import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
 import { AirConfig } from '@/airpower/config/AirConfig'
-import { useCurrentRoom } from '@/model/chat/hook/useCurrentRoom'
+import { useRoom } from '@/model/chat/hook/useRoom'
 import { useChat } from '@/model/chat/hook/useChat'
 import RoomChatList from '@/view/chat/components/RoomChatList.vue'
 import ChatFormTool from '@/view/chat/components/ChatFormTool.vue'
@@ -25,7 +25,7 @@ const messageDom = ref<HTMLTextAreaElement | null>(null)
 
 const { transferWebsocketEvent, sendTextMessage } = useChat()
 
-const { joinRoom } = useCurrentRoom(websocket)
+const { joinRoom } = useRoom(websocket)
 
 const message = ref('')
 
