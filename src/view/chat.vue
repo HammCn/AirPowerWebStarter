@@ -23,11 +23,9 @@ const dialogStatus = ref(DialogStatus.NONE)
 
 const messageDom = ref<HTMLTextAreaElement | null>(null)
 
-const { transferWebsocketEvent, sendTextMessage } = useChat()
+const { transferWebsocketEvent, sendTextMessage, input } = useChat(websocket)
 
 const { joinRoom } = useRoom(websocket)
-
-const message = ref('')
 
 async function init() {
   AppConfig.currentUser.value = await UserService.create(isLoading)
@@ -55,21 +53,12 @@ async function openPanel(what?: DialogStatus) {
   }
 }
 
-function sendMessage() {
-  if (!message.value) {
-    return
-  }
-  const temp = message.value
-  message.value = ''
-  sendTextMessage(websocket, temp)
-  openPanel()
-}
-
 function keydown(e: KeyboardEvent) {
   openPanel()
   switch (e.key) {
     case 'Enter':
-      sendMessage()
+      sendTextMessage()
+      openPanel()
       e.preventDefault()
       break
     default:
@@ -103,7 +92,7 @@ function onContextMenu(e: MouseEvent) {
           <div class="chat-input">
             <textarea
               ref="messageDom"
-              v-model="message"
+              v-model="input"
               placeholder=""
               @click="openPanel()"
               @keydown="keydown"
@@ -147,7 +136,7 @@ function onContextMenu(e: MouseEvent) {
         <!--        />-->
         <Emoji
           v-if="DialogStatus.EMOJI.equalsKey(dialogStatus.key)"
-          @click="message+= `[emoji${$event}]`;messageDom?.focus()"
+          @click="input+= `[emoji${$event}]`;messageDom?.focus()"
         />
         <!--        <Profile-->
         <!--          v-if="dialogs.profile"-->
