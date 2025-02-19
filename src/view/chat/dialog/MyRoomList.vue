@@ -19,7 +19,7 @@
       </AButton>
     </template>
     <RoomList
-      :room-list="hotRoomList"
+      :room-list="myRoomList"
       @join-room="onConfirm"
     />
   </ADialog>
@@ -37,20 +37,20 @@ import RoomList from '@/view/chat/dialog/list/RoomList.vue'
 
 defineProps(airProps())
 
-const hotRoomList = ref([] as RoomEntity[])
+const myRoomList = ref([] as RoomEntity[])
 
 const isLoading = ref(false)
 
-async function getHotRooms() {
-  hotRoomList.value = await RoomService.create(isLoading).getMyRoomList()
+async function getMyRoomList() {
+  myRoomList.value = await RoomService.create(isLoading).getMyRoomList()
 }
 
 async function onAdd() {
   await AirDialog.show(CreateRoom)
-  await getHotRooms()
+  await getMyRoomList()
 }
 
-getHotRooms()
+getMyRoomList()
 </script>
 
 <style lang="scss" scoped>
