@@ -1,15 +1,19 @@
+import { ref, Ref } from 'vue'
 import { AirWebsocketEvent } from '@/airpower/websocket/AirWebSocketEvent'
 import { IJson } from '@/airpower/interface/IJson'
 import { ChatEventType } from '@/model/chat/enum/ChatEventType'
 import { AppConfig } from '@/config/AppConfig'
 import { AirClassTransformer } from '@/airpower/helper/AirClassTransformer'
 import AirEvent from '@/airpower/event/AirEvent'
+import { AirWebsocket } from '@/airpower/websocket/AirWebSocket'
+import { AirWebSocketPayload } from '@/airpower/websocket/AirWebSocketPayload'
 
 /**
  * # 聊天事件Hook
  * @author Hamm.cn
  */
-export function useChatEvent() {
+export function useChat(websocket: Ref<AirWebsocket | undefined>) {
+  const input = ref('')
   /**
    * ## WebSocket事件转移
    * @param event 事件
@@ -28,5 +32,25 @@ export function useChatEvent() {
     }
     AirEvent.emit(AppConfig.EVENT_PREFIX + event.payload.type, event.payload.data)
   }
-  return { transferWebsocketEvent }
+
+  /**
+   * ## 发送消息
+   * @param message 消息
+   */
+  function sendTextMessage() {
+    if (!input.value) {
+      return
+    }
+    const temp = input.value
+    input.value = ''
+    if (!websocket.value?.isConnected) {
+      return
+    }
+    const payload = new AirWebSocketPayload()
+    payload.type = ChatEventType.ROOM_TEXT_MESSAGE.key
+    payload.data = temp
+    websocket.value.send(payload)
+  }
+
+  return { transferWebsocketEvent, sendTextMessage, input }
 }

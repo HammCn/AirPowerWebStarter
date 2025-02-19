@@ -10,7 +10,7 @@
     @on-confirm="onConfirm"
   >
     <RoomList
-      :room-list="myRoomList"
+      :room-list="hotRoomList"
       @join-room="onConfirm"
     />
     <template #middleButton>
@@ -30,19 +30,19 @@ import { ref } from 'vue'
 import RoomList from '@/view/chat/dialog/list/RoomList.vue'
 import { RoomEntity } from '@/model/chat/room/RoomEntity'
 import { airProps } from '@/airpower/config/AirProps'
-import { RoomService } from '@/model/chat/room/RoomService'
 import { AButton, ADialog } from '@/airpower/component'
 import { AirDialog } from '@/airpower/helper/AirDialog'
 import MyRoomList from '@/view/chat/dialog/MyRoomList.vue'
+import { RoomService } from '@/model/chat/room/RoomService'
 
 const props = defineProps(airProps())
 
-const myRoomList = ref([] as RoomEntity[])
+const hotRoomList = ref([] as RoomEntity[])
 
 const isLoading = ref(false)
 
-async function getMyRoomList() {
-  myRoomList.value = await RoomService.create(isLoading).getHotList()
+async function getHotRoomList() {
+  hotRoomList.value = await RoomService.create(isLoading).getHotList()
 }
 
 async function showMyRoomList() {
@@ -50,7 +50,7 @@ async function showMyRoomList() {
   await AirDialog.show(MyRoomList)
 }
 
-getMyRoomList()
+getHotRoomList()
 </script>
 
 <style lang="scss" scoped>
