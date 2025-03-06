@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="365d830a-520f-4d41-8dba-65adad5ff236" name="更改" comment="refactor(view): 优化我的房间列表组件&#10;&#10;- 将组件中的 hotRoomList 重命名为 myRoomList，以更准确地反映其用途&#10;- 更新相关函数名称，以保持代码的一致性和可读性&#10;- 修改模板中使用的变量名称，以与新的命名保持一致">
+      <change beforePath="$PROJECT_DIR$/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/26.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/27.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/31.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/37.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/38.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/39.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/41.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/42.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/43.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/44.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/45.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/46.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/47.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/49.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/51.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/52.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/53.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/54.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/55.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/56.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/57.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/58.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/59.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/60.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/61.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/62.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/63.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/65.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/66.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/67.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/68.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/69.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/70.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/71.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/74.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/75.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/76.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/77.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/78.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/79.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/81.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/82.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/83.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/84.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/85.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/86.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/87.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/88.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/89.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/90.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/91.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/92.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/93.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/94.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/95.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/97.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/98.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/emoji/99.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/apple.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/dingtalk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/feishu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/gitee.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/github.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/google.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/qq.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/wechat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/wecom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/thirdlogin/weibo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/main.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/login/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/login/qrcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/AbstractBaseService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/BaseEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Console.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/UserCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/login/Copyright.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/login/Logo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/login/ThirdLogin.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/user/ModifyPassword.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/user/ThirdAccountList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/AppConfig.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/Strings.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/i18n/ChineseSimplified.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/i18n/English.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/DialogStatus.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/common/ChatEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/enum/ChatEventType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/hook/useChat.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/hook/useEmoji.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/hook/useRoom.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/member/MemberEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/member/MemberRole.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/member/MemberService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/RoomEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/RoomPrivate.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/RoomService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/event/RoomMemberImageMessageEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/event/RoomMemberJoinEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/event/RoomMemberLeaveEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/event/RoomMemberTextMessageEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/model/RoomJoinRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/chat/room/model/RoomMemberEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common/BooleanYesNoDictionary.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common/LoginAction.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/common/OrderNumberDictionary.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/app/OpenAppArithmeticEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/app/OpenAppEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/app/OpenAppService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/log/OpenLogEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/log/OpenLogService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/notify/NotifyChannelEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/notify/NotifyEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/notify/NotifyService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/oauth/OauthCreateCodeRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/oauth/OauthScope.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/thirdlogin/ThirdLoginPlatform.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/thirdlogin/ThirdLoginRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/open/thirdlogin/UserThirdLoginEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/department/DepartmentEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/department/DepartmentService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/role/RoleEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/role/RoleService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/user/UserEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/user/UserGenderEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/personnel/user/UserService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/coderule/CodeRuleEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/coderule/CodeRuleField.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/coderule/CodeRuleParam.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/coderule/CodeRuleService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/coderule/SerialNumberUpdateEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/config/ConfigEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/config/ConfigService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/config/ConfigType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/menu/MenuEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/menu/MenuService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/permission/PermissionEntity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/permission/PermissionService.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/system/permission/PermissionSystemEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/authorize.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/bind.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/callback.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/components/ChatAvatar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/components/ChatFormTool.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/components/RoomChatList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/components/RoomTop.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/components/SystemMessage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/dialog/CreateRoom.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/dialog/HotRoomList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/dialog/MyRoomList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/dialog/list/RoomList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/chat/panel/Emoji.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/index/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/component/log.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/component/logDetail.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/component/test.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/app/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/notify/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/notify/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/open/notify/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/department/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/department/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/department/component/selector.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/department/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/component/menuEditor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/component/permissionEditor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/component/selector.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/role/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/user/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/user/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/user/component/selector.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/personnel/user/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/coderule/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/coderule/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/coderule/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/config/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/config/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/config/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/menu/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/menu/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/menu/component/selector.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/menu/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/permission/component/editor.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/permission/component/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/permission/component/selector.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/console/system/permission/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/login.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.mts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="repository" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Composition API Component" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Hamm &lt;majhamm@qq.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "HammCn"
+  }
+}]]></component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value=".*v1\.x" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:HammCn/AirPowerWebStarter.git",
+    "accountId": "a1587a5f-f588-4fb7-83a6-7f055143bab6"
+  }
+}]]></component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2lBuMmeXciJJnZ1H1VpSu4U2JjD" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "18.20.4",
+    "javascript.nodejs.core.library.typings.version": "18.19.69",
+    "last_opened_file_path": "/Users/hamm/Git/airpower/airpower-starter/AirPowerWebStarter/src/model/chat/room/model",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.s.executor": "Debug",
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "settings.vue",
+    "ts.external.directory.path": "/Users/hamm/Git/airpower/airpower-starter/AirPowerWebStarter/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/model/chat/room/model" />
+      <recent name="$PROJECT_DIR$/src/model/chat/room/event" />
+      <recent name="$PROJECT_DIR$/src/view" />
+      <recent name="$PROJECT_DIR$/src/airpower" />
+      <recent name="$PROJECT_DIR$/src/model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/model/system" />
+      <recent name="$PROJECT_DIR$/src/model/personnel" />
+      <recent name="$PROJECT_DIR$/src/view/console/system" />
+      <recent name="$PROJECT_DIR$/src/view/console/personnel" />
+      <recent name="$PROJECT_DIR$/src/model/open" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="s" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="s" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.25659.40" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="365d830a-520f-4d41-8dba-65adad5ff236" name="更改" comment="" />
+      <created>1724665744439</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1724665744439</updated>
+      <workItem from="1724665745589" duration="1000" />
+      <workItem from="1724665749315" duration="1030000" />
+      <workItem from="1724832211250" duration="2071000" />
+      <workItem from="1725004758614" duration="1702000" />
+      <workItem from="1725088897875" duration="961000" />
+      <workItem from="1725244969337" duration="1009000" />
+      <workItem from="1725353575411" duration="38000" />
+      <workItem from="1725528210767" duration="6125000" />
+      <workItem from="1726653086839" duration="32000" />
+      <workItem from="1727085203388" duration="1526000" />
+      <workItem from="1727088005831" duration="5956000" />
+      <workItem from="1729685963721" duration="1059000" />
+      <workItem from="1729687414176" duration="20746000" />
+      <workItem from="1729932152976" duration="3000" />
+      <workItem from="1729932173994" duration="15418000" />
+      <workItem from="1730260882382" duration="3627000" />
+      <workItem from="1730272863311" duration="18000" />
+      <workItem from="1730272888057" duration="6026000" />
+      <workItem from="1730687477705" duration="235000" />
+      <workItem from="1730687734824" duration="3131000" />
+      <workItem from="1731995308332" duration="151000" />
+      <workItem from="1731995592109" duration="1557000" />
+      <workItem from="1732087883068" duration="3874000" />
+      <workItem from="1732092816592" duration="6609000" />
+      <workItem from="1732606230670" duration="172000" />
+      <workItem from="1732606420958" duration="10276000" />
+      <workItem from="1733136748659" duration="6170000" />
+      <workItem from="1733281937832" duration="7627000" />
+      <workItem from="1733304398380" duration="506000" />
+      <workItem from="1733904117550" duration="3123000" />
+      <workItem from="1734073125734" duration="745000" />
+      <workItem from="1734318380679" duration="15246000" />
+      <workItem from="1734341146734" duration="6852000" />
+      <workItem from="1734418941943" duration="13137000" />
+      <workItem from="1734514166798" duration="59000" />
+      <workItem from="1734664048533" duration="949000" />
+      <workItem from="1734665028554" duration="5285000" />
+      <workItem from="1734923678598" duration="15783000" />
+      <workItem from="1734964294736" duration="54000" />
+      <workItem from="1735006872842" duration="410000" />
+      <workItem from="1735007365725" duration="4428000" />
+      <workItem from="1735036250719" duration="8000" />
+      <workItem from="1735036544679" duration="2900000" />
+      <workItem from="1735193292942" duration="3876000" />
+      <workItem from="1735199063085" duration="12424000" />
+      <workItem from="1735285210228" duration="136000" />
+      <workItem from="1735286165549" duration="14434000" />
+      <workItem from="1735548767865" duration="5641000" />
+      <workItem from="1735629196434" duration="2880000" />
+      <workItem from="1736146119461" duration="217000" />
+      <workItem from="1736147224389" duration="63000" />
+      <workItem from="1736147309327" duration="1405000" />
+      <workItem from="1736153816855" duration="3963000" />
+      <workItem from="1736158250035" duration="50000" />
+      <workItem from="1736158302830" duration="66000" />
+      <workItem from="1736158372575" duration="253000" />
+      <workItem from="1736158628769" duration="46000" />
+      <workItem from="1736158676892" duration="4063000" />
+      <workItem from="1736320339851" duration="7219000" />
+      <workItem from="1736327579139" duration="6737000" />
+      <workItem from="1736390376627" duration="8119000" />
+      <workItem from="1736416201385" duration="575000" />
+      <workItem from="1736478189240" duration="2244000" />
+      <workItem from="1736501093691" duration="3362000" />
+      <workItem from="1736736565216" duration="8640000" />
+      <workItem from="1736825517046" duration="8000" />
+      <workItem from="1738984050153" duration="1158000" />
+      <workItem from="1738985423462" duration="4403000" />
+      <workItem from="1739155897780" duration="177000" />
+      <workItem from="1739180808044" duration="9075000" />
+      <workItem from="1739329427410" duration="19000" />
+      <workItem from="1739504564975" duration="4097000" />
+      <workItem from="1739865298471" duration="8697000" />
+      <workItem from="1739953600702" duration="1974000" />
+      <workItem from="1740122034066" duration="307000" />
+      <workItem from="1740122352781" duration="56000" />
+      <workItem from="1740132994783" duration="1496000" />
+      <workItem from="1740192161373" duration="3862000" />
+      <workItem from="1740220894904" duration="57000" />
+      <workItem from="1741169790952" duration="754000" />
+      <workItem from="1741250843117" duration="215000" />
+    </task>
+    <task id="LOCAL-00015" summary="docs(payload): 优化 Payload组件脚本标签属性顺序">
+      <option name="closed" value="true" />
+      <created>1732088643457</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732088643457</updated>
+    </task>
+    <task id="LOCAL-00016" summary="perf(component): 优化脱敏逻辑&#10;&#10;- 合并条件判断，减少冗余代码&#10;- 提高 Desensitize 组件的运行效率">
+      <option name="closed" value="true" />
+      <created>1732088719551</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732088719551</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor(Dialog): 优化对话框组件的样式和功能&#10;&#10;- 调整对话框的类名和样式顺序，提高代码可读性&#10;- 添加全屏和普通状态的鼠标样式常量，统一鼠标样式管理&#10;- 优化鼠标按下、移动、释放事件的处理逻辑，提升用户体验&#10;- 重构部分代码结构，提高维护性">
+      <option name="closed" value="true" />
+      <created>1732088939813</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732088939813</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactor(component): 优化日期选择器的代码结构和配置&#10;&#10;- 提取公共的默认时间、格式化字符串和标签常量&#10;- 简化日期选择器组件的配置&#10;- 提高代码的可读性和可维护性">
+      <option name="closed" value="true" />
+      <created>1732090444314</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732090444315</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor(component): 优化 Table组件代码结构&#10;&#10;- 提取表格列样式设置为单独的函数 getTableColumnClass&#10;- 移除重复的类名设置，提高代码复用性">
+      <option name="closed" value="true" />
+      <created>1732090714130</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732090714130</updated>
+    </task>
+    <task id="LOCAL-00020" summary="refactor(upload): 将 exts 属性重命名为 extensions&#10;&#10;- 在 IUploadProps 接口中将 exts 属性重命名为 extensions&#10;- 更新了相关组件中使用该属性的地方&#10;- 此修改提高了代码的可读性和一致性">
+      <option name="closed" value="true" />
+      <created>1732090949076</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732090949076</updated>
+    </task>
+    <task id="LOCAL-00021" summary="refactor(i18n):优化国际化文案的字段命名&#10;&#10;- 将 ImageSupportExts 字段名改为 ImageSupportExtensions，使命名更加清晰易懂&#10;- 更新相关代码中的字段引用，确保国际化文案的正确显示">
+      <option name="closed" value="true" />
+      <created>1732091008089</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732091008089</updated>
+    </task>
+    <task id="LOCAL-00022" summary="refactor(core): 修改了很多错误的英文单词">
+      <option name="closed" value="true" />
+      <created>1732091741149</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732091741149</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactor(selector): 重构选择器组件&#10;&#10;- 优化了 useAirSelector hook 中的计算属性&#10;- 统一了选择器组件中的属性命名&#10;- 调整了对话框和表格的配置&#10;- 修复了一些小的样式问题">
+      <option name="closed" value="true" />
+      <created>1732093014394</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732093014394</updated>
+    </task>
+    <task id="LOCAL-00024" summary="refactor(event): 优化 AirEvent 类的代码结构&#10;&#10;- 简化 on 方法，使用 ||运算符替代 has 和 get 方法的组合&#10;- 优化 emit 方法，使用 || 运算符获取 callbacks 数组&#10;- 重写 off 方法，直接使用 indexOf 和 splice 方法移除回调">
+      <option name="closed" value="true" />
+      <created>1732617121981</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732617121981</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactor(event): 修复事件回调函数参数传递问题">
+      <option name="closed" value="true" />
+      <created>1733137241830</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733137241830</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor(service): 优化 API 请求的 URL 拼接逻辑&#10;&#10;- 使用三元运算符简化了 URL 拼接逻辑&#10;- 提高了代码的可读性和简洁性">
+      <option name="closed" value="true" />
+      <created>1733297214337</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733297214337</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix(websocket): 删除了 `autoConnectWhenClosed` 方法">
+      <option name="closed" value="true" />
+      <created>1733904177025</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733904177025</updated>
+    </task>
+    <task id="LOCAL-00028" summary="style(User): 调整用户组件样式和结构&#10;&#10;- 移除重复的 class 属性&#10;- 调整 logout 按钮样式&#10;- 优化模板结构&#10;- 更新样式标签顺序">
+      <option name="closed" value="true" />
+      <created>1734322703470</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1734322703470</updated>
+    </task>
+    <task id="LOCAL-00029" summary="refactor(component): 重构 Console组件并添加 UserCard 组件&#10;&#10;- 重构 Console 组件，简化模板结构&#10;- 添加 UserCard组件用于显示用户信息&#10;- 更新 UserEntity 模型，增加新字段并调整现有字段">
+      <option name="closed" value="true" />
+      <created>1734322926308</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1734322926308</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat(user): 添加第三方登录功能&#10;&#10;- 新增 callback 和 bind 页面处理第三方登录回调&#10;- 实现第三方登录平台枚举和相关请求模型&#10;- 添加用户绑定和解绑第三方账号功能&#10;- 优化用户中心界面，增加修改密码和第三方账号管理功能">
+      <option name="closed" value="true" />
+      <created>1734343189903</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1734343189904</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat(authorize): 更新授权页面功能和样式&#10;&#10;- 添加用户昵称显示和切换账号功能&#10;- 优化授权信息展示布局&#10;- 调整标题样式和增加账号信息提示&#10;- 移除模拟用户信息代码">
+      <option name="closed" value="true" />
+      <created>1734344210665</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1734344210665</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactor(login): 优化 OAuth 登录的重定向逻辑&#10;&#10;-将重定向 URL 的构建方式改为使用 window.location.search&#10;- 这种改动可以简化 URL 参数的处理，提高代码的可维护性">
+      <option name="closed" value="true" />
+      <created>1734344475581</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1734344475581</updated>
+    </task>
+    <task id="LOCAL-00033" summary="refactor(login): 优化 OAuth 登录的重定向逻辑&#10;&#10;-将重定向 URL 的构建方式改为使用 window.location.search&#10;- 这种改动可以简化 URL 参数的处理，提高代码的可维护性">
+      <option name="closed" value="true" />
+      <created>1734405020508</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1734405020508</updated>
+    </task>
+    <task id="LOCAL-00034" summary="refactor(view): 修改授权页面 scope 列表项的 key 属性&#10;&#10;- 将 scope 列表项的 key 属性从 item.key 改为 item.name&#10;- 这个改动可以提高代码的可读性和一致性，因为 item.name已经存在且唯一">
+      <option name="closed" value="true" />
+      <created>1734405180187</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1734405180187</updated>
+    </task>
+    <task id="LOCAL-00035" summary="refactor(core): 优化 getFieldConfig 方法的类型定义&#10;&#10;- 移除 getFieldConfig 方法的泛型参数 P&#10;- 将返回类型固定为 IFieldConfig&#10;- 在 AirModel 类和静态方法中统一方法签名">
+      <option name="closed" value="true" />
+      <created>1734421774486</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1734421774486</updated>
+    </task>
+    <task id="LOCAL-00036" summary="refactor(interface): 移除 IModelConfig 中的搜索相关配置项&#10;&#10;- 移除了 searchPlaceholder属性，该属性用于配置搜索框提示文案&#10;- 移除了 showFilter 属性，用于配置是否显示更多筛选器">
+      <option name="closed" value="true" />
+      <created>1734507162119</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1734507162119</updated>
+    </task>
+    <task id="LOCAL-00037" summary="refactor(config): 移除未使用的配置项和接口&#10;&#10;- 删除了未使用的 AirUserEntity 相关代码&#10;- 移除了未使用的 IUser 接口导入&#10;- 删除了未使用的 searchPlaceholder 和 userEntityClass 配置项&#10;- 移除了已废弃的 airpower 相关代码">
+      <option name="closed" value="true" />
+      <created>1734511883981</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1734511883981</updated>
+    </task>
+    <task id="LOCAL-00038" summary="refactor(decorator): 更新导入路径以匹配装饰器模块重构">
+      <option name="closed" value="true" />
+      <created>1734512213327</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1734512213327</updated>
+    </task>
+    <task id="LOCAL-00039" summary="feat(decorator): 新增装饰器模块索引文件&#10;&#10;- 创建新的装饰器模块索引文件，统一导出装饰器相关类&#10;- 在 IFieldConfig 文件中添加字段配置接口的注释说明">
+      <option name="closed" value="true" />
+      <created>1734514219177</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1734514219177</updated>
+    </task>
+    <task id="LOCAL-00040" summary="refactor(core): 修改错误信息提示的注释">
+      <option name="closed" value="true" />
+      <created>1734927673443</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1734927673443</updated>
+    </task>
+    <task id="LOCAL-00041" summary="chore(git): 更新 .gitignore 文件&#10;&#10;- 在 .gitignore 中添加 test 目录，以忽略测试相关的文件和输出">
+      <option name="closed" value="true" />
+      <created>1734928431478</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1734928431478</updated>
+    </task>
+    <task id="LOCAL-00042" summary="docs(changelog): 更新 CHANGELOG.md 文件&#10;&#10;- 新增多个重构和修复项&#10;- 调整用户组件样式和结构&#10;-优化字段配置方法的类型定义- 更新装饰器模块索引和导入路径&#10;- 移除未使用的配置项和接口&#10;- 修改错误信息提示的注释">
+      <option name="closed" value="true" />
+      <created>1734935217223</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1734935217223</updated>
+    </task>
+    <task id="LOCAL-00043" summary="release(v3.0.4): 发布了v3.0.4版本">
+      <option name="closed" value="true" />
+      <created>1734935482198</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1734935482198</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat(model): 新增编码规则和部门管理相关模型和服务&#10;&#10;- 添加 CodeRuleEntity、CodeRuleField、CodeRuleParam、DepartmentEntity 模型类&#10;- 实现 CodeRuleService 和 DepartmentService 服务类- 开发编码规则和部门管理的编辑器、列表等组件- 新增 SerialNumberUpdateEnum枚举类">
+      <option name="closed" value="true" />
+      <created>1734949195724</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1734949195724</updated>
+    </task>
+    <task id="LOCAL-00045" summary="refactor(core): 优化枚举基类的实现&#10;&#10;- 移除了未使用的 AirAny 类型导入&#10;- 添加了 IJson 接口导入，用于替代 AirAny&#10;- 修改了 get 方法中 toArray 调用的类型引用，使用 IJson 代替 AirAny">
+      <option name="closed" value="true" />
+      <created>1735037201774</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1735037201774</updated>
+    </task>
+    <task id="LOCAL-00046" summary="refactor(view): 优化错误处理类型转换&#10;&#10;- 在 bind.vue 和 callback.vue 中，移除了 catch子句中的 AirAny 类型注解&#10;- 使用 as 关键字对捕获的异常对象进行类型转换，以访问 message 属性&#10;- 这种改进提高了代码的可读性和 TypeScript 类型检查的准确性">
+      <option name="closed" value="true" />
+      <created>1735113851191</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1735113851191</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat(http): 提供了支持转换类型的request 和 requestArray">
+      <option name="closed" value="true" />
+      <created>1735197419917</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1735197419917</updated>
+    </task>
+    <task id="LOCAL-00048" summary="refactor(core): 修正 IJson 导入路径">
+      <option name="closed" value="true" />
+      <created>1735286220906</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1735286220906</updated>
+    </task>
+    <task id="LOCAL-00049" summary="refactor(console): 重构部门和供应商组件&#10;&#10;- 移除供应商相关的组件和页面&#10;- 更新部门组件的命名&#10;- 调整部门列表页面的编辑视图引用">
+      <option name="closed" value="true" />
+      <created>1735292778342</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1735292778342</updated>
+    </task>
+    <task id="LOCAL-00050" summary="refactor(model): 移除 OpenAppEntity 中的 arithmetic 字段别名&#10;&#10;移除了 OpenAppEntity 类中 arithmetic 字段的 alias 属性，以简化代码结构并提高可维护性。">
+      <option name="closed" value="true" />
+      <created>1735530558641</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1735530558642</updated>
+    </task>
+    <task id="LOCAL-00051" summary="build(deps): 添加 Node.js 类型定义&#10;&#10;- 在 devDependencies 中添加 @types/node 依赖&#10;- 用于提高 TypeScript 开发时的类型检查和智能提示">
+      <option name="closed" value="true" />
+      <created>1736158652563</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1736158652563</updated>
+    </task>
+    <task id="LOCAL-00052" summary="build: 指定主入口文件为 main.ts">
+      <option name="closed" value="true" />
+      <created>1736158771132</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1736158771132</updated>
+    </task>
+    <task id="LOCAL-00053" summary="feat(chat): 添加聊天室功能&#10;&#10;- 新增聊天室页面和相关组件&#10;- 实现WebSocket连接和消息发送&#10;- 添加房间管理、用户管理等基础功能&#10;- 集成表情、图片消息等扩展功能">
+      <option name="closed" value="true" />
+      <created>1736334477568</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1736334477568</updated>
+    </task>
+    <task id="LOCAL-00054" summary="feat(chat): 优化聊天室功能和样式&#10;&#10;- 禁用右键菜单并添加系统消息组件&#10;- 优化消息列表渲染逻辑，支持不同类型的消息&#10;- 调整聊天室样式，提升用户体验">
+      <option name="closed" value="true" />
+      <created>1736392543704</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1736392543704</updated>
+    </task>
+    <task id="LOCAL-00055" summary="feat(chat): 优化聊天室功能和样式&#10;&#10;- 禁用右键菜单并添加系统消息组件&#10;- 优化消息列表渲染逻辑，支持不同类型的消息&#10;- 调整聊天室样式，提升用户体验">
+      <option name="closed" value="true" />
+      <created>1736397422603</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1736397422603</updated>
+    </task>
+    <task id="LOCAL-00056" summary="refactor(model): 重构模型层组织结构&#10;&#10;- 将 user、role、menu、permission 等模块移动到 personnel 或 system 目录下&#10;- 更新相关文件的导入路径&#10;- 调整部分文件命名">
+      <option name="closed" value="true" />
+      <created>1736416760110</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1736416760110</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix(Table): 修复树表格重复添加选中项的BUG&#10;&#10;- 修改了 handleSelectChanged 函数的逻辑&#10;- 现在只将在当前页面中找到的项添加到选中列表中&#10;- 优化了代码结构，提高了可读性和性能">
+      <option name="closed" value="true" />
+      <created>1736480735318</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1736480735318</updated>
+    </task>
+    <task id="LOCAL-00058" summary="feat(user): 用户编辑增加部门选择功能&#10;&#10;- 在用户编辑页面添加部门选择功能&#10;- 在用户实体中增加部门列表字段&#10;- 优化用户列表页面，添加部门树形过滤&#10;- 更新部门选择器，支持树形结构展示">
+      <option name="closed" value="true" />
+      <created>1736481088968</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1736481088968</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix(notify): 修复飞书告警接收人编辑页面的 token 显示逻辑">
+      <option name="closed" value="true" />
+      <created>1738986909712</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1738986909713</updated>
+    </task>
+    <task id="LOCAL-00060" summary="refactor(chat): 合并聊天相关Hook函数&#10;&#10;- 将 useChatEvent 和 useRoomTextMessage合并为 useChat&#10;- 更新 chat.vue 中的导入和使用&#10;- 重构 useChat 函数，添加 sendTextMessage 方法&#10;- 删除 useRoomTextMessage.ts 文件&#10;- 重命名 useChatEvent.ts为 useChat.ts">
+      <option name="closed" value="true" />
+      <created>1739933625280</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1739933625280</updated>
+    </task>
+    <task id="LOCAL-00061" summary="refactor(model): 重命名 useCurrentRoom 为 useRoom&#10;&#10;- 将 useCurrentRoom 函数重命名为 useRoom，以更好地反映其功能&#10;- 更新了相关的文件名和引用&#10;- 此更改使代码更具通用性和可维护性">
+      <option name="closed" value="true" />
+      <created>1739933933481</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1739933933481</updated>
+    </task>
+    <task id="LOCAL-00062" summary="refactor(view): 优化热门房间列表组件&#10;&#10;- 将 myRoomList 重命名为 hotRoomList，以更准确地反映其内容- 更新相关函数名称，以保持代码一致性&#10;- 调整 RoomList 组件的属性传递">
+      <option name="closed" value="true" />
+      <created>1739934408843</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1739934408844</updated>
+    </task>
+    <task id="LOCAL-00063" summary="refactor(view): 优化我的房间列表组件&#10;&#10;- 将组件中的 hotRoomList 重命名为 myRoomList，以更准确地反映其用途&#10;- 更新相关函数名称，以保持代码的一致性和可读性&#10;- 修改模板中使用的变量名称，以与新的命名保持一致">
+      <option name="closed" value="true" />
+      <created>1739934679572</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1739934679572</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(decorator): 新增装饰器模块索引文件&#10;&#10;- 创建新的装饰器模块索引文件，统一导出装饰器相关类&#10;- 在 IFieldConfig 文件中添加字段配置接口的注释说明" />
+    <MESSAGE value="refactor(core): 修改错误信息提示的注释" />
+    <MESSAGE value="chore(git): 更新 .gitignore 文件&#10;&#10;- 在 .gitignore 中添加 test 目录，以忽略测试相关的文件和输出" />
+    <MESSAGE value="docs(changelog): 更新 CHANGELOG.md 文件&#10;&#10;- 新增多个重构和修复项&#10;- 调整用户组件样式和结构&#10;-优化字段配置方法的类型定义- 更新装饰器模块索引和导入路径&#10;- 移除未使用的配置项和接口&#10;- 修改错误信息提示的注释" />
+    <MESSAGE value="release(v3.0.4): 发布了v3.0.4版本" />
+    <MESSAGE value="feat(model): 新增编码规则和部门管理相关模型和服务&#10;&#10;- 添加 CodeRuleEntity、CodeRuleField、CodeRuleParam、DepartmentEntity 模型类&#10;- 实现 CodeRuleService 和 DepartmentService 服务类- 开发编码规则和部门管理的编辑器、列表等组件- 新增 SerialNumberUpdateEnum枚举类" />
+    <MESSAGE value="refactor(core): 优化枚举基类的实现&#10;&#10;- 移除了未使用的 AirAny 类型导入&#10;- 添加了 IJson 接口导入，用于替代 AirAny&#10;- 修改了 get 方法中 toArray 调用的类型引用，使用 IJson 代替 AirAny" />
+    <MESSAGE value="refactor(view): 优化错误处理类型转换&#10;&#10;- 在 bind.vue 和 callback.vue 中，移除了 catch子句中的 AirAny 类型注解&#10;- 使用 as 关键字对捕获的异常对象进行类型转换，以访问 message 属性&#10;- 这种改进提高了代码的可读性和 TypeScript 类型检查的准确性" />
+    <MESSAGE value="refactor(core): 重构网络请求和数据解析&#10;&#10;- 使用新的 request 和 requestArray 请求并自动解析返回的数据" />
+    <MESSAGE value="feat(http): 提供了支持转换类型的request 和 requestArray" />
+    <MESSAGE value="refactor(core): 修正 IJson 导入路径" />
+    <MESSAGE value="refactor(console): 重构部门和供应商组件&#10;&#10;- 移除供应商相关的组件和页面&#10;- 更新部门组件的命名&#10;- 调整部门列表页面的编辑视图引用" />
+    <MESSAGE value="refactor(model): 移除 OpenAppEntity 中的 arithmetic 字段别名&#10;&#10;移除了 OpenAppEntity 类中 arithmetic 字段的 alias 属性，以简化代码结构并提高可维护性。" />
+    <MESSAGE value="build(deps): 添加 Node.js 类型定义&#10;&#10;- 在 devDependencies 中添加 @types/node 依赖&#10;- 用于提高 TypeScript 开发时的类型检查和智能提示" />
+    <MESSAGE value="build: 指定主入口文件为 main.ts" />
+    <MESSAGE value="feat(chat): 添加聊天室功能&#10;&#10;- 新增聊天室页面和相关组件&#10;- 实现WebSocket连接和消息发送&#10;- 添加房间管理、用户管理等基础功能&#10;- 集成表情、图片消息等扩展功能" />
+    <MESSAGE value="feat(chat): 优化聊天室功能和样式&#10;&#10;- 禁用右键菜单并添加系统消息组件&#10;- 优化消息列表渲染逻辑，支持不同类型的消息&#10;- 调整聊天室样式，提升用户体验" />
+    <MESSAGE value="refactor(model): 重构模型层组织结构&#10;&#10;- 将 user、role、menu、permission 等模块移动到 personnel 或 system 目录下&#10;- 更新相关文件的导入路径&#10;- 调整部分文件命名" />
+    <MESSAGE value="fix(Table): 修复树表格重复添加选中项的BUG&#10;&#10;- 修改了 handleSelectChanged 函数的逻辑&#10;- 现在只将在当前页面中找到的项添加到选中列表中&#10;- 优化了代码结构，提高了可读性和性能" />
+    <MESSAGE value="feat(user): 用户编辑增加部门选择功能&#10;&#10;- 在用户编辑页面添加部门选择功能&#10;- 在用户实体中增加部门列表字段&#10;- 优化用户列表页面，添加部门树形过滤&#10;- 更新部门选择器，支持树形结构展示" />
+    <MESSAGE value="fix(notify): 修复飞书告警接收人编辑页面的 token 显示逻辑" />
+    <MESSAGE value="refactor(chat): 合并聊天相关Hook函数&#10;&#10;- 将 useChatEvent 和 useRoomTextMessage合并为 useChat&#10;- 更新 chat.vue 中的导入和使用&#10;- 重构 useChat 函数，添加 sendTextMessage 方法&#10;- 删除 useRoomTextMessage.ts 文件&#10;- 重命名 useChatEvent.ts为 useChat.ts" />
+    <MESSAGE value="refactor(model): 重命名 useCurrentRoom 为 useRoom&#10;&#10;- 将 useCurrentRoom 函数重命名为 useRoom，以更好地反映其功能&#10;- 更新了相关的文件名和引用&#10;- 此更改使代码更具通用性和可维护性" />
+    <MESSAGE value="refactor(view): 优化热门房间列表组件&#10;&#10;- 将 myRoomList 重命名为 hotRoomList，以更准确地反映其内容- 更新相关函数名称，以保持代码一致性&#10;- 调整 RoomList 组件的属性传递" />
+    <MESSAGE value="refactor(view): 优化我的房间列表组件&#10;&#10;- 将组件中的 hotRoomList 重命名为 myRoomList，以更准确地反映其用途&#10;- 更新相关函数名称，以保持代码的一致性和可读性&#10;- 修改模板中使用的变量名称，以与新的命名保持一致" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(view): 优化我的房间列表组件&#10;&#10;- 将组件中的 hotRoomList 重命名为 myRoomList，以更准确地反映其用途&#10;- 更新相关函数名称，以保持代码的一致性和可读性&#10;- 修改模板中使用的变量名称，以与新的命名保持一致" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="VueSettings">
+    <option name="useTypesFromServer" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/view/console/supplier/list.vue</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/airpower/hook/airTableHook.ts</url>
+          <line>97</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
